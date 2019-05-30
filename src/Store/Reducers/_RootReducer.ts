@@ -1,4 +1,4 @@
- import { combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 
@@ -18,4 +18,5 @@ const appReducer = (state, action) => {
     }
     return rootReducer(state, action);
 };
+
 export default appReducer;

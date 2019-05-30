@@ -29,8 +29,7 @@ export default class Footer extends React.Component<any, any> {
                             <li>Lorem ipsum</li>
                         </ul>
                     </div>
-                </div>
-               
+                </div>   
             </footer>
         )
     }
