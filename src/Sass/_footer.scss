@@ -1,0 +1,29 @@
+.footer {
+    margin-top: auto;
+    background-color: $blueMain;
+    color: #fff;
+    padding: 70px 0px;
+    &__inner {
+        display: flex;
+    }
+    &__l, &__r {
+        flex: 1 0 50%;
+        @media (max-width: 767px) {
+            flex: 1 0 100%;
+        }
+    }
+    &__r {
+        display: flex;
+        justify-content: center;
+    }
+    &__l {
+        @media (min-width: 768px) {
+            padding-right: 50px;
+        }
+    }
+    &__menu {
+        @media (min-width: 768px) {
+            flex: 1 0 33%;
+        }
+    }
+}

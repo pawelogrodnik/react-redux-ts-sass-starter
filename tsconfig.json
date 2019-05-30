@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        // "baseUrl": ".",
+        "outDir": "build/dist",
+        "module": "esnext",
+        "target": "es5",
+        "lib": ["es6", "dom", "es2017"],
+        "sourceMap": true,
+        "allowJs": true,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "rootDir": "src",
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": false,
+        "noImplicitThis": false,
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "suppressImplicitAnyIndexErrors": true,
+        "noUnusedLocals": false,
+        "resolveJsonModule": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "baseUrl": ".",
+        "skipLibCheck":true,
+        "paths": {
+            "src/*": ["src/*"],
+            "Modules/*": ["src/Modules/*"],
+            "Models/*": ["src/Models/*"],
+            "Sass/*": ["src/Sass/*"],
+            "components/*": ["src/components/*"],
+            "Connectors/*": ["src/Connectors/*"],
+            "Translations/*": ["src/Translations/*"],
+            "HelperFunctions/*": ["src/HelperFunctions/*"]
+        }
+    },
+    "exclude": ["node_modules", "build", "scripts", "acceptance-tests", "webpack", "jest", "src/setupTests.ts"]
+}
