@@ -10,6 +10,7 @@ export const baseURL ='baseURl';
 const axiosInstance = axios.create({
     baseURL: `https:${baseURL}`
 });
+
 export const activeToken = ''; 
 
 axiosInstance.defaults.headers.common['Authorization'] = `bearer ${activeToken}`;
@@ -20,7 +21,7 @@ function handleConfigInterCeptor(configRq: AxiosRequestConfig) {
 }
 
 function handleInterceptorError(error: any) {
-    // obsługa błedów zanim przed catch error
+    // obsługa błedów zanim catch error
     return Promise.reject(error);
 }
 

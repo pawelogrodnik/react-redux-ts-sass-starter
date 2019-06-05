@@ -1,0 +1,21 @@
+.login {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: $greyMain;
+    &__inner {
+        @media (min-width: 768px) {
+            margin-top: 150px;
+        }
+        min-width: 300px;
+        h1,p {
+            text-align: center;
+        }
+        .btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+    }
+}

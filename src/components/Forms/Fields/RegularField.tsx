@@ -5,8 +5,6 @@ type Props = {
     label: string;
     options: any;
     type: string;
-    max?: number;
-    min?: number;
     disabled: boolean;
     placeholder: string;
     wrapperClassName?:string;
@@ -14,7 +12,7 @@ type Props = {
 
 class RenderField extends React.PureComponent<WrappedFieldProps & Props> {
     public render() {
-        const { input, meta, label, type, max, min, disabled, placeholder, wrapperClassName } = this.props;
+        const { input, meta, label, type, disabled, placeholder, wrapperClassName } = this.props;
         let formClasses: string = 'form_field';
         formClasses += meta.error && meta.touched ? ' form_field--has_error' : '';
         formClasses += wrapperClassName ? ` ${wrapperClassName} ` : '';
@@ -22,14 +20,12 @@ class RenderField extends React.PureComponent<WrappedFieldProps & Props> {
 
         return (
             <div className={formClasses}>
-                <label htmlFor={input.name}>{label}</label>
+                {label && <label htmlFor={input.name}>{label}</label>}
                 <div>
                     <input
                         disabled={disabled || false}
                         {...input}
-                        value={type === 'range' ? (input.value !== '' ? input.value : 100) : input.value}
-                        max={max || null}
-                        min={min || null}
+                        value={input.value}
                         placeholder={placeholder ? placeholder : label}
                         type={type}
                     />

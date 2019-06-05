@@ -1,0 +1,15 @@
+export enum User {
+    LOG_IN = 'LOG_IN',
+    LOG_IN_SUCCESS = 'LOG_IN_SUCCESS',
+    LOG_IN_FAILURE = 'LOG_IN_FAILURE',
+    LOG_OUT = 'LOG_OUT'
+}
+
+export enum ViewManagement {
+    SHOW_LOADER = 'SHOW_LOADER',
+    HIDE_LOADER = 'HIDE_LOADER',
+    SHOW_HEADER = 'SHOW_HEADER',
+    HIDE_HEADER = 'HIDE_HEADER',
+    SHOW_FOOTER = 'SHOW_FOOTER',
+    HIDE_FOOTER = 'HIDE_FOOTER'
+}

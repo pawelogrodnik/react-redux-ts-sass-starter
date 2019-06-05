@@ -1,4 +1,5 @@
-$input-range-font-family: 'Helvetica Neue', san-serif !default;
+$input-range-font-family: 'Helvetica Neue',
+san-serif !default;
 $input-range-primary-color: $blueMain !default;
 $input-range-neutral-color: #aaaaaa !default;
 $input-range-neutral-light-color: #eeeeee !default;
@@ -11,7 +12,8 @@ $input-range-slider-focus-box-shadow-radius: 5px !default;
 $input-range-slider-focus-box-shadow-color: transparentize($input-range-slider-background, 0.8) !default;
 $input-range-slider-height: 1.2rem !default;
 $input-range-slider-width: 1.2rem !default;
-$input-range-slider-transition: transform 0.3s ease-out, box-shadow 0.3s ease-out !default;
+$input-range-slider-transition: transform 0.3s ease-out,
+box-shadow 0.3s ease-out !default;
 $input-range-slider-container-transition: left 0.3s ease-out !default;
 $input-range-slider-active-transform: scale(1.3) !default;
 $input-range-slider-disabled-background: $input-range-disabled-color !default;
@@ -26,49 +28,50 @@ $input-range-label-value-position-top: -2rem !default;
 // input-range-track
 $input-range-track-background: $input-range-neutral-light-color !default;
 $input-range-track-height: .5rem !default;
-$input-range-track-transition: left 0.3s ease-out, width 0.3s ease-out !default;
+$input-range-track-transition: left 0.3s ease-out,
+width 0.3s ease-out !default;
 $input-range-track-active-background: $input-range-primary-color !default;
 $input-range-track-disabled-background: $input-range-neutral-light-color !default;
 
 .input-range__label-container {
     left: -50%;
     position: relative;
-  
-    .input-range__label--max & {
-      left: 50%;
-    }
-  }
 
-  .input-range__label {
+    .input-range__label--max & {
+        left: 50%;
+    }
+}
+
+.input-range__label {
     color: $input-range-label-color;
     font-family: $input-range-font-family;
     font-size: $input-range-label-font-size;
     transform: translateZ(0);
     white-space: nowrap;
     // display: none;
-  }
-  
-  .input-range__label--min,
-  .input-range__label--max {
+}
+
+.input-range__label--min,
+.input-range__label--max {
     bottom: $input-range-label-position-bottom;
     position: absolute;
     display: none;
-  }
-  
-  .input-range__label--min {
+}
+
+.input-range__label--min {
     left: 0;
-  }
-  
-  .input-range__label--max {
+}
+
+.input-range__label--max {
     right: 0;
-  }
-  
-  .input-range__label--value {
+}
+
+.input-range__label--value {
     position: absolute;
     top: $input-range-label-value-position-top;
-  }
+}
 
-  .input-range__slider {
+.input-range__slider {
     appearance: none;
     background: $input-range-slider-background;
     border: $input-range-slider-border;
@@ -83,27 +86,28 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
     top: 50%;
     transition: $input-range-slider-transition;
     width: $input-range-slider-width;
-  
+
     &:active {
-      transform: $input-range-slider-active-transform;
+        transform: $input-range-slider-active-transform;
     }
-  
+
     &:focus {
-      box-shadow: 0 0 0 $input-range-slider-focus-box-shadow-radius $input-range-slider-focus-box-shadow-color;
+        box-shadow: 0 0 0 $input-range-slider-focus-box-shadow-radius $input-range-slider-focus-box-shadow-color;
     }
-  
+
     .input-range--disabled & {
-      background: $input-range-slider-disabled-background;
-      border: $input-range-slider-disabled-border;
-      box-shadow: none;
-      transform: none;
+        background: $input-range-slider-disabled-background;
+        border: $input-range-slider-disabled-border;
+        box-shadow: none;
+        transform: none;
     }
-  }
-  
-  .input-range__slider-container {
+}
+
+.input-range__slider-container {
     transition: $input-range-slider-container-transition;
-  }
-  .input-range__track {
+}
+
+.input-range__track {
     background: $input-range-track-background;
     border-radius: $input-range-track-height;
     cursor: pointer;
@@ -111,36 +115,36 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
     height: $input-range-track-height;
     position: relative;
     transition: $input-range-track-transition;
-  
+
     .input-range--disabled & {
-      background: $input-range-track-disabled-background;
+        background: $input-range-track-disabled-background;
     }
-  }
-  
-  .input-range__track--background {
+}
+
+.input-range__track--background {
     left: 0;
     margin-top: -0.5 * $input-range-track-height;
     position: absolute;
     right: 0;
     top: 50%;
-  }
-  
-  .input-range__track--active {
-    background: $input-range-track-active-background;
-  }
+}
 
-  
-  .input-range {
+.input-range__track--active {
+    background: $input-range-track-active-background;
+}
+
+
+.input-range {
     height: $input-range-slider-height;
     position: relative;
     width: 100%;
-  }
+}
 
-  .input {
+.input {
     &--range {
-      margin-bottom: 25px;
+        margin-bottom: 25px;
     }
-  }
+}
 
 .form {
     &--searchInvestments {
@@ -148,18 +152,24 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
             display: flex;
             .input {
                 &--range {
-                  flex: 0 1 calc(100% / 3);
-                  &:first-of-type {
-                    margin-right: 10px;
-                  }
-                  &:last-of-type {
-                    margin-left: 10px;
-                  }
-                  &:nth-of-type(2) {
-                    margin: 0 10px;
-                  }
+                    flex: 0 1 calc(100% / 3);
+
+                    &:first-of-type {
+                        margin-right: 10px;
+                    }
+
+                    &:last-of-type {
+                        margin-left: 10px;
+                    }
+
+                    &:nth-of-type(2) {
+                        margin: 0 10px;
+                    }
                 }
             }
         }
+    }
+    &_field {
+        margin-bottom: 15px;
     }
 }

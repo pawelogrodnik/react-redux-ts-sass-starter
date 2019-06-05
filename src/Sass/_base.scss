@@ -18,9 +18,15 @@ body {
     padding: 7px 15px;
     display: block;
     cursor: pointer;
+    border: 0px;
+    border-radius: 5px;
     &--main {
         color: #fff;
         background-color: $brownMain;
+    }
+    &--big {
+        width: 100%;
+        padding: 15px;
     }
 }
 
