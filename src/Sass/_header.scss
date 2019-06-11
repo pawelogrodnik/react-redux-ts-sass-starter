@@ -1,8 +1,9 @@
 .header {
-    padding: 25px 0;
+    padding: 0;
     &__menu {
         display: flex;
         align-items: center;
+        color: white;
         li {
             margin-right: 20px;
         }
@@ -10,5 +11,9 @@
     &__inner {
         display: flex;
         justify-content: space-between;
+    }
+    #logo {
+        width: 150px;
+        cursor: pointer;
     }
 }

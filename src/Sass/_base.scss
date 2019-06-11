@@ -1,3 +1,6 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
 .container {
     max-width: 1200px;
     width: 100%;
@@ -19,7 +22,9 @@ body {
     display: block;
     cursor: pointer;
     border: 0px;
-    border-radius: 5px;
+    border-radius: 3px;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
     &--main {
         color: #fff;
         background-color: $brownMain;
@@ -42,7 +47,9 @@ h2 {
     font-size: 30px;
 }
 
-h1,h2,h3 {
+h1,
+h2,
+h3 {
     line-height: 1.2;
     font-weight: 700;
     margin-bottom: 15px;
@@ -53,7 +60,7 @@ input {
     padding: 9px 15px;
     font-size: 13px;
     line-height: 1.5;
-    border-radius: 5px;
+    border-radius: 3px;
     font-weight: normal;
     &[type='range'] {
         // width: auto;
@@ -144,4 +151,25 @@ input {
             background: #707070;
         }
     }
+    &[type='text'] {
+        border: 1px solid #d9d5d5;
+    }
+    &[type='email'] {
+        border: 1px solid #d9d5d5;
+    }
+}
+.main-wrapper {
+    background-image: url('/background.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.heroBanner {
+    color: white;
+    height: 300px;
+}
+
+.heroBanner__desc {
+    margin: 50px 0 50px 0;
+    width: 60%;
 }
