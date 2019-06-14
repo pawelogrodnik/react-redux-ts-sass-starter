@@ -6,17 +6,16 @@ import { history } from './../../App';
 function loginUser(username: string, password: string) {
     return async dispatch => {
         try {
-            await UserModule.Connector.loginUser({username, password});
-            dispatch(loginUserSuccess('user', 'token'))
+            const response = await UserModule.Connector.loginUser(username, password);
+            dispatch(loginUserSuccess(response.data, 'token'))
             history.push('/dashboard')
         } catch (err) {
             dispatch(loginUserFailure());
-            // history.push('/dashboard')
         }
     };
 }
 
-function loginUserSuccess(user: any, token: string): UserActionModel.LoginUserSuccess {
+function loginUserSuccess(user: UserModule.Types.User, token: string): UserActionModel.LoginUserSuccess {
     return {
         type: User.LOG_IN_SUCCESS,
         payload: {

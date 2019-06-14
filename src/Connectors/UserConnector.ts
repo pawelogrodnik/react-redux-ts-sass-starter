@@ -1,8 +1,7 @@
 import API from './config';
-import axios, { AxiosPromise } from 'axios';
+import { AxiosPromise } from 'axios';
 import * as UserModule from './../Modules/UserModule';
 
-export function loginUser(userData:any): AxiosPromise<any> {
-    console.log(userData);
-    return API.post('login', userData);
+export function loginUser(username: string, password: string): AxiosPromise<UserModule.Types.User> {
+    return API.post('login', {username, password});
 }

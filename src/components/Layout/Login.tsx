@@ -3,19 +3,27 @@ import LoginForm from './../Forms/LoginForm';
 import { connect } from 'react-redux';
 import * as ViewManagementModule from './../../Modules/ViewManagementModule';
 import * as UserModule from './../../Modules/UserModule';
+import { RootState } from './../../Store/Reducers/_RootReducer';
+import { history } from 'src/App';
 
 type DispatchedP = {
     hideFooter: () => void;
     hideHeader: () => void;
     loginUser: (username: string, password: string) => void;
 }
+type ConnectedP = {
+    userStore: UserModule.Types.UserStore;
+}
 
-class Login extends React.Component<DispatchedP, any> {
-    constructor(props: DispatchedP) {
+class Login extends React.Component<DispatchedP & ConnectedP, any> {
+    constructor(props: DispatchedP & ConnectedP) {
         super(props);
     }
 
     public componentWillMount() {
+        if (this.props.userStore.user) {
+            history.push('/dashboard');
+        }
         this.props.hideFooter();
         this.props.hideHeader();
     }
@@ -43,4 +51,9 @@ const mapDispatchToProps: DispatchedP = {
     loginUser: (username: string, password: string) => UserModule.Actions.loginUser(username, password),
 };
 
-export default connect(null, mapDispatchToProps)(Login)
+function mapStateToProps(state: RootState) {
+    return {
+        userStore: state.userStore
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
