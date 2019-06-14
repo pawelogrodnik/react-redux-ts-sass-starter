@@ -1,0 +1,14 @@
+.page {
+    &--dashboard {
+        display: flex;
+        &__menu {
+            flex: 0 1 200px;
+            background-color: $blueMain;
+            padding: 15px 10px;
+            min-height: 100vh;
+        }
+        &__content {
+            margin: 120px 50px 50px 50px;
+        }
+    }
+}

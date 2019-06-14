@@ -2,6 +2,7 @@ import * as React from 'react';
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import HomePage from './components/HomePage';
+import Dashboard from './components/Dashboard';
 import Login from './components/Layout/Login';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider} from 'react-redux';
@@ -20,9 +21,9 @@ class App extends React.Component<P, any> {
               {this.props.viewManagementStore.headerVisible && <Header/> }
               <div className="pages__inner">
                 <Switch>
-                  <Route exact path={'/'} component={HomePage} />
-                  <Route exact path={'/login'} component={Login} />
-                  <Route exact path={'/dashboard'} component={() =><h1>Dashboard</h1>} />
+                  <Route exact path={'/'} component={Login} />
+                  <Route exact path={'/homepage'} component={HomePage} />
+                  <Route path={'/dashboard'} component={Dashboard} />
                 </Switch>
               </div>
               {this.props.viewManagementStore.footerVisible && <Footer/> }

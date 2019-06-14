@@ -3,7 +3,6 @@ import HeroBanner from './HeroBanner';
 import IntroTextBanner from './IntroTextBanner';
 import SearchInvestmentsForm from './Forms/SearchInvestmentsForm';
 import { InvestmentList } from './InvestmentBlock';
-
 type S = {
     investmentsVisible?: boolean
 }

@@ -13,7 +13,7 @@ const LoginForm = (props: InjectedFormProps  & Props) => {
     return (
         <div className="form form--login">
             <form className="form" onSubmit={handleSubmit}>
-                <Field name="login" component={RegularField} placeholder={'Login'} validate={[V.required]}/>
+                <Field name="username" component={RegularField} placeholder={'Login'} validate={[V.required]}/>
                 <Field name="password" component={RegularField} placeholder={'Hasło'} validate={[V.required]} />
                 <div className="form--login__buttons">
                     <button disabled={submitting} className="btn btn--main btn--big" type="submit">

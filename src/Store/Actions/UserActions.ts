@@ -3,15 +3,15 @@ import * as UserActionModel from './Models/UserActionModel';
 import * as UserModule from 'Modules/UserModule';
 import { history } from './../../App';
 
-function loginUser(login: string, password: string) {
+function loginUser(username: string, password: string) {
     return async dispatch => {
         try {
-            await UserModule.Connector.loginUser({login, password});
+            await UserModule.Connector.loginUser({username, password});
             dispatch(loginUserSuccess('user', 'token'))
             history.push('/dashboard')
         } catch (err) {
             dispatch(loginUserFailure());
-            history.push('/dashboard')
+            // history.push('/dashboard')
         }
     };
 }
