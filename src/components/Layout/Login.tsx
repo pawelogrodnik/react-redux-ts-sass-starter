@@ -7,20 +7,23 @@ import * as UserModule from './../../Modules/UserModule';
 type DispatchedP = {
     hideFooter: () => void;
     hideHeader: () => void;
-    loginUser: (login: string, password: string) => void;
+    loginUser: (username: string, password: string) => void;
 }
 
 class Login extends React.Component<DispatchedP, any> {
     constructor(props: DispatchedP) {
         super(props);
     }
+
     public componentWillMount() {
         this.props.hideFooter();
-        this.props.hideHeader()
+        this.props.hideHeader();
     }
+
     public handleSubmit = async(formData) => {
-        await this.props.loginUser(formData.login, formData.password);
+        await this.props.loginUser(formData.username, formData.password);
     }
+
     public render() {
         return (
             <div className="login">
@@ -37,7 +40,7 @@ class Login extends React.Component<DispatchedP, any> {
 const mapDispatchToProps: DispatchedP = {
     hideFooter: () => ViewManagementModule.Actions.hideFooter(),
     hideHeader: () => ViewManagementModule.Actions.hideHeader(),
-    loginUser: (login: string, password: string) => UserModule.Actions.loginUser(login, password),
-  };
+    loginUser: (username: string, password: string) => UserModule.Actions.loginUser(username, password),
+};
 
 export default connect(null, mapDispatchToProps)(Login)

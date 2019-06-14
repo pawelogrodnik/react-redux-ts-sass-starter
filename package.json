@@ -39,7 +39,7 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src/Sass ./src/Sass/style.scss --include-path ./node_modules src -o ./src/Sass --watch --recursive",
     "build-css": "node-sass-chokidar --include-path ./src/Sass ./src/Sass/style.scss --include-path ./node_modules  -o ./src/Sass",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts-ts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "start-js": "react-app-rewired start --scripts-version react-scripts-ts start"

@@ -30,13 +30,9 @@ const SearchInvestmentsForm = (props: InjectedFormProps  & Props) => {
     );
 };
 
-function mapStateToProps(state: any) {
-    return {
-        ...state
-    };
-}
 
-export default connect(mapStateToProps)(
+
+export default 
     reduxForm({
         form: 'searchInvestmentsForm'
-    })(SearchInvestmentsForm))
+    })(SearchInvestmentsForm)

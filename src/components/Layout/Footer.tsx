@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Footer extends React.Component<any, any> {
     public render() {
@@ -11,10 +12,10 @@ export default class Footer extends React.Component<any, any> {
                     </div>
                     <div className="footer__r">
                         <ul className="footer__menu">
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
-                            <li>Lorem ipsum</li>
+                            <li><Link to={'/'}>Login</Link></li>
+                            <li><Link to={'/homepage'}>Strona główna</Link></li>
+                            <li><Link to={'/dashboard'}>Dashboard</Link></li>
+                            <li><Link to={'/'}>Lorem ipsum</Link></li>
                         </ul>
                         <ul className="footer__menu">
                             <li>Lorem ipsum</li>

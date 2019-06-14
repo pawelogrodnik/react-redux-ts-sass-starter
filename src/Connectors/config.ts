@@ -5,10 +5,10 @@ export type QueryParams = {
     value: any;
 };
 
-export const baseURL ='baseURl';
+export const baseURL ='//obligacje-app.k-org.pl/';
 
 const axiosInstance = axios.create({
-    baseURL: `https:${baseURL}`
+    baseURL: `http:${baseURL}`
 });
 
 export const activeToken = ''; 
