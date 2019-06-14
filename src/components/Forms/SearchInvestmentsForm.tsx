@@ -1,16 +1,9 @@
 import * as React from 'react';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
-import { connect } from 'react-redux';
 import {RangeField} from './Fields/_Fields';
 import { Validators as V } from './Fields/Validators';
 
-
-type Props = {
-    onClose: Function;
-    onDelete: () => void;
-    currentAddress: string;
-};
-const SearchInvestmentsForm = (props: InjectedFormProps  & Props) => {
+const SearchInvestmentsForm = (props: InjectedFormProps) => {
     const { handleSubmit, submitting } = props;
     return (
         <div className="form form--searchInvestments">

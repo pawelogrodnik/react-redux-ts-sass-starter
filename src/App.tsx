@@ -21,8 +21,8 @@ class App extends React.Component<P, any> {
               {this.props.viewManagementStore.headerVisible && <Header/> }
               <div className="pages__inner">
                 <Switch>
-                  <Route exact path={'/'} component={Login} />
-                  <Route exact path={'/homepage'} component={HomePage} />
+                  {/* <Route exact path={'/'} component={Login} /> */}
+                  <Route exact path={'/'} component={HomePage} />
                   <Route path={'/dashboard'} component={Dashboard} />
                 </Switch>
               </div>

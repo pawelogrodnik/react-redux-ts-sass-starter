@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import * as ViewManagementModule from './../Modules/ViewManagementModule';
 import { Route, Switch } from 'react-router-dom';
 import Login from 'components/Layout/Login';
+import AddInvestment from 'components/AddInvestment';
+import InvestmentsList from 'components/InvestmentsList';
 import { Link } from 'react-router-dom';
 
 type S = {
@@ -40,9 +42,9 @@ class Dashboard extends React.Component<DispatchedP, S> {
                 </div>
                 <div className="page--dashboard__content">
                     <Switch>
+                        <Route exact path={'/dashboard/'} component={InvestmentsList} />
                         <Route exact path={'/dashboard/login'} component={Login} />
-                        <Route exact path={'/dashboard/'} component={()=><h1>Lista inwestycji</h1>} />
-                        <Route exact path={'/dashboard/investments/add'} component={()=><h1>Dodaj inwestycje</h1>} />
+                        <Route exact path={'/dashboard/investments/add'} component={AddInvestment} />
                         <Route exact path={'/dashboard/investments/:investmentId'} component={()=><h1>Edytuj inwestycje</h1>} />
                     </Switch>
                 </div>

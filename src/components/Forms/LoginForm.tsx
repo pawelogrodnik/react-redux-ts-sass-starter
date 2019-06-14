@@ -3,12 +3,7 @@ import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import { RegularField } from './Fields/_Fields';
 import { Validators as V } from './Fields/Validators';
 
-type Props = {
-    onClose: Function;
-    onDelete: () => void;
-    currentAddress: string;
-};
-const LoginForm = (props: InjectedFormProps & Props) => {
+const LoginForm = (props: InjectedFormProps) => {
     const { handleSubmit, submitting } = props;
     return (
         <div className="form form--login">
