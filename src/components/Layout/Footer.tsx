@@ -12,7 +12,7 @@ export default class Footer extends React.Component<any, any> {
                     </div>
                     <div className="footer__r">
                         <ul className="footer__menu">
-                            <li><Link to={'/login'}>Login</Link></li>
+                            <li><Link to={'/dashboard/login'}>Login</Link></li>
                             <li><Link to={'/'}>Strona główna</Link></li>
                             <li><Link to={'/dashboard'}>Dashboard</Link></li>
                             <li><Link to={'/'}>Lorem ipsum</Link></li>

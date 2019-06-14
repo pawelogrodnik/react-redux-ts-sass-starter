@@ -143,6 +143,21 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
 }
 
 .form {
+    .DateInput, .SingleDatePickerInput, .SingleDatePicker {
+        width: 100%;
+    }
+    .full, .form_field {
+        width: 100%;
+        flex: 0 1 100%;
+    }
+    .half {
+        width: 50%;
+        flex: 0 1 50%;
+    }
+    .quarter {
+        width: 25%;
+        flex: 0 1 25%;
+    }
     &--searchInvestments {
         &__range-wrapper {
             display: flex;
@@ -163,6 +178,25 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
                     }
                 }
             }
+        }
+    }
+    &--addInvestment {
+        .form, &_bottom {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        &_l, &_r {
+            flex: 0 1 50%;
+        }
+        &_l {
+            padding-right: 15px;
+        }
+        &_r {
+            padding-left: 15px;
+        }
+        &__content {
+            display: flex;
+            flex-wrap: wrap;
         }
     }
     &_field {
