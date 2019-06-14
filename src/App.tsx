@@ -5,7 +5,7 @@ import HomePage from './components/HomePage';
 import Dashboard from './components/Dashboard';
 import Login from './components/Layout/Login';
 import { ConnectedRouter } from 'react-router-redux';
-import { Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import { store } from './Store/Store';
 import { Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
@@ -15,19 +15,18 @@ import { RootState } from './Store/Reducers/_RootReducer';
 type P = RootState
 
 class App extends React.Component<P, any> {
-  public render() {
-      return (
-          <div className="main-wrapper">
-              {this.props.viewManagementStore.headerVisible && <Header/> }
-              <div className="pages__inner">
-                <Switch>
-                  <Route exact path={'/'} component={Login} />
-                  <Route exact path={'/homepage'} component={HomePage} />
-                  <Route path={'/dashboard'} component={Dashboard} />
-                </Switch>
-              </div>
-              {this.props.viewManagementStore.footerVisible && <Footer/> }
-          </div>
+    public render() {
+        return (
+            <div className="main-wrapper">
+                {this.props.viewManagementStore.headerVisible && <Header />}
+                <div className="pages__inner">
+                    <Switch>
+                        <Route exact path={'/'} component={HomePage} />
+                        <Route path={'/dashboard'} component={Dashboard} />
+                    </Switch>
+                </div>
+                {this.props.viewManagementStore.footerVisible && <Footer />}
+            </div>
         )
     }
 }
@@ -36,7 +35,7 @@ export const history = createHistory();
 
 function mapStateToProps(state: any) {
     return {
-      ...state
+        ...state
     }
 }
 
@@ -44,10 +43,10 @@ function mapStateToProps(state: any) {
 const AppMain = connect(mapStateToProps, null)(App)
 
 const RootApp = () => (
-  <Provider store={store}>
-      <ConnectedRouter history={history}>
-          <Route path="/" component={AppMain} />
-      </ConnectedRouter>
-  </Provider>
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <Route path="/" component={AppMain} />
+        </ConnectedRouter>
+    </Provider>
 )
 export default RootApp;

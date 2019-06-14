@@ -32,8 +32,8 @@ class Dashboard extends React.Component<DispatchedP, S> {
             <div className="page page--dashboard">
                 <div className="page--dashboard__menu">
                     <ul>
-                        <li><Link to={'/homepage'}>Strona głowna</Link></li>
-                        <li><Link to={'/'}>Login</Link></li>
+                        <li><Link to={'/'}>Strona głowna</Link></li>
+                        <li><Link to={'/login'}>Login</Link></li>
                         <li><Link to={'/dashboard/'}>Lista inwestycji</Link></li>
                         <li><Link to={'/dashboard/investments/add'}>Dodaj inwestycje</Link></li>
                     </ul>
@@ -41,9 +41,9 @@ class Dashboard extends React.Component<DispatchedP, S> {
                 <div className="page--dashboard__content">
                     <Switch>
                         <Route exact path={'/dashboard/login'} component={Login} />
-                        <Route exact path={'/dashboard/'} component={()=><h1>Lista inwestycji</h1>} />
-                        <Route exact path={'/dashboard/investments/add'} component={()=><h1>Dodaj inwestycje</h1>} />
-                        <Route exact path={'/dashboard/investments/:investmentId'} component={()=><h1>Edytuj inwestycje</h1>} />
+                        <Route exact path={'/dashboard/'} component={() => <h1>Lista inwestycji</h1>} />
+                        <Route exact path={'/dashboard/investments/add'} component={() => <h1>Dodaj inwestycje</h1>} />
+                        <Route exact path={'/dashboard/investments/:investmentId'} component={() => <h1>Edytuj inwestycje</h1>} />
                     </Switch>
                 </div>
             </div>

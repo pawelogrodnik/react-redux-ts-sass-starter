@@ -12,8 +12,8 @@ export default class Footer extends React.Component<any, any> {
                     </div>
                     <div className="footer__r">
                         <ul className="footer__menu">
-                            <li><Link to={'/'}>Login</Link></li>
-                            <li><Link to={'/homepage'}>Strona główna</Link></li>
+                            <li><Link to={'/login'}>Login</Link></li>
+                            <li><Link to={'/'}>Strona główna</Link></li>
                             <li><Link to={'/dashboard'}>Dashboard</Link></li>
                             <li><Link to={'/'}>Lorem ipsum</Link></li>
                         </ul>
@@ -30,7 +30,7 @@ export default class Footer extends React.Component<any, any> {
                             <li>Lorem ipsum</li>
                         </ul>
                     </div>
-                </div>   
+                </div>
             </footer>
         )
     }

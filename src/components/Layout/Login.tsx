@@ -24,11 +24,9 @@ class Login extends React.Component<DispatchedP & ConnectedP, any> {
         if (this.props.userStore.user) {
             history.push('/dashboard');
         }
-        this.props.hideFooter();
-        this.props.hideHeader();
     }
 
-    public handleSubmit = async(formData) => {
+    public handleSubmit = async (formData) => {
         await this.props.loginUser(formData.username, formData.password);
     }
 
@@ -38,7 +36,7 @@ class Login extends React.Component<DispatchedP & ConnectedP, any> {
                 <div className="login__inner">
                     <h1>Logowanie</h1>
                     <p>Lorem ipsum sit amet</p>
-                    <LoginForm onSubmit={this.handleSubmit}/>
+                    <LoginForm onSubmit={this.handleSubmit} />
                 </div>
             </div>
         )
