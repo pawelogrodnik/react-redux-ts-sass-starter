@@ -8,6 +8,7 @@ function loginUser(username: string, password: string) {
         try {
             const response = await UserModule.Connector.loginUser(username, password);
             dispatch(loginUserSuccess(response.data, 'token'))
+            localStorage.setItem('user', JSON.stringify(response.data));
             history.push('/dashboard')
         } catch (err) {
             dispatch(loginUserFailure());
