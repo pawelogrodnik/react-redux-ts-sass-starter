@@ -15,7 +15,7 @@ function getInvestments() {
 function addInvestment(investment: InvestmentModule.Types.Investment) {
     return async dispatch => {
         try {
-            const response = await InvestmentModule.Connector.addInvestment(investment)
+            await InvestmentModule.Connector.addInvestment(investment)
             dispatch(addInvestmentSuccess())
         } catch (err) {
             // 
