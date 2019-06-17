@@ -3,9 +3,9 @@ import * as InvestmentsModule from 'Modules/InvestmentModule';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
 import { connect } from 'react-redux';
 import ReactTable from 'react-table';
-import TypeConverter from './TypeConverter';
+// import TypeConverter from './TypeConverter';
 import StatusConverter from './StatusConverter';
-
+import * as Dictionary from 'Models/Dictionary';
 type DispatchedP = {
     getInvestments: () => void;
 }
@@ -35,12 +35,12 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                         {
                             id: 'type',
                             Header: 'Typ produktu',
-                            Cell: TypeConverter
+                            Cell: (props) => Dictionary.investmentTypeMap.get(props.original.type)
                         },
                         {
                             id: 'status',
                             Header: 'Status produktu',
-                            Cell: StatusConverter
+                            Cell: (props) => <StatusConverter {...props} />
                         },
                         {
                             id: 'title',
