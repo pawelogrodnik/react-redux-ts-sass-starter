@@ -16,8 +16,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-a {
+a, .fake-a {
     color: #fff;
+    cursor: pointer;
     text-decoration: none;
 }
 .btn {

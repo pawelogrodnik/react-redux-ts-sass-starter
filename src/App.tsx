@@ -20,7 +20,7 @@ type DispatchedP = {
 type S = {
     loadingUserComplete: boolean
 }
-class App extends React.Component<P & DispatchedP, S> {
+class App extends React.PureComponent<P & DispatchedP, S> {
     constructor(props: P & DispatchedP) {
         super(props);
         this.state = {

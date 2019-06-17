@@ -2,13 +2,15 @@ import * as React from 'react';
 import * as InvestmentsModule from 'Modules/InvestmentModule';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
 import { connect } from 'react-redux';
-import ReactTable from 'react-table';
+import ReactTable, { RowInfo } from 'react-table';
 // import TypeConverter from './TypeConverter';
 import StatusConverter from './StatusConverter';
 import * as Dictionary from 'Models/Dictionary';
 import * as moment from 'moment';
+import { history } from 'src/App';
 type DispatchedP = {
     getInvestments: () => void;
+    setActiveInvestmentId: (investmentId: number) => void;
 }
 type ConnectedP = {
     investmentList: Array<InvestmentsModule.Types.Investment>
@@ -17,6 +19,16 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
     public async componentWillMount() {
         await this.props.getInvestments()
     }
+
+    private getTrProps = (state: any, rowInfo: RowInfo) => {
+        return {
+            onClick: () => {
+                this.props.setActiveInvestmentId(rowInfo.original.id);
+                history.push(`/dashboard/investments/${rowInfo.original.id}`);
+            },
+        };
+    };
+
     public render() {
         return (
             <div className="investmentList">
@@ -26,6 +38,7 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                     showPagination={false}
                     sortable={true}
                     minRows={0}
+                    getTrProps={this.getTrProps}
                     data={this.props.investmentList ? [...this.props.investmentList] : []}
                     columns={[
                         {
@@ -76,7 +89,8 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
 }
 
 const mapDispatchToProps: DispatchedP = {
-    getInvestments: () => InvestmentsModule.Actions.getInvestments()
+    getInvestments: () => InvestmentsModule.Actions.getInvestments(),
+    setActiveInvestmentId: (investmentId: number) => InvestmentsModule.Actions.setActiveInvestmentId(investmentId),
 };
 function mapStateToProps(state: RootState): ConnectedP {
     return {

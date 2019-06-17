@@ -18,6 +18,12 @@ export function userReducer(state: State = initialState, action: UserAction) {
                token: action.payload.token
             };
         }
+        case ActionTypes.User.LOG_OUT: {
+            localStorage.removeItem('user');
+            return {
+                ...state
+            }
+        }
         default: {
             return state;
         }

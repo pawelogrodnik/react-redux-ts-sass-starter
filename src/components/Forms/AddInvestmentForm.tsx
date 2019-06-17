@@ -80,7 +80,9 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
 };
 
 const addInvestment = reduxForm({
-    form: 'addInvestmentForm'
+    form: 'addInvestmentForm',
+    keepDirtyOnReinitialize: true,
+    enableReinitialize: true
 })(AddInvestmentForm);
 
 const selector = formValueSelector('addInvestmentForm');
