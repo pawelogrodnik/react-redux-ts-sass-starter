@@ -31,6 +31,14 @@ function getInvestmentsSuccess(investmentList: Array<InvestmentModule.Types.Inve
         }
     };
 }
+function setActiveInvestmentId(investmentId): InvestmentActionModel.SetActiveInvestmentId {
+    return {
+        type: Investment.SET_ACTIVE_INVESTMENT,
+        payload: {
+            investmentId
+        }
+    };
+}
 function addInvestmentSuccess(): InvestmentActionModel.AddInvestment {
     return {
         type: Investment.ADD_INVESTMENT
@@ -40,5 +48,6 @@ function addInvestmentSuccess(): InvestmentActionModel.AddInvestment {
 
 export {
     getInvestments,
-    addInvestment
+    addInvestment,
+    setActiveInvestmentId
 }
