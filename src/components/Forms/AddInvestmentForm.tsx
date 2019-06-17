@@ -71,7 +71,7 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                 <div className="form--addInvestment--actions">
                     <div className="form--login__buttons">
                         <button disabled={submitting} className="btn btn--main btn--big" type="submit">
-                            {initialValues ? 'Zapisz zmiany' : 'Dodaj nową inwestycję'}
+                            {initialValues['type'] ? 'Zapisz zmiany' : 'Dodaj nową inwestycję'}
                         </button>
                     </div>
                 </div>
