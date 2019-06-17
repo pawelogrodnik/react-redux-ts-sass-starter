@@ -6,6 +6,7 @@ import ReactTable from 'react-table';
 // import TypeConverter from './TypeConverter';
 import StatusConverter from './StatusConverter';
 import * as Dictionary from 'Models/Dictionary';
+import * as moment from 'moment';
 type DispatchedP = {
     getInvestments: () => void;
 }
@@ -30,7 +31,7 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                         {
                             id: 'id',
                             accessor: 'id',
-                            Header: 'ID produktu'
+                            Header: 'ID produktu',
                         },
                         {
                             id: 'type',
@@ -50,7 +51,22 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                         {
                             id: 'price',
                             Header: 'Cena w serwisie',
-                            accessor: d => d.detailedParams.priceService
+                            accessor: d => d.detailedParams.priceService + " PLN"
+                        },
+                        {
+                            id: 'date',
+                            Header: 'Rozpoczęcie sprzedaży',
+                            accessor: d => moment(d.basicParams.startDate).format('DD-MM-YYYY')
+                        },
+                        {
+                            id: 'edit',
+                            Cell: <i className="fas fa-edit" />,
+                            width: 50
+                        },
+                        {
+                            id: 'archive',
+                            Cell: <i className="fas fa-trash" />,
+                            width: 50
                         }
                     ]}
                 />

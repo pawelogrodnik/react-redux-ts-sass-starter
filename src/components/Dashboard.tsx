@@ -47,9 +47,8 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                         <li><Link to={'/'}><img src="/home.png" /></Link></li>
                         {this.props.userStore.user ? (
                             <>
-                            <li><Link to={'/login'}><i className="fas fa-sign-in-alt" /></Link></li>
-                            <li><Link to={'/dashboard/'}>Lista inwestycji</Link></li>
-                            <li><Link to={'/dashboard/investments/add'}>Dodaj inwestycje</Link></li>
+                            <li><Link to={'/dashboard/'}><i className="fas fa-list-ol" /></Link></li>
+                            <li><Link to={'/dashboard/investments/add'}><i className="fas fa-plus" /></Link></li>
                             </>
                          ) : (
                             <li><Link to={'/dashboard/login'}><i className="fas fa-sign-in-alt" /></Link></li>

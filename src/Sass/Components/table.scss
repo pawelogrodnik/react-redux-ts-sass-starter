@@ -233,9 +233,15 @@
 	display: -webkit-inline-box;
 	display: -ms-inline-flexbox;
 	display: inline-flex;
-	cursor: pointer;
 	height: 55px;
 	padding: 10px;
+	i{
+		font-size: 25px;
+		cursor: pointer;
+		&:hover {
+			color: $brownMain;
+		}
+	}
 }
 
 .ReactTable .rt-th,
