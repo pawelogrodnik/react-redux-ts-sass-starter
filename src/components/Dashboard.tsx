@@ -28,9 +28,9 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
     }
 
     public componentWillMount() {
-        // if (!this.props.userStore.user) {
-        //     history.push('/dashboard/login')
-        // }
+        if (!this.props.userStore.user) {
+            history.push('/dashboard/login')
+        }
         this.props.hideFooter();
         this.props.hideHeader();
     }
@@ -45,29 +45,29 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                 <div className="page--dashboard__menu">
                     <ul>
                         <li><Link to={'/'}><img src="/home.png" /></Link></li>
-                        {/* {this.props.userStore.user ? ( */}
+                        {this.props.userStore.user ? (
                             <>
-                                <li><Link to={'/login'}><i className="fas fa-sign-in-alt" /></Link></li>
-                                <li><Link to={'/dashboard/'}>Lista inwestycji</Link></li>
-                                <li><Link to={'/dashboard/investments/add'}>Dodaj inwestycje</Link></li>
+                            <li><Link to={'/login'}><i className="fas fa-sign-in-alt" /></Link></li>
+                            <li><Link to={'/dashboard/'}>Lista inwestycji</Link></li>
+                            <li><Link to={'/dashboard/investments/add'}>Dodaj inwestycje</Link></li>
                             </>
-                        {/* ) : (
+                         ) : (
                             <li><Link to={'/dashboard/login'}><i className="fas fa-sign-in-alt" /></Link></li>
-                        )} */}
+                        )}
                     </ul>
                 </div>
                 <div className="page--dashboard__content">
-                        {/* {this.props.userStore.user ? ( */}
+                    {this.props.userStore.user ? (
+                        <Switch>
+                            <Route exact path={'/dashboard/'} component={InvestmentsList} />
+                            <Route exact path={'/dashboard/investments/add'} component={ManageInvestment} />
+                            <Route exact path={'/dashboard/investments/:investmentId'} component={ManageInvestment} />
+                        </Switch>
+                    ) : (
                             <Switch>
-                                <Route exact path={'/dashboard/'} component={InvestmentsList} />
-                                <Route exact path={'/dashboard/investments/add'} component={ManageInvestment} />
-                                <Route exact path={'/dashboard/investments/:investmentId'} component={ManageInvestment} />
-                            </Switch>
-                        {/* ): ( */}
-                            {/* <Switch>
                                 <Route path={'/dashboard'} component={Login} />
-                            </Switch> */}
-                        {/* )} */}
+                            </Switch>
+                        )}
                 </div>
             </div>
         )

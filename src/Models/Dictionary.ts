@@ -15,8 +15,8 @@ export const investmentTypeMap = new Map<InvestmentEnumTypes.InvestmentType, str
 ])
 
 export const investmentTypeArray = [InvestmentEnumTypes.InvestmentType.diamonds, InvestmentEnumTypes.InvestmentType.dorm, InvestmentEnumTypes.InvestmentType.flat,
-    InvestmentEnumTypes.InvestmentType.gold, InvestmentEnumTypes.InvestmentType.hotel, InvestmentEnumTypes.InvestmentType.parcel, InvestmentEnumTypes.InvestmentType.token,
-    InvestmentEnumTypes.InvestmentType.vehicle, InvestmentEnumTypes.InvestmentType.whisky
+InvestmentEnumTypes.InvestmentType.gold, InvestmentEnumTypes.InvestmentType.hotel, InvestmentEnumTypes.InvestmentType.parcel, InvestmentEnumTypes.InvestmentType.token,
+InvestmentEnumTypes.InvestmentType.vehicle, InvestmentEnumTypes.InvestmentType.whisky
 ];
 
 export const stopienRyzyka: Array<ViewManagementModule.Types.OptionsElement> = [
@@ -52,7 +52,7 @@ export const duration: Array<ViewManagementModule.Types.OptionsElement> = [
 
 function getList(arrayEnums: Array<any>, dictionary: Map<any, any>): Array<OptionsElement> {
     const optionsElement: Array<OptionsElement> = [];
-    arrayEnums.map((value,i) => {
+    arrayEnums.map((value, i) => {
         optionsElement.push({
             label: dictionary.get(value),
             value

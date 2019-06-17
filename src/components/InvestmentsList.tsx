@@ -22,6 +22,9 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                 <h1>Lista inwestycji</h1>
                 <p>Lorem ipsum dolor sit amet</p>
                 <ReactTable
+                    showPagination={false}
+                    sortable={true}
+                    minRows={0}
                     data={this.props.investmentList ? [...this.props.investmentList] : []}
                     columns={[
                         {

@@ -1,6 +1,7 @@
 .page {
     &--dashboard {
         display: flex;
+        background-color: $greyMain;
         &__menu {
             flex: 0 1 100px;
             background-color: $blueMain;
