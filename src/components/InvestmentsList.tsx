@@ -8,6 +8,7 @@ import StatusConverter from './StatusConverter';
 import * as Dictionary from 'Models/Dictionary';
 import * as moment from 'moment';
 import { history } from 'src/App';
+import { baseURL } from '../Connectors/config';
 type DispatchedP = {
     getInvestments: () => void;
     setActiveInvestmentId: (investmentId: number) => void;
@@ -20,10 +21,20 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
         await this.props.getInvestments()
     }
 
-    private handleClick = (rowInfo: RowInfo) => {
+    private editProduct = (rowInfo: RowInfo) => {
         this.props.setActiveInvestmentId(rowInfo.original.id);
         history.push(`/dashboard/investments/${rowInfo.original.id}`);
     };
+
+    private archiveProduct = (rowInfo: RowInfo) => {
+        fetch(baseURL + 'products/archive/?id=' + rowInfo.original.id, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json'
+            },
+        })
+            .then(() => this.props.getInvestments());
+    }
 
     public render() {
         return (
@@ -69,12 +80,12 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                         },
                         {
                             id: 'edit',
-                            Cell: (props) => <span onClick={() => this.handleClick(props)}><i className="fas fa-edit" /></span>,
+                            Cell: (props) => <span onClick={() => this.editProduct(props)}><i className="fas fa-edit" /></span>,
                             width: 50
                         },
                         {
                             id: 'archive',
-                            Cell: <i className="fas fa-trash" />,
+                            Cell: (props) => <span onClick={() => this.archiveProduct(props)}><i className="fas fa-trash" /></span>,
                             width: 50
                         }
                     ]}
