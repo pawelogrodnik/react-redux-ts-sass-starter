@@ -34,8 +34,8 @@ class Dashboard extends React.Component<DispatchedP, S> {
             <div className="page page--dashboard">
                 <div className="page--dashboard__menu">
                     <ul>
-                        <li><Link to={'/'}>Strona głowna</Link></li>
-                        <li><Link to={'/login'}>Login</Link></li>
+                        <li><Link to={'/'}><img src="home.png" /></Link></li>
+                        <li><Link to={'/login'}><i className="fas fa-sign-in-alt" /></Link></li>
                         <li><Link to={'/dashboard/'}>Lista inwestycji</Link></li>
                         <li><Link to={'/dashboard/investments/add'}>Dodaj inwestycje</Link></li>
                     </ul>

@@ -2,10 +2,22 @@
     &--dashboard {
         display: flex;
         &__menu {
-            flex: 0 1 200px;
+            flex: 0 1 100px;
             background-color: $blueMain;
             padding: 15px 10px;
             min-height: 100vh;
+            li {
+                display: block;
+                height: 50px;
+                width: 100%;
+                text-align: center;
+                img {
+                    height: 100%;
+                }
+                :hover {
+                    background-color: $brownMain;
+                }
+            }
         }
         &__content {
             margin: 50px;

@@ -39,7 +39,9 @@
     "redux-thunk": "2.3.0",
     "typescript": "3.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0"
+  },
   "scripts": {
     "dev": "npm-run-all -p watch-css start-js --env=DEV",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src/Sass ./src/Sass/style.scss --include-path ./node_modules src -o ./src/Sass --watch --recursive",

@@ -19,12 +19,12 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
             <div className="investmentList">
                 <h1>Lista inwestycji</h1>
                 <p>Lorem ipsum dolor sit amet</p>
-                <ReactTable 
+                <ReactTable
                     data={this.props.investmentList ? [...this.props.investmentList] : []}
                     columns={[
                         {
                             id: 'company_name',
-                            accessor: 'company_name',
+                            accessor: 'type',
                         },
                         {
                             id: 'estimated_risk',
@@ -36,7 +36,7 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                         }
                     ]}
                 />
-            </div> 
+            </div>
         )
     }
 }

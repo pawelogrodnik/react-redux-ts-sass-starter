@@ -160,6 +160,9 @@ input {
     &[type='email'] {
         border: 1px solid #d9d5d5;
     }
+    &[type='password'] {
+        border: 1px solid #d9d5d5;
+    }
 }
 
 .heroBanner {
