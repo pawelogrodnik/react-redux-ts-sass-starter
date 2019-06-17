@@ -19,6 +19,7 @@ export const investmentTypeArray = [InvestmentEnumTypes.InvestmentType.diamonds,
     InvestmentEnumTypes.InvestmentType.vehicle, InvestmentEnumTypes.InvestmentType.whisky
 ];
 
+export const RiskArray = [1,2,3,4,5,6,7,8,9,10];
 export const stopienRyzyka: Array<ViewManagementModule.Types.OptionsElement> = [
     {
         label: 'DUZY',
@@ -50,15 +51,16 @@ export const duration: Array<ViewManagementModule.Types.OptionsElement> = [
     }
 ]
 
-function getList(arrayEnums: Array<any>, dictionary: Map<any, any>): Array<OptionsElement> {
+function getOptionsList(arrayEnums: Array<any>, dictionary?: Map<any, any>): Array<OptionsElement> {
     const optionsElement: Array<OptionsElement> = [];
     arrayEnums.map((value,i) => {
         optionsElement.push({
-            label: dictionary.get(value),
+            label: dictionary ? dictionary.get(value) : value,
             value
         })
     })
     return optionsElement;
 }
 
-export const getInvestmentOptions = getList(investmentTypeArray, investmentTypeMap)
+export const getInvestmentOptions = getOptionsList(investmentTypeArray, investmentTypeMap)
+export const riskOptions = getOptionsList(RiskArray);
