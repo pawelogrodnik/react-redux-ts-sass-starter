@@ -1,6 +1,7 @@
 import { Investment } from './EnumTypes/ActionEnumTypes';
 import * as InvestmentActionModel from './Models/InvestmentActionModel';
 import * as InvestmentModule from 'Modules/InvestmentModule';
+import { history } from 'src/App';
 
 function getInvestments() {
     return async dispatch => {
@@ -16,7 +17,8 @@ function addInvestment(investment: InvestmentModule.Types.Investment) {
     return async dispatch => {
         try {
             await InvestmentModule.Connector.addInvestment(investment)
-            dispatch(addInvestmentSuccess())
+            dispatch(addInvestmentSuccess());
+            history.push('/dashboard')
         } catch (err) {
             // 
         }

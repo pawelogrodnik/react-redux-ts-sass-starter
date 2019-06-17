@@ -20,13 +20,9 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
         await this.props.getInvestments()
     }
 
-    private getTrProps = (state: any, rowInfo: RowInfo) => {
-        return {
-            onClick: () => {
-                this.props.setActiveInvestmentId(rowInfo.original.id);
-                history.push(`/dashboard/investments/${rowInfo.original.id}`);
-            },
-        };
+    private handleClick = (rowInfo: RowInfo) => {
+        this.props.setActiveInvestmentId(rowInfo.original.id);
+        history.push(`/dashboard/investments/${rowInfo.original.id}`);
     };
 
     public render() {
@@ -38,7 +34,7 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                     showPagination={false}
                     sortable={true}
                     minRows={0}
-                    getTrProps={this.getTrProps}
+                    // getTrProps={this.getTrProps}
                     data={this.props.investmentList ? [...this.props.investmentList] : []}
                     columns={[
                         {
@@ -73,13 +69,13 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                         },
                         {
                             id: 'edit',
-                            Cell: <i className="fas fa-edit" />,
+                            Cell: (props) => <span onClick={() => this.handleClick(props)}><i className="fas fa-edit" /></span>,
                             width: 50
                         },
                         {
                             id: 'archive',
                             Cell: <i className="fas fa-trash" />,
-                            width: 50
+                            width: 50,
                         }
                     ]}
                 />
