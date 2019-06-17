@@ -42,7 +42,7 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                             <h3>Informacje o inwestycji</h3>
                             <div className="form--addInvestment__content">
                                 <Field wrapperClassName={'full'} name="investmentName" component={RegularField} label={'Nazwa inwestycji'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
-                                <Field wrapperClassName={'full'} name="investmentImages" component={FileField} label={'Zdjęcia inwestycji'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                {/* <Field wrapperClassName={'full'} name="investmentImages" component={FileField} label={'Zdjęcia inwestycji'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} /> */}
                                 <Field type='textarea' wrapperClassName={'full'} name="companyName" component={RegularField} label={'Opis inwestycji'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
                                 <Field wrapperClassName={'half'} name="investmentStreetName" component={RegularField} label={'Ulica'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
                                 <Field wrapperClassName={'quarter'} name="investmentHouseNo" component={RegularField} label={'Numer domu'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />

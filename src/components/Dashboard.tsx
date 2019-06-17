@@ -3,11 +3,18 @@ import { connect } from 'react-redux';
 import * as ViewManagementModule from './../Modules/ViewManagementModule';
 import { Route, Switch } from 'react-router-dom';
 import Login from 'components/Layout/Login';
-import AddInvestment from 'components/AddInvestment';
+import ManageInvestment from 'components/AddInvestment';
 import InvestmentsList from 'components/InvestmentsList';
 import { Link } from 'react-router-dom';
+import { RootState } from 'src/Store/Reducers/_RootReducer';
+import * as UserModule from 'Modules/UserModule';
+import { history } from 'src/App';
 
 type S = {
+
+}
+type ConnectedP = {
+    userStore: UserModule.Types.UserStore
 }
 type DispatchedP = {
     hideFooter: () => void;
@@ -15,12 +22,15 @@ type DispatchedP = {
     showFooter: () => void;
     showHeader: () => void
 }
-class Dashboard extends React.Component<DispatchedP, S> {
-    constructor(props: any) {
+class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
+    constructor(props: ConnectedP & DispatchedP) {
         super(props);
     }
 
     public componentWillMount() {
+        // if (!this.props.userStore.user) {
+        //     history.push('/dashboard/login')
+        // }
         this.props.hideFooter();
         this.props.hideHeader();
     }
@@ -34,19 +44,30 @@ class Dashboard extends React.Component<DispatchedP, S> {
             <div className="page page--dashboard">
                 <div className="page--dashboard__menu">
                     <ul>
-                        <li><Link to={'/'}><img src="home.png" /></Link></li>
-                        <li><Link to={'/login'}><i className="fas fa-sign-in-alt" /></Link></li>
-                        <li><Link to={'/dashboard/'}>Lista inwestycji</Link></li>
-                        <li><Link to={'/dashboard/investments/add'}>Dodaj inwestycje</Link></li>
+                        <li><Link to={'/'}><img src="/home.png" /></Link></li>
+                        {/* {this.props.userStore.user ? ( */}
+                            <>
+                                <li><Link to={'/login'}><i className="fas fa-sign-in-alt" /></Link></li>
+                                <li><Link to={'/dashboard/'}>Lista inwestycji</Link></li>
+                                <li><Link to={'/dashboard/investments/add'}>Dodaj inwestycje</Link></li>
+                            </>
+                        {/* ) : (
+                            <li><Link to={'/dashboard/login'}><i className="fas fa-sign-in-alt" /></Link></li>
+                        )} */}
                     </ul>
                 </div>
                 <div className="page--dashboard__content">
-                    <Switch>
-                        <Route exact path={'/dashboard/'} component={InvestmentsList} />
-                        <Route exact path={'/dashboard/login'} component={Login} />
-                        <Route exact path={'/dashboard/investments/add'} component={AddInvestment} />
-                        <Route exact path={'/dashboard/investments/:investmentId'} component={() => <h1>Edytuj inwestycje</h1>} />
-                    </Switch>
+                        {/* {this.props.userStore.user ? ( */}
+                            <Switch>
+                                <Route exact path={'/dashboard/'} component={InvestmentsList} />
+                                <Route exact path={'/dashboard/investments/add'} component={ManageInvestment} />
+                                <Route exact path={'/dashboard/investments/:investmentId'} component={ManageInvestment} />
+                            </Switch>
+                        {/* ): ( */}
+                            {/* <Switch>
+                                <Route path={'/dashboard'} component={Login} />
+                            </Switch> */}
+                        {/* )} */}
                 </div>
             </div>
         )
@@ -60,4 +81,10 @@ const mapDispatchToProps: DispatchedP = {
     showHeader: () => ViewManagementModule.Actions.showHeader(),
 };
 
-export default connect(null, mapDispatchToProps)(Dashboard)
+function mapStateToProps(state: RootState): ConnectedP {
+    return {
+        userStore: state.userStore
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
