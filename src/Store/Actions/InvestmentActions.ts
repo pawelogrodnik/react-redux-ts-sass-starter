@@ -15,7 +15,7 @@ function getInvestments() {
 function addInvestment(investment: InvestmentModule.Types.Investment) {
     return async dispatch => {
         try {
-            const response = await InvestmentModule.Connector.addInvestment(investment)
+            await InvestmentModule.Connector.addInvestment(investment)
             dispatch(addInvestmentSuccess())
         } catch (err) {
             // 
@@ -31,6 +31,14 @@ function getInvestmentsSuccess(investmentList: Array<InvestmentModule.Types.Inve
         }
     };
 }
+function setActiveInvestmentId(investmentId): InvestmentActionModel.SetActiveInvestmentId {
+    return {
+        type: Investment.SET_ACTIVE_INVESTMENT,
+        payload: {
+            investmentId
+        }
+    };
+}
 function addInvestmentSuccess(): InvestmentActionModel.AddInvestment {
     return {
         type: Investment.ADD_INVESTMENT
@@ -40,5 +48,6 @@ function addInvestmentSuccess(): InvestmentActionModel.AddInvestment {
 
 export {
     getInvestments,
-    addInvestment
+    addInvestment,
+    setActiveInvestmentId
 }

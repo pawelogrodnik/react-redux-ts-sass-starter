@@ -11,36 +11,63 @@ import { Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import { connect } from 'react-redux';
 import { RootState } from './Store/Reducers/_RootReducer';
+import * as UserModule from 'Modules/UserModule';
 
 type P = RootState
-
-class App extends React.Component<P, any> {
+type DispatchedP = {
+    loginUserFromStorage: (user: UserModule.Types.User, token: string) => void;
+}
+type S = {
+    loadingUserComplete: boolean
+}
+class App extends React.PureComponent<P & DispatchedP, S> {
+    constructor(props: P & DispatchedP) {
+        super(props);
+        this.state = {
+            loadingUserComplete: false
+        }
+    }
+    public componentWillMount() {
+        if (localStorage.getItem('user')) {
+            const user = JSON.parse(localStorage.getItem('user'));
+            this.props.loginUserFromStorage(user, 'token');
+        }
+        this.setState({loadingUserComplete: true})
+    }
     public render() {
-        return (
-            <div className="main-wrapper">
-                {this.props.viewManagementStore.headerVisible && <Header />}
-                <div className="pages__inner">
-                    <Switch>
-                        <Route exact path={'/'} component={HomePage} />
-                        <Route path={'/dashboard'} component={Dashboard} />
-                    </Switch>
+        if (this.state.loadingUserComplete) {
+            return (
+                <div className="main-wrapper">
+                    {this.props.viewManagementStore.headerVisible && <Header />}
+                    <div className="pages__inner">
+                        <Switch>
+                            <Route exact path={'/'} component={HomePage} />
+                            <Route path={'/dashboard'} component={Dashboard} />
+                        </Switch>
+                    </div>
+                    {this.props.viewManagementStore.footerVisible && <Footer />}
                 </div>
-                {this.props.viewManagementStore.footerVisible && <Footer />}
-            </div>
-        )
+            )
+        } else {
+            return null
+        }
     }
 }
 
 export const history = createHistory();
 
-function mapStateToProps(state: any) {
+const mapDispatchToProps: DispatchedP = {
+    loginUserFromStorage: (user: UserModule.Types.User, token: string) => UserModule.Actions.loginUserSuccess(user, token)
+};
+
+function mapStateToProps(state: RootState) {
     return {
         ...state
     }
 }
 
 
-const AppMain = connect(mapStateToProps, null)(App)
+const AppMain = connect(mapStateToProps, mapDispatchToProps)(App)
 
 const RootApp = () => (
     <Provider store={store}>

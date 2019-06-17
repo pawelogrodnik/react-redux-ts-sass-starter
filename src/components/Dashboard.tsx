@@ -3,24 +3,35 @@ import { connect } from 'react-redux';
 import * as ViewManagementModule from './../Modules/ViewManagementModule';
 import { Route, Switch } from 'react-router-dom';
 import Login from 'components/Layout/Login';
-import AddInvestment from 'components/AddInvestment';
+import ManageInvestment from 'components/AddInvestment';
 import InvestmentsList from 'components/InvestmentsList';
 import { Link } from 'react-router-dom';
+import { RootState } from 'src/Store/Reducers/_RootReducer';
+import * as UserModule from 'Modules/UserModule';
+import { history } from 'src/App';
 
 type S = {
+
+}
+type ConnectedP = {
+    userStore: UserModule.Types.UserStore
 }
 type DispatchedP = {
     hideFooter: () => void;
     hideHeader: () => void;
     showFooter: () => void;
-    showHeader: () => void
+    showHeader: () => void;
+    logoutUser: () => void;
 }
-class Dashboard extends React.Component<DispatchedP, S> {
-    constructor(props: any) {
+class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
+    constructor(props: ConnectedP & DispatchedP) {
         super(props);
     }
 
     public componentWillMount() {
+        if (!this.props.userStore.user) {
+            history.push('/dashboard/login')
+        }
         this.props.hideFooter();
         this.props.hideHeader();
     }
@@ -28,25 +39,39 @@ class Dashboard extends React.Component<DispatchedP, S> {
         this.props.showFooter();
         this.props.showHeader();
     }
-
+    public handleLogout = () => {
+        history.push('/')
+        this.props.logoutUser()
+    }
     public render() {
         return (
             <div className="page page--dashboard">
                 <div className="page--dashboard__menu">
                     <ul>
-                        <li><Link to={'/'}>Strona głowna</Link></li>
-                        <li><Link to={'/login'}>Login</Link></li>
-                        <li><Link to={'/dashboard/'}>Lista inwestycji</Link></li>
-                        <li><Link to={'/dashboard/investments/add'}>Dodaj inwestycje</Link></li>
+                        <Link to={'/'}><li><img src="/home.png" /></li></Link>
+                        {this.props.userStore.user ? (
+                            <>
+                            <Link to={'/dashboard/'}><li><i className="fas fa-list-ol" /></li></Link>
+                            <Link to={'/dashboard/investments/add'}><li><i className="fas fa-plus" /></li></Link>
+                            <li onClick={this.handleLogout}><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
+                            </>
+                         ) : (
+                            <Link to={'/dashboard/login'}><li><i className="fas fa-sign-in-alt" /></li></Link>
+                        )}
                     </ul>
                 </div>
                 <div className="page--dashboard__content">
-                    <Switch>
-                        <Route exact path={'/dashboard/'} component={InvestmentsList} />
-                        <Route exact path={'/dashboard/login'} component={Login} />
-                        <Route exact path={'/dashboard/investments/add'} component={AddInvestment} />
-                        <Route exact path={'/dashboard/investments/:investmentId'} component={() => <h1>Edytuj inwestycje</h1>} />
-                    </Switch>
+                    {this.props.userStore.user ? (
+                        <Switch>
+                            <Route exact path={'/dashboard/'} component={InvestmentsList} />
+                            <Route exact path={'/dashboard/investments/add'} component={ManageInvestment} />
+                            <Route exact path={'/dashboard/investments/:investmentId'} component={ManageInvestment} />
+                        </Switch>
+                    ) : (
+                            <Switch>
+                                <Route path={'/dashboard'} component={Login} />
+                            </Switch>
+                        )}
                 </div>
             </div>
         )
@@ -58,6 +83,13 @@ const mapDispatchToProps: DispatchedP = {
     hideHeader: () => ViewManagementModule.Actions.hideHeader(),
     showFooter: () => ViewManagementModule.Actions.showFooter(),
     showHeader: () => ViewManagementModule.Actions.showHeader(),
+    logoutUser: () => UserModule.Actions.logoutUser(),
 };
 
-export default connect(null, mapDispatchToProps)(Dashboard)
+function mapStateToProps(state: RootState): ConnectedP {
+    return {
+        userStore: state.userStore
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

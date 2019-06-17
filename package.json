@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "@types/jest": "24.0.13",
     "@types/node": "12.0.3",
     "@types/react": "16.8.19",
@@ -39,7 +42,9 @@
     "redux-thunk": "2.3.0",
     "typescript": "3.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0"
+  },
   "scripts": {
     "dev": "npm-run-all -p watch-css start-js --env=DEV",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src/Sass ./src/Sass/style.scss --include-path ./node_modules src -o ./src/Sass --watch --recursive",

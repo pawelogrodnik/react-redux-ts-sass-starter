@@ -1,11 +1,29 @@
 .page {
     &--dashboard {
         display: flex;
+        background-color: $greyMain;
         &__menu {
-            flex: 0 1 200px;
+            flex: 0 1 100px;
             background-color: $blueMain;
-            padding: 15px 10px;
             min-height: 100vh;
+            li {
+                display: block;
+                height: 70px;
+                width: 100%;
+                text-align: center;
+                padding: 15px;
+                cursor: pointer;
+                font-size: 30px;
+                i {
+                    opacity: 0.6;
+                }
+                img {
+                    height: 100%;
+                }
+                &:hover {
+                    background-color: $brownMain;
+                }
+            }
         }
         &__content {
             margin: 50px;
