@@ -33,8 +33,8 @@ export default class HomePage extends React.Component<any, S> {
         const list = new Array(3).fill(true);
         return (
             <div className="page page--homepage">
-                <HeroBanner backgroundImageSrc={'/background.png'} title={'Działamy na rzecz inwestorów'} description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'} buttonText={'Lorem ipsum'} />
-                <IntroTextBanner title={'Wyszukiwarka inwestycji'} description={'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum'} />
+                <HeroBanner backgroundImageSrc={'/background.png'} title={'Działamy na rzecz inwestorów'} description={'Witamy na pierwszym w Polsce portalu z najlepszymi okazjami inwestycyjnymi w jednym miejscu. Przed Państwem przygoda w postaci podróży po wyselekcjonowanych inwestycjach z całego kraju.'} buttonText={'Lorem ipsum'} />
+                <IntroTextBanner title={'Wyszukiwarka inwestycji'} description={'Proszę ustawić suwaki zgodnie ze swoimi preferencjami. Określone przez Państwa parametry wyłonią inwestycję, spełniającą Państwa wymagania.'} />
                 <SearchInvestmentsForm onSubmit={(data) => this.setState({ investmentsVisible: true })} initialValues={initialValues} />
                 {this.state.investmentsVisible && <InvestmentList list={list} />}
             </div>

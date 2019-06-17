@@ -31,10 +31,26 @@ a {
     &--main {
         color: #fff;
         background-color: $brownMain;
+        padding: 15px 50px 15px 50px;
     }
     &--big {
         width: 100%;
         padding: 15px;
+    }
+    &--search {
+        color: #fff;
+        background-color: $brownMain;
+        padding: 15px 50px 15px 50px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &--bordered {
+        color: $brownMain;
+        background-color: #fff;
+        padding: 15px 50px 15px 50px;
+        border: 1px solid $brownMain;
+        border-radius: 3px;
+        font-size: 15px;
     }
 }
 
@@ -172,6 +188,20 @@ input {
 }
 
 .heroBanner__desc {
-    margin: 50px 0 50px 0;
+    margin: 40px 0 40px 0;
     width: 60%;
+    line-height: 2;
+    font-weight: 300;
+}
+
+.heroBanner__inner {
+    margin-top: 125px;
+}
+
+.introTextBanner__title {
+    text-align: center;
+}
+
+.introTextBanner__inner {
+    margin: 100px 0 100px 0;
 }
