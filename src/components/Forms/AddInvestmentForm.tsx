@@ -33,7 +33,7 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                         <Field wrapperClassName={'full'} name="duration" options={Dictionary.duration} component={SelectField} label={'Wybierz czas trwania inwestycji'} placeholder={'Wybierz czas trwania inwestycji'} validate={[V.required]} />
                         <Field wrapperClassName={'half'} name="percentage" options={Dictionary.oprocentowanie} component={SelectField} label={'Wybierz oprocentowanie'} placeholder={'Wybierz oprocentowanie'} validate={[V.required]} />
                         <Field wrapperClassName={'half'} name="risk" options={Dictionary.stopienRyzyka} component={SelectField} label={'Wybierz stopień ryzyka'} placeholder={'Wybierz stopień ryzyka'} validate={[V.required]} />
-                        <Field wrapperClassName={'full'} name="type" options={Dictionary.typInwestycji} component={SelectField} label={'Wybierz typ inwestycji'} placeholder={'Wybierz typ inwestycji'} validate={[V.required]} />
+                        <Field wrapperClassName={'full'} name="type" options={Dictionary.getInvestmentOptions} component={SelectField} label={'Wybierz typ inwestycji'} placeholder={'Wybierz typ inwestycji'} validate={[V.required]} />
                     </div>
                 </div>
                 {(investmentType === "DZIALKA" || investmentType === 'FLAT') &&  (
