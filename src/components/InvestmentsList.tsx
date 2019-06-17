@@ -3,6 +3,8 @@ import * as InvestmentsModule from 'Modules/InvestmentModule';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
 import { connect } from 'react-redux';
 import ReactTable from 'react-table';
+import TypeConverter from './TypeConverter';
+import StatusConverter from './StatusConverter';
 
 type DispatchedP = {
     getInvestments: () => void;
@@ -23,16 +25,29 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                     data={this.props.investmentList ? [...this.props.investmentList] : []}
                     columns={[
                         {
-                            id: 'company_name',
-                            accessor: 'type',
+                            id: 'id',
+                            accessor: 'id',
+                            Header: 'ID produktu'
                         },
                         {
-                            id: 'estimated_risk',
-                            accessor: 'estimated_risk',
+                            id: 'type',
+                            Header: 'Typ produktu',
+                            Cell: TypeConverter
                         },
                         {
-                            id: 'interest',
-                            accessor: 'interest',
+                            id: 'status',
+                            Header: 'Status produktu',
+                            Cell: StatusConverter
+                        },
+                        {
+                            id: 'title',
+                            Header: 'Nazwa produktu',
+                            accessor: d => d.basicParams.title
+                        },
+                        {
+                            id: 'price',
+                            Header: 'Cena w serwisie',
+                            accessor: d => d.detailedParams.priceService
                         }
                     ]}
                 />
