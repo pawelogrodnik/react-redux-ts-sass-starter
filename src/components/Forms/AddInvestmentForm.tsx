@@ -8,10 +8,11 @@ import { connect } from 'react-redux';
 
 type P = {
     investmentType: InvestmentModule.EnumTypes.InvestmentType
+    edit?: boolean
 }
 const {flat, parcel} = InvestmentModule.EnumTypes.InvestmentType;
 const AddInvestmentForm = (props: InjectedFormProps & P) => {
-    const { handleSubmit, submitting, investmentType } = props;
+    const { handleSubmit, submitting, investmentType, initialValues } = props;
     return (
         <div className="form form--addInvestment">
             <form className="form" onSubmit={handleSubmit}>
@@ -70,7 +71,7 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                 <div className="form--addInvestment--actions">
                     <div className="form--login__buttons">
                         <button disabled={submitting} className="btn btn--main btn--big" type="submit">
-                            Dodaj nową inwestycję
+                            {initialValues ? 'Zapisz zmiany' : 'Dodaj nową inwestycję'}
                         </button>
                     </div>
                 </div>
