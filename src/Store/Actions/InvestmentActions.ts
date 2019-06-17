@@ -17,12 +17,8 @@ function addInvestment(investment: InvestmentModule.Types.Investment) {
     return async dispatch => {
         try {
             await InvestmentModule.Connector.addInvestment(investment)
-<<<<<<< HEAD
-            dispatch(addInvestmentSuccess())
-=======
             dispatch(addInvestmentSuccess());
             history.push('/dashboard')
->>>>>>> 44c61672180f5bc955a212cb15c2118146bae1d5
         } catch (err) {
             // 
         }

@@ -20,19 +20,9 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
         await this.props.getInvestments()
     }
 
-<<<<<<< HEAD
-    private getTrProps = (state: any, rowInfo: RowInfo) => {
-        return {
-            onClick: () => {
-                this.props.setActiveInvestmentId(rowInfo.original.id);
-                history.push(`/dashboard/investments/${rowInfo.original.id}`);
-            },
-        };
-=======
     private handleClick = (rowInfo: RowInfo) => {
         this.props.setActiveInvestmentId(rowInfo.original.id);
         history.push(`/dashboard/investments/${rowInfo.original.id}`);
->>>>>>> 44c61672180f5bc955a212cb15c2118146bae1d5
     };
 
     public render() {
@@ -44,11 +34,7 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                     showPagination={false}
                     sortable={true}
                     minRows={0}
-<<<<<<< HEAD
-                    getTrProps={this.getTrProps}
-=======
                     // getTrProps={this.getTrProps}
->>>>>>> 44c61672180f5bc955a212cb15c2118146bae1d5
                     data={this.props.investmentList ? [...this.props.investmentList] : []}
                     columns={[
                         {
@@ -83,21 +69,13 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                         },
                         {
                             id: 'edit',
-<<<<<<< HEAD
-                            Cell: <i className="fas fa-edit" />,
-=======
                             Cell: (props) => <span onClick={() => this.handleClick(props)}><i className="fas fa-edit" /></span>,
->>>>>>> 44c61672180f5bc955a212cb15c2118146bae1d5
                             width: 50
                         },
                         {
                             id: 'archive',
                             Cell: <i className="fas fa-trash" />,
-<<<<<<< HEAD
                             width: 50
-=======
-                            width: 50,
->>>>>>> 44c61672180f5bc955a212cb15c2118146bae1d5
                         }
                     ]}
                 />
