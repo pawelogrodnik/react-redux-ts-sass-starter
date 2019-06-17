@@ -48,16 +48,15 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
             <div className="page page--dashboard">
                 <div className="page--dashboard__menu">
                     <ul>
-                        <li><Link to={'/'}><img src="/home.png" /></Link></li>
+                        <Link to={'/'}><li><img src="/home.png" /></li></Link>
                         {this.props.userStore.user ? (
                             <>
-                            <li><Link to={'/dashboard/'}><i className="fas fa-list-ol" /></Link></li>
-                            <li><Link to={'/dashboard/investments/add'}><i className="fas fa-plus" /></Link></li>
-                            <li><Link to={'/login'}><i className="fas fa-sign-in-alt" /></Link></li>
-                            <li><span className="fake-a" onClick={this.handleLogout}><i className="fas fa-sign-out-alt" /></span></li>
+                            <Link to={'/dashboard/'}><li><i className="fas fa-list-ol" /></li></Link>
+                            <Link to={'/dashboard/investments/add'}><li><i className="fas fa-plus" /></li></Link>
+                            <li onClick={this.handleLogout}><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
                             </>
                          ) : (
-                            <li><Link to={'/dashboard/login'}><i className="fas fa-sign-in-alt" /></Link></li>
+                            <Link to={'/dashboard/login'}><li><i className="fas fa-sign-in-alt" /></li></Link>
                         )}
                     </ul>
                 </div>
