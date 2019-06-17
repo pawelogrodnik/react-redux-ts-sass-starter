@@ -20,7 +20,8 @@ type DispatchedP = {
     hideFooter: () => void;
     hideHeader: () => void;
     showFooter: () => void;
-    showHeader: () => void
+    showHeader: () => void;
+    logoutUser: () => void;
 }
 class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
     constructor(props: ConnectedP & DispatchedP) {
@@ -38,7 +39,10 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
         this.props.showFooter();
         this.props.showHeader();
     }
-
+    public handleLogout = () => {
+        history.push('/')
+        this.props.logoutUser()
+    }
     public render() {
         return (
             <div className="page page--dashboard">
@@ -50,6 +54,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                             <li><Link to={'/login'}><i className="fas fa-sign-in-alt" /></Link></li>
                             <li><Link to={'/dashboard/'}>Lista inwestycji</Link></li>
                             <li><Link to={'/dashboard/investments/add'}>Dodaj inwestycje</Link></li>
+                            <li><span className="fake-a" onClick={this.handleLogout}>Wyloguj się</span></li>
                             </>
                          ) : (
                             <li><Link to={'/dashboard/login'}><i className="fas fa-sign-in-alt" /></Link></li>
@@ -79,6 +84,7 @@ const mapDispatchToProps: DispatchedP = {
     hideHeader: () => ViewManagementModule.Actions.hideHeader(),
     showFooter: () => ViewManagementModule.Actions.showFooter(),
     showHeader: () => ViewManagementModule.Actions.showHeader(),
+    logoutUser: () => UserModule.Actions.logoutUser(),
 };
 
 function mapStateToProps(state: RootState): ConnectedP {
