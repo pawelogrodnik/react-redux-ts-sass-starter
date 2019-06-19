@@ -80,12 +80,12 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                         },
                         {
                             id: 'edit',
-                            Cell: (props) => <span onClick={() => this.editProduct(props)}><i className="fas fa-edit" /></span>,
+                            Cell: (props) => <span className={props.original.status === 'archived' ? 'action--disabled' : ''} onClick={() => props.original.status === 'archived' ?  null : this.editProduct(props)}><i className="fas fa-edit" /></span>,
                             width: 50
                         },
                         {
                             id: 'archive',
-                            Cell: (props) => <span onClick={() => this.archiveProduct(props)}><i className="fas fa-trash" /></span>,
+                            Cell: (props) => <span className={props.original.status === 'archived' ? 'action--disabled' : ''} onClick={() => props.original.status === 'archived' ?  null : this.archiveProduct(props)}><i className="fas fa-trash" /></span>,
                             width: 50
                         }
                     ]}

@@ -10,7 +10,7 @@ type P = {
     investmentType: InvestmentModule.EnumTypes.InvestmentType
     edit?: boolean
 }
-const {flat, parcel} = InvestmentModule.EnumTypes.InvestmentType;
+const {flat, parcel, hotel, vehicle, gold, token, whisky, diamonds, dorm} = InvestmentModule.EnumTypes.InvestmentType;
 const AddInvestmentForm = (props: InjectedFormProps & P) => {
     const { handleSubmit, submitting, investmentType, initialValues } = props;
     return (
@@ -41,7 +41,7 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                         <Field wrapperClassName={'full'} name="type" options={Dictionary.getInvestmentOptions} component={SelectField} label={'Wybierz typ inwestycji'} placeholder={'Wybierz typ inwestycji'} validate={[V.required]} />
                     </div>
                 </div>
-                {(investmentType === parcel || investmentType === flat) &&  (
+                {investmentType && (
                     <div className="form--addInvestment_bottom">
                         <div className="form--addInvestment_l">
                             <h3>Informacje o inwestycji</h3>
@@ -58,12 +58,45 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                         </div>
                         <div className="form--addInvestment_r">
                             <div className="form--addInvestment__content form--addInvestment__content--blankTitle">
-                                <Field name="detailedParams.usableArea" component={RegularField} label={'Powierzchnia [m2]'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                {(investmentType === parcel || investmentType === flat || investmentType === hotel || investmentType === dorm) && <Field name="detailedParams.usableArea" component={RegularField} label={'Powierzchnia [m2]'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />}
                                 {investmentType === parcel && <Field name="detailedParams.pum" component={RegularField} label={'PUM [m2]'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />}
                                 {investmentType === flat && <Field name="detailedParams.floorNumber" component={RegularField} label={'Piętro'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />}
                                 <Field name="detailedParams.priceService" component={RegularField} label={'Cena w serwisie'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
-                                <Field name="detailedParams.priceMarket" component={RegularField} label={'Cena rynkpwa'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                {(investmentType === flat || investmentType === parcel || investmentType === hotel || investmentType === dorm || investmentType === vehicle) && <Field name="detailedParams.priceMarket" component={RegularField} label={'Cena rynkowa'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />}
                                 {investmentType === parcel && <Field name="detailedParams.roi" component={RegularField} label={'ROI'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />}
+                                {investmentType === hotel && <Field name="detailedParams.roomsCount" component={RegularField} label={'Ilość pokoi'} placeholder={'Ilość pokoi'} validate={[V.required]} />}
+                                {investmentType === hotel && <Field name="detailedParams.income" component={RegularField} label={'Przychody'} placeholder={'Przychody'} validate={[V.required]} />}
+                                {investmentType === gold && (
+                                    <>
+                                        <Field name="detailedParams.mass" component={RegularField} label={'Masa'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                        <Field name="detailedParams.goldtrial" component={RegularField} label={'Próba'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                    </>
+                                )}
+                                {investmentType === whisky && (
+                                    <>
+                                        <Field name="detailedParams.distillery" component={RegularField} label={'Destylarnia'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                        <Field name="detailedParams.version" component={RegularField} label={'Wersja'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                        <Field name="detailedParams.bottling" component={RegularField} label={'Butelkowanie'} placeholder={'Butelkowanie'} validate={[V.required]} />
+                                        <Field name="detailedParams.volume" component={RegularField} label={'Objętość'} placeholder={'Objętość'} validate={[V.required]} />
+                                        <Field name="detailedParams.age" component={RegularField} label={'Wiek'} placeholder={'Wiek'} validate={[V.required]} />
+                                        <Field name="detailedParams.origin" component={RegularField} label={'Pochodzenie'} placeholder={'Pochodzenie'} validate={[V.required]} />
+                                    </>
+                                )}
+                                {investmentType === diamonds && (
+                                    <>
+                                        <Field name="detailedParams.mass" component={RegularField} label={'Masa'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                        <Field name="detailedParams.cut" component={RegularField} label={'Szlif'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                        <Field name="detailedParams.color" component={RegularField} label={'Barwa'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                        <Field name="detailedParams.purity" component={RegularField} label={'Czystość'} placeholder={'Czystość'} validate={[V.required]} />
+                                    </>
+                                )}
+                                {investmentType === token && (
+                                    <>
+                                        <Field name="detailedParams.minInsert" component={RegularField} label={'Minimalny wkład'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                        <Field name="detailedParams.currentCourse" component={RegularField} label={'Aktualny kurs'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                        <Field name="detailedParams.ipo" component={RegularField} label={'Planowany debiut (IPO)'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>

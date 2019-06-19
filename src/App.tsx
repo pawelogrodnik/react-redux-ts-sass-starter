@@ -3,7 +3,7 @@ import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import HomePage from './components/HomePage';
 import Dashboard from './components/Dashboard';
-import Login from './components/Layout/Login';
+import Loader from './components/Layout/Loader';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { store } from './Store/Store';
@@ -45,7 +45,8 @@ class App extends React.PureComponent<P & DispatchedP, S> {
                             <Route path={'/dashboard'} component={Dashboard} />
                         </Switch>
                     </div>
-                    {this.props.viewManagementStore.footerVisible && <Footer />}
+                    {this.props.viewManagementStore.footerVisible && <Footer user={this.props.userStore.user} />}
+                    {this.props.viewManagementStore.loaderVisible && <Loader />}
                 </div>
             )
         } else {

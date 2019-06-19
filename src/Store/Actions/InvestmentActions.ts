@@ -1,15 +1,18 @@
 import { Investment } from './EnumTypes/ActionEnumTypes';
 import * as InvestmentActionModel from './Models/InvestmentActionModel';
 import * as InvestmentModule from 'Modules/InvestmentModule';
+import * as ViewManagementModule from 'Modules/ViewManagementModule';
 import { history } from 'src/App';
 
 function getInvestments() {
     return async dispatch => {
         try {
+            dispatch(ViewManagementModule.Actions.showLoader())
             const response = await InvestmentModule.Connector.getInvestments()
             dispatch(getInvestmentsSuccess(response.data))
+            dispatch(ViewManagementModule.Actions.hideLoader())
         } catch (err) {
-            // 
+            dispatch(ViewManagementModule.Actions.hideLoader())            
         }
     };
 }

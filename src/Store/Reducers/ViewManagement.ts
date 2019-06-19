@@ -36,6 +36,18 @@ export function viewManagementReducer(state: State = initialState, action: Views
                 footerVisible: false
             };
         }
+        case ActionTypes.ViewManagement.SHOW_LOADER: {
+            return {
+                ...state,
+                loaderVisible: true
+            };
+        }
+        case ActionTypes.ViewManagement.HIDE_LOADER: {
+            return {
+                ...state,
+                loaderVisible: false
+            };
+        }
         default: {
             return state;
         }

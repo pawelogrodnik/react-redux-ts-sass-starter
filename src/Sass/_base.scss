@@ -15,6 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    position: relative;
 }
 a, .fake-a {
     color: #fff;
@@ -208,4 +209,98 @@ input {
 
 .introTextBanner__inner {
     margin: 100px 0 100px 0;
+}
+
+
+.loader {
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+    &__inner {
+        height: 50px;
+        width: 50px;
+        animation: spin 2.2s infinite linear both;
+    }
+    &__inner__lg {
+        width: 40px;
+        height: 40px;
+        animation: spinBackwards 1.8s infinite linear both;
+        animation-delay: .4;
+    }
+    &__inner__md {
+        width: 30px;
+        height: 30px;
+        animation: spin 1.4s infinite linear both;
+        animation-delay: .8;
+    }
+    &__inner__sm {
+        width: 20px;
+        height: 20px;
+        animation: spinBackwards 1s infinite linear both;
+        animation-delay: 1.2;
+    }
+    &__inner, &__inner__sm, &__inner__xs, &__inner__md, &__inner__lg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transform-origin: 50% 50%;
+        border-radius: 50%;
+        border-left: 3px solid $blueMain;
+        border-top: 3px solid transparent;
+        border-right: 3px solid $blueMain;
+        border-bottom: 3px solid transparent;
+        &--sm {
+            height: 30px;
+            width: 30px;
+            border-width: 2px;
+        }
+    }
+    &--sm {
+        position: absolute;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+@keyframes spinBackwards {
+    from {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+.action--disabled {
+    cursor: not-allowed;
+    opacity: .25;
+}
+.ReactTable {
+    .rt-tr {
+        .action--disabled {
+            i {
+                cursor: not-allowed;
+                &:hover {
+                    color:#000;
+                }
+            }
+        }
+    }
 }

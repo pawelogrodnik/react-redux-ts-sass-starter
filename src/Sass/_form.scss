@@ -191,6 +191,7 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
         &_bottom {
             display: flex;
             flex-wrap: wrap;
+            width: 100%;
         }
         &_l,
         &_r {

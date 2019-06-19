@@ -23,10 +23,22 @@ function hideFooter(): ViewsManagementModel.HideFooter {
         type: ActionTypes.ViewManagement.HIDE_FOOTER
     };
 }
+function showLoader(): ViewsManagementModel.ShowLoader {
+    return {
+        type: ActionTypes.ViewManagement.SHOW_LOADER
+    };
+}
 
+function hideLoader(): ViewsManagementModel.HideLoader {
+    return {
+        type: ActionTypes.ViewManagement.HIDE_LOADER
+    };
+}
 export {
     showHeader,
     hideHeader,
     showFooter,
-    hideFooter
+    hideFooter,
+    showLoader,
+    hideLoader
 }

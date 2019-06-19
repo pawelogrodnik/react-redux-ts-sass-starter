@@ -15,10 +15,17 @@ export type ShowFooter = {
 export type HideFooter = {
     type: ActionTypes.ViewManagement.HIDE_FOOTER;
 };
-
+export type ShowLoader = {
+    type: ActionTypes.ViewManagement.SHOW_LOADER;
+};
+export type HideLoader = {
+    type: ActionTypes.ViewManagement.HIDE_LOADER;
+};
 
 export type ViewsManagemenetAction =
     | ShowHeader
     | HideHeader
     | ShowFooter
-    | HideFooter;
+    | HideFooter
+    | ShowLoader
+    | HideLoader;
