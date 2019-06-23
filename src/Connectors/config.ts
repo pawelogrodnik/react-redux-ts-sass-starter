@@ -45,7 +45,12 @@ export const config = (params?: any) => {
 export function createSerachQuery(params: Object | Array<Object>): URLSearchParams {
     const searchQuery = new URLSearchParams();
     Object.keys(params).forEach((e, i) => {
-        searchQuery.set(e, params[e]);
+        if (e === 'risk' || e === 'interest' || e === 'duration') {
+            searchQuery.set(`min-${e}`, params[e]['min'])
+            searchQuery.set(`max-${e}`, params[e]['max'])
+        } else {
+            searchQuery.set(e, params[e]);
+        }
     });
     return searchQuery;
 }

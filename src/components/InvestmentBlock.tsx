@@ -23,9 +23,11 @@ export const InvestmentBlock = (props: P) => {
         </div>
     )
 }
+
 type InvestmentListP = {
     list: Array<any>
 }
+
 export const InvestmentList = (props: InvestmentListP) => {
     return (
         <>

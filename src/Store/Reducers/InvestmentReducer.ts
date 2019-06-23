@@ -5,7 +5,7 @@ import { InvestmentAction } from '../Actions/Models/InvestmentActionModel';
 export type State = Types.InvestmentStore
 
 export const initialState: State = {
-    investmentList: null,
+    investmentList: [],
     investmentDetails: null,
     activeInvestmentId: null
 };

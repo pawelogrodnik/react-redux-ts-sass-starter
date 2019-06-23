@@ -47,7 +47,8 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                             <h3>Informacje o inwestycji</h3>
                             <div className="form--addInvestment__content">
                                 <Field wrapperClassName={'full'} name="basicParams.title" component={RegularField} label={'Nazwa inwestycji'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
-                                {/* <Field wrapperClassName={'full'} name="investmentImages" component={FileField} label={'Zdjęcia inwestycji'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} /> */}
+                                <Field wrapperClassName={'full'} name="detailedParams.images.background" component={FileField} label={'Zdjęcia inwestycji'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                                <Field wrapperClassName={'full'} name="detailedParams.images.thumbnail" component={FileField} label={'Zdjęcia inwestycji'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
                                 <Field type='textarea' wrapperClassName={'full'} name="basicParams.description" component={RegularField} label={'Opis inwestycji'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
                                 <Field wrapperClassName={'half'} name="detailedParams.address.street" component={RegularField} label={'Ulica'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
                                 <Field wrapperClassName={'quarter'} name="detailedParams.address.houseNumber" component={RegularField} label={'Numer domu'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />

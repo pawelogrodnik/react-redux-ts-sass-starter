@@ -1,4 +1,4 @@
-import API from './config';
+import API, {config} from './config';
 import { AxiosPromise } from 'axios';
 import * as InvestmentModule from './../Modules/InvestmentModule';
 
@@ -6,6 +6,6 @@ export function addInvestment(investment: InvestmentModule.Types.Investment): Ax
     return API.post('products', investment);
 }
 
-export function getInvestments(): AxiosPromise<Array<InvestmentModule.Types.Investment>> {
-    return API.get('products');
+export function getInvestments(params?: URLSearchParams): AxiosPromise<Array<InvestmentModule.Types.Investment>> {
+    return API.get('products', config(params));
 }

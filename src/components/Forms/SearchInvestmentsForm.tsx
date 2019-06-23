@@ -9,7 +9,7 @@ const SearchInvestmentsForm = (props: InjectedFormProps) => {
         <div className="form form--searchInvestments">
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form--searchInvestments__range-wrapper">
-                    <Field name="percentage" component={RangeField} min={0} max={10} label={'Oprocentowanie'} validate={[V.required]} formatLabel={(val) => `${val}%`} />
+                    <Field name="interest" component={RangeField} min={0} max={10} label={'Oprocentowanie'} validate={[V.required]} formatLabel={(val) => `${val}%`} />
                     <Field name="duration" component={RangeField} min={6} max={48} label={'Czas trwania'} validate={[V.required]} />
                     <Field name="risk" component={RangeField} min={1} max={10} label={'Skala ryzyka'} validate={[V.required]} />
                 </div>
