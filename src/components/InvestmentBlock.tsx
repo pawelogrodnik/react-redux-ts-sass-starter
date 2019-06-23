@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as InvestmentsModule from 'Modules/InvestmentModule';
-import { history } from 'src/App';
+import { baseURL } from 'src/Connectors/config';
+
 
 type P = {
     investment: InvestmentsModule.Types.Investment;
@@ -12,10 +13,13 @@ export const InvestmentBlock = (props: P) => {
         <div className="investmentBlock">
             <div className="investmentBlock__inner">
                 <div className="investmentBlock__icon">
-                    <img src={props.investment.detailerParams.images.thumbnail}/>
+                {props.investment.detailedParams.images && props.investment.detailedParams.images.background &&
+                    <img src={`${baseURL}/${props.investment.detailedParams.images.background.path}`} width={'150'}/>
+                }
                 </div>
                 <div className="investmentBlock__desc">
-                    {props.investment.basicParams.description}
+                    <h3>{props.investment.basicParams.title}</h3>
+                    <p>{props.investment.basicParams.description}</p>
                 </div>
                 <div className="investmentBlock__action">
                     <button className="btn--bordered" onClick={() => props.action()}>Lorem ipsum</button>

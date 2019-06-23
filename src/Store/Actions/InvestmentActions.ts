@@ -19,10 +19,15 @@ function getInvestments(params?: URLSearchParams) {
 function addInvestment(investment: InvestmentModule.Types.Investment) {
     return async dispatch => {
         try {
+            dispatch(ViewManagementModule.Actions.showLoader())
             await InvestmentModule.Connector.addInvestment(investment)
             dispatch(addInvestmentSuccess());
             history.push('/dashboard')
+            dispatch(ViewManagementModule.Actions.hideLoader())
+
         } catch (err) {
+            dispatch(ViewManagementModule.Actions.hideLoader())            
+
             // 
         }
     };

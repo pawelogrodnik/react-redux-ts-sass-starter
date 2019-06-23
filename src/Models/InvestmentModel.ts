@@ -10,7 +10,7 @@ export type InvestmentStore = {
 export type Investment = {
     id: number;
     basicParams: BasicParams;
-    detailerParams: DetailedParams;
+    detailedParams: DetailedParams;
     type: EnumTypes.InvestmentType;
     status: string;
     seller: Seller
@@ -54,7 +54,7 @@ export type DetailedParams = {
 }
 
 export type Images = {
-    background: string;
-    thumbnail: string;
-    other: Array<string>
+    background: any;
+    thumbnail: any;
+    other: Array<any>
 }
