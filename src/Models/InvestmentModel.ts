@@ -47,8 +47,14 @@ export type DetailedParams = {
     address: Address;
     floorNumber: string;
     id: number;
-    images: Array<any>;
+    images: Images
     priceMarket: string;
     priceService: string;
     usableArea: string;
+}
+
+export type Images = {
+    background: string;
+    thumbnail: string;
+    other: Array<string>
 }

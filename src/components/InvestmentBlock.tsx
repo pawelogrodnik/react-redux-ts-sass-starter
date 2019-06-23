@@ -1,9 +1,10 @@
 import * as React from 'react';
+import * as InvestmentsModule from 'Modules/InvestmentModule';
+import { history } from 'src/App';
 
 type P = {
-    iconSrc: string;
-    description: string;
-    action: Function
+    investment: InvestmentsModule.Types.Investment;
+    action: () => void;
 }
 
 export const InvestmentBlock = (props: P) => {
@@ -11,10 +12,10 @@ export const InvestmentBlock = (props: P) => {
         <div className="investmentBlock">
             <div className="investmentBlock__inner">
                 <div className="investmentBlock__icon">
-                    <img src={props.iconSrc}/>
+                    <img src={props.investment.detailerParams.images.thumbnail}/>
                 </div>
                 <div className="investmentBlock__desc">
-                    {props.description}
+                    {props.investment.basicParams.description}
                 </div>
                 <div className="investmentBlock__action">
                     <button className="btn--bordered" onClick={() => props.action()}>Lorem ipsum</button>
@@ -24,15 +25,12 @@ export const InvestmentBlock = (props: P) => {
     )
 }
 
-type InvestmentListP = {
-    list: Array<any>
-}
 
-export const InvestmentList = (props: InvestmentListP) => {
+export const InvestmentList = (props: {investmentList: Array<InvestmentsModule.Types.Investment>, action: (id: number) => void}) => {
     return (
         <>
-            {props.list.map((e,i) => (
-                <InvestmentBlock key={Math.random()} iconSrc={''} description={'Lorem ipsum dolor sit amet'} action={()=>console.log('klik')} />
+            {props.investmentList.map((investment,i) => (
+                <InvestmentBlock key={Math.random()} investment={investment} action={() => props.action(investment.id)} />
             ))}
         </>
     )    

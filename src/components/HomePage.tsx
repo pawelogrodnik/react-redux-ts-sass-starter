@@ -7,6 +7,7 @@ import { createSerachQuery } from 'src/Connectors/config';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
 import * as InvestmentsModule from 'Modules/InvestmentModule';
 import { connect } from 'react-redux';
+import { history } from 'src/App';
 
 type S = {
     investmentsVisible?: boolean;
@@ -28,6 +29,7 @@ const initialValues = {
 
 type DispatchedP = {
     getInvestments: (params?: URLSearchParams) => void;
+    setActiveInvestmentId: (investmentId: number) => void;
 }
 
 type ConnectedP = {
@@ -48,7 +50,10 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
         await this.props.getInvestments(query)
         this.setState({ investmentsVisible: true })
     }
-
+    public investmentClickAction = (id: number) => {
+        this.props.setActiveInvestmentId(id);
+        history.push(`/investment/${id}`)
+    }
     public render() {
         const { investmentList } = this.props;
         return (
@@ -57,7 +62,7 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
                 <IntroTextBanner title={'Wyszukiwarka inwestycji'} description={'Proszę ustawić suwaki zgodnie ze swoimi preferencjami. Określone przez Państwa parametry wyłonią inwestycję, spełniającą Państwa wymagania.'} />
                 <SearchInvestmentsForm onSubmit={this.handleInvestmentFormSubmit} initialValues={initialValues} />
                 {this.state.investmentsVisible &&
-                    <> {investmentList.length > 0 ? <InvestmentList list={investmentList} /> : <div className="container"><h2>Brak wyników dla podanych parametrów</h2></div>} </>
+                    <> {investmentList.length > 0 ? <InvestmentList investmentList={investmentList} action={this.investmentClickAction} /> : <div className="container"><h2>Brak wyników dla podanych parametrów</h2></div>} </>
                 }
             </div>
         );
@@ -66,6 +71,7 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
 
 const mapDispatchToProps: DispatchedP = {
     getInvestments: (params?: URLSearchParams) => InvestmentsModule.Actions.getInvestments(params),
+    setActiveInvestmentId: (investmentId: number) => InvestmentsModule.Actions.setActiveInvestmentId(investmentId),
 
 };
 

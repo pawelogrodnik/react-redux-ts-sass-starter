@@ -3,6 +3,7 @@ import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import HomePage from './components/HomePage';
 import Dashboard from './components/Dashboard';
+import SingleInvestment from './components/SingleInvestment';
 import Loader from './components/Layout/Loader';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
@@ -43,6 +44,7 @@ class App extends React.PureComponent<P & DispatchedP, S> {
                         <Switch>
                             <Route exact path={'/'} component={HomePage} />
                             <Route path={'/dashboard'} component={Dashboard} />
+                            <Route path={'/investment/:id'} component={SingleInvestment} />
                         </Switch>
                     </div>
                     {this.props.viewManagementStore.footerVisible && <Footer user={this.props.userStore.user} />}

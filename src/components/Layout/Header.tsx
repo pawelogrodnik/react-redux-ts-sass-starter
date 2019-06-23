@@ -6,7 +6,7 @@ export default class Header extends React.Component<any, any> {
             <header className="header">
                 <div className="header__inner container">
                     <h2>
-                        <img src="logo.png" id="logo" />
+                        <img src="/logo.png" id="logo" />
                     </h2>
                     <ul className="header__menu">
                         <li>Start</li>

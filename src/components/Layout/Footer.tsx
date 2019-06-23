@@ -8,7 +8,7 @@ export default class Footer extends React.Component<any, any> {
                 <div className="footer__inner container">
                     <div className="footer__l">
                         <h2>
-                            <img src="logo.png" id="footer__logo" />
+                            <img src="/logo.png" id="footer__logo" />
                         </h2>
                     </div>
                     <div className="footer__r">
