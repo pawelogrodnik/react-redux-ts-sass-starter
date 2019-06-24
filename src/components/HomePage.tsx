@@ -44,7 +44,7 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
         };
     }
 
-    public handleInvestmentFormSubmit = async(data: any) => {
+    public handleInvestmentFormSubmit = async (data: any) => {
         this.setState({ investmentsVisible: false })
         const query = createSerachQuery(data);
         await this.props.getInvestments(query)
@@ -58,11 +58,11 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
         const { investmentList } = this.props;
         return (
             <div className="page page--homepage">
-                <HeroBanner backgroundImageSrc={'/background.png'} title={'Działamy na rzecz inwestorów'} description={'Witamy na pierwszym w Polsce portalu z najlepszymi okazjami inwestycyjnymi w jednym miejscu. Przed Państwem przygoda w postaci podróży po wyselekcjonowanych inwestycjach z całego kraju.'} buttonText={'Lorem ipsum'} />
+                <HeroBanner backgroundImageSrc={'/background.png'} title={'Działamy na rzecz inwestorów'} description={'Witamy na pierwszym w Polsce portalu z najlepszymi okazjami inwestycyjnymi w jednym miejscu. Przed Państwem przygoda w postaci podróży po wyselekcjonowanych inwestycjach z całego kraju. Znajdą tutaj Państwo zarówno długoterminowe inwestycje w postaci mieszkań jak i krótkoterminowe inwestycje typu buy and sell.'} buttonText={'Wyszukaj inwestycję'} />
                 <IntroTextBanner title={'Wyszukiwarka inwestycji'} description={'Proszę ustawić suwaki zgodnie ze swoimi preferencjami. Określone przez Państwa parametry wyłonią inwestycję, spełniającą Państwa wymagania.'} />
                 <SearchInvestmentsForm onSubmit={this.handleInvestmentFormSubmit} initialValues={initialValues} />
                 {this.state.investmentsVisible &&
-                    <> {investmentList.length > 0 ? <InvestmentList investmentList={investmentList} action={this.investmentClickAction} /> : <div className="container"><h2>Brak wyników dla podanych parametrów</h2></div>} </>
+                    <> { investmentList.length > 0 ? <InvestmentList investmentList={investmentList} action={this.investmentClickAction} /> : <div className="container"><h2>Brak wyników dla podanych parametrów</h2></div> } </>
                 }
             </div>
         );
