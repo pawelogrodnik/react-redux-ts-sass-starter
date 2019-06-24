@@ -51,7 +51,8 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                         {
                             id: 'id',
                             accessor: 'id',
-                            Header: 'ID produktu',
+                            Header: 'ID',
+                            width: 50
                         },
                         {
                             id: 'type',
@@ -69,9 +70,20 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                             accessor: d => d.basicParams.title
                         },
                         {
-                            id: 'price',
-                            Header: 'Cena w serwisie',
-                            accessor: d => d.detailedParams.priceService + " PLN"
+                            id: 'interest',
+                            Header: 'Oprocentowanie',
+                            accessor: d => d.basicParams.interest + " %"
+                        },
+                        {
+                            id: 'duration',
+                            Header: 'Czas trwania',
+                            accessor: d => d.basicParams.duration + " mies."
+                        },
+                        {
+                            id: 'risk',
+                            Header: 'Ryzyko',
+                            accessor: d => d.basicParams.risk,
+                            width: 100
                         },
                         {
                             id: 'date',
