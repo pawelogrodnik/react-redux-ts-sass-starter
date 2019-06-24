@@ -304,3 +304,32 @@ input {
         }
     }
 }
+.form_field {
+    label{
+        font-size: 12px;
+        font-weight: bold;
+    }
+    input {
+        border: 1px solid $borderGrey;
+        font-size: 12px;
+    }
+    &--select .form_control {
+        font-size: 12px;
+    }
+    
+}
+
+.page {
+    &--static {
+        min-height: 300px;
+        background-size: cover;
+        background-position: center;
+        padding-top: 200px;
+        height: 100vh;
+        background-image: url("/background.png");
+        color: white;
+    }
+    &--content {
+
+    }
+}

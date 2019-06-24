@@ -1,4 +1,4 @@
-import API, {config} from './config';
+import API, { config } from './config';
 import { AxiosPromise } from 'axios';
 import * as InvestmentModule from './../Modules/InvestmentModule';
 

@@ -4,6 +4,18 @@ import Footer from './components/Layout/Footer';
 import HomePage from './components/HomePage';
 import Dashboard from './components/Dashboard';
 import SingleInvestment from './components/SingleInvestment';
+import Privacy from './components/StaticPages/Privacy';
+import Career from './components/StaticPages/Career';
+import Complaints from './components/StaticPages/Complaints';
+import Contact from './components/StaticPages/Contact';
+import Cooperation from './components/StaticPages/Cooperation';
+import ExecusionTime from './components/StaticPages/ExecusionTime';
+import FAQ from './components/StaticPages/FAQ';
+import FormOfPayments from './components/StaticPages/FormOfPayments';
+import Program from './components/StaticPages/Program';
+import Returns from './components/StaticPages/Returns';
+import Subscription from './components/StaticPages/Subscription';
+import VIP from './components/StaticPages/VIP';
 import Loader from './components/Layout/Loader';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
@@ -33,7 +45,7 @@ class App extends React.PureComponent<P & DispatchedP, S> {
             const user = JSON.parse(localStorage.getItem('user'));
             this.props.loginUserFromStorage(user, 'token');
         }
-        this.setState({loadingUserComplete: true})
+        this.setState({ loadingUserComplete: true })
     }
     public render() {
         if (this.state.loadingUserComplete) {
@@ -45,6 +57,18 @@ class App extends React.PureComponent<P & DispatchedP, S> {
                             <Route exact path={'/'} component={HomePage} />
                             <Route path={'/dashboard'} component={Dashboard} />
                             <Route path={'/investment/:id'} component={SingleInvestment} />
+                            <Route path={'/privacy'} component={Privacy} />
+                            <Route path={'/career'} component={Career} />
+                            <Route path={'/complaints'} component={Complaints} />
+                            <Route path={'/contact'} component={Contact} />
+                            <Route path={'/cooperation'} component={Cooperation} />
+                            <Route path={'/execusiontime'} component={ExecusionTime} />
+                            <Route path={'/faq'} component={FAQ} />
+                            <Route path={'/formofpayments'} component={FormOfPayments} />
+                            <Route path={'/program'} component={Program} />
+                            <Route path={'/returns'} component={Returns} />
+                            <Route path={'/subscription'} component={Subscription} />
+                            <Route path={'/vip'} component={VIP} />
                         </Switch>
                     </div>
                     {this.props.viewManagementStore.footerVisible && <Footer user={this.props.userStore.user} />}
