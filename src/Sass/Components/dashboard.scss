@@ -37,14 +37,19 @@
 }
 .investmentBlock {
     width: 100%;
-    margin-bottom: 10px;
+    &:nth-of-type(even) {
+        background-color: rgba(0,0,0,.1);
+    }
     &__icon {
         width: 200px;
+        min-height: 110px;
     }
     &__inner {
         width: 100%;
         display: flex;
-        align-items: flex-start;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        align-items: center;
         justify-content: space-between;
     }
     &__action {

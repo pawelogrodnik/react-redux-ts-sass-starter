@@ -38,7 +38,6 @@ class AddInvestment extends React.Component<DispatchedP & ConnectedP & P,any> {
         }
     }
     public render() {
-
         const initialValues = this.props.activeInvestment ? {...this.props.activeInvestment} : {};
         return (
             <div className="addInvestment">

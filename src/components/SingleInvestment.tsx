@@ -7,6 +7,7 @@ type P = {
     match: any;
 }
 type DispatchedP = {
+    removeActiveInvestmentId: () => void;
 }
 
 type ConnectedP = {
@@ -17,7 +18,9 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
     constructor(props: DispatchedP & ConnectedP & P) {
         super(props);
     }
-
+    public componentWillUnmount() {
+        this.props.removeActiveInvestmentId()
+    }
     public render() {
         return (
             <div className="page page--singleInvestment">
@@ -29,7 +32,7 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
 }
 
 const mapDispatchToProps: DispatchedP = {
-    // 
+    removeActiveInvestmentId: () => InvestmentModule.Actions.setActiveInvestmentId(null)
 };
 
 function mapStateToProps(state: RootState): ConnectedP {
