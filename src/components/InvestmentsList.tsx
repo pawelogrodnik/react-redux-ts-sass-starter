@@ -12,6 +12,7 @@ import { baseURL } from '../Connectors/config';
 type DispatchedP = {
     getInvestments: () => void;
     setActiveInvestmentId: (investmentId: number) => void;
+    archiveProduct: (investmentId: number) => void;
 }
 type ConnectedP = {
     investmentList: Array<InvestmentsModule.Types.Investment>
@@ -27,13 +28,7 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
     };
 
     private archiveProduct = (rowInfo: RowInfo) => {
-        fetch(baseURL + 'products/archive/?id=' + rowInfo.original.id, {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json'
-            },
-        })
-            .then(() => this.props.getInvestments());
+        this.props.archiveProduct(rowInfo.original.id);
     }
 
     public render() {
@@ -110,6 +105,7 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
 const mapDispatchToProps: DispatchedP = {
     getInvestments: () => InvestmentsModule.Actions.getInvestments(),
     setActiveInvestmentId: (investmentId: number) => InvestmentsModule.Actions.setActiveInvestmentId(investmentId),
+    archiveProduct: (investmentId: number) => InvestmentsModule.Actions.archiveInvestment(investmentId)
 };
 function mapStateToProps(state: RootState): ConnectedP {
     return {

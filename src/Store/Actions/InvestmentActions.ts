@@ -12,7 +12,7 @@ function getInvestments(params?: URLSearchParams) {
             dispatch(getInvestmentsSuccess(response.data))
             dispatch(ViewManagementModule.Actions.hideLoader())
         } catch (err) {
-            dispatch(ViewManagementModule.Actions.hideLoader())            
+            dispatch(ViewManagementModule.Actions.hideLoader())
         }
     };
 }
@@ -26,12 +26,29 @@ function addInvestment(investment: InvestmentModule.Types.Investment) {
             dispatch(ViewManagementModule.Actions.hideLoader())
 
         } catch (err) {
-            dispatch(ViewManagementModule.Actions.hideLoader())            
+            dispatch(ViewManagementModule.Actions.hideLoader())
 
             // 
         }
     };
 }
+
+function archiveInvestment(investmentId: number) {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            await InvestmentModule.Connector.archiveInvestment(investmentId)
+            dispatch(archiveInvestmentSuccess(investmentId));
+            dispatch(ViewManagementModule.Actions.hideLoader())
+            dispatch(getInvestments());
+        } catch (err) {
+            dispatch(ViewManagementModule.Actions.hideLoader())
+
+            // 
+        }
+    };
+}
+
 
 function getInvestmentsSuccess(investmentList: Array<InvestmentModule.Types.Investment>): InvestmentActionModel.GetInvestments {
     return {
@@ -49,6 +66,15 @@ function setActiveInvestmentId(investmentId): InvestmentActionModel.SetActiveInv
         }
     };
 }
+
+function archiveInvestmentSuccess(investmentId: number): InvestmentActionModel.ArchiveProduct {
+    return {
+        type: Investment.ARCHIVE_INVESTMENT,
+        payload: {
+            investmentId
+        }
+    };
+}
 function addInvestmentSuccess(): InvestmentActionModel.AddInvestment {
     return {
         type: Investment.ADD_INVESTMENT
@@ -59,5 +85,6 @@ function addInvestmentSuccess(): InvestmentActionModel.AddInvestment {
 export {
     getInvestments,
     addInvestment,
-    setActiveInvestmentId
+    setActiveInvestmentId,
+    archiveInvestment
 }

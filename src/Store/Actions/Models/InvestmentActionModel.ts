@@ -15,6 +15,13 @@ export type SetActiveInvestmentId = {
     }
 };
 
+export type ArchiveProduct = {
+    type: ActionTypes.Investment.ARCHIVE_INVESTMENT,
+    payload: {
+        investmentId: number
+    }
+};
+
 export type AddInvestment = {
     type: ActionTypes.Investment.ADD_INVESTMENT
 };
@@ -30,4 +37,5 @@ export type InvestmentAction =
     | GetInvestmentDetails
     | AddInvestment
     | SetActiveInvestmentId
-    | GetInvestments;
+    | GetInvestments
+    | ArchiveProduct;

@@ -47,9 +47,14 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                             <h3>Informacje o inwestycji</h3>
                             <div className="form--addInvestment__content">
                                 <Field wrapperClassName={'full'} name="basicParams.title" component={RegularField} label={'Nazwa inwestycji'} placeholder={'Nazwa inwestycji'} validate={[V.required]} />
-                                <Field wrapperClassName={'full'} name="detailedParams.images.background" component={FileField} label={'Zdjęcie w tle'} />
-                                <Field wrapperClassName={'full'} name="detailedParams.images.thumbnail" component={FileField} label={'Zdjęcie miniaturka'} />
-                                <Field wrapperClassName={'full'} name="detailedParams.images.other" multiple component={FileField} label={'Zdjęcia produktu'} />
+                                {
+                                    !initialValues &&
+                                <>
+                                    <Field wrapperClassName={'full'} name="detailedParams.images.background" component={FileField} label={'Zdjęcie w tle'} />
+                                    <Field wrapperClassName={'full'} name="detailedParams.images.thumbnail" component={FileField} label={'Zdjęcie miniaturka'} />
+                                    <Field wrapperClassName={'full'} name="detailedParams.images.other" multiple component={FileField} label={'Zdjęcia produktu'} />
+                                </>
+                                }
                                 <Field type='textarea' wrapperClassName={'full'} name="basicParams.description" component={RegularField} label={'Opis inwestycji'} placeholder={'Opis inwestycji'} validate={[V.required]} />
                                 <Field wrapperClassName={'half'} name="detailedParams.address.street" component={RegularField} label={'Ulica'} placeholder={'Ulica'} validate={[V.required]} />
                                 <Field wrapperClassName={'quarter'} name="detailedParams.address.houseNumber" component={RegularField} label={'Numer domu'} placeholder={'Numer domu'} validate={[V.required]} />
@@ -104,7 +109,7 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                         <div className="form--addInvestment--actions">
                             <div className="form--login__buttons">
                                 <button disabled={submitting} className="btn btn--main btn--big" type="submit">
-                                    {initialValues['type'] ? 'Zapisz zmiany' : 'Dodaj nową inwestycję'}
+                                    {initialValues ? 'Zapisz zmiany' : 'Dodaj nową inwestycję'}
                                 </button>
                             </div>
                         </div>

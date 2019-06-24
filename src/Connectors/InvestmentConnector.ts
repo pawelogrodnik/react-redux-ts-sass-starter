@@ -9,3 +9,7 @@ export function addInvestment(investment: InvestmentModule.Types.Investment): Ax
 export function getInvestments(params?: URLSearchParams): AxiosPromise<Array<InvestmentModule.Types.Investment>> {
     return API.get('products', config(params));
 }
+
+export function archiveInvestment(params?: number) {
+    return API.get(`products/archive?id=${params}`, config());
+}

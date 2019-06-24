@@ -17,7 +17,7 @@ type P = {
     editable?: boolean
 }
 
-class AddInvestment extends React.Component<DispatchedP & ConnectedP & P,any> {
+class AddInvestment extends React.Component<DispatchedP & ConnectedP & P, any> {
     constructor(props: DispatchedP & ConnectedP & P) {
         super(props);
     }
@@ -38,13 +38,16 @@ class AddInvestment extends React.Component<DispatchedP & ConnectedP & P,any> {
         }
     }
     public render() {
-        const initialValues = this.props.activeInvestment ? {...this.props.activeInvestment} : {};
+        const initialValues: InvestmentModule.Types.Investment = this.props.activeInvestment ? { ...this.props.activeInvestment } : null;
+        if (this.props.activeInvestment && initialValues && initialValues.detailedParams && initialValues.detailedParams.images) {
+            delete initialValues.detailedParams.images;
+        }
         return (
             <div className="addInvestment">
                 <h1>{this.props.match.params.investmentId ? 'Edytuj' : 'Dodaj'} inwestycję</h1>
                 <p>Lorem ipsum dolor sit amet</p>
-                <AddInvestmentForm onSubmit={async(data)=> await(this.props.addInvestment(data))} initialValues={initialValues}/>
-            </div> 
+                <AddInvestmentForm onSubmit={async (data) => await (this.props.addInvestment(data))} initialValues={initialValues} />
+            </div>
         )
     }
 }
