@@ -24,6 +24,12 @@ export function investmentReducer(state: State = initialState, action: Investmen
                 activeInvestmentId: action.payload.investmentId
             }
         }
+        case ActionTypes.Investment.GET_INVESTMENT_DETAILS: {
+            return {
+                ...state,
+                investmentDetails: action.payload.investmentDetails
+            }
+        }
         default: {
             return state;
         }

@@ -1,3 +1,4 @@
+import { createSerachQuery } from './../../Connectors/config';
 import { Investment } from './EnumTypes/ActionEnumTypes';
 import * as InvestmentActionModel from './Models/InvestmentActionModel';
 import * as InvestmentModule from 'Modules/InvestmentModule';
@@ -48,8 +49,30 @@ function archiveInvestment(investmentId: number) {
         }
     };
 }
+function getInvestmentDetails(investmentId: number) {
+    return async dispatch => {
+        try {
+            const query = createSerachQuery({id: investmentId})
+            dispatch(ViewManagementModule.Actions.showLoader())
+            const response = await InvestmentModule.Connector.getInvestments(query)
+            dispatch(getInvestmentDetailsSuccess(response.data[0]))
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        } catch (err) {
+            dispatch(ViewManagementModule.Actions.hideLoader())
 
+            // 
+        }
+    };
+}
 
+function getInvestmentDetailsSuccess(investmentDetails: InvestmentModule.Types.Investment): InvestmentActionModel.GetInvestmentDetails {
+    return {
+        type: Investment.GET_INVESTMENT_DETAILS,
+        payload: {
+            investmentDetails
+        }
+    };
+}
 function getInvestmentsSuccess(investmentList: Array<InvestmentModule.Types.Investment>): InvestmentActionModel.GetInvestments {
     return {
         type: Investment.GET_INVESTMENTS,
@@ -86,5 +109,6 @@ export {
     getInvestments,
     addInvestment,
     setActiveInvestmentId,
-    archiveInvestment
+    archiveInvestment,
+    getInvestmentDetails
 }

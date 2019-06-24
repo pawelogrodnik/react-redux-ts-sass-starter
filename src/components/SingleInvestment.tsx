@@ -7,37 +7,46 @@ type P = {
     match: any;
 }
 type DispatchedP = {
-    removeActiveInvestmentId: () => void;
+    getInvestmentDetails: (id: number) => void;
 }
 
 type ConnectedP = {
-    activeInvestment: InvestmentModule.Types.Investment
+    investmentDetails: InvestmentModule.Types.Investment
 }
 
 class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any> {
     constructor(props: DispatchedP & ConnectedP & P) {
         super(props);
     }
-    public componentWillUnmount() {
-        this.props.removeActiveInvestmentId()
+    public async componentDidMount() {
+        await this.props.getInvestmentDetails(this.props.match.params.id);
     }
     public render() {
         return (
             <div className="page page--singleInvestment">
                 <h1>SingleInvestment {this.props.match.params.id}</h1>
-                {/* <p>{this.props.activeInvestment.type}</p> */}
+                {this.props.investmentDetails && (
+                    <div className="activeInvestmentDetails">
+                        <p>{this.props.investmentDetails.id}</p>
+                        <p>{this.props.investmentDetails.type}</p>
+                        <p>{this.props.investmentDetails.status}</p>
+                        <p>{this.props.investmentDetails.basicParams.title}</p>
+                        <p>{this.props.investmentDetails.basicParams.description}</p>
+                        <p>{this.props.investmentDetails.basicParams.startDate}</p>
+                    </div>
+                )}
             </div>
         );
     }
 }
 
 const mapDispatchToProps: DispatchedP = {
-    removeActiveInvestmentId: () => InvestmentModule.Actions.setActiveInvestmentId(null)
+    getInvestmentDetails: (id: number) => InvestmentModule.Actions.getInvestmentDetails(id)
 };
 
 function mapStateToProps(state: RootState): ConnectedP {
     return {
-        activeInvestment: InvestmentModule.Selectors.getActiveInvestment(state.investmentStore)
+        investmentDetails: state.investmentStore.investmentDetails
     }
 }
 

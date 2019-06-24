@@ -51,7 +51,6 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
         this.setState({ investmentsVisible: true })
     }
     public investmentClickAction = (id: number) => {
-        this.props.setActiveInvestmentId(id);
         history.push(`/investment/${id}`)
     }
     public render() {
