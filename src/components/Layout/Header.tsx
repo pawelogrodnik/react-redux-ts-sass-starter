@@ -11,7 +11,7 @@ export default class Header extends React.Component<any, any> {
                     </h2>
                     <ul className="header__menu">
                         <Link to="/"><li>Start</li></Link>
-                        <li>Wyszukiwarka</li>
+                        <a href="/#searchBox"><li>Wyszukiwarka</li></a>
                         <Link to="/contact"><li>Kontakt</li></Link>
                     </ul>
                 </div>
