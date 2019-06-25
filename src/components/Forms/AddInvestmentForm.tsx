@@ -23,8 +23,8 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                         <Field wrapperClassName={'half'} name="seller.NIP" component={RegularField} label={'NIP'} placeholder={'NIP'} validate={[V.required]} />
                         <Field wrapperClassName={'half'} name="seller.REGON" component={RegularField} label={'REGON'} placeholder={'REGON'} validate={[V.required]} />
                         <Field wrapperClassName={'half'} name="seller.address.street" component={RegularField} label={'Ulica'} placeholder={'Ulica'} validate={[V.required]} />
-                        <Field wrapperClassName={'quarter'} name="seller.address.houseNumber" component={RegularField} label={'Number domu'} placeholder={'Numer domu'} validate={[V.required]} />
-                        <Field wrapperClassName={'quarter'} name="seller.address.flatNumber" component={RegularField} label={'Number mieszkania'} placeholder={'Numer mieszkania'} validate={[V.required]} />
+                        <Field wrapperClassName={'quarter'} name="seller.address.houseNumber" component={RegularField} label={'Numer domu'} placeholder={'Numer domu'} validate={[V.required]} />
+                        <Field wrapperClassName={'quarter'} name="seller.address.flatNumber" component={RegularField} label={'Numer mieszkania'} placeholder={'Numer mieszkania'} />
                         <Field wrapperClassName={'half'} name="seller.address.postCode" component={RegularField} label={'Kod pocztowy'} placeholder={'Kod pocztowy'} validate={[V.required]} />
                         <Field wrapperClassName={'half'} name="seller.address.city" component={RegularField} label={'Miasto'} placeholder={'Miasto'} validate={[V.required]} />
                     </div>
@@ -55,10 +55,10 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                                     <Field wrapperClassName={'full'} name="detailedParams.images.other" multiple component={FileField} label={'Zdjęcia produktu'} />
                                 </>
                                 }
-                                <Field type='textarea' wrapperClassName={'full'} name="basicParams.description" component={RegularField} label={'Opis inwestycji'} placeholder={'Opis inwestycji'} validate={[V.required]} />
+                                <Field type='textarea' wrapperClassName={'full'} name="basicParams.description" component={RegularField} rows="5" label={'Opis inwestycji'} placeholder={'Opis inwestycji'} validate={[V.required]} />
                                 <Field wrapperClassName={'half'} name="detailedParams.address.street" component={RegularField} label={'Ulica'} placeholder={'Ulica'} validate={[V.required]} />
                                 <Field wrapperClassName={'quarter'} name="detailedParams.address.houseNumber" component={RegularField} label={'Numer domu'} placeholder={'Numer domu'} validate={[V.required]} />
-                                <Field wrapperClassName={'quarter'} name="detailedParams.address.flatNumber" component={RegularField} label={'Numer mieszkania'} placeholder={'Numer mieszkania'} validate={[V.required]} />
+                                <Field wrapperClassName={'quarter'} name="detailedParams.address.flatNumber" component={RegularField} label={'Numer mieszkania'} placeholder={'Numer mieszkania'} />
                                 <Field wrapperClassName={'half'} name="detailedParams.address.postCode" component={RegularField} label={'Kod pocztowy'} placeholder={'Kod pocztowy'} validate={[V.required]} />
                                 <Field wrapperClassName={'half'} name="detailedParams.address.city" component={RegularField} label={'Miasto'} placeholder={'Miasto'} validate={[V.required]} />
                             </div>

@@ -7,12 +7,13 @@ type Props = {
     type: string;
     disabled: boolean;
     placeholder: string;
-    wrapperClassName?:string;
+    wrapperClassName?: string;
+    rows?: number;
 };
 
 class RenderField extends React.PureComponent<WrappedFieldProps & Props> {
     public render() {
-        const { input, meta, label, type, disabled, placeholder, wrapperClassName } = this.props;
+        const { input, meta, label, type, disabled, placeholder, wrapperClassName, rows } = this.props;
         let formClasses: string = 'form_field';
         formClasses += meta.error && meta.touched ? ' form_field--has_error' : '';
         formClasses += wrapperClassName ? ` ${wrapperClassName} ` : '';
@@ -21,22 +22,41 @@ class RenderField extends React.PureComponent<WrappedFieldProps & Props> {
         return (
             <div className={formClasses}>
                 {label && <label htmlFor={input.name}>{label}</label>}
-                <div>
-                    <input
-                        disabled={disabled || false}
-                        {...input}
-                        value={input.value}
-                        placeholder={placeholder ? placeholder : label}
-                        type={type}
-                    />
-                    {(meta.touched &&
-                        (meta.error && (
-                            <div className="form_field--error_wrapper">
-                                <span className="form_field--error">{meta.error}</span>
-                            </div>
-                        ))) ||
-                        (meta.warning && <span>{meta.warning}</span>)}
-                </div>
+                {type && type == 'textarea' ?
+                    <div>
+                        <textarea
+                            disabled={disabled || false}
+                            {...input}
+                            value={input.value}
+                            placeholder={placeholder ? placeholder : label}
+                            rows={rows}
+                        />
+                        {(meta.touched &&
+                            (meta.error && (
+                                <div className="form_field--error_wrapper">
+                                    <span className="form_field--error">{meta.error}</span>
+                                </div>
+                            ))) ||
+                            (meta.warning && <span>{meta.warning}</span>)}
+                    </div>
+                    :
+                    <div>
+                        <input
+                            disabled={disabled || false}
+                            {...input}
+                            value={input.value}
+                            placeholder={placeholder ? placeholder : label}
+                            type={type}
+                        />
+                        {(meta.touched &&
+                            (meta.error && (
+                                <div className="form_field--error_wrapper">
+                                    <span className="form_field--error">{meta.error}</span>
+                                </div>
+                            ))) ||
+                            (meta.warning && <span>{meta.warning}</span>)}
+                    </div>
+                }
             </div>
         );
     }
