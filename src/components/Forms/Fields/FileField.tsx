@@ -8,7 +8,7 @@ type Props = {
     min?: number;
     disabled: boolean;
     placeholder: string;
-    wrapperClassName?:string;
+    wrapperClassName?: string;
     multiple?: boolean
 };
 type State = {
@@ -41,7 +41,7 @@ class FieldFileInput extends React.PureComponent<WrappedFieldProps & Props, Stat
                     reader.readAsDataURL(files[idx]);
                     reader.onloadend = () => {
                         const fileArrClone = [...this.state.fileArr, files[idx]];
-                        const base64ArrClone = [...this.state.base64Arr, reader.result];  
+                        const base64ArrClone = [...this.state.base64Arr, reader.result];
                         this.setState({
                             fileArr: fileArrClone,
                             base64Arr: base64ArrClone
@@ -82,7 +82,7 @@ class FieldFileInput extends React.PureComponent<WrappedFieldProps & Props, Stat
                         name={this.props.input.name}
                         key={fileInputKey}
                         type="file"
-                        accept=".jpg, .png, .jpeg"
+                        accept=".jpg, .png, .jpeg, .pdf"
                         onChange={event => this.onChange(event)}
                         ref={ref => (this.fileInput = ref)}
                         multiple={this.props.multiple}
@@ -90,21 +90,23 @@ class FieldFileInput extends React.PureComponent<WrappedFieldProps & Props, Stat
                 </div>
                 {this.props.multiple ? (
                     <div>
-                        {this.state.fileArr.map((e,i) => {
-                            if(e) {
+                        {this.state.fileArr.map((e, i) => {
+                            if (e) {
                                 return (<div key={`${e.name}${e.lastModified}`}>{e.name}</div>)
-                            }})}
+                            }
+                        })}
                     </div>
                 ) : (
                     <>
-                        {this.state.file && 
-                            <div>
-                                {this.state.file.name}
-                            </div>
+                        {
+                            this.state.file &&
+                                <div>
+                                    {this.state.file.name}
+                                </div>
                         }
                     </>
                 )}
-               
+
             </div>
         );
     }

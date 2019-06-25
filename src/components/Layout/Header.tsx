@@ -7,7 +7,7 @@ export default class Header extends React.Component<any, any> {
             <header className="header">
                 <div className="header__inner container">
                     <h2>
-                        <Link to="/"><img src="/logo.png" id="logo" /></Link>
+                        <Link to="/"><img src="/logo.svg" id="logo" /></Link>
                     </h2>
                     <ul className="header__menu">
                         <Link to="/"><li>Start</li></Link>
