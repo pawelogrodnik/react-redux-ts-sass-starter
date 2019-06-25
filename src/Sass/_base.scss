@@ -8,7 +8,7 @@
 }
 html {
     scroll-behavior: smooth;
-  }
+}
 body {
     line-height: 1.5;
     font-size: 16px;
@@ -20,7 +20,8 @@ body {
     min-height: 100vh;
     position: relative;
 }
-a, .fake-a {
+a,
+.fake-a {
     color: #fff;
     cursor: pointer;
     text-decoration: none;
@@ -79,7 +80,8 @@ h3 {
     margin-bottom: 15px;
 }
 
-input, textarea {
+input,
+textarea {
     width: 100%;
     padding: 9px 15px;
     font-size: 13px;
@@ -214,7 +216,6 @@ input, textarea {
     margin: 100px 0 100px 0;
 }
 
-
 .loader {
     position: fixed;
     z-index: 20;
@@ -232,13 +233,13 @@ input, textarea {
         width: 40px;
         height: 40px;
         animation: spinBackwards 1.8s infinite linear both;
-        animation-delay: .4;
+        animation-delay: 0.4;
     }
     &__inner__md {
         width: 30px;
         height: 30px;
         animation: spin 1.4s infinite linear both;
-        animation-delay: .8;
+        animation-delay: 0.8;
     }
     &__inner__sm {
         width: 20px;
@@ -246,7 +247,11 @@ input, textarea {
         animation: spinBackwards 1s infinite linear both;
         animation-delay: 1.2;
     }
-    &__inner, &__inner__sm, &__inner__xs, &__inner__md, &__inner__lg {
+    &__inner,
+    &__inner__sm,
+    &__inner__xs,
+    &__inner__md,
+    &__inner__lg {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -293,7 +298,7 @@ input, textarea {
 }
 .action--disabled {
     cursor: not-allowed;
-    opacity: .25;
+    opacity: 0.25;
 }
 .ReactTable {
     .rt-tr {
@@ -301,25 +306,26 @@ input, textarea {
             i {
                 cursor: not-allowed;
                 &:hover {
-                    color:#000;
+                    color: #000;
                 }
             }
         }
     }
 }
 .form_field {
-    label{
+    label {
         font-size: 12px;
-        font-weight: bold;
+        font-weight: 500;
     }
-    input, textarea {
+    input,
+    textarea {
         border: 1px solid $borderGrey;
         font-size: 12px;
+        border-radius: 3px;
     }
     &--select .form_control {
         font-size: 12px;
     }
-    
 }
 
 .page {
@@ -329,11 +335,10 @@ input, textarea {
         background-position: center;
         padding-top: 200px;
         height: 100vh;
-        background-image: url("/background.png");
+        background-image: url('/background.png');
         color: white;
     }
     &--content {
-
     }
 }
 .DateInput_input {
@@ -348,15 +353,15 @@ input, textarea {
     margin-top: 30px;
     img {
         cursor: default;
-        margin-left:10px;
+        margin-left: 10px;
         margin-right: 10px;
     }
 }
 
-.titleLabel{
+.titleLabel {
     font-weight: 500;
 }
-.subtitleLabel{ 
+.subtitleLabel {
     font-weight: 400;
     color: $brownMain;
     font-size: 22px;
@@ -371,8 +376,8 @@ input, textarea {
         font-size: 30px;
     }
     .row {
-    width: 100%;
-    height: 80px;
+        width: 100%;
+        height: 80px;
     }
     .grey {
         background-color: $greyMain;
@@ -393,10 +398,10 @@ input, textarea {
         .col {
             width: 100%;
         }
-      }
+    }
 }
 
-.productDataDetails{
+.productDataDetails {
     width: 100%;
     margin-top: 40px;
     margin-bottom: 40px;
@@ -417,13 +422,13 @@ input, textarea {
     }
 }
 
-.contactForm{
+.contactForm {
     background-size: cover;
     background-position: center;
     height: 100vh;
-    background-image: url("/contact.jpeg");
-    .contactBox{
-        background-color: white; 
+    background-image: url('/contact.jpeg');
+    .contactBox {
+        background-color: white;
         width: 40%;
         min-width: 400px;
         float: right;

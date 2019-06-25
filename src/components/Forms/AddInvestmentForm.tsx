@@ -7,9 +7,9 @@ import * as Dictionary from 'Models/Dictionary';
 import { connect } from 'react-redux';
 
 type P = {
-    investmentType: InvestmentModule.EnumTypes.InvestmentType
-    edit?: boolean
-}
+    investmentType: InvestmentModule.EnumTypes.InvestmentType;
+    edit?: boolean;
+};
 const { flat, parcel, hotel, vehicle, gold, token, whisky, diamonds, dorm } = InvestmentModule.EnumTypes.InvestmentType;
 const AddInvestmentForm = (props: InjectedFormProps & P) => {
     const { handleSubmit, submitting, investmentType, initialValues } = props;
@@ -38,7 +38,7 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                         <Field wrapperClassName={'full'} name="basicParams.duration" component={RegularField} label={'Czas trwania inwestycji (miesiące)'} placeholder={'Czas trwania inwestycji (miesiące)'} validate={[V.required]} />
                         <Field wrapperClassName={'half'} name="basicParams.interest" component={RegularField} label={'Oprocentowanie'} placeholder={'Oprocentowanie'} validate={[V.required]} />
                         <Field wrapperClassName={'half'} name="basicParams.risk" options={Dictionary.riskOptions} component={SelectField} label={'Wybierz stopień ryzyka'} placeholder={'Wybierz stopień ryzyka'} validate={[V.required]} />
-                        <Field wrapperClassName={'full'} name="type" options={Dictionary.getInvestmentOptions} component={SelectField} label={'Wybierz typ inwestycji'} placeholder={'Wybierz typ inwestycji'} validate={[V.required]} />
+                        <Field wrapperClassName={'full'} name="type" options={Dictionary.getInvestmentOptions} component={SelectField} label={'Typ inwestycji'} placeholder={'Wybierz typ inwestycji'} validate={[V.required]} />
                     </div>
                 </div>
                 {investmentType && (
@@ -47,15 +47,14 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                             <h3>Informacje o inwestycji</h3>
                             <div className="form--addInvestment__content">
                                 <Field wrapperClassName={'full'} name="basicParams.title" component={RegularField} label={'Nazwa inwestycji'} placeholder={'Nazwa inwestycji'} validate={[V.required]} />
-                                {
-                                    !initialValues &&
-                                <>
-                                    <Field wrapperClassName={'full'} name="detailedParams.images.background" component={FileField} label={'Zdjęcie w tle'} />
-                                    <Field wrapperClassName={'full'} name="detailedParams.images.thumbnail" component={FileField} label={'Zdjęcie miniaturka'} />
-                                    <Field wrapperClassName={'full'} name="detailedParams.images.other" multiple component={FileField} label={'Zdjęcia produktu'} />
-                                </>
-                                }
-                                <Field type='textarea' wrapperClassName={'full'} name="basicParams.description" component={RegularField} rows="5" label={'Opis inwestycji'} placeholder={'Opis inwestycji'} validate={[V.required]} />
+                                {!initialValues && (
+                                    <>
+                                        <Field wrapperClassName={'full'} name="detailedParams.images.background" component={FileField} label={'Zdjęcie w tle'} />
+                                        <Field wrapperClassName={'full'} name="detailedParams.images.thumbnail" component={FileField} label={'Zdjęcie miniaturka'} />
+                                        <Field wrapperClassName={'full'} name="detailedParams.images.other" multiple component={FileField} label={'Zdjęcia produktu'} />
+                                    </>
+                                )}
+                                <Field type="textarea" wrapperClassName={'full'} name="basicParams.description" component={RegularField} rows="5" label={'Opis inwestycji'} placeholder={'Opis inwestycji'} validate={[V.required]} />
                                 <Field wrapperClassName={'half'} name="detailedParams.address.street" component={RegularField} label={'Ulica'} placeholder={'Ulica'} validate={[V.required]} />
                                 <Field wrapperClassName={'quarter'} name="detailedParams.address.houseNumber" component={RegularField} label={'Numer domu'} placeholder={'Numer domu'} validate={[V.required]} />
                                 <Field wrapperClassName={'quarter'} name="detailedParams.address.flatNumber" component={RegularField} label={'Numer mieszkania'} placeholder={'Numer mieszkania'} />
@@ -75,33 +74,33 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                                 {investmentType === hotel && <Field name="detailedParams.income" component={RegularField} label={'Przychody'} placeholder={'Przychody'} validate={[V.required]} />}
                                 {investmentType === gold && (
                                     <>
-                                    <Field name="detailedParams.mass" component={RegularField} label={'Masa'} placeholder={'Masa'} validate={[V.required]} />
-                                    <Field name="detailedParams.goldtrial" component={RegularField} label={'Próba'} placeholder={'Próba'} validate={[V.required]} />
+                                        <Field name="detailedParams.mass" component={RegularField} label={'Masa'} placeholder={'Masa'} validate={[V.required]} />
+                                        <Field name="detailedParams.goldtrial" component={RegularField} label={'Próba'} placeholder={'Próba'} validate={[V.required]} />
                                     </>
                                 )}
                                 {investmentType === whisky && (
                                     <>
-                                    <Field name="detailedParams.distillery" component={RegularField} label={'Destylarnia'} placeholder={'Destylarnia'} validate={[V.required]} />
-                                    <Field name="detailedParams.version" component={RegularField} label={'Wersja'} placeholder={'Wersja'} validate={[V.required]} />
-                                    <Field name="detailedParams.bottling" component={RegularField} label={'Butelkowanie'} placeholder={'Butelkowanie'} validate={[V.required]} />
-                                    <Field name="detailedParams.volume" component={RegularField} label={'Objętość'} placeholder={'Objętość'} validate={[V.required]} />
-                                    <Field name="detailedParams.age" component={RegularField} label={'Wiek'} placeholder={'Wiek'} validate={[V.required]} />
-                                    <Field name="detailedParams.origin" component={RegularField} label={'Pochodzenie'} placeholder={'Pochodzenie'} validate={[V.required]} />
+                                        <Field name="detailedParams.distillery" component={RegularField} label={'Destylarnia'} placeholder={'Destylarnia'} validate={[V.required]} />
+                                        <Field name="detailedParams.version" component={RegularField} label={'Wersja'} placeholder={'Wersja'} validate={[V.required]} />
+                                        <Field name="detailedParams.bottling" component={RegularField} label={'Butelkowanie'} placeholder={'Butelkowanie'} validate={[V.required]} />
+                                        <Field name="detailedParams.volume" component={RegularField} label={'Objętość'} placeholder={'Objętość'} validate={[V.required]} />
+                                        <Field name="detailedParams.age" component={RegularField} label={'Wiek'} placeholder={'Wiek'} validate={[V.required]} />
+                                        <Field name="detailedParams.origin" component={RegularField} label={'Pochodzenie'} placeholder={'Pochodzenie'} validate={[V.required]} />
                                     </>
                                 )}
                                 {investmentType === diamonds && (
                                     <>
-                                    <Field name="detailedParams.mass" component={RegularField} label={'Masa'} placeholder={'Masa'} validate={[V.required]} />
-                                    <Field name="detailedParams.cut" component={RegularField} label={'Szlif'} placeholder={'Szlif'} validate={[V.required]} />
-                                    <Field name="detailedParams.color" component={RegularField} label={'Barwa'} placeholder={'Barwa'} validate={[V.required]} />
-                                    <Field name="detailedParams.purity" component={RegularField} label={'Czystość'} placeholder={'Czystość'} validate={[V.required]} />
+                                        <Field name="detailedParams.mass" component={RegularField} label={'Masa'} placeholder={'Masa'} validate={[V.required]} />
+                                        <Field name="detailedParams.cut" component={RegularField} label={'Szlif'} placeholder={'Szlif'} validate={[V.required]} />
+                                        <Field name="detailedParams.color" component={RegularField} label={'Barwa'} placeholder={'Barwa'} validate={[V.required]} />
+                                        <Field name="detailedParams.purity" component={RegularField} label={'Czystość'} placeholder={'Czystość'} validate={[V.required]} />
                                     </>
                                 )}
                                 {investmentType === token && (
                                     <>
-                                    <Field name="detailedParams.minInsert" component={RegularField} label={'Minimalny wkład'} placeholder={'Minimalny wkład'} validate={[V.required]} />
-                                    <Field name="detailedParams.currentCourse" component={RegularField} label={'Aktualny kurs'} placeholder={'Aktualny kurs'} validate={[V.required]} />
-                                    <Field name="detailedParams.ipo" component={RegularField} label={'Planowany debiut (IPO)'} placeholder={'Planowany debiut (IPO)'} validate={[V.required]} />
+                                        <Field name="detailedParams.minInsert" component={RegularField} label={'Minimalny wkład'} placeholder={'Minimalny wkład'} validate={[V.required]} />
+                                        <Field name="detailedParams.currentCourse" component={RegularField} label={'Aktualny kurs'} placeholder={'Aktualny kurs'} validate={[V.required]} />
+                                        <Field name="detailedParams.ipo" component={RegularField} label={'Planowany debiut (IPO)'} placeholder={'Planowany debiut (IPO)'} validate={[V.required]} />
                                     </>
                                 )}
                             </div>
@@ -132,5 +131,5 @@ export default connect((state: any) => {
     const investmentType = selector(state, 'type');
     return {
         investmentType
-    }
+    };
 })(addInvestment);
