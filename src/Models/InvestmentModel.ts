@@ -51,6 +51,24 @@ export type DetailedParams = {
     priceMarket: string;
     priceService: string;
     usableArea: string;
+    pum: string;
+    mass: string;
+    goldtrial: string;
+    distillery: string;
+    version: string;
+    bottling: string;
+    volume: string;
+    age: string;
+    origin: string;
+    cut: string;
+    color: string;
+    purity: string;
+    minInsert: string;
+    currentCourse: string;
+    ipo: string;
+    roi: string;
+    roomsCount: string;
+    income: string;
 }
 
 export type Images = {

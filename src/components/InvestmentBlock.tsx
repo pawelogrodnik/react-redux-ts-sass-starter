@@ -13,9 +13,9 @@ export const InvestmentBlock = (props: P) => {
         <div className="investmentBlock">
             <div className="investmentBlock__inner">
                 <div className="investmentBlock__icon">
-                {props.investment.detailedParams.images && props.investment.detailedParams.images.background &&
-                    <img src={`${baseURL}/${props.investment.detailedParams.images.background.path}`} width={'150'}/>
-                }
+                    {props.investment.detailedParams.images && props.investment.detailedParams.images.background &&
+                        <img src={`${baseURL}/${props.investment.detailedParams.images.thumbnail.path}`} width={'150'} />
+                    }
                 </div>
                 <div className="investmentBlock__desc">
                     <h3>{props.investment.basicParams.title}</h3>
@@ -30,12 +30,14 @@ export const InvestmentBlock = (props: P) => {
 }
 
 
-export const InvestmentList = (props: {investmentList: Array<InvestmentsModule.Types.Investment>, action: (id: number) => void}) => {
+export const InvestmentList = (props: { investmentList: Array<InvestmentsModule.Types.Investment>, action: (id: number) => void }) => {
     return (
         <>
-            {props.investmentList.map((investment,i) => (
+        {
+            props.investmentList.map((investment, i) => (
                 <InvestmentBlock key={Math.random()} investment={investment} action={() => props.action(investment.id)} />
-            ))}
+            ))
+        }
         </>
     )    
 }
