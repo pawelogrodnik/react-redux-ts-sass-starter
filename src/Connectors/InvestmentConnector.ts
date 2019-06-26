@@ -13,3 +13,7 @@ export function getInvestments(params?: URLSearchParams): AxiosPromise<Array<Inv
 export function archiveInvestment(params?: number) {
     return API.get(`products/archive?id=${params}`, config());
 }
+
+export function contact(contactData: InvestmentModule.Types.Contact) {
+    return API.post('contact', contactData);
+}

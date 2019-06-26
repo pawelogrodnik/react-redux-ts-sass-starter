@@ -21,6 +21,13 @@ export type ShowLoader = {
 export type HideLoader = {
     type: ActionTypes.ViewManagement.HIDE_LOADER;
 };
+export type SetBlueHeader = {
+    type: ActionTypes.ViewManagement.SET_BLUE_HEADER;
+};
+
+export type SetWhiteHeader = {
+    type: ActionTypes.ViewManagement.SET_WHITE_HEADER;
+};
 
 export type ViewsManagemenetAction =
     | ShowHeader
@@ -28,4 +35,6 @@ export type ViewsManagemenetAction =
     | ShowFooter
     | HideFooter
     | ShowLoader
-    | HideLoader;
+    | HideLoader
+    | SetBlueHeader
+    | SetWhiteHeader;

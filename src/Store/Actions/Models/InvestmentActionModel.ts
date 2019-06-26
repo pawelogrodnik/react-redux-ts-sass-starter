@@ -26,6 +26,10 @@ export type AddInvestment = {
     type: ActionTypes.Investment.ADD_INVESTMENT
 };
 
+export type Contact = {
+    type: ActionTypes.Investment.CONTACT
+};
+
 export type GetInvestmentDetails = {
     type: ActionTypes.Investment.GET_INVESTMENT_DETAILS,
     payload: {
@@ -38,4 +42,5 @@ export type InvestmentAction =
     | AddInvestment
     | SetActiveInvestmentId
     | GetInvestments
-    | ArchiveProduct;
+    | ArchiveProduct
+    | Contact;

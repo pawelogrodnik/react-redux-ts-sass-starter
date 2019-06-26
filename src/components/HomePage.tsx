@@ -6,6 +6,7 @@ import { InvestmentList } from './InvestmentBlock';
 import { createSerachQuery } from 'src/Connectors/config';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
 import * as InvestmentsModule from 'Modules/InvestmentModule';
+import * as ViewManagementModule from 'Modules/ViewManagementModule';
 import { connect } from 'react-redux';
 import { history } from 'src/App';
 
@@ -30,6 +31,8 @@ const initialValues = {
 type DispatchedP = {
     getInvestments: (params?: URLSearchParams) => void;
     setActiveInvestmentId: (investmentId: number) => void;
+    setBlueHeader: () => void;
+    setWhiteHeader: () => void;
 }
 
 type ConnectedP = {
@@ -42,6 +45,14 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
         this.state = {
             investmentsVisible: false
         };
+    }
+
+    public componentWillMount() {
+        this.props.setWhiteHeader()
+    }
+
+    public componentWillUnmount() {
+        this.props.setBlueHeader()
     }
 
     public handleInvestmentFormSubmit = async (data: any) => {
@@ -71,7 +82,8 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
 const mapDispatchToProps: DispatchedP = {
     getInvestments: (params?: URLSearchParams) => InvestmentsModule.Actions.getInvestments(params),
     setActiveInvestmentId: (investmentId: number) => InvestmentsModule.Actions.setActiveInvestmentId(investmentId),
-
+    setBlueHeader: () => ViewManagementModule.Actions.setBlueHeader(),
+    setWhiteHeader: () => ViewManagementModule.Actions.setWhiteHeader(),
 };
 
 function mapStateToProps(state: RootState): ConnectedP {

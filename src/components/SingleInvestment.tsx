@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as InvestmentModule from 'Modules/InvestmentModule';
 import { baseURL } from './../Connectors/config';
 import ImageSlider from './../components/ImageSlider';
-import ContactForm from './../components/ContactForm';
+import ContactBanner from './ContactBanner';
 import * as Dictionary from './../Models/Dictionary';
 
 type P = {
@@ -31,7 +31,7 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
             <div className="page page--singleInvestment">
                 {this.props.investmentDetails && (
                     <div className="activeInvestmentDetails">
-                        <img src={`${baseURL}/${this.props.investmentDetails.detailedParams.images.background.path}`} width={'100%'} height={'400px'} />
+                        <img src={`${baseURL}${this.props.investmentDetails.detailedParams.images.background.path}`} width={'100%'} height={'400px'} />
                         <div className="container">
                             <ImageSlider images={this.props.investmentDetails.detailedParams.images.other} />
                             <h1 className="titleLabel">{this.props.investmentDetails.basicParams.title}</h1>
@@ -105,7 +105,7 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                 )}
                             </div>
                         </div>
-                        <ContactForm />
+                        <ContactBanner />
                     </div>
                 )}
             </div>

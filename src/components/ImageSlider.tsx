@@ -13,7 +13,7 @@ export default class ImageSlider extends React.Component<P, any> {
         return (
             <div className="imageSlider">
                 {this.props.images.map(function (item, i) {
-                    return <img key={i} src={`${baseURL}/${item.path}`} width={"150px"} />
+                    return <img key={i} src={`${baseURL}${item.path}`} width={"150px"} />
                 })}
             </div>
         )

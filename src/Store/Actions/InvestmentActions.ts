@@ -4,6 +4,7 @@ import * as InvestmentActionModel from './Models/InvestmentActionModel';
 import * as InvestmentModule from 'Modules/InvestmentModule';
 import * as ViewManagementModule from 'Modules/ViewManagementModule';
 import { history } from 'src/App';
+import { reset } from 'redux-form';
 
 function getInvestments(params?: URLSearchParams) {
     return async dispatch => {
@@ -65,6 +66,26 @@ function getInvestmentDetails(investmentId: number) {
     };
 }
 
+function contact(contactData: InvestmentModule.Types.Contact) {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            await InvestmentModule.Connector.contact(contactData)
+            dispatch(contactSuccess());
+            dispatch(reset('contactForm'));
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        } catch (err) {
+            dispatch(ViewManagementModule.Actions.hideLoader())
+
+            // 
+        }
+    };
+}
+function contactSuccess(): InvestmentActionModel.Contact {
+    return {
+        type: Investment.CONTACT
+    }
+}
 function getInvestmentDetailsSuccess(investmentDetails: InvestmentModule.Types.Investment): InvestmentActionModel.GetInvestmentDetails {
     return {
         type: Investment.GET_INVESTMENT_DETAILS,
@@ -110,5 +131,6 @@ export {
     addInvestment,
     setActiveInvestmentId,
     archiveInvestment,
-    getInvestmentDetails
+    getInvestmentDetails,
+    contact
 }
