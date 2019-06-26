@@ -13,7 +13,7 @@ export const InvestmentBlock = (props: P) => {
         <div className="investmentBlock">
             <div className="investmentBlock__inner">
                 <div className="investmentBlock__icon">
-                    {props.investment.detailedParams.images && props.investment.detailedParams.images.background &&
+                    {props.investment.detailedParams.images && props.investment.detailedParams.images.thumbnail &&
                         <img src={`${baseURL}/${props.investment.detailedParams.images.thumbnail.path}`} width={'150'} />
                     }
                 </div>
@@ -22,7 +22,7 @@ export const InvestmentBlock = (props: P) => {
                     <p>{props.investment.basicParams.description}</p>
                 </div>
                 <div className="investmentBlock__action">
-                    <button className="btn--bordered" onClick={() => props.action()}>Lorem ipsum</button>
+                    <button className="btn--bordered" onClick={() => props.action()}>Zobacz więcej</button>
                 </div>
             </div>
         </div>
