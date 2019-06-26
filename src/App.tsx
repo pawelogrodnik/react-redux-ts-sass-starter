@@ -25,6 +25,7 @@ import createHistory from 'history/createBrowserHistory';
 import { connect } from 'react-redux';
 import { RootState } from './Store/Reducers/_RootReducer';
 import * as UserModule from 'Modules/UserModule';
+import ErrorHandler from './components/Layout/ErrorHandler';
 
 type P = RootState
 type DispatchedP = {
@@ -51,7 +52,8 @@ class App extends React.PureComponent<P & DispatchedP, S> {
         if (this.state.loadingUserComplete) {
             return (
                 <div className="main-wrapper">
-                    {this.props.viewManagementStore.headerVisible && <Header />}
+                    <ErrorHandler />
+                    {this.props.viewManagementStore.headerVisible && <Header whiteHeader={this.props.viewManagementStore.whiteHeader} />}
                     <div className="pages__inner">
                         <Switch>
                             <Route exact path={'/'} component={HomePage} />

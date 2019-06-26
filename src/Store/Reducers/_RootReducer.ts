@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 import * as fromViewManagementReducer from './ViewManagement';
 import * as fromInvestmentReducer from './InvestmentReducer';
+import * as fromErrorReducer from './ErrorReducer';
 import * as fromUserReducer from './UserReducer';
 
 export type RootState = {
@@ -10,7 +11,8 @@ export type RootState = {
     router:any,
     viewManagementStore: fromViewManagementReducer.State;
     userStore: fromUserReducer.State,
-    investmentStore: fromInvestmentReducer.State
+    investmentStore: fromInvestmentReducer.State,
+    errorStore: fromErrorReducer.State;
 };
 
 const rootReducer = combineReducers<RootState>({
@@ -18,7 +20,8 @@ const rootReducer = combineReducers<RootState>({
     router: routerReducer,
     viewManagementStore: fromViewManagementReducer.viewManagementReducer,
     investmentStore: fromInvestmentReducer.investmentReducer,
-    userStore: fromUserReducer.userReducer
+    userStore: fromUserReducer.userReducer,
+    errorStore: fromErrorReducer.errorReducer,
 } as any);
 
 const appReducer = (state, action) => {

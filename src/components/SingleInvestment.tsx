@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as InvestmentModule from 'Modules/InvestmentModule';
 import { baseURL } from './../Connectors/config';
 import ImageSlider from './../components/ImageSlider';
-import ContactForm from './../components/ContactForm';
+import ContactBanner from './ContactBanner';
 import * as Dictionary from './../Models/Dictionary';
 
 type P = {
@@ -105,7 +105,7 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                 )}
                             </div>
                         </div>
-                        <ContactForm />
+                        <ContactBanner />
                     </div>
                 )}
             </div>

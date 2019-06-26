@@ -76,3 +76,12 @@ export type Images = {
     thumbnail: any;
     other: Array<any>
 }
+
+export type Contact = {
+    topic: string;
+    content: string;
+    city: string;
+    firstName: string;
+    lastName: string;
+    mail: string;
+}

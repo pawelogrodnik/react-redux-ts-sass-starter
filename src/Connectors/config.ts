@@ -1,4 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { store } from './../Store/Store';
+import * as ErrorActions from './../Store/Actions/ErrorActions';
+import * as UserActions from './../Store/Actions/UserActions';
+import * as ViewManagementActions from './../Store/Actions/ViewManagementActions';
 
 export type QueryParams = {
     key: any;
@@ -17,11 +21,21 @@ axiosInstance.defaults.headers.common['Authorization'] = `bearer ${activeToken}`
 axiosInstance.defaults.headers.post['Content-Type'] = 'application/json';
 
 function handleConfigInterCeptor(configRq: AxiosRequestConfig) {
+    store.dispatch(ErrorActions.clearErrorStore());
+    store.dispatch(ErrorActions.setRequestConfig(configRq))
     return configRq;
 }
 
 function handleInterceptorError(error: any) {
-    // obsługa błedów zanim catch error
+    if (error.response && error.response.status === 401) {
+        store.dispatch(UserActions.logoutUser());
+    }
+    if (error.response) {
+        store.dispatch(ErrorActions.setResponseError(error.response ? error.response : error));
+    } else {
+        store.dispatch(ErrorActions.setResponseError(error.response ? error.response : error, true));
+    }
+    store.dispatch(ViewManagementActions.hideLoader());
     return Promise.reject(error);
 }
 
@@ -29,6 +43,7 @@ axiosInstance.interceptors.request.use((configRq: AxiosRequestConfig) => handleC
 
 axiosInstance.interceptors.response.use(
     response => {
+        store.dispatch(ErrorActions.requestSuccess(response));
         return response;
     },
     error => handleInterceptorError(error)

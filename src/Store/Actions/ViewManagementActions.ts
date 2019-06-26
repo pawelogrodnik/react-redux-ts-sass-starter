@@ -34,11 +34,25 @@ function hideLoader(): ViewsManagementModel.HideLoader {
         type: ActionTypes.ViewManagement.HIDE_LOADER
     };
 }
+
+function setBlueHeader(): ViewsManagementModel.SetBlueHeader {
+    return {
+        type: ActionTypes.ViewManagement.SET_BLUE_HEADER
+    };
+}
+
+function setWhiteHeader(): ViewsManagementModel.SetWhiteHeader {
+    return {
+        type: ActionTypes.ViewManagement.SET_WHITE_HEADER
+    };
+}
 export {
     showHeader,
     hideHeader,
     showFooter,
     hideFooter,
     showLoader,
-    hideLoader
+    hideLoader,
+    setBlueHeader,
+    setWhiteHeader
 }

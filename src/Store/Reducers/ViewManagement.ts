@@ -7,7 +7,8 @@ export type State = Types.ViewManagementStore;
 export const initialState: State = {
     loaderVisible: false,
     footerVisible: true,
-    headerVisible: true
+    headerVisible: true,
+    whiteHeader: false
 };
 
 export function viewManagementReducer(state: State = initialState, action: ViewsManagemenetAction) {
@@ -46,6 +47,18 @@ export function viewManagementReducer(state: State = initialState, action: Views
             return {
                 ...state,
                 loaderVisible: false
+            };
+        }
+        case ActionTypes.ViewManagement.SET_WHITE_HEADER: {
+            return {
+                ...state,
+                whiteHeader: true
+            };
+        }
+        case ActionTypes.ViewManagement.SET_BLUE_HEADER: {
+            return {
+                ...state,
+                whiteHeader: false
             };
         }
         default: {
