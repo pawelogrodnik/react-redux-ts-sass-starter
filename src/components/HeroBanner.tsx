@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 export type P = {
     backgroundImageSrc: string;
@@ -14,7 +15,7 @@ export default class HeroBanner extends React.Component<P, any> {
                 <div className="heroBanner__inner container">
                     <h1 className="heroBanner__title">{this.props.title}</h1>
                     <p className="heroBanner__desc">{this.props.description}</p>
-                    {this.props.buttonText && <a href="/#searchBox"><button className="btn btn--main">{this.props.buttonText}</button></a>}
+                    {this.props.buttonText && <Link to="/mission"><button className="btn btn--main">{this.props.buttonText}</button></Link>}
                 </div>
             </div>
         )

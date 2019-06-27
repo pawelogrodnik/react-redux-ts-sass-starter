@@ -330,8 +330,9 @@ textarea {
 
 .page {
     &--static {
-        min-height: 300px;
-        height: 100vh;
+        min-height: 100vh;
+        margin-bottom: 50px;
+        padding-top: 140px;
     }
     &--content {
     }
@@ -430,7 +431,7 @@ textarea {
         width: 40%;
         min-width: 400px;
         float: right;
-        margin-top: 80px;
+        margin-top: 100px;
         min-height: 400px;
     }
     button {

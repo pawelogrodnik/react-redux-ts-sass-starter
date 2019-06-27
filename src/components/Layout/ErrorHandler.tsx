@@ -35,9 +35,6 @@ class ErrorHandler extends React.Component<DispatchedP & ConnectedP, {}> {
                                 <p>
                                     Wystąpił błąd. Spróbuj ponownie później lub skontaktuj się z nami pod adresem <a href="mailto:">kontakt@obligain.com</a>
                                 </p>
-                                <pre>{JSON.stringify(errorStore.responseError.data)}</pre>
-                                <pre>{JSON.stringify(errorStore.responseError.status)}</pre>
-                                <pre>{JSON.stringify(errorStore.responseError.headers)}</pre>
                             </>
                         )}
                     </div>

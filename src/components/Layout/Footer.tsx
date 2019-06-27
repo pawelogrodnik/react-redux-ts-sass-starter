@@ -27,9 +27,10 @@ export default class Footer extends React.Component<any, any> {
                                 </li>
                             )}
                             <li>
-                                <Link to={'/privacy'}>Polityka prywatności</Link>
+                                <Link to={'/aboutus'}>O Obligain</Link>
                             </li>
                             <Link to="/cooperation"><li>Współpraca</li></Link>
+                            <Link to="/termsandconditions"><li>Regulamin</li></Link>
                         </ul>
                         <ul className="footer__menu">
                             <Link to="/returns"><li>Zwroty</li></Link>
