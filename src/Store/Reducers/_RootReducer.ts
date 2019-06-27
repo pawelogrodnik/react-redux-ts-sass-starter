@@ -27,6 +27,10 @@ const rootReducer = combineReducers<RootState>({
 const appReducer = (state, action) => {
     if (action.type === 'LOG_OUT') {
         state = undefined;
+        state = {
+            form: { ...state.form },
+            router: {...state.router}
+        }
     }
     return rootReducer(state, action);
 };

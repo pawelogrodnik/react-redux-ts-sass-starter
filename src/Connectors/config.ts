@@ -3,6 +3,7 @@ import { store } from './../Store/Store';
 import * as ErrorActions from './../Store/Actions/ErrorActions';
 import * as UserActions from './../Store/Actions/UserActions';
 import * as ViewManagementActions from './../Store/Actions/ViewManagementActions';
+import { RootState } from 'src/Store/Reducers/_RootReducer';
 
 export type QueryParams = {
     key: any;
@@ -11,13 +12,15 @@ export type QueryParams = {
 
 export const baseURL ='//obligacje-app.k-org.pl/';
 
+export let activeToken = (store.getState() as RootState).userStore.token ? store.getState().userStore.token : localStorage.getItem('token');
+
 const axiosInstance = axios.create({
-    baseURL: `http:${baseURL}`
+    baseURL: `http:${baseURL}`,
 });
 
-export const activeToken = ''; 
-
-axiosInstance.defaults.headers.common['Authorization'] = `bearer ${activeToken}`;
+// if (activeToken) {
+//     axiosInstance.defaults.headers.common['x-auth-token'] = activeToken;
+// }
 axiosInstance.defaults.headers.post['Content-Type'] = 'application/json';
 
 function handleConfigInterCeptor(configRq: AxiosRequestConfig) {
@@ -49,10 +52,13 @@ axiosInstance.interceptors.response.use(
     error => handleInterceptorError(error)
 );
 
-export const config = (params?: any) => {
-    const configRq = {};
+export const config = (params?: any, headers?: any) => {
+    const configRq: AxiosRequestConfig = {};
     if (params) {
-        configRq['params'] = params;
+        configRq.params = params;
+    }
+    if (headers) {
+        configRq.headers = headers
     }
     return configRq;
 };

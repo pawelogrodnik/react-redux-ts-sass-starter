@@ -21,11 +21,7 @@ class ErrorHandler extends React.Component<DispatchedP & ConnectedP, {}> {
     public render() {
         const { errorStore } = this.props;
         if (
-            errorStore.responseError.status === 500 ||
-            errorStore.responseError.status === 405 ||
-            errorStore.responseError.status === 404 ||
-            errorStore.responseError.status === 400 ||
-            errorStore.unknownError
+            errorStore.responseError.status
         ) {
             return (
                 <div className="errorHandler">

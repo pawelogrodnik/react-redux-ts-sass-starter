@@ -6,6 +6,12 @@ export type UserStore = {
 };
 
 export type User = {
-    username: string;
-    roles: Array<EnumTypes.UserRole>
+    // username: string;
+    // roles: Array<EnumTypes.UserRole>
+    error: any;
+    firstName: string;
+    lastName: string;
+    roles: EnumTypes.UserRole;
+    userName: string;
+    authToken: string;
 }

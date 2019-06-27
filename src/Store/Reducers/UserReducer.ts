@@ -20,6 +20,7 @@ export function userReducer(state: State = initialState, action: UserAction) {
         }
         case ActionTypes.User.LOG_OUT: {
             localStorage.removeItem('user');
+            localStorage.removeItem('token');
             return {
                 ...state
             }
