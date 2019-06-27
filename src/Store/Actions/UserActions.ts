@@ -12,7 +12,7 @@ function loginUser(username: string, password: string) {
             const response = await UserModule.Connector.loginUser(username, password);
             dispatch(loginUserSuccess(response.data, response.data.authToken))
             localStorage.setItem('user', JSON.stringify(response.data));
-            localStorage.setItem('token', JSON.stringify(response.data.authToken));
+            localStorage.setItem('token', JSON.parse(JSON.stringify(response.data.authToken)));
             history.push('/dashboard')
             dispatch(ViewManagementModule.Actions.hideLoader())
 
@@ -43,9 +43,8 @@ function logoutUser() {
             await UserModule.Connector.logout();
             dispatch(logoutUserSuccess())
             delete API.defaults.headers.common["x-auth-token"];
-
             dispatch(ViewManagementModule.Actions.hideLoader())
-        } catch(err) {
+        } catch (err) {
             dispatch(ViewManagementModule.Actions.hideLoader())
         }
     }

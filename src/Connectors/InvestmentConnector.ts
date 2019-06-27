@@ -3,11 +3,15 @@ import { AxiosPromise } from 'axios';
 import * as InvestmentModule from './../Modules/InvestmentModule';
 
 export function addInvestment(investment: InvestmentModule.Types.Investment): AxiosPromise<any> {
-    return API.post('products', investment, config(null, {'x-auth-token': localStorage.getItem('token')}));
+    return API.post('products', investment, config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }
 
 export function getInvestments(params?: URLSearchParams): AxiosPromise<Array<InvestmentModule.Types.Investment>> {
-    return API.get('products', config(params, {'x-auth-token': localStorage.getItem('token')}));
+    if (localStorage.getItem('token')) {
+        return API.get('products', config(params, { 'x-auth-token': localStorage.getItem('token') }));
+    } else {
+        return API.get('products', config(params));
+    }
 }
 
 export function archiveInvestment(params?: number) {
