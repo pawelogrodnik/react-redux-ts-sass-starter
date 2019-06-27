@@ -37,7 +37,7 @@ class ErrorHandler extends React.Component<DispatchedP & ConnectedP, {}> {
                         ) : (
                             <>
                                 <p>
-                                    Skontaktuj się z nami pod adresem <a href="mailto:">kontakt@obligain.com.net.org.pl</a>
+                                    Wystąpił błąd. Spróbuj ponownie później lub skontaktuj się z nami pod adresem <a href="mailto:">kontakt@obligain.com</a>
                                 </p>
                                 <pre>{JSON.stringify(errorStore.responseError.data)}</pre>
                                 <pre>{JSON.stringify(errorStore.responseError.status)}</pre>
@@ -66,6 +66,6 @@ function mapDispachToProps(dispatch: any): DispatchedP {
     };
 }
 export default connect(
-        mapStateToProps,
-        mapDispachToProps
-    )(ErrorHandler)
+    mapStateToProps,
+    mapDispachToProps
+)(ErrorHandler)
