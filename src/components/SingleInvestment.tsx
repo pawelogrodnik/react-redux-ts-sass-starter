@@ -31,7 +31,8 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
             <div className="page page--singleInvestment">
                 {this.props.investmentDetails && (
                     <div className="activeInvestmentDetails">
-                        {this.props.investmentDetails.detailedParams.images.background && <img src={`${baseURL}/${this.props.investmentDetails.detailedParams.images.background.path}`} width={'100%'} height={'400px'} />}
+                        {this.props.investmentDetails.detailedParams.images.background &&
+                            <div style={{ backgroundImage: `url(${baseURL}/${this.props.investmentDetails.detailedParams.images.background.path})` }} className="singleBackgroundImage" />}
                         <div className="container">
                             <ImageSlider images={this.props.investmentDetails.detailedParams.images.other} />
                             <h1 className="titleLabel">{this.props.investmentDetails.basicParams.title}</h1>
