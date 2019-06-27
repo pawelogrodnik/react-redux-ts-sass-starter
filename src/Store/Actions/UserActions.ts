@@ -41,7 +41,9 @@ function logoutUser() {
         try {
             dispatch(ViewManagementModule.Actions.showLoader())
             await UserModule.Connector.logout();
-            dispatch(logoutUserSuccess())
+            // dispatch(logoutUserSuccess())
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
             delete API.defaults.headers.common["x-auth-token"];
             dispatch(ViewManagementModule.Actions.hideLoader())
         } catch (err) {
