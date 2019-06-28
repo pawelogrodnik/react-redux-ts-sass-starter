@@ -36,7 +36,7 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
             <div className="investmentList">
                 <h1>Lista inwestycji</h1>
                 <ReactTable
-                    showPagination={false}
+                    showPagination={true}
                     sortable={true}
                     minRows={0}
                     // getTrProps={this.getTrProps}
