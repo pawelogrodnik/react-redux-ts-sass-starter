@@ -49,7 +49,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                 <div className="page--dashboard__menu">
                     <ul>
                         <Link to={'/'}><li><img src="/home.png" /></li></Link>
-                        {this.props.userStore.user ? (
+                        {localStorage.getItem('token') ? (
                             <>
                             <Link to={'/dashboard/'}><li><i className="fas fa-list-ol" /></li></Link>
                             <Link to={'/dashboard/investments/add'}><li><i className="fas fa-plus" /></li></Link>
@@ -61,7 +61,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                     </ul>
                 </div>
                 <div className="page--dashboard__content">
-                    {this.props.userStore.user ? (
+                    {localStorage.getItem('token') ? (
                         <Switch>
                             <Route exact path={'/dashboard/'} component={InvestmentsList} />
                             <Route exact path={'/dashboard/investments/add'} component={ManageInvestment} />

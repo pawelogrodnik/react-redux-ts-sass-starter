@@ -44,9 +44,10 @@ class App extends React.PureComponent<P & DispatchedP, S> {
         }
     }
     public componentWillMount() {
-        if (localStorage.getItem('user')) {
-            const user = JSON.parse(localStorage.getItem('user'));
-            this.props.loginUserFromStorage(user, 'token');
+        if (localStorage.getItem('token')) {
+            // const user = JSON.parse(localStorage.getItem('user'));
+            const token = JSON.parse(localStorage.getItem('token'));
+            this.props.loginUserFromStorage(null, token);
         }
         this.setState({ loadingUserComplete: true })
     }

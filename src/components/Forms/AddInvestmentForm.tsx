@@ -52,6 +52,7 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                                         <Field wrapperClassName={'full'} name="detailedParams.images.background" component={FileField} label={'Zdjęcie w tle'} />
                                         <Field wrapperClassName={'full'} name="detailedParams.images.thumbnail" component={FileField} label={'Zdjęcie miniaturka'} />
                                         <Field wrapperClassName={'full'} name="detailedParams.images.other" multiple component={FileField} label={'Zdjęcia produktu'} />
+                                        <Field wrapperClassName={'full'} name="detailedParams.attachments" multiple component={FileField} label={'Załączniki'} />
                                     </>
                                 )}
                                 <Field type="textarea" wrapperClassName={'full'} name="basicParams.description" component={RegularField} rows="5" label={'Opis inwestycji'} placeholder={'Opis inwestycji'} validate={[V.required]} />
