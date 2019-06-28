@@ -29,7 +29,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
     }
 
     public componentWillMount() {
-        if (!this.props.userStore.user) {
+        if (!localStorage.getItem('token')) {
             history.push('/dashboard/login')
         }
         this.props.hideFooter();
