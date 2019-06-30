@@ -498,7 +498,7 @@ textarea {
     height: 400px;
     width: 100%;
     background-size: cover;
-    background-position: inherit;
+    background-position: center;
 }
 
 .imagePopup {
@@ -521,6 +521,13 @@ textarea {
         padding-top: 50px;
         padding-bottom: 50px;
         overflow: auto;
+        text-align: center;
+        img {
+            height: 90vh;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
     &__btn {
         position: absolute;
@@ -530,7 +537,8 @@ textarea {
         background-color: #fff;
         border: 1px solid $blueMain;
         border-radius: 3px;
-        padding: 4px;
+        padding: 12px;
+        font-size: 30px;
         &--prev {
             left: 30px;
         }
