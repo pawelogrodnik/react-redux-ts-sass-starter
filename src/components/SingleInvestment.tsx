@@ -53,7 +53,7 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                 <div className="row">
                                     <div className="col">{this.props.investmentDetails.basicParams.interest} %</div>
                                     <div className="col">{this.props.investmentDetails.basicParams.duration} miesięcy</div>
-                                    <div className="col">{this.props.investmentDetails.basicParams.risk}</div>
+                                    <div className="col">{this.props.investmentDetails.basicParams.risk} /10</div>
                                 </div>
                             </div>
                             <div className="productDataDetails">

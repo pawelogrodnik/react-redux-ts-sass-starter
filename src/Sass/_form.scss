@@ -218,6 +218,24 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
                 display: none;
             }
         }
+        &--checkbox {
+            width: 100%;
+            .checkbox__details {
+                display: flex;
+                label {
+                    font-weight: 400 !important;
+                }
+            }
+            label {
+                order: 2;
+                cursor: pointer;
+                user-select: none
+            }
+            input {
+                cursor: pointer;
+               flex: 0 0 30px;
+            }
+        }
     }
 }
 .icon {

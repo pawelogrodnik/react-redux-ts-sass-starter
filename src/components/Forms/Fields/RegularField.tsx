@@ -16,13 +16,36 @@ class RenderField extends React.PureComponent<WrappedFieldProps & Props> {
         const { input, meta, label, type, disabled, placeholder, wrapperClassName, rows } = this.props;
         let formClasses: string = 'form_field';
         formClasses += meta.error && meta.touched ? ' form_field--has_error' : '';
+        formClasses += type ? ` form_field--${type}` : '';
         formClasses += wrapperClassName ? ` ${wrapperClassName} ` : '';
         formClasses += disabled ? ' form_field--disabled' : '';
 
         return (
             <div className={formClasses}>
-                {label && <label htmlFor={input.name}>{label}</label>}
-                {type && type == 'textarea' ?
+                {label && type !== 'textarea' && type !== 'checkbox' &&  <label htmlFor={input.name}>{label}</label>}
+                {type && type === 'checkbox' && ( 
+                    <div>
+                        <div className="checkbox__details">
+                            <input
+                                disabled={disabled || false}
+                                {...input}
+                                id={input.name}
+                                value={input.value}
+                                placeholder={placeholder ? placeholder : label}
+                                type={type}
+                            />
+                            <label htmlFor={input.name}>{label}</label>
+                        </div>
+                        {(meta.touched &&
+                            (meta.error && (
+                                <div className="form_field--error_wrapper">
+                                    <span className="form_field--error">{meta.error}</span>
+                                </div>
+                            ))) ||
+                            (meta.warning && <span>{meta.warning}</span>)}
+                    </div>
+                )}
+                {type && type == 'textarea' &&
                     <div>
                         <textarea
                             disabled={disabled || false}
@@ -39,7 +62,8 @@ class RenderField extends React.PureComponent<WrappedFieldProps & Props> {
                             ))) ||
                             (meta.warning && <span>{meta.warning}</span>)}
                     </div>
-                    :
+                }
+                {type && type !== 'textarea' && type !== 'checkbox' && 
                     <div>
                         <input
                             disabled={disabled || false}
