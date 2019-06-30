@@ -18,6 +18,7 @@ import TermsAndConditions from './components/StaticPages/TermsAndConditions';
 import Subscription from './components/StaticPages/Subscription';
 import VIP from './components/StaticPages/VIP';
 import PrivacyPolicy from './components/StaticPages/PrivacyPolicy';
+import OtherTerms from './components/StaticPages/OtherTerms';
 import Mission from './components/StaticPages/Mission';
 import Loader from './components/Layout/Loader';
 import { ConnectedRouter } from 'react-router-redux';
@@ -76,6 +77,7 @@ class App extends React.PureComponent<P & DispatchedP, S> {
                             <Route path={'/vip'} component={VIP} />
                             <Route path={'/privacypolicy'} component={PrivacyPolicy} />
                             <Route path={'/termsandconditions'} component={TermsAndConditions} />
+                            <Route path={'/otherterms'} component={OtherTerms} />
                             <Route path={'/mission'} component={Mission} />
                         </Switch>
                     </div>

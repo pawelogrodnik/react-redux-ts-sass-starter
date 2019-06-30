@@ -15,7 +15,7 @@ export default class ImageSlider extends React.Component<P, S> {
         this.state = {
             popupVisible: false,
             imageIdPopup: null
-        } 
+        }
     }
     private openPopup = (imageIdPopup: number) => {
         this.setState({
@@ -54,21 +54,23 @@ export default class ImageSlider extends React.Component<P, S> {
     public render() {
         return (
             <>
-                <div className="imageSlider">
-                    {this.props.images && this.props.images.map((item, i) => {
-                        return <img key={i} src={`${baseURL}/${item.path}`} width={"150px"} onClick={()=> this.openPopup(i)}/>
-                    })}
-                </div>
-                {this.state.popupVisible && (
-                    <div className="imagePopup">
-                        <div className="imagePopup__exit" onClick={() => this.hidePopup()}>X</div>
-                        <div className="imagePopup__inner">
-                            <img src={`${baseURL}/${this.props.images[this.state.imageIdPopup].path}`} width={'100%'}/>
-                        </div>
-                        <div className="imagePopup__btn imagePopup__btn--next" onClick={this.nextImage}>Następny</div>
-                        <div className="imagePopup__btn imagePopup__btn--prev" onClick={this.prevImage}>Poprzedni</div>
+            <div className="imageSlider">
+                {this.props.images && this.props.images.map((item, i) => {
+                    return <img key={i} src={`${baseURL}/${item.path}`} width={"150px"} onClick={() => this.openPopup(i)} />
+                })}
+            </div>
+                {
+            this.state.popupVisible && (
+                <div className="imagePopup">
+                    <div className="imagePopup__exit" onClick={() => this.hidePopup()}>X</div>
+                    <div className="imagePopup__inner">
+                        <img src={`${baseURL}/${this.props.images[this.state.imageIdPopup].path}`} width={'100%'} />
                     </div>
-                )}
+                    <div className="imagePopup__btn imagePopup__btn--next" onClick={this.nextImage}><i className="fas fa-caret-right" /></div>
+                    <div className="imagePopup__btn imagePopup__btn--prev" onClick={this.prevImage}><i className="fas fa-caret-left" /></div>
+                </div>
+            )
+        }
             </>
         )
     }

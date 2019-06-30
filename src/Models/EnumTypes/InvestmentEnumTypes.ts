@@ -7,5 +7,6 @@ export enum InvestmentType {
     hotel = 'Hotel',
     parcel = 'parcel',
     flat = 'flat',
-    dorm = 'dorm'
+    dorm = 'dorm',
+    franchise = 'franchise',
 }

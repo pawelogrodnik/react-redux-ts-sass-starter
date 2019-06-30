@@ -19,6 +19,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     position: relative;
+    overflow:hidden;
 }
 a,
 .fake-a {
@@ -38,6 +39,7 @@ a,
         color: #fff;
         background-color: $brownMain;
         padding: 15px 50px 15px 50px;
+        margin-bottom: 20px;
     }
     &--big {
         width: 100%;
@@ -198,11 +200,12 @@ textarea {
 
 .heroBanner {
     color: white;
-    min-height: 300px;
+    min-height: 100vh;
     background-size: cover;
     background-position: center;
     padding-top: 200px;
-    height: 100vh;
+    display: inline-block;
+    width: 100%;
 }
 
 .heroBanner__desc {
@@ -214,6 +217,9 @@ textarea {
 
 .heroBanner__inner {
     margin-top: 125px;
+    @media (max-width: 1200px) {
+        margin-left: 30px;
+    }
 }
 
 .introTextBanner__title {
@@ -222,6 +228,7 @@ textarea {
 
 .introTextBanner__inner {
     margin: 100px 0 100px 0;
+    padding: 20px;
 }
 
 .loader {
@@ -437,7 +444,7 @@ textarea {
     .contactBox {
         background-color: white;
         width: 40%;
-        min-width: 400px;
+        min-width: 325px;
         float: right;
         margin-top: 100px;
         min-height: 400px;
@@ -506,7 +513,7 @@ textarea {
     height: 400px;
     width: 100%;
     background-size: cover;
-    background-position: inherit;
+    background-position: center;
 }
 
 .imagePopup {
@@ -529,6 +536,13 @@ textarea {
         padding-top: 50px;
         padding-bottom: 50px;
         overflow: auto;
+        text-align: center;
+        img {
+            height: 90vh;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
     &__btn {
         position: absolute;
@@ -538,7 +552,8 @@ textarea {
         background-color: #fff;
         border: 1px solid $blueMain;
         border-radius: 3px;
-        padding: 4px;
+        padding: 12px;
+        font-size: 30px;
         &--prev {
             left: 30px;
         }
@@ -547,8 +562,17 @@ textarea {
         }
     }
 }
+<<<<<<< HEAD
 
 .ulType {
     list-style-type: disc;
     margin-left: 30px;
 }
+=======
+.noResult{
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+>>>>>>> c52c9544a1517171297c0b8cd28ba65add715a70

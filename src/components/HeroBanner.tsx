@@ -15,7 +15,7 @@ export default class HeroBanner extends React.Component<P, any> {
                 <div className="heroBanner__inner container">
                     <h1 className="heroBanner__title">{this.props.title}</h1>
                     <p className="heroBanner__desc">{this.props.description}</p>
-                    {this.props.buttonText && <Link to="/mission"><button className="btn btn--main">{this.props.buttonText}</button></Link>}
+                    {this.props.buttonText && <a href="/#searchBox"><button className="btn btn--main">{this.props.buttonText}</button></a>}
                 </div>
             </div>
         )
