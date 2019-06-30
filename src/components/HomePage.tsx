@@ -15,16 +15,16 @@ type S = {
 };
 const initialValues = {
     interest: {
-        min: 2,
-        max: 7
+        min: 6,
+        max: 20
     },
     duration: {
-        min: 12,
+        min: 6,
         max: 36
     },
     risk: {
-        min: 2,
-        max: 6
+        min: 3,
+        max: 10
     }
 };
 
@@ -72,7 +72,7 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
                 <IntroTextBanner title={'Wyszukiwarka inwestycji'} description={'Proszę ustawić suwaki zgodnie ze swoimi preferencjami. Określone przez Państwa parametry dobiorą inwestycję, spełniającą Państwa wymagania.'} />
                 <SearchInvestmentsForm onSubmit={this.handleInvestmentFormSubmit} initialValues={initialValues} />
                 {this.state.investmentsVisible &&
-                    <> { investmentList.length > 0 ? <InvestmentList investmentList={investmentList} action={this.investmentClickAction} /> : <div className="container"><h2>Brak wyników dla podanych parametrów</h2></div> } </>
+                    <> { investmentList.length > 0 ? <InvestmentList investmentList={investmentList} action={this.investmentClickAction} /> : <div className="container"><h2 className="noResult">Brak wyników dla podanych parametrów</h2></div> } </>
                 }
             </div>
         );

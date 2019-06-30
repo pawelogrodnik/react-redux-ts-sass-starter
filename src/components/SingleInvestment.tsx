@@ -51,8 +51,16 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                         Skala ryzyka</div>
                                 </div>
                                 <div className="row">
-                                    <div className="col">{this.props.investmentDetails.basicParams.interest} %</div>
-                                    <div className="col">{this.props.investmentDetails.basicParams.duration} miesięcy</div>
+                                    <div className="col">
+                                        {this.props.investmentDetails.basicParams.interest === 0 ?
+                                            "Zmienne" : this.props.investmentDetails.basicParams.interest + "%"
+                                        }
+                                    </div>
+                                    <div className="col">
+                                        {this.props.investmentDetails.basicParams.duration === 0 ?
+                                            "Nieoznaczony" : this.props.investmentDetails.basicParams.duration + " miesięcy"
+                                        }
+                                    </div>
                                     <div className="col">{this.props.investmentDetails.basicParams.risk} /10</div>
                                 </div>
                             </div>
