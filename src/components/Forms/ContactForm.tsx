@@ -14,6 +14,8 @@ const ContactForm = (props: InjectedFormProps) => {
                 <Field type="email" name="mail" component={RegularField} label={'E-mail'} validate={[V.required]} />
                 <Field type="text" name="topic" component={RegularField} label={'Temat'} validate={[V.required]} />
                 <Field type="textarea" name="content" component={RegularField} label={'Treść wiadomości'} validate={[V.required]} />
+                <Field type="checkbox" name="checkbox1" component={RegularField} label={'Lorem ipsum dolor sit amet'} validate={[V.required]} />
+                <Field type="checkbox" name="checkbox2" component={RegularField} label={'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet'} validate={[V.required]} />
                 <div className="form--login__buttons">
                     <button disabled={submitting} className="btn btn--main btn--big" type="submit">
                         Wyślij
