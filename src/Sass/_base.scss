@@ -76,7 +76,15 @@ h1,
 h2,
 h3 {
     line-height: 1.2;
-    font-weight: 700;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+h4,
+h5,
+h6 {
+    line-height: 1.2;
+    font-weight: 500;
     margin-bottom: 15px;
 }
 
@@ -507,7 +515,7 @@ textarea {
     left: 0;
     right: 0;
     min-height: 100vh;
-    background-color: rgba($blueMain, .5);
+    background-color: rgba($blueMain, 0.5);
     &__exit {
         position: absolute;
         right: 20px;
@@ -538,4 +546,9 @@ textarea {
             right: 30px;
         }
     }
+}
+
+.ulType {
+    list-style-type: disc;
+    margin-left: 30px;
 }

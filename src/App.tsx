@@ -17,6 +17,7 @@ import Returns from './components/StaticPages/Returns';
 import TermsAndConditions from './components/StaticPages/TermsAndConditions';
 import Subscription from './components/StaticPages/Subscription';
 import VIP from './components/StaticPages/VIP';
+import PrivacyPolicy from './components/StaticPages/PrivacyPolicy';
 import Mission from './components/StaticPages/Mission';
 import Loader from './components/Layout/Loader';
 import { ConnectedRouter } from 'react-router-redux';
@@ -29,26 +30,26 @@ import { RootState } from './Store/Reducers/_RootReducer';
 import * as UserModule from 'Modules/UserModule';
 import ErrorHandler from './components/Layout/ErrorHandler';
 
-type P = RootState
+type P = RootState;
 type DispatchedP = {
     loginUserFromStorage: (user: UserModule.Types.User, token: string) => void;
-}
+};
 type S = {
-    loadingUserComplete: boolean
-}
+    loadingUserComplete: boolean;
+};
 class App extends React.PureComponent<P & DispatchedP, S> {
     constructor(props: P & DispatchedP) {
         super(props);
         this.state = {
             loadingUserComplete: false
-        }
+        };
     }
     public componentWillMount() {
         if (localStorage.getItem('token')) {
             const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
             this.props.loginUserFromStorage(null, token);
         }
-        this.setState({ loadingUserComplete: true })
+        this.setState({ loadingUserComplete: true });
     }
     public render() {
         if (this.state.loadingUserComplete) {
@@ -73,6 +74,7 @@ class App extends React.PureComponent<P & DispatchedP, S> {
                             <Route path={'/returns'} component={Returns} />
                             <Route path={'/subscription'} component={Subscription} />
                             <Route path={'/vip'} component={VIP} />
+                            <Route path={'/privacypolicy'} component={PrivacyPolicy} />
                             <Route path={'/termsandconditions'} component={TermsAndConditions} />
                             <Route path={'/mission'} component={Mission} />
                         </Switch>
@@ -80,9 +82,9 @@ class App extends React.PureComponent<P & DispatchedP, S> {
                     {this.props.viewManagementStore.footerVisible && <Footer user={this.props.userStore.user} />}
                     {this.props.viewManagementStore.loaderVisible && <Loader />}
                 </div>
-            )
+            );
         } else {
-            return null
+            return null;
         }
     }
 }
@@ -96,11 +98,13 @@ const mapDispatchToProps: DispatchedP = {
 function mapStateToProps(state: RootState) {
     return {
         ...state
-    }
+    };
 }
 
-
-const AppMain = connect(mapStateToProps, mapDispatchToProps)(App)
+const AppMain = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
 
 const RootApp = () => (
     <Provider store={store}>
@@ -108,5 +112,5 @@ const RootApp = () => (
             <Route path="/" component={AppMain} />
         </ConnectedRouter>
     </Provider>
-)
+);
 export default RootApp;
