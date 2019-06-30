@@ -10,7 +10,7 @@ type P = {
     investmentType: InvestmentModule.EnumTypes.InvestmentType;
     edit?: boolean;
 };
-const { flat, parcel, hotel, vehicle, gold, token, whisky, diamonds, dorm } = InvestmentModule.EnumTypes.InvestmentType;
+const { flat, parcel, hotel, vehicle, gold, token, whisky, diamonds, dorm, franchise } = InvestmentModule.EnumTypes.InvestmentType;
 const AddInvestmentForm = (props: InjectedFormProps & P) => {
     const { handleSubmit, submitting, investmentType, initialValues } = props;
     return (
@@ -69,7 +69,7 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                                 {investmentType === parcel && <Field type="text" name="detailedParams.pum" component={RegularField} label={'PUM [m2]'} placeholder={'PUM [m2]'} validate={[V.required]} />}
                                 {investmentType === flat && <Field type="text" name="detailedParams.floorNumber" component={RegularField} label={'Piętro'} placeholder={'Piętro'} validate={[V.required]} />}
                                 <Field type="text" name="detailedParams.priceService" component={RegularField} label={'Cena w serwisie'} placeholder={'Cena w serwisie'} validate={[V.required]} />
-                                {(investmentType === flat || investmentType === parcel || investmentType === hotel || investmentType === dorm || investmentType === vehicle) && <Field type="text" name="detailedParams.priceMarket" component={RegularField} label={'Cena rynkowa'} placeholder={'Cena rynkowa'} validate={[V.required]} />}
+                                {(investmentType === flat || investmentType === parcel || investmentType === hotel || investmentType === dorm || investmentType === vehicle || investmentType === franchise) && <Field type="text" name="detailedParams.priceMarket" component={RegularField} label={'Cena rynkowa'} placeholder={'Cena rynkowa'} validate={[V.required]} />}
                                 {investmentType === parcel && <Field type="text" name="detailedParams.roi" component={RegularField} label={'ROI'} placeholder={'ROI'} validate={[V.required]} />}
                                 {investmentType === hotel && <Field type="text" name="detailedParams.roomsCount" component={RegularField} label={'Ilość pokoi'} placeholder={'Ilość pokoi'} validate={[V.required]} />}
                                 {investmentType === hotel && <Field type="text" name="detailedParams.income" component={RegularField} label={'Przychody'} placeholder={'Przychody'} validate={[V.required]} />}
