@@ -19,6 +19,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     position: relative;
+    overflow:hidden;
 }
 a,
 .fake-a {
@@ -38,6 +39,7 @@ a,
         color: #fff;
         background-color: $brownMain;
         padding: 15px 50px 15px 50px;
+        margin-bottom: 20px;
     }
     &--big {
         width: 100%;
@@ -190,11 +192,12 @@ textarea {
 
 .heroBanner {
     color: white;
-    min-height: 300px;
+    min-height: 100vh;
     background-size: cover;
     background-position: center;
     padding-top: 200px;
-    height: 100vh;
+    display: inline-block;
+    width: 100%;
 }
 
 .heroBanner__desc {
@@ -206,6 +209,9 @@ textarea {
 
 .heroBanner__inner {
     margin-top: 125px;
+    @media (max-width: 1200px) {
+        margin-left: 30px;
+    }
 }
 
 .introTextBanner__title {
@@ -214,6 +220,7 @@ textarea {
 
 .introTextBanner__inner {
     margin: 100px 0 100px 0;
+    padding: 20px;
 }
 
 .loader {
@@ -429,7 +436,7 @@ textarea {
     .contactBox {
         background-color: white;
         width: 40%;
-        min-width: 400px;
+        min-width: 325px;
         float: right;
         margin-top: 100px;
         min-height: 400px;
