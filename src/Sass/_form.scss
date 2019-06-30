@@ -164,6 +164,10 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
     &--searchInvestments {
         &__range-wrapper {
             display: flex;
+            padding: 20px;
+            @media (max-width: 501px) {
+                flex-direction: column;
+            }
             .input {
                 &--range {
                     flex: 0 1 calc(100% / 3);
@@ -174,10 +178,16 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
 
                     &:last-of-type {
                         margin-left: 10px;
+                        @media (max-width: 501px) {
+                            margin:0;
+                        }
                     }
 
                     &:nth-of-type(2) {
                         margin: 0 10px;
+                        @media (max-width: 501px) {
+                            margin:0;
+                        }
                     }
                 }
             }
