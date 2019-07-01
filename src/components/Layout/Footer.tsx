@@ -47,7 +47,8 @@ export default class Footer extends React.Component<any, any> {
                             <Link to="/career"><li>Kariera</li></Link>
                             <Link to="/program"><li>Program</li></Link>
                             <Link to="/vip"><li>VIP Serwis</li></Link>
-                            <Link to="/subscription"><li>Abonament</li></Link>
+                            {/* <Link to="/subscription"><li>Abonament</li></Link> */}
+                            <Link to="/privacypolicy"><li>Polityka prywatności</li></Link>
                         </ul>
                     </div>
                 </div>
