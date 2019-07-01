@@ -356,6 +356,11 @@ textarea {
         min-height: 100vh;
         margin-bottom: 50px;
         padding-top: 140px;
+        .singleBackgroundImage {
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 20px 0;
+        }
     }
     &--content {
         padding: 40px 20px;
