@@ -7,6 +7,7 @@ const ContactForm = (props: InjectedFormProps) => {
     const { handleSubmit, submitting } = props;
     return (
         <div className="form form--contact">
+            <h2>Umów spotkanie</h2>
             <form className="form" onSubmit={handleSubmit}>
                 <Field type="text" name="firstName" component={RegularField} label={'Imię'} validate={[V.required]} />
                 <Field type="text" name="lastName" component={RegularField} label={'Nazwisko'} validate={[V.required]} />

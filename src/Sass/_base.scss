@@ -45,6 +45,11 @@ a,
         width: 100%;
         padding: 15px;
     }
+    &--inline {
+        display: inline;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
     &--search {
         color: #fff;
         background-color: $brownMain;
@@ -613,4 +618,7 @@ textarea {
     @media (max-width: 768px) {
         display: none;
     }   
+}
+.center {
+    text-align: center;
 }

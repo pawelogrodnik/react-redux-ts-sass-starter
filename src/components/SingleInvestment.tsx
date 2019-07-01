@@ -113,6 +113,11 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                     </>
                                 )}
                             </div>
+                            <div className="center">
+                                {this.props.investmentDetails.detailedParams.attachments && this.props.investmentDetails.detailedParams.attachments.map((item, i) => {
+                                    return <a key={i} href={`${baseURL}/${item.path}`} target="_blank"><button type="button" className="btn btn--main btn--inline" >Pobierz Załącznik  {this.props.investmentDetails.detailedParams.attachments.length > 1 && i + 1}</button></a>
+                                })}
+                            </div>
                         </div>
                         <ContactBanner />
                     </div>

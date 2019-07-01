@@ -69,6 +69,7 @@ export type DetailedParams = {
     roi: string;
     roomsCount: string;
     income: string;
+    attachments: Array<any>
 }
 
 export type Images = {
