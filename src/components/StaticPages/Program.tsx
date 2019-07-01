@@ -19,6 +19,7 @@ export default class Program extends React.Component<DispatchedP & ConnectedP> {
     public render() {
         return (
             <div className="page page--static">
+                <div style={{ backgroundImage: `url(banner.jpg)` }} className="singleBackgroundImage" />
                 <div className="container page--content">
                     <h2>PROGRAM PARTNERSKI</h2>
                     <p>Jest nam niezmiernie miło poinformować Państwa, że na Sierpień bieżącego roku zaplanowaliśmy wprowadzenie systemu partnerskiego. Oferta skierowana jest do pracowników branży finansowej, którzy chcieliby zarabiać polecając nasz portal. Jeżeli mają Państwo pytania prosimy o kontakt na adres biuro@obligain.com</p>

@@ -19,6 +19,7 @@ export default class VIP extends React.Component<DispatchedP & ConnectedP> {
     public render() {
         return (
             <div className="page page--static">
+                <div style={{ backgroundImage: `url(banner.jpg)` }} className="singleBackgroundImage" />
                 <div className="container page--content">
                     <h2>VIP SERWIS</h2>
                     <p>Jest nam niezmiernie miło poinformować Państwa, że spółka zamierza na portalu Obligain.com uruchomić do końca roku usługę serwisu VIP, która zaoferuje naszym Klientom wybrane korzyści po uregulowaniu opłaty abonamentowej. Szczegóły przekażemy Państwu wkrótce. </p>
