@@ -609,6 +609,14 @@ textarea {
     min-height: 300px;
     background-color: white;
     z-index: 10;
+    right: 20px;
+    i {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
 }
 .show {
     display: block !important;
