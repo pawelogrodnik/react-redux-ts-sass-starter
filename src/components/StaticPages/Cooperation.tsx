@@ -17,7 +17,7 @@ export default class Cooperation extends React.Component<DispatchedP & Connected
             <div className="page page--static">
                 <div className="container page--content">
                     <h2>WSPÓŁPRACA</h2>
-                    <p>Interesuje Państwa misja, którą realizujemy? Chcą Państwo uczestniczyć w projekcie sprzedaży ofert umieszonych na naszym portalu? Mogą Państwo zamówić u nas indywidualną ofertę przygotowaną dla Państwa firmy firmy. Stworzymy model współpracy, który będzie wynagradzał Państwa pracowników za promowanie naszego portalu. </p>
+                    <p>Interesuje Państwa misja, którą realizujemy? Chcą Państwo uczestniczyć w projekcie sprzedaży ofert umieszonych na naszym portalu? Mogą Państwo zamówić u nas indywidualną ofertę przygotowaną dla Państwa firmy. Stworzymy model współpracy, który będzie wynagradzał Państwa pracowników za promowanie naszego portalu. </p>
                     <p>Prosimy o kontakt: biuro@obligain.com</p>
                 </div>
             </div>
