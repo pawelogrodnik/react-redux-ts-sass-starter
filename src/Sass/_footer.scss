@@ -5,12 +5,14 @@
     padding: 70px 0px;
     &__inner {
         display: flex;
+        @media (max-width: 767px) {
+            display: block;
+        }
     }
     &__l,
     &__r {
-        flex: 1 0 50%;
         @media (max-width: 767px) {
-            flex: 1 0 100%;
+            width: 100%;
         }
     }
     &__r {
@@ -31,6 +33,10 @@
         @media (min-width: 768px) {
             flex: 1 0 33%;
             line-height: 2;
+            min-width: 150px;
+        }
+        @media (max-width: 767px) {
+            width: 33%;
         }
     }
     a {
@@ -47,4 +53,7 @@
     width: 200px;
     cursor: pointer;
     margin-top: 50px;
+    @media (max-width: 767px) {
+        margin-top: 0;
+    }
 }

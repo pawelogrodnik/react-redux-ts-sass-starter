@@ -608,3 +608,9 @@ textarea {
 .show {
     display: block !important;
 }
+
+#footer__brand{
+    @media (max-width: 768px) {
+        display: none;
+    }   
+}
