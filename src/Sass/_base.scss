@@ -576,3 +576,35 @@ textarea {
 .color-brown {
     color: $brownMain;
 }
+.input--range__heading {
+position: relative;
+}
+
+.more-info {
+    position: absolute;
+    left: 100px;
+    cursor: pointer;
+    font-size: 15px;
+}
+.form--searchInvestments__range-wrapper .form_field label {
+    font-size: 14px;
+}
+
+.risk-description { 
+display: none;
+font-size: 11px;
+padding: 10px;
+border: 1px solid $borderGrey;
+width: 50%;
+min-width: 320px;
+position: absolute;
+margin-left: auto;
+margin-right: auto;
+height: auto;
+min-height: 300px;
+background-color: white;
+z-index: 10;
+}
+.show {
+    display: block !important;
+}

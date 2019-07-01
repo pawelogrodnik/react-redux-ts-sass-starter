@@ -12,7 +12,26 @@ type Props = {
     formatLabel?: (val: any) => string
 };
 
-class RangeField extends React.PureComponent<WrappedFieldProps & Props> {
+type S = {
+    riskDescriptionVisible: boolean
+};
+
+class RangeField extends React.PureComponent<WrappedFieldProps & Props, S> {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            riskDescriptionVisible: false,
+        };
+    }
+
+    public toggleRiskDescription = () => {
+        console.log(this.state.riskDescriptionVisible);
+        this.setState({
+            riskDescriptionVisible: !this.state.riskDescriptionVisible
+        })
+    };
+
     public render() {
         const { input, meta, label, disabled, description } = this.props;
         let formClasses: string = 'form_field input--range';
@@ -23,16 +42,27 @@ class RangeField extends React.PureComponent<WrappedFieldProps & Props> {
         const value = input.value;
         return (
             <div className={formClasses}>
-            <div className="input--range__heading">
-                <div className="input--range__icon">
-                    <img src={this.props.iconSrc} alt=""/>
+                <div className="input--range__heading">
+                    <div className="input--range__icon">
+                        {input.name === 'risk' && <i onClick={this.toggleRiskDescription} className="fas fa-question more-info" />}
+                    </div>
+                    <div className="input--range__name">
+                        <label htmlFor={input.name}>{label}</label>
+                        <p className="input--range__description">{description}</p>
+                    </div>
                 </div>
-                <div className="input--range__name">
-                    <label htmlFor={input.name}>{label}</label>
-                    <p className="input--range__description">{description}</p>
-                </div>
-            </div>
-                
+                {input.name === 'risk' && <div className={"risk-description" + ' ' + (this.state.riskDescriptionVisible ? 'show' : 'hidden')}>
+                    <p>1. Kruszce przechowywane samodzielnie przez Klienta.</p>
+                    <p>2. Kamienie szlachetne przechowywane samodzielnie przez Klienta.</p>
+                    <p>3. Inwestycje mieszkaniowe zabezpieczone hipotecznie z oddzielną księga wieczystą.</p>
+                    <p>4. Numizmatyka przechowywana samodzielnie przez Klienta.</p>
+                    <p>5. Inwestycje mieszkaniowe zabezpieczone hipotecznie bez odrębnej księgi wieczystej.</p>
+                    <p>6. Pojazdy przechowywane przez Klienta.</p>
+                    <p>7. Whisky przechowywana przez Klienta.</p>
+                    <p>8. Inwestycje mieszkaniowe bez zabezpieczenia hipotecznego.</p>
+                    <p>9. Inwestycje w biznes franczyzowy.</p>
+                    <p>10. Tokeny</p>
+                </div>}
                 <div>
                     <InputRange
                         minValue={this.props.min}

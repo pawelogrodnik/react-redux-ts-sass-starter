@@ -32,8 +32,6 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                 <div className="form--addInvestment_r">
                     <h3>Podstawowe parametry inwestycji</h3>
                     <div className="form--addInvestment__content">
-                        {/* <Field wrapperClassName={'full'} name="basicParams.title" component={RegularField} label={'Tytuł'} placeholder={'Tytuł'} validate={[V.required]} />
-                        <Field wrapperClassName={'full'} name="basicParams.description" component={RegularField} label={'Opis'} placeholder={'Opis'} validate={[V.required]} /> */}
                         <Field wrapperClassName={'full'} name="basicParams.startDate" component={DatePicker} label={'Data początkowa'} placeholder={'Wybierz datę początkową'} validate={[V.required]} />
                         <Field type="text" wrapperClassName={'full'} name="basicParams.duration" component={RegularField} label={'Czas trwania inwestycji (miesiące)'} placeholder={'Czas trwania inwestycji (miesiące)'} validate={[V.required]} />
                         <Field type="text" wrapperClassName={'half'} name="basicParams.interest" component={RegularField} label={'Oprocentowanie'} placeholder={'Oprocentowanie'} validate={[V.required]} />
