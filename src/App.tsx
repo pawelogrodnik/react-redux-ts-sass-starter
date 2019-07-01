@@ -37,12 +37,14 @@ type DispatchedP = {
 };
 type S = {
     loadingUserComplete: boolean;
+    staticPages: Array<any>;
 };
 class App extends React.PureComponent<P & DispatchedP, S> {
     constructor(props: P & DispatchedP) {
         super(props);
         this.state = {
-            loadingUserComplete: false
+            loadingUserComplete: false,
+            staticPages: ['/mission','/otherterms','/termsandconditions','/privacypolicy','/vip','/subscription','/dashboard/login','/returns','/program','/formofpayments','/faq','/execusiontime','/cooperation','/complaints','/career','/aboutus']
         };
     }
     public componentWillMount() {
@@ -53,11 +55,12 @@ class App extends React.PureComponent<P & DispatchedP, S> {
         this.setState({ loadingUserComplete: true });
         
     }
+    
     public componentDidUpdate() {
-        if(window.location.pathname != '/') {
+        if(this.state.staticPages.includes(window.location.pathname)) {
+            console.log(window.location.pathname)
             window.scrollTo(0,0);
         }
-        console.log(window.location.pathname)
     }
     public render() {
         if (this.state.loadingUserComplete) {
