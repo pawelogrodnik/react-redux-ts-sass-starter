@@ -25,6 +25,7 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
     }
     public async componentDidMount() {
         await this.props.getInvestmentDetails(this.props.match.params.id);
+        window.scrollTo(0,0);
     }
     public render() {
         return (
