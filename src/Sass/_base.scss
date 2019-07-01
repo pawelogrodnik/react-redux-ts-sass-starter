@@ -433,7 +433,6 @@ textarea {
             width: 100%;
         }
     }
-   
 }
 
 .productDataDetails {
@@ -443,8 +442,13 @@ textarea {
     font-weight: 500;
     font-size: 16px;
     div {
+<<<<<<< HEAD
+        display: flex;
+        justify-content: space-evenly;
+=======
        display: flex;
        justify-content: space-between;
+>>>>>>> a74d6ea8645fcbd9b4f373d14948eafe5631e9c6
         height: 50px;
         text-align: left;
         padding: 25px;
@@ -663,10 +667,10 @@ textarea {
     display: block !important;
 }
 
-#footer__brand{
+#footer__brand {
     @media (max-width: 768px) {
         display: none;
-    }   
+    }
 }
 .center {
     text-align: center;
@@ -676,4 +680,11 @@ textarea {
     .container {
         padding: 0 15px;
     }
+}
+
+.bannerImage {
+    height: 400px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
 }

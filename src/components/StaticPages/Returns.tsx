@@ -20,6 +20,7 @@ export default class Returns extends React.Component<DispatchedP & ConnectedP> {
         return (
             <div className="page page--static">
                 <div className="container page--content">
+                    {/* <img src="banner.jpg" className="bannerImage" /> */}
                     <h2>ZWROTY</h2>
                     <ul className="ulType">
                         <li>Mają Państwo prawo zwrócić zakupiony produkt w przeciągu 30 DNI od dnia finalizacji (prawo odstąpienia od umowy sprzedaży)</li>
