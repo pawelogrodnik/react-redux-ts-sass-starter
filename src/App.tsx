@@ -51,6 +51,13 @@ class App extends React.PureComponent<P & DispatchedP, S> {
             this.props.loginUserFromStorage(null, token);
         }
         this.setState({ loadingUserComplete: true });
+        
+    }
+    public componentDidUpdate() {
+        if(window.location.pathname != '/') {
+            window.scrollTo(0,0);
+        }
+        console.log(window.location.pathname)
     }
     public render() {
         if (this.state.loadingUserComplete) {

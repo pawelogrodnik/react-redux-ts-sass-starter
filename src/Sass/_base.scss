@@ -235,8 +235,9 @@ textarea {
 }
 
 .introTextBanner__inner {
-    margin: 100px 0 100px 0;
-    padding: 20px;
+    padding: 100px 0 80px 0;
+    background-color: #f8f8f8;
+    margin-bottom: 60px;
 }
 
 .loader {
@@ -634,9 +635,10 @@ textarea {
 
 .more-info {
     position: absolute;
-    left: 100px;
+    left: 140px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 17px;
+    line-height: 35px;
 }
 .form--searchInvestments__range-wrapper .form_field label {
     font-size: 14px;

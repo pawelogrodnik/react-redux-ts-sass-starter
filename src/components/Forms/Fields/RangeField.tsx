@@ -9,6 +9,7 @@ type Props = {
     iconSrc: string;
     min: number;
     max: number;
+    icon: string;
     formatLabel?: (val: any) => string
 };
 
@@ -33,7 +34,7 @@ class RangeField extends React.PureComponent<WrappedFieldProps & Props, S> {
     };
 
     public render() {
-        const { input, meta, label, disabled, description } = this.props;
+        const { input, meta, label, disabled, description, icon } = this.props;
         let formClasses: string = 'form_field input--range';
 
         formClasses += meta.error && meta.touched ? ' form_field--has_error' : '';
@@ -44,9 +45,10 @@ class RangeField extends React.PureComponent<WrappedFieldProps & Props, S> {
             <div className={formClasses}>
                 <div className="input--range__heading">
                     <div className="input--range__icon">
-                        {input.name === 'risk' && <i onClick={this.toggleRiskDescription} className="fas fa-question more-info" />}
+                        {input.name === 'risk' && <i onClick={this.toggleRiskDescription} className="far fa-question-circle more-info" />}
                     </div>
                     <div className="input--range__name">
+                    <i className={icon} />
                         <label htmlFor={input.name}>{label}</label>
                         <p className="input--range__description">{description}</p>
                     </div>
