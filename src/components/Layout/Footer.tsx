@@ -11,7 +11,7 @@ export default class Footer extends React.Component<any, any> {
                             <Link to="/"><img src="/logo.svg" id="footer__logo" /></Link>
                         </h2>
                         <h2>
-                            <Link to="https://www.firmagodnazaufania.pl/company,58536,reliance-polska-sp-z-o-o"><img src="/firma_godna_zaufania_2019.png" id="footer__brand" width="200px" /></Link>
+                            <a href="https://www.firmagodnazaufania.pl/company,58536,reliance-polska-sp-z-o-o" target="_blank"><img src="/firma_godna_zaufania_2019.png" id="footer__brand" width="200px" /></a>
                         </h2>
                     </div>
                     <div className="footer__r">

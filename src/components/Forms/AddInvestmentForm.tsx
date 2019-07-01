@@ -10,7 +10,7 @@ type P = {
     investmentType: InvestmentModule.EnumTypes.InvestmentType;
     edit?: boolean;
 };
-const { flat, parcel, hotel, vehicle, gold, token, whisky, diamonds, dorm } = InvestmentModule.EnumTypes.InvestmentType;
+const { flat, parcel, hotel, vehicle, gold, token, whisky, diamonds, dorm, franchise } = InvestmentModule.EnumTypes.InvestmentType;
 const AddInvestmentForm = (props: InjectedFormProps & P) => {
     const { handleSubmit, submitting, investmentType, initialValues } = props;
     return (
@@ -32,8 +32,6 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                 <div className="form--addInvestment_r">
                     <h3>Podstawowe parametry inwestycji</h3>
                     <div className="form--addInvestment__content">
-                        {/* <Field wrapperClassName={'full'} name="basicParams.title" component={RegularField} label={'Tytuł'} placeholder={'Tytuł'} validate={[V.required]} />
-                        <Field wrapperClassName={'full'} name="basicParams.description" component={RegularField} label={'Opis'} placeholder={'Opis'} validate={[V.required]} /> */}
                         <Field wrapperClassName={'full'} name="basicParams.startDate" component={DatePicker} label={'Data początkowa'} placeholder={'Wybierz datę początkową'} validate={[V.required]} />
                         <Field type="text" wrapperClassName={'full'} name="basicParams.duration" component={RegularField} label={'Czas trwania inwestycji (miesiące)'} placeholder={'Czas trwania inwestycji (miesiące)'} validate={[V.required]} />
                         <Field type="text" wrapperClassName={'half'} name="basicParams.interest" component={RegularField} label={'Oprocentowanie'} placeholder={'Oprocentowanie'} validate={[V.required]} />
@@ -69,7 +67,7 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                                 {investmentType === parcel && <Field type="text" name="detailedParams.pum" component={RegularField} label={'PUM [m2]'} placeholder={'PUM [m2]'} validate={[V.required]} />}
                                 {investmentType === flat && <Field type="text" name="detailedParams.floorNumber" component={RegularField} label={'Piętro'} placeholder={'Piętro'} validate={[V.required]} />}
                                 <Field type="text" name="detailedParams.priceService" component={RegularField} label={'Cena w serwisie'} placeholder={'Cena w serwisie'} validate={[V.required]} />
-                                {(investmentType === flat || investmentType === parcel || investmentType === hotel || investmentType === dorm || investmentType === vehicle) && <Field type="text" name="detailedParams.priceMarket" component={RegularField} label={'Cena rynkowa'} placeholder={'Cena rynkowa'} validate={[V.required]} />}
+                                {(investmentType === flat || investmentType === parcel || investmentType === hotel || investmentType === dorm || investmentType === vehicle || investmentType === franchise) && <Field type="text" name="detailedParams.priceMarket" component={RegularField} label={'Cena rynkowa'} placeholder={'Cena rynkowa'} validate={[V.required]} />}
                                 {investmentType === parcel && <Field type="text" name="detailedParams.roi" component={RegularField} label={'ROI'} placeholder={'ROI'} validate={[V.required]} />}
                                 {investmentType === hotel && <Field type="text" name="detailedParams.roomsCount" component={RegularField} label={'Ilość pokoi'} placeholder={'Ilość pokoi'} validate={[V.required]} />}
                                 {investmentType === hotel && <Field type="text" name="detailedParams.income" component={RegularField} label={'Przychody'} placeholder={'Przychody'} validate={[V.required]} />}

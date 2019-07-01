@@ -10,7 +10,7 @@ import * as Dictionary from './../Models/Dictionary';
 type P = {
     match: any;
 }
-const { flat, parcel, hotel, vehicle, gold, token, whisky, diamonds, dorm } = InvestmentModule.EnumTypes.InvestmentType;
+const { flat, parcel, hotel, vehicle, gold, token, whisky, diamonds, dorm, franchise } = InvestmentModule.EnumTypes.InvestmentType;
 type DispatchedP = {
     getInvestmentDetails: (id: number) => void;
 }
@@ -73,7 +73,7 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                     <div><span>Piętro:</span><span>{this.props.investmentDetails.detailedParams.floorNumber}</span></div>}
                                 <div><span>Cena w serwisie:</span><span>{this.props.investmentDetails.detailedParams.priceService} zł</span></div>
 
-                                {(this.props.investmentDetails.type === flat || this.props.investmentDetails.type === parcel || this.props.investmentDetails.type === hotel || this.props.investmentDetails.type === dorm || this.props.investmentDetails.type === vehicle) &&
+                                {(this.props.investmentDetails.type === flat || this.props.investmentDetails.type === parcel || this.props.investmentDetails.type === hotel || this.props.investmentDetails.type === dorm || this.props.investmentDetails.type === vehicle || this.props.investmentDetails.type === franchise) &&
                                     <div><span>Cena rynkowa:</span><span>{this.props.investmentDetails.detailedParams.priceMarket} zł</span></div>}
                                 {this.props.investmentDetails.type === parcel &&
                                     <div><span>ROI:</span><span>{this.props.investmentDetails.detailedParams.roi}</span></div>}

@@ -39,12 +39,12 @@ export default class PrivacyPolicy extends React.Component<DispatchedP & Connect
                     </p>
                     <h5>Jakie są podstawy prawne przetwarzania danych?</h5>
                     <p>
-                        Przetwarzamy Państwa dane osobowe na mocy umowy. Jej wzór znajdą Państwo w<Link to="/TermsAndConditions">Regulaminie</Link>
-                        naszego serwisu lub <Link to="/OtherTerms">regulamininach promocji</Link>, konkursów, loterii itp., które dla Państwa organizujemy. Państwa dane przetwarzamy tylko w takim zakresie, jaki jest potrzebny, aby właściwie zrealizować usługę, którą Państwu świadczymy. Czasem, na przykład aby dopasować usługę do Państwa potrzeb, możemy poprosić Państwa o podanie dodatkowych danych. Państwa zgoda na to jest, oczywiście, dobrowolna. Każdą udzieloną nam zgodę mogą Państwo odwołać.
+                        Przetwarzamy Państwa dane osobowe na mocy umowy. Jej wzór znajdą Państwo w <Link className="color-brown" to="/TermsAndConditions">Regulaminie</Link>
+                        naszego serwisu lub <Link className="color-brown" to="/OtherTerms">regulaminach promocji</Link>, konkursów, loterii itp., które dla Państwa organizujemy. Państwa dane przetwarzamy tylko w takim zakresie, jaki jest potrzebny, aby właściwie zrealizować usługę, którą Państwu świadczymy. Czasem, na przykład aby dopasować usługę do Państwa potrzeb, możemy poprosić Państwa o podanie dodatkowych danych. Państwa zgoda na to jest, oczywiście, dobrowolna. Każdą udzieloną nam zgodę mogą Państwo odwołać.
                     </p>
                     <h5>Uaktualnienia naszej Polityki Prywatności</h5>
                     <p>
-                        Zawsze gdy uaktualnimy Politykę Prywatności, jej najnowszą wersję zamieścimy na naszej stronie internetowej w zakładce <Link to="/PrivacyPolicy">Polityka Prywatności</Link>.
+                        Zawsze gdy uaktualnimy Politykę Prywatności, jej najnowszą wersję zamieścimy na naszej stronie internetowej w zakładce <Link className="color-brown" to="/PrivacyPolicy">Polityka Prywatności</Link>.
                     </p>
                     <p>Proces zakupowy:</p>
                     <h5>Dlaczego używamy Państwa danych osobowych?</h5>
