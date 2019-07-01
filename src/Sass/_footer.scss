@@ -17,7 +17,9 @@
     }
     &__r {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding-left: 20px;
     }
     &__l {
         @media (min-width: 768px) {
@@ -36,16 +38,17 @@
             min-width: 170px;
         }
         @media (max-width: 767px) {
-            width: 33%;
+            // width: 33%;
+            padding: 0 5px;
         }
     }
     a {
         text-decoration: none;
         color: #fff;
-        @media (max-width: 767px) {
-            display: flex;
-            justify-content: center;
-        }
+        // @media (max-width: 767px) {
+        //     display: flex;
+        //     justify-content: center;
+        // }
     }
 }
 

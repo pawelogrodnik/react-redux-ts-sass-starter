@@ -19,7 +19,7 @@ export default class FormOfPayments extends React.Component<DispatchedP & Connec
     public render() {
         return (
             <div className="page page--static">
-                <div style={{ backgroundImage: `url(banner.jpg)` }} className="singleBackgroundImage" />
+                 <div style={{ backgroundImage: `url(banner.jpg)` }} className="singleBackgroundImage" />
                 <div className="container page--content">
                     <h2>FORMY PŁATNOŚCI</h2>
                     <p>Realizując przepisy prawa każdy zakup powyżej kwoty 15 000 pln jest realizowany za pośrednictwem przelewu, karty kredytowej bądź systemu płatności. </p>
