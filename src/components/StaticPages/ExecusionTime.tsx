@@ -24,13 +24,13 @@ export default class ExecusionTime extends React.Component<DispatchedP & Connect
                     <p>W wyjątkowych sytuacjach powyższe terminy mogą ulec wydłużeniu, o czym Klient będzie informowany przez obsługę portalu najszybciej jak to możliwe.</p>
                     <h3>W jakim czasie kontaktujemy się z Klientem?</h3>
                     <h3>Poznań</h3>
-                    <p>Zamówienia z formularze przekazywane są niezwłocznie do kierownika regionu Poznańskiego, który dokonuje przydziału poszczególnym przedstawicielom. Czas kontaktu nie powinien być dłuższy niż 48h.</p>
+                    <p>Zamówienia z formularze przekazywane są niezwłocznie do kierownika regionu Wielkopolskiego, który dokonuje przydziału poszczególnym przedstawicielom. Czas kontaktu nie powinien być dłuższy niż 48h.</p>
                     <h3>Warszawa</h3>
-                    <p>Zamówienia z formularze przekazywane są niezwłocznie do kierownika regionu Poznańskiego, który dokonuje przydziału poszczególnym przedstawicielom. Czas kontaktu nie powinien być dłuższy niż 48h.</p>
+                    <p>Zamówienia z formularze przekazywane są niezwłocznie do kierownika regionu Mazowieckiego, który dokonuje przydziału poszczególnym przedstawicielom. Czas kontaktu nie powinien być dłuższy niż 48h.</p>
                     <h3>Śląsk</h3>
-                    <p>Zamówienia z formularze przekazywane są niezwłocznie do kierownika regionu Poznańskiego, który dokonuje przydziału poszczególnym przedstawicielom. Czas kontaktu nie powinien być dłuższy niż 48h.</p>
+                    <p>Zamówienia z formularze przekazywane są niezwłocznie do kierownika regionu Śląskiego, który dokonuje przydziału poszczególnym przedstawicielom. Czas kontaktu nie powinien być dłuższy niż 48h.</p>
                     <h3>Kraków</h3>
-                    <p>Zamówienia z formularze przekazywane są niezwłocznie do kierownika regionu Poznańskiego, który dokonuje przydziału poszczególnym przedstawicielom. Czas kontaktu nie powinien być dłuższy niż 48h.</p>
+                    <p>Zamówienia z formularze przekazywane są niezwłocznie do kierownika regionu Małopolskiego, który dokonuje przydziału poszczególnym przedstawicielom. Czas kontaktu nie powinien być dłuższy niż 48h.</p>
                     <h3>Realizacja zamówienia w siedzibie spółki:</h3>
                     <p>Zamówienia złożone i skompletowane od poniedziałku do piątku do godz. 17:00 standardowo można zrealizować w naszej siedzibie przy al. Pokoju 1 w Krakowie, bądź w naszym biurze przy ul. Podole 60 w Krakowie.</p>
                     <h3>Realizacja zamówienia u notariusza:</h3>
