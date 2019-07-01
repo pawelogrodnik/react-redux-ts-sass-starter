@@ -34,6 +34,7 @@ export default class Footer extends React.Component<any, any> {
                             </li>
                             <Link to="/cooperation"><li>Współpraca</li></Link>
                             <Link to="/termsandconditions"><li>Regulamin</li></Link>
+                            <Link to="/otherterms"><li>Pozostałe regulaminy</li></Link>
                         </ul>
                         <ul className="footer__menu">
                             <Link to="/returns"><li>Zwroty</li></Link>

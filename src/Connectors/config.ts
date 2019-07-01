@@ -10,12 +10,12 @@ export type QueryParams = {
     value: any;
 };
 
-export const baseURL = '//obligacje-app.k-org.pl/';
+export const baseURL = '//obligain.com/api/public_html/';
 
 export let activeToken = (store.getState() as RootState).userStore.token ? store.getState().userStore.token : localStorage.getItem('token');
 
 const axiosInstance = axios.create({
-    baseURL: `http:${baseURL}`,
+    baseURL: `https:${baseURL}`,
 });
 
 axiosInstance.defaults.headers.post['Content-Type'] = 'application/json';

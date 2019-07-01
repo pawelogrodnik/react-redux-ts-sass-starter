@@ -39,7 +39,7 @@ export default class Career extends React.Component<DispatchedP & ConnectedP> {
                             <li>Kierownik sprzedaży Kraków</li>
                         </ul>
                     </p>
-                    <p>Osoby chętne, by porozmawiać o wspólnej wizji pracy prosimy o przesłanie CV na adres: biuro@obligain.com w tytule wpisując „Praca”</p>
+                    <p>Osoby chętne, by porozmawiać o wspólnej wizji pracy prosimy o przesłanie CV na adres: <a className="color-brown" href="mailto:">biuro@obligain.com</a> w tytule wpisując „Praca”. Prosimy o zamieszczenie w wiadomości klauzuli o wyrażeniu zgody na przetwarzanie danych osobowych zawartych w CV przez okres sześciu miesięcy.</p>
                 </div>
             </div>
         );
