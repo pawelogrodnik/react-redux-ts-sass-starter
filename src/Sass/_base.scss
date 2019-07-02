@@ -560,12 +560,17 @@ textarea {
     background-color: rgba($blueMain, 0.5);
     &__exit {
         position: absolute;
-        right: 30px;
-        top: 30px;
-        color: #fff;
-        font-size: 30px;
-        font-weight: 500;
-        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        span{
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            color: #fff;
+            font-size: 30px;
+            font-weight: 500;
+            cursor: pointer;
+        }
     }
     &__inner {
         @extend .container;
@@ -581,6 +586,7 @@ textarea {
             width: auto;
             margin-left: auto;
             margin-right: auto;
+            z-index: 100;
             @media (max-width: 767px) {
                 height: auto;
                 width: 100%;
@@ -597,6 +603,7 @@ textarea {
         border-radius: 3px;
         padding: 12px;
         font-size: 30px;
+        z-index: 100;
         @media (max-width: 767px) {
             padding: 10px;
             font-size: 25px;

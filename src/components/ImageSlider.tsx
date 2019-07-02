@@ -62,12 +62,12 @@ export default class ImageSlider extends React.Component<P, S> {
                 {
             this.state.popupVisible && (
                 <div className="imagePopup">
-                    <div className="imagePopup__exit" onClick={() => this.hidePopup()}>X</div>
+                    <div className="imagePopup__exit" onClick={() => this.hidePopup()}><span>X</span></div>
                     <div className="imagePopup__inner">
                         <img src={`${baseURL}/${this.props.images[this.state.imageIdPopup].path}`} width={'100%'} />
                     </div>
-                    <div className="imagePopup__btn imagePopup__btn--next" onClick={this.nextImage}><i className="fas fa-caret-right" /></div>
-                    <div className="imagePopup__btn imagePopup__btn--prev" onClick={this.prevImage}><i className="fas fa-caret-left" /></div>
+                    <div className="imagePopup__btn imagePopup__btn--next" onClick={this.nextImage}><i className="fas fa-chevron-right"/></div>
+                    <div className="imagePopup__btn imagePopup__btn--prev" onClick={this.prevImage}><i className="fas fa-chevron-left"/></div>
                 </div>
             )
         }

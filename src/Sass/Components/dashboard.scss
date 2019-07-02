@@ -50,6 +50,7 @@
         padding-bottom: 25px;
         align-items: center;
         min-height: 200px;
+        
     }
     &__icon {
         width: 200px;
@@ -75,6 +76,21 @@
             margin-left: 20px;
             width: calc(100% - 225px);
         }
+        // p {
+
+        //     &:before {
+        //         content: '';
+        //         position: absolute;
+        //         right: 0;
+        //         top: 112px;
+        //         width: 50px;
+        //         height: 93px;
+        //         width: 100%;
+        //         background-image: linear-gradient(to top, rgba(255, 255, 255), rgba(255, 255, 255, 0.71));
+        //         pointer-events: none;
+        //         }
+        // }
+        
     }
     &__action {
         width: 200px;
