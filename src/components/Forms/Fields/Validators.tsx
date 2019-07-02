@@ -5,8 +5,7 @@ export class Validators {
         if (typeof valueTemp == 'string') {
             valueTemp = valueTemp.trim();
         }
-
-        return valueTemp ? undefined : 'Pole wymagane';
+        return valueTemp || valueTemp === 0 ? undefined : 'Pole wymagane';
     };
     
 }
