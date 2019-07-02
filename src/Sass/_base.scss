@@ -355,7 +355,6 @@ textarea {
 .page {
     &--static {
         min-height: 100vh;
-        margin-bottom: 50px;
         padding-top: 140px;
         .singleBackgroundImage {
             margin: 20px 0;
@@ -433,9 +432,6 @@ textarea {
             margin-left: -15px;
         }
     }
-    // .divider{
-    //     border-bottom: 1px solid black
-    // }
     .col {
         width: 33.333333%;
         float: left;
@@ -482,17 +478,42 @@ textarea {
 }
 
 .contactForm {
+    display: inline-block;
+    width: 100%;
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    min-height: 90vh;
     background-image: url('/contact.jpeg');
     .contactBox {
         background-color: white;
-        width: 40%;
-        min-width: 325px;
-        float: right;
-        margin-top: 100px;
+        width: 82%;
+        min-width: 350px;
+        margin: 0 auto;
+        border-radius: 3px;
+        margin-top: 60px;
         min-height: 400px;
+        @media (min-width:668px) {
+            .form {
+                &--contact {
+                    padding: 10px 25px;
+                }
+            }
+            form {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                div{
+                    &:nth-child(-n+4) {
+                        flex: 0 1 48%;
+                    }
+                    &:last-child {
+                        justify-self: center;
+                        flex: 0 1 100%;
+                    }
+                }
+            }
+        }
+                      
     }
     button {
         width: 50%;
