@@ -58,7 +58,6 @@ class App extends React.PureComponent<P & DispatchedP, S> {
     
     public componentDidUpdate() {
         if(this.state.staticPages.includes(window.location.pathname)) {
-            console.log(window.location.pathname)
             window.scrollTo(0,0);
         }
     }

@@ -51,7 +51,7 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                         <i className="fas fa-tachometer-alt" />
                                         Skala ryzyka</div>
                                 </div>
-                                <div className="row">
+                                <div className="row row--divider">
                                     <div className="col">
                                         {this.props.investmentDetails.basicParams.interest === 0 ?
                                             "Zmienne" : this.props.investmentDetails.basicParams.interest + "%"

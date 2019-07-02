@@ -415,6 +415,10 @@ textarea {
         width: 100%;
         @media only screen and (min-width: 768px) {
             height: 80px;
+            &--divider {
+                border-bottom: 1px solid #d8d8d8;
+                margin-top: -25px;
+            }
         }
     }
     .grey {
@@ -424,8 +428,14 @@ textarea {
         @media only screen and (max-width: 767px) {
             display: flex;
             flex-direction: column;
+            padding: 0px 15px;
+            box-sizing: content-box;
+            margin-left: -15px;
         }
     }
+    // .divider{
+    //     border-bottom: 1px solid black
+    // }
     .col {
         width: 33.333333%;
         float: left;
@@ -450,14 +460,18 @@ textarea {
     font-weight: 500;
     font-size: 16px;
     div {
-       display: flex;
-       justify-content: space-between;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         height: 50px;
         text-align: left;
         padding: 25px;
         @media (min-width:768px) {
             width: 50%;
             margin: 0 auto;
+        }
+        &:nth-of-type(odd) {
+            background-color: $greyMain;
         }
         span {
             &:last-child {
@@ -561,7 +575,7 @@ textarea {
     &__exit {
         position: absolute;
         width: 100%;
-        height: 100%;
+        height: calc(100% - 30px);
         span{
             position: absolute;
             right: 30px;
@@ -599,7 +613,7 @@ textarea {
         transform: translateY(-50%);
         cursor: pointer;
         background-color: #fff;
-        border: 1px solid $blueMain;
+        // border: 1px solid $blueMain;
         border-radius: 3px;
         padding: 12px;
         font-size: 30px;
