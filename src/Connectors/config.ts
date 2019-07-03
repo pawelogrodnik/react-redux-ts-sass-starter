@@ -10,11 +10,17 @@ export type QueryParams = {
     value: any;
 };
 
-export const baseURL = '//obligacje-app.k-org.pl/';
+// PROD:
+// export const baseURL = '//obligain.com/api/public_html/';
+// TEST:
+export const baseURL = '//obligacje.k-org.pl/';
 
 export let activeToken = (store.getState() as RootState).userStore.token ? store.getState().userStore.token : localStorage.getItem('token');
 
 const axiosInstance = axios.create({
+    // PROD:
+    // baseURL: `https:${baseURL}`,
+    // TEST:
     baseURL: `http:${baseURL}`,
 });
 
