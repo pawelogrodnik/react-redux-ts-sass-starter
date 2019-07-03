@@ -21,6 +21,7 @@ import PrivacyPolicy from './components/StaticPages/PrivacyPolicy';
 import OtherTerms from './components/StaticPages/OtherTerms';
 import Mission from './components/StaticPages/Mission';
 import Loader from './components/Layout/Loader';
+import MetaTags from './components/MetaTags';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { store } from './Store/Store';
@@ -65,6 +66,7 @@ class App extends React.PureComponent<P & DispatchedP, S> {
         if (this.state.loadingUserComplete) {
             return (
                 <div className="main-wrapper">
+                    <MetaTags />
                     <ErrorHandler />
                     {this.props.viewManagementStore.headerVisible && <Header whiteHeader={this.props.viewManagementStore.whiteHeader} />}
                     <div className="pages__inner">

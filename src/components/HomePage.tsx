@@ -13,7 +13,7 @@ import { history } from 'src/App';
 type S = {
     investmentsVisible?: boolean;
 };
-const initialValues = {
+let initialValues = {
     interest: {
         min: 6,
         max: 20
@@ -43,12 +43,18 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
     constructor(props: DispatchedP & ConnectedP) {
         super(props);
         this.state = {
-            investmentsVisible: false
+            investmentsVisible: false,
         };
     }
 
-    public componentWillMount() {
-        this.props.setWhiteHeader()
+    public async componentWillMount() {
+        this.props.setWhiteHeader();
+        if(sessionStorage.getItem('searchValues')) {
+            initialValues = JSON.parse(sessionStorage.getItem('searchValues'));
+            const query = createSerachQuery(initialValues);
+            await this.props.getInvestments(query);
+            this.setState({ investmentsVisible: true })
+        }
     }
 
     public componentWillUnmount() {
@@ -57,6 +63,7 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
 
     public handleInvestmentFormSubmit = async (data: any) => {
         this.setState({ investmentsVisible: false })
+        sessionStorage.setItem('searchValues', JSON.stringify(data));
         const query = createSerachQuery(data);
         await this.props.getInvestments(query)
         this.setState({ investmentsVisible: true })
