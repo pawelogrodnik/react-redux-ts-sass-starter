@@ -47,6 +47,7 @@ class DatePickerField extends React.PureComponent<WrappedFieldProps & Props, Sta
 
         const { focusedInput } = this.state;
         const value = (input && input.value)?moment(input.value):null;
+        console.log(moment(input.value))
         return (
             <div className={formClasses}>
                 <label htmlFor={input.name}>{label}</label>
@@ -57,10 +58,12 @@ class DatePickerField extends React.PureComponent<WrappedFieldProps & Props, Sta
                         onDateChange={date  => { 
                             const tempDate = date.clone();
 
-                            if(value) {
-                                tempDate.hour(value.get('hour'));
-                                tempDate.minute(value.get('minute')); 
-                            }    
+                            tempDate.set('hour', 0);
+                            tempDate.set('minute', 0); 
+                            // if(value) {
+                            //     tempDate.hour(value.get('hour'))
+                            //     tempDate.minute(value.get('minute'))
+                            // }    
                             
                             input.onChange(tempDate.format())
                         }}
