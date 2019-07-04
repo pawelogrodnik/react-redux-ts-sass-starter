@@ -8,7 +8,8 @@ export const initialState: State = {
     loaderVisible: false,
     footerVisible: true,
     headerVisible: true,
-    whiteHeader: false
+    whiteHeader: false,
+    prevPath: ''
 };
 
 export function viewManagementReducer(state: State = initialState, action: ViewsManagemenetAction) {
@@ -59,6 +60,12 @@ export function viewManagementReducer(state: State = initialState, action: Views
             return {
                 ...state,
                 whiteHeader: false
+            };
+        }
+        case ActionTypes.ViewManagement.SET_PREV_PATH: {
+            return {
+                ...state,
+                prevPath: action.payload.prevPath
             };
         }
         default: {

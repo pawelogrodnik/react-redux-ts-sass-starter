@@ -28,6 +28,12 @@ export type SetBlueHeader = {
 export type SetWhiteHeader = {
     type: ActionTypes.ViewManagement.SET_WHITE_HEADER;
 };
+export type SetPrevPath = {
+    type: ActionTypes.ViewManagement.SET_PREV_PATH;
+    payload: {
+        prevPath: string;
+    }
+};
 
 export type ViewsManagemenetAction =
     | ShowHeader
@@ -37,4 +43,5 @@ export type ViewsManagemenetAction =
     | ShowLoader
     | HideLoader
     | SetBlueHeader
-    | SetWhiteHeader;
+    | SetWhiteHeader
+    | SetPrevPath;

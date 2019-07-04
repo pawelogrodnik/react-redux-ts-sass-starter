@@ -3,6 +3,7 @@ export type ViewManagementStore = {
     headerVisible: boolean;
     footerVisible: boolean;
     whiteHeader: boolean;
+    prevPath: string;
 };
 
 export type OptionsElement = {

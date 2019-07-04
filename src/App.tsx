@@ -22,6 +22,7 @@ import OtherTerms from './components/StaticPages/OtherTerms';
 import Mission from './components/StaticPages/Mission';
 import Loader from './components/Layout/Loader';
 import MetaTags from './components/MetaTags';
+import * as ViewManagementModule from './store/../Modules/ViewManagementModule';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { store } from './Store/Store';
@@ -33,19 +34,25 @@ import * as UserModule from 'Modules/UserModule';
 import ErrorHandler from './components/Layout/ErrorHandler';
 
 type P = RootState;
+type PropsLocation = {
+    location: any
+}
 type DispatchedP = {
     loginUserFromStorage: (user: UserModule.Types.User, token: string) => void;
+    setPrevPath: (prevPath:string) => void;
 };
 type S = {
     loadingUserComplete: boolean;
     staticPages: Array<any>;
+    // prevPath: string;
 };
-class App extends React.PureComponent<P & DispatchedP, S> {
-    constructor(props: P & DispatchedP) {
+class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
+    constructor(props: P & DispatchedP & PropsLocation) {
         super(props);
         this.state = {
             loadingUserComplete: false,
-            staticPages: ['/mission','/otherterms','/termsandconditions','/privacypolicy','/vip','/subscription','/dashboard/login','/returns','/program','/formofpayments','/faq','/execusiontime','/cooperation','/complaints','/career','/aboutus']
+            staticPages: ['/mission','/otherterms','/termsandconditions','/privacypolicy','/vip','/subscription','/dashboard/login','/returns','/program','/formofpayments','/faq','/execusiontime','/cooperation','/complaints','/career','/aboutus'],
+            // prevPath: ''
         };
     }
     public componentWillMount() {
@@ -56,12 +63,22 @@ class App extends React.PureComponent<P & DispatchedP, S> {
         this.setState({ loadingUserComplete: true });
         
     }
-    
+  
     public componentDidUpdate() {
         if(this.state.staticPages.includes(window.location.pathname)) {
             window.scrollTo(0,0);
         }
     }
+
+    public componentWillReceiveProps(nextProps) {
+        if(nextProps.location !== this.props.location) {
+            const path = this.props.location.pathname;
+            this.props.setPrevPath(path);
+            // console.log(this.props.viewManagementStore.prevPath)
+            // this.setState({prevPath: path.substring(0, path.lastIndexOf('/'))})
+        }
+    }
+
     public render() {
         if (this.state.loadingUserComplete) {
             return (
@@ -71,7 +88,7 @@ class App extends React.PureComponent<P & DispatchedP, S> {
                     {this.props.viewManagementStore.headerVisible && <Header whiteHeader={this.props.viewManagementStore.whiteHeader} />}
                     <div className="pages__inner">
                         <Switch>
-                            <Route exact path={'/'} component={HomePage} />
+                            <Route exact path={'/'} component={HomePage}/>} />
                             <Route path={'/dashboard'} component={Dashboard} />
                             <Route path={'/investment/:id'} component={SingleInvestment} />
                             <Route path={'/aboutus'} component={AboutUs} />
@@ -105,7 +122,8 @@ class App extends React.PureComponent<P & DispatchedP, S> {
 export const history = createHistory();
 
 const mapDispatchToProps: DispatchedP = {
-    loginUserFromStorage: (user: UserModule.Types.User, token: string) => UserModule.Actions.loginUserSuccess(user, token)
+    loginUserFromStorage: (user: UserModule.Types.User, token: string) => UserModule.Actions.loginUserSuccess(user, token),
+    setPrevPath: (prevPath:string) => ViewManagementModule.Actions.setPrevPath(prevPath),
 };
 
 function mapStateToProps(state: RootState) {

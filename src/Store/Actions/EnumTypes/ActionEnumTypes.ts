@@ -14,6 +14,7 @@ export enum ViewManagement {
     HIDE_FOOTER = 'HIDE_FOOTER',
     SET_BLUE_HEADER = 'SET_BLUE_HEADER',
     SET_WHITE_HEADER = 'SET_WHITE_HEADER',
+    SET_PREV_PATH = 'SET_PREV_PATH',
 }
 
 export enum Investment {
