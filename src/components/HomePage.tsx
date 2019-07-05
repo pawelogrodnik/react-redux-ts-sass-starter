@@ -100,10 +100,8 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
         await this.props.getInvestments(query)
         this.setState({ investmentsVisible: true })
     }
-    public investmentClickAction = (id: number,ref:any) => {
-        console.log(ref.offsetTop)
+    public investmentClickAction = (id: number,ref:HTMLDivElement) => {
         sessionStorage.setItem('scrollToPosition', JSON.stringify(ref.offsetTop));
-        // this.setState({scrollToPosition: ref.offsetTop})
         history.push(`/investment/${id}`)
         
     }

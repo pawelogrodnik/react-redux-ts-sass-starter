@@ -32,27 +32,28 @@ import { connect } from 'react-redux';
 import { RootState } from './Store/Reducers/_RootReducer';
 import * as UserModule from 'Modules/UserModule';
 import ErrorHandler from './components/Layout/ErrorHandler';
+import * as H from 'history'
 
 type P = RootState;
 type PropsLocation = {
-    location: any
+    location: H.Location
 }
 type DispatchedP = {
     loginUserFromStorage: (user: UserModule.Types.User, token: string) => void;
-    setPrevPath: (prevPath:string) => void;
+    setPrevPath: (prevPath: string) => void;
 };
 type S = {
     loadingUserComplete: boolean;
-    staticPages: Array<any>;
-    // prevPath: string;
+    // staticPages: Array<string>;
+    isScrolled: boolean;
 };
 class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
     constructor(props: P & DispatchedP & PropsLocation) {
         super(props);
         this.state = {
             loadingUserComplete: false,
-            staticPages: ['/mission','/otherterms','/termsandconditions','/privacypolicy','/vip','/subscription','/dashboard/login','/returns','/program','/formofpayments','/faq','/execusiontime','/cooperation','/complaints','/career','/aboutus'],
-            // prevPath: ''
+            // staticPages: ['/mission','/otherterms','/termsandconditions','/privacypolicy','/vip','/subscription','/contact','/dashboard/login','/returns','/program','/formofpayments','/faq','/execusiontime','/cooperation','/complaints','/career','/aboutus'],
+            isScrolled: false
         };
     }
     public componentWillMount() {
@@ -65,8 +66,9 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
     }
   
     public componentDidUpdate() {
-        if(this.state.staticPages.includes(window.location.pathname)) {
+        if(this.props.location.pathname !== '/' && !this.state.isScrolled) {
             window.scrollTo(0,0);
+            this.setState({isScrolled: true})
         }
     }
 
@@ -74,8 +76,7 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
         if(nextProps.location !== this.props.location) {
             const path = this.props.location.pathname;
             this.props.setPrevPath(path);
-            // console.log(this.props.viewManagementStore.prevPath)
-            // this.setState({prevPath: path.substring(0, path.lastIndexOf('/'))})
+            this.setState({isScrolled: false})
         }
     }
 

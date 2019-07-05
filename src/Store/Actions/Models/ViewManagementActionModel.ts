@@ -1,5 +1,6 @@
 import * as ActionTypes from '../EnumTypes/ActionEnumTypes';
 
+
 export type ShowHeader = {
     type: ActionTypes.ViewManagement.SHOW_HEADER;
 };

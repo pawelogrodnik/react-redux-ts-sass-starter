@@ -5,11 +5,11 @@ import { baseURL } from 'src/Connectors/config';
 
 type P = {
     investment: InvestmentsModule.Types.Investment;
-    action: (blockRef) => void;
+    action: (blockRef:HTMLDivElement) => void;
 }
 
 export const InvestmentBlock = (props: P) => {
-    let blockRef:any = React.createRef();
+    let blockRef: any = React.createRef();
     return (
         <div className="investmentBlock" ref={(block) => {blockRef = block}}>
             <div className="investmentBlock__inner">
@@ -31,12 +31,12 @@ export const InvestmentBlock = (props: P) => {
 }
 
 
-export const InvestmentList = (props: { investmentList: Array<InvestmentsModule.Types.Investment>, action: (id: number,ref:any) => void }) => {
+export const InvestmentList = (props: { investmentList: Array<InvestmentsModule.Types.Investment>, action: (id: number,ref: HTMLDivElement) => void }) => {
     return (
         <>
         {
             props.investmentList.map((investment, i) => (
-                <InvestmentBlock key={Math.random()} investment={investment} action={(blockRef) => props.action(investment.id, blockRef)} />
+                <InvestmentBlock key={Math.random()} investment={investment} action={(blockRef: HTMLDivElement) => props.action(investment.id, blockRef)} />
             ))
         }
         </>

@@ -34,7 +34,7 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
     public render() {
         return (
             <div className="investmentList">
-                <h1>Lista inwestycji</h1>
+                <h2>Lista inwestycji</h2>
                 <ReactTable
                     showPagination={true}
                     sortable={true}
@@ -87,12 +87,12 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                         {
                             id: 'edit',
                             Cell: (props) => <span className={props.original.status === 'archived' ? 'action--disabled' : ''} onClick={() => props.original.status === 'archived' ? null : this.editProduct(props)}><i className="fas fa-edit" /></span>,
-                            width: 50
+                            width: 60
                         },
                         {
                             id: 'archive',
                             Cell: (props) => <span className={props.original.status === 'archived' ? 'action--disabled' : ''} onClick={() => props.original.status === 'archived' ? null : this.archiveProduct(props)}><i className="fas fa-trash" /></span>,
-                            width: 50
+                            width: 60
                         }
                     ]}
                 />

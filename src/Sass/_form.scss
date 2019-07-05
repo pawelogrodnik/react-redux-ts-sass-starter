@@ -167,6 +167,9 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
     .quarter {
         width: 25%;
         flex: 0 1 25%;
+        @media (max-width: 1200px) {
+            flex: 0 1 50%;
+        }
     }
     &--searchInvestments {
         &__range-wrapper {
@@ -223,6 +226,13 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
         &__content {
             display: flex;
             flex-wrap: wrap;
+        }
+        @media (max-width: 767px) {
+            &_l,
+            &_r {
+                flex: 0 1 100%;
+                padding: 0 10px 0 0 ;
+            }
         }
     }
     &_field {

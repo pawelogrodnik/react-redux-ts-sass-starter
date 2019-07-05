@@ -46,7 +46,7 @@ function setWhiteHeader(): ViewsManagementModel.SetWhiteHeader {
         type: ActionTypes.ViewManagement.SET_WHITE_HEADER
     };
 }
-function setPrevPath(prevPath:string): ViewsManagementModel.SetPrevPath {
+function setPrevPath(prevPath: string): ViewsManagementModel.SetPrevPath {
     return {
         type: ActionTypes.ViewManagement.SET_PREV_PATH,
         payload:{

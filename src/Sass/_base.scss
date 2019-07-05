@@ -536,8 +536,15 @@ textarea {
         padding: 15px 30px;
         background-color: rgba(red, 0.7);
         text-align: center;
+        height: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         pre {
             font-size: 10px;
+        }
+        p {
+            margin-bottom: 0;
         }
     }
     &__exit {

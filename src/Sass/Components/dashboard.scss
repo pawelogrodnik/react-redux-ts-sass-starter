@@ -26,12 +26,35 @@
             }
         }
         &__content {
-            margin: 50px;
+            margin: 40px 0 0 20px;
             width: 100%;
+            overflow-x: auto;
         }
     }
     &--singleInvestment {
         margin-top: 150px;
+    }
+}
+@media (max-width: 767px) {
+    .page {
+        &--dashboard {
+            flex-direction: column;
+            &__menu {
+                min-height: unset;
+                flex: 0 1 70px;
+                ul {
+                    display: flex;
+                    justify-content: space-around;
+                    li {
+                        width: unset;
+                    
+                    }
+                }
+            }
+            &__content {
+                margin: 20px 5px;
+            }
+        }
     }
 }
 .investmentBlock {

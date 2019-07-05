@@ -4,6 +4,7 @@ import * as UserModule from 'Modules/UserModule';
 import * as ViewManagementModule from 'Modules/ViewManagementModule';
 import { history } from './../../App';
 import API from './../../Connectors/config';
+import * as ErrorActions from './ErrorActions';
 
 function loginUser(username: string, password: string) {
     return async dispatch => {
@@ -17,6 +18,8 @@ function loginUser(username: string, password: string) {
 
         } catch (err) {
             dispatch(loginUserFailure());
+            console.log(err.response)
+            dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
             dispatch(ViewManagementModule.Actions.hideLoader())
         }
     };

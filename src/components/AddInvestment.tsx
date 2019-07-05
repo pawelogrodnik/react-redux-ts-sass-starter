@@ -44,7 +44,7 @@ class AddInvestment extends React.Component<DispatchedP & ConnectedP & P, any> {
         }
         return (
             <div className="addInvestment">
-                <h1>{this.props.match.params.investmentId ? 'Edytuj' : 'Dodaj'} inwestycję</h1>
+                <h2>{this.props.match.params.investmentId ? 'Edytuj' : 'Dodaj'} inwestycję</h2>
                 <AddInvestmentForm onSubmit={async (data) => await (this.props.addInvestment(data))} initialValues={initialValues} />
             </div>
         )

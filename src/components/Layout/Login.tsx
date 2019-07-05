@@ -34,7 +34,7 @@ class Login extends React.Component<DispatchedP & ConnectedP, any> {
         return (
             <div className="login">
                 <div className="login__inner">
-                    <h1>Logowanie</h1>
+                    <h2>Logowanie</h2>
                     <LoginForm onSubmit={this.handleSubmit} />
                 </div>
             </div>

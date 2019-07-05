@@ -20,6 +20,11 @@ class ErrorHandler extends React.Component<DispatchedP & ConnectedP, {}> {
 
     public render() {
         const { errorStore } = this.props;
+        const errorText = errorStore.responseError.statusText !== 'Unauthorized' ? (
+            <p>Wystąpił błąd. Spróbuj ponownie później lub skontaktuj się z nami pod adresem <a href="mailto:">kontakt@obligain.com</a></p>
+            ) : (
+                <p>Niepoprawne dane logowania</p>
+            );
         if (
             errorStore.responseError.status
         ) {
@@ -32,9 +37,7 @@ class ErrorHandler extends React.Component<DispatchedP & ConnectedP, {}> {
                             </div>
                         ) : (
                             <>
-                                <p>
-                                    Wystąpił błąd. Spróbuj ponownie później lub skontaktuj się z nami pod adresem <a href="mailto:">kontakt@obligain.com</a>
-                                </p>
+                                {errorText}
                             </>
                         )}
                     </div>
