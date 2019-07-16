@@ -415,6 +415,26 @@ textarea {
     }
     .row {
         width: 100%;
+        .col {
+            div {
+                &:nth-child(2){
+                    padding: 10px 0;
+                    margin-top: 30px;
+                }
+            }
+        }
+        @media only screen and (max-width: 767px) {
+             .col {
+                padding: 20px 0 0 0;
+                div {
+                    &:last-child{
+                        background-color: white;
+                        padding: 20px 0px;
+                        margin: 20px -15px 0 -15px;
+                    }
+                }
+            }
+        }
         @media only screen and (min-width: 768px) {
             height: 80px;
             &--divider {
@@ -485,15 +505,14 @@ textarea {
     width: 100%;
     background-size: cover;
     background-position: center;
-    min-height: 90vh;
+    min-height: 80vh;
     background-image: url('/contact.jpeg');
     .contactBox {
         background-color: white;
         width: 82%;
         min-width: 350px;
-        margin: 0 auto;
         border-radius: 3px;
-        margin-top: 60px;
+        margin: 60px auto;
         min-height: 400px;
         @media (min-width:668px) {
             .form {

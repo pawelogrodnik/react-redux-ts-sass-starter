@@ -6,6 +6,7 @@ import { baseURL } from './../Connectors/config';
 import ImageSlider from './../components/ImageSlider';
 import ContactBanner from './ContactBanner';
 import * as Dictionary from './../Models/Dictionary';
+import { replace } from 'react-router-redux';
 
 type P = {
     match: any;
@@ -28,6 +29,7 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
         window.scrollTo(0,0);
     }
     public render() {
+
         return (
             <div className="page page--singleInvestment">
                 {this.props.investmentDetails && (
@@ -42,17 +44,38 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                             <div className="singleProductComparision">
                                 <div className="row grey">
                                     <div className="col">
-                                        <i className="fas fa-percent" />
-                                        Oprocentowanie</div>
+                                        <div>
+                                            <i className="fas fa-percent" />
+                                            Oprocentowanie</div>
+                                        <div>
+                                            {this.props.investmentDetails.basicParams.interest === 0 ?
+                                                "Zmienne" : this.props.investmentDetails.basicParams.interest + "%"
+                                            }
+                                        </div>
+                                    </div>
                                     <div className="col">
-                                        <i className="fas fa-business-time" />
-                                        Czas trwania</div>
+                                        <div>
+                                            <i className="fas fa-business-time" />
+                                            Czas trwania
+                                            </div>
+                                        <div>
+                                            {this.props.investmentDetails.basicParams.duration === 0 ?
+                                                "Nieoznaczony" : this.props.investmentDetails.basicParams.duration + " miesięcy"
+                                            }
+                                        </div>
+                                    </div>
                                     <div className="col">
-                                        <i className="fas fa-tachometer-alt" />
-                                        Skala ryzyka</div>
+                                        <div>
+                                            <i className="fas fa-tachometer-alt" />
+                                            Skala ryzyka
+                                        </div>
+                                        <div>
+                                            {this.props.investmentDetails.basicParams.risk} / 10
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="row row--divider">
-                                    <div className="col">
+                                    {/* <div className="col">
                                         {this.props.investmentDetails.basicParams.interest === 0 ?
                                             "Zmienne" : this.props.investmentDetails.basicParams.interest + "%"
                                         }
@@ -62,7 +85,7 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                             "Nieoznaczony" : this.props.investmentDetails.basicParams.duration + " miesięcy"
                                         }
                                     </div>
-                                    <div className="col">{this.props.investmentDetails.basicParams.risk} /10</div>
+                                    <div className="col">{this.props.investmentDetails.basicParams.risk} /10</div> */}
                                 </div>
                             </div>
                             <div className="productDataDetails">
@@ -72,10 +95,11 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                     <div><span>PUM [m2]:</span><span>{this.props.investmentDetails.detailedParams.pum}</span></div>}
                                 {this.props.investmentDetails.type === flat &&
                                     <div><span>Piętro:</span><span>{this.props.investmentDetails.detailedParams.floorNumber}</span></div>}
-                                <div><span>Cena w serwisie:</span><span>{this.props.investmentDetails.detailedParams.priceService} zł</span></div>
-
+                                <div><span>Cena w serwisie:</span><span>{new Intl.NumberFormat('pl-PL').format(parseFloat(this.props.investmentDetails.detailedParams.priceService.replace(/\s+/g, '').replace(/,/g, '.')))} zł</span></div>
+                                
                                 {(this.props.investmentDetails.type === flat || this.props.investmentDetails.type === parcel || this.props.investmentDetails.type === hotel || this.props.investmentDetails.type === dorm || this.props.investmentDetails.type === vehicle || this.props.investmentDetails.type === franchise) &&
-                                    <div><span>Cena rynkowa:</span><span>{this.props.investmentDetails.detailedParams.priceMarket} zł</span></div>}
+                                    <div><span>Cena rynkowa:</span><span>{new Intl.NumberFormat('pl-PL').format(parseFloat(this.props.investmentDetails.detailedParams.priceMarket.replace(/\s+/g, '').replace(/,/g, '.')))} zł</span></div>}
+                                    {/* {Number(this.props.investmentDetails.detailedParams.priceMarket.replace(/\s+/g, '')).toLocaleString()} */}
                                 {this.props.investmentDetails.type === parcel &&
                                     <div><span>ROI:</span><span>{this.props.investmentDetails.detailedParams.roi}</span></div>}
                                 {this.props.investmentDetails.type === hotel &&
