@@ -238,7 +238,7 @@ textarea {
 }
 
 .introTextBanner__inner {
-    padding: 100px 0 80px 0;
+    padding: 100px 5px 80px 5px;
     background-color: #f8f8f8;
     margin-bottom: 60px;
 }
@@ -396,6 +396,9 @@ textarea {
 
 .titleLabel {
     font-weight: 500;
+    @media (max-width: 767px) {
+        font-size: 30px;
+    }
 }
 .subtitleLabel {
     font-weight: 400;
@@ -609,9 +612,11 @@ textarea {
     width: 100%;
     background-size: cover;
     background-position: center;
-    @media (max-width: 767px) {
-        background-size: contain;
-        background-repeat: no-repeat;
+    @media (max-width: 1024px) {
+        // background-size: contain;
+        // background-repeat: no-repeat;
+        background-image: unset !important;
+        height: 10px;
     }
 }
 
@@ -761,4 +766,32 @@ textarea {
     width: 100%;
     background-size: cover;
     background-position: center;
+}
+.carousel,
+.carousel-slider{
+    .control-prev.control-arrow {
+        opacity: 0.7 !important;
+        left: unset;
+        &::before {
+            margin: 0 !important;
+            border-top: 15px solid transparent !important;
+            border-bottom: 15px solid transparent !important;
+            border-right: 15px solid #fff !important;
+        }
+    }
+    .control-next {
+        opacity: 0.7 !important;
+        &::before {
+            border-left: 15px solid #fff!important;
+            border-top: 15px solid transparent !important;
+            border-bottom: 15px solid transparent !important;
+        }
+    }
+    .slide {
+        background: transparent !important;
+    }
+    &__container {
+        margin: 0 -15px;
+        
+    }
 }

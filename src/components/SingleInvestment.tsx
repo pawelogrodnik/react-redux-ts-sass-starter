@@ -28,6 +28,17 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
         await this.props.getInvestmentDetails(this.props.match.params.id);
         window.scrollTo(0,0);
     }
+
+    public checkPlural(value:number) {
+        if(value === 1) {
+            return `${value} miesiąc`
+        } else if(value % 10 >= 2 && value % 10 <= 4 && (value % 100 < 10 || value % 100 >= 20)) {
+            return `${value} miesiące`
+        } else {
+            return `${value} miesięcy`
+        }
+    }
+
     public render() {
 
         return (
@@ -59,8 +70,11 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                             Czas trwania
                                             </div>
                                         <div>
-                                            {this.props.investmentDetails.basicParams.duration === 0 ?
-                                                "Nieoznaczony" : this.props.investmentDetails.basicParams.duration + " miesięcy"
+                                            {this.props.investmentDetails.basicParams.duration === 0 ? (
+                                                "Nieoznaczony" 
+                                            ) : (
+                                                this.checkPlural(this.props.investmentDetails.basicParams.duration)
+                                            )
                                             }
                                         </div>
                                     </div>
