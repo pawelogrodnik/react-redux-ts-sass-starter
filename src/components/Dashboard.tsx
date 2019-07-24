@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import Login from 'components/Layout/Login';
 import ManageInvestment from 'components/AddInvestment';
 import InvestmentsList from 'components/InvestmentsList';
+import EditUser from 'components/EditUser';
 import { Link } from 'react-router-dom';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
 import * as UserModule from 'Modules/UserModule';
@@ -49,29 +50,40 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                 <div className="page--dashboard__menu">
                     <ul>
                         <Link to={'/'}><li><img src="/home.png" /></li></Link>
-                        {localStorage.getItem('token') ? (
+                        {localStorage.getItem('token') && localStorage.getItem('role') !== 'CUSTOMER' ? (
                             <>
-                            <Link to={'/dashboard/'}><li><i className="fas fa-list-ol" /></li></Link>
-                            <Link to={'/dashboard/investments/add'}><li><i className="fas fa-plus" /></li></Link>
-                            <li onClick={this.handleLogout}><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
+                                <Link to={'/dashboard/'}><li><i className="fas fa-list-ol" /></li></Link>
+                                <Link to={'/dashboard/investments/add'}><li><i className="fas fa-plus" /></li></Link>
+                                <li onClick={this.handleLogout}><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
+                            </>
+                         ) : (localStorage.getItem('token') && localStorage.getItem('role') == 'CUSTOMER' ? (
+                            <>
+                                <Link to={'/dashboard/'}><li><i className="fas fa-user-cog" /></li></Link>
+                                <li onClick={this.handleLogout}><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
                             </>
                          ) : (
-                            <Link to={'/dashboard/login'}><li><i className="fas fa-sign-in-alt" /></li></Link>
+                             <Link to={'/dashboard/login'}><li><i className="fas fa-sign-in-alt" /></li></Link>
+                         )
                         )}
                     </ul>
                 </div>
                 <div className="page--dashboard__content">
-                    {localStorage.getItem('token') ? (
+                    {localStorage.getItem('token') && localStorage.getItem('role') !== 'CUSTOMER' ? (
                         <Switch>
                             <Route exact path={'/dashboard/'} component={InvestmentsList} />
                             <Route exact path={'/dashboard/investments/add'} component={ManageInvestment} />
                             <Route exact path={'/dashboard/investments/:investmentId'} component={ManageInvestment} />
                         </Switch>
-                    ) : (
-                            <Switch>
-                                <Route path={'/dashboard'} component={Login} />
-                            </Switch>
-                        )}
+                    ) : ( localStorage.getItem('token') && localStorage.getItem('role') == 'CUSTOMER' ? (
+                        <Switch>
+                            <Route exact path={'/dashboard/'} component={EditUser} />
+                        </Switch>   
+                    ): (
+                        <Switch>
+                         <Route path={'/dashboard'} component={Login} />
+                        </Switch>
+                    )
+                    )}
                 </div>
             </div>
         )

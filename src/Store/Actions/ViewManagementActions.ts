@@ -34,6 +34,20 @@ function hideLoader(): ViewsManagementModel.HideLoader {
         type: ActionTypes.ViewManagement.HIDE_LOADER
     };
 }
+function showPopup(typePopup: string): ViewsManagementModel.ShowPopup {
+    return {
+        type: ActionTypes.ViewManagement.SHOW_POPUP,
+        payload: {
+            typePopup
+        }
+    };
+}
+
+function hidePopup(): ViewsManagementModel.HidePopup {
+    return {
+        type: ActionTypes.ViewManagement.HIDE_POPUP
+    };
+}
 
 function setBlueHeader(): ViewsManagementModel.SetBlueHeader {
     return {
@@ -61,6 +75,8 @@ export {
     hideFooter,
     showLoader,
     hideLoader,
+    showPopup,
+    hidePopup,
     setBlueHeader,
     setWhiteHeader,
     setPrevPath

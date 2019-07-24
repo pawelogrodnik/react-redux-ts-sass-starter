@@ -16,11 +16,21 @@ export type ShowFooter = {
 export type HideFooter = {
     type: ActionTypes.ViewManagement.HIDE_FOOTER;
 };
+
 export type ShowLoader = {
     type: ActionTypes.ViewManagement.SHOW_LOADER;
 };
 export type HideLoader = {
     type: ActionTypes.ViewManagement.HIDE_LOADER;
+};
+export type ShowPopup = {
+    type: ActionTypes.ViewManagement.SHOW_POPUP;
+    payload: {
+        typePopup: string;
+    }
+};
+export type HidePopup = {
+    type: ActionTypes.ViewManagement.HIDE_POPUP;
 };
 export type SetBlueHeader = {
     type: ActionTypes.ViewManagement.SET_BLUE_HEADER;
@@ -43,6 +53,8 @@ export type ViewsManagemenetAction =
     | HideFooter
     | ShowLoader
     | HideLoader
+    | ShowPopup
+    | HidePopup
     | SetBlueHeader
     | SetWhiteHeader
     | SetPrevPath;

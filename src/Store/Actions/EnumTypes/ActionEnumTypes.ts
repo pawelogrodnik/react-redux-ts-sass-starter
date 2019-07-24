@@ -2,7 +2,9 @@ export enum User {
     LOG_IN = 'LOG_IN',
     LOG_IN_SUCCESS = 'LOG_IN_SUCCESS',
     LOG_IN_FAILURE = 'LOG_IN_FAILURE',
-    LOG_OUT = 'LOG_OUT'
+    LOG_OUT = 'LOG_OUT',
+    REGISTER_USER = 'REGISTER_USER',
+    EDIT_USER = 'EDIT_USER'
 }
 
 export enum ViewManagement {
@@ -12,6 +14,8 @@ export enum ViewManagement {
     HIDE_HEADER = 'HIDE_HEADER',
     SHOW_FOOTER = 'SHOW_FOOTER',
     HIDE_FOOTER = 'HIDE_FOOTER',
+    SHOW_POPUP = 'SHOW_POPUP',
+    HIDE_POPUP = 'HIDE_POPUP',
     SET_BLUE_HEADER = 'SET_BLUE_HEADER',
     SET_WHITE_HEADER = 'SET_WHITE_HEADER',
     SET_PREV_PATH = 'SET_PREV_PATH',

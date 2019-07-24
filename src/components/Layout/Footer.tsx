@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { RootState } from '../../Store/Reducers/_RootReducer'
+import { connect } from 'react-redux';
+
+// type P = RootState;
 
 export default class Footer extends React.Component<any, any> {
     public render() {
         return (
-            <footer className="footer">
+            <footer className={this.props.popupVisible ? 'footer blurred' : 'footer'}>
                 <div className="footer__inner container">
                     <div className="footer__l">
                         <h2>
@@ -29,6 +33,7 @@ export default class Footer extends React.Component<any, any> {
                                     <Link to={'/dashboard'}>Dashboard</Link>
                                 </li>
                             )}
+                            <Link to="/register"><li>Rejestracja</li></Link>
                             <li>
                                 <Link to={'/aboutus'}>O Obligain</Link>
                             </li>
@@ -57,3 +62,13 @@ export default class Footer extends React.Component<any, any> {
         );
     }
 }
+
+// function mapStateToProps(state: RootState) {
+//     return {
+//         ...state
+//     };
+// }
+// export default connect(
+//     mapStateToProps,
+//     null
+// )(Footer)

@@ -9,3 +9,11 @@ export function loginUser(username: string, password: string): AxiosPromise<User
 export function logout(): AxiosPromise<UserModule.Types.User> {
     return API.get('logout', config(null, {'x-auth-token': localStorage.getItem('token')}));
 }
+
+export function RegisterUser(newUser: UserModule.Types.RegisterUser): AxiosPromise<any> {
+    return API.post('register', newUser);
+}
+
+export function EditUser(newUserData: UserModule.Types.RegisterUser): AxiosPromise<any> {
+    return API.post('user/update', newUserData, config(null, { 'x-auth-token': localStorage.getItem('token') }));
+}

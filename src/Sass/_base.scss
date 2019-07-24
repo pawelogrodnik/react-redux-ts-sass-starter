@@ -20,6 +20,7 @@ body {
     min-height: 100vh;
     position: relative;
     overflow: hidden;
+    
 }
 a,
 .fake-a {
@@ -794,4 +795,12 @@ textarea {
         margin: 0 -15px;
         
     }
+}
+.blurred {
+    transform: scale(1.06);
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
 }

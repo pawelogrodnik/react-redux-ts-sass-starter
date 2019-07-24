@@ -13,7 +13,7 @@ export type QueryParams = {
 // PROD:
 // export const baseURL = '//obligain.com/api/public_html/';
 // TEST:
-export const baseURL = '//obligacje-app.k-org.pl/';
+export const baseURL = '//obligain.k-org.pl/api/public_html/';
 
 export let activeToken = (store.getState() as RootState).userStore.token ? store.getState().userStore.token : localStorage.getItem('token');
 

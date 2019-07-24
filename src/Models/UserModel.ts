@@ -15,3 +15,18 @@ export type User = {
     userName: string;
     authToken: string;
 }
+
+export type RegisterUser = {
+    firstname: string;
+    lastname: string;
+    email: string;
+    phone: number;
+    password: string;
+    confirmation: string;
+    street: string;
+    houseNumber: number;
+    flatNumber: number;
+    postCode: any;
+    city: string;
+    country: string;
+}

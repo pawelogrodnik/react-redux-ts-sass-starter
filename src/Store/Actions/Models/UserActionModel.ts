@@ -17,8 +17,17 @@ export type LogoutUser = {
     type: ActionTypes.User.LOG_OUT;
 };
 
+export type RegisterUser = {
+    type: ActionTypes.User.REGISTER_USER;
+};
+export type EditUser = {
+    type: ActionTypes.User.EDIT_USER;
+};
+
 export type UserAction =
     | LoginUser
     | LoginUserSuccess
     | LoginUserFailure
-    | LogoutUser;
+    | LogoutUser
+    | RegisterUser
+    | EditUser;

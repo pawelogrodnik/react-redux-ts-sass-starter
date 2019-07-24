@@ -235,6 +235,19 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
             }
         }
     }
+    &--editUser {
+        .form {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%
+        }
+        &_l,
+        &_r {
+            flex: 0 1 50%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
     &_field {
         margin-bottom: 15px;
         &--fileinput {

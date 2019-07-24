@@ -22,6 +22,7 @@ import OtherTerms from './components/StaticPages/OtherTerms';
 import Mission from './components/StaticPages/Mission';
 import Loader from './components/Layout/Loader';
 import MetaTags from './components/MetaTags';
+import Registration from './components/Registration';
 import * as ViewManagementModule from './store/../Modules/ViewManagementModule';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
@@ -32,6 +33,7 @@ import { connect } from 'react-redux';
 import { RootState } from './Store/Reducers/_RootReducer';
 import * as UserModule from 'Modules/UserModule';
 import ErrorHandler from './components/Layout/ErrorHandler';
+import Popup from './components/Layout/Popup';
 import * as H from 'history'
 
 type P = RootState;
@@ -41,6 +43,7 @@ type PropsLocation = {
 type DispatchedP = {
     loginUserFromStorage: (user: UserModule.Types.User, token: string) => void;
     setPrevPath: (prevPath: string) => void;
+    showPopup: (typePopup: string) => void;
 };
 type S = {
     loadingUserComplete: boolean;
@@ -56,6 +59,16 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
             isScrolled: false
         };
     }
+
+    public componentDidMount() {
+        if(this.props.location.pathname == '/dashboard/login' && this.props.location.search == '?status=successfully_confirmed') {
+            this.props.showPopup('confirmUserSuccess');
+        } else if(this.props.location.pathname == '/dashboard/login' && this.props.location.search == '?status=code_already_used') {
+            this.props.showPopup('confirmUserCodeUsed');
+        }
+
+    }
+
     public componentWillMount() {
         if (localStorage.getItem('token')) {
             const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
@@ -78,6 +91,8 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
             this.props.setPrevPath(path);
             this.setState({isScrolled: false})
         }
+        console.log("WillReceive")
+        console.log(this.props.location.pathname)
     }
 
     public render() {
@@ -86,8 +101,9 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
                 <div className="main-wrapper">
                     <MetaTags />
                     <ErrorHandler />
+                    <Popup />
                     {this.props.viewManagementStore.headerVisible && <Header whiteHeader={this.props.viewManagementStore.whiteHeader} />}
-                    <div className="pages__inner">
+                    <div className={this.props.viewManagementStore.popupVisible ? 'pages__inner blurred' : 'pages__inner'}>
                         <Switch>
                             <Route exact path={'/'} component={HomePage}/>} />
                             <Route path={'/dashboard'} component={Dashboard} />
@@ -96,6 +112,7 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
                             <Route path={'/career'} component={Career} />
                             <Route path={'/complaints'} component={Complaints} />
                             <Route path={'/contact'} component={Contact} />
+                            <Route path={'/register'} component={Registration} />
                             <Route path={'/cooperation'} component={Cooperation} />
                             <Route path={'/execusiontime'} component={ExecusionTime} />
                             <Route path={'/faq'} component={FAQ} />
@@ -110,7 +127,7 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
                             <Route path={'/mission'} component={Mission} />
                         </Switch>
                     </div>
-                    {this.props.viewManagementStore.footerVisible && <Footer user={this.props.userStore.user} />}
+                    {this.props.viewManagementStore.footerVisible && <Footer user={this.props.userStore.user} popupVisible={this.props.viewManagementStore.popupVisible} />}
                     {this.props.viewManagementStore.loaderVisible && <Loader />}
                 </div>
             );
@@ -125,6 +142,7 @@ export const history = createHistory();
 const mapDispatchToProps: DispatchedP = {
     loginUserFromStorage: (user: UserModule.Types.User, token: string) => UserModule.Actions.loginUserSuccess(user, token),
     setPrevPath: (prevPath:string) => ViewManagementModule.Actions.setPrevPath(prevPath),
+    showPopup: (typePopup) => ViewManagementModule.Actions.showPopup(typePopup),
 };
 
 function mapStateToProps(state: RootState) {

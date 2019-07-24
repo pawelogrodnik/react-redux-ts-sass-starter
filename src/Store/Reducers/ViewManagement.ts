@@ -8,8 +8,10 @@ export const initialState: State = {
     loaderVisible: false,
     footerVisible: true,
     headerVisible: true,
+    popupVisible: false,
     whiteHeader: false,
-    prevPath: ''
+    prevPath: '',
+    typePopup: ''
 };
 
 export function viewManagementReducer(state: State = initialState, action: ViewsManagemenetAction) {
@@ -48,6 +50,19 @@ export function viewManagementReducer(state: State = initialState, action: Views
             return {
                 ...state,
                 loaderVisible: false
+            };
+        }
+        case ActionTypes.ViewManagement.SHOW_POPUP: {
+            return {
+                ...state,
+                popupVisible: true,
+                typePopup: action.payload.typePopup
+            };
+        }
+        case ActionTypes.ViewManagement.HIDE_POPUP: {
+            return {
+                ...state,
+                popupVisible: false
             };
         }
         case ActionTypes.ViewManagement.SET_WHITE_HEADER: {
