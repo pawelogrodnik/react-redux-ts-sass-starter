@@ -4,7 +4,7 @@ export enum InvestmentType {
     diamonds = 'diamonds',
     token = 'token',
     whisky = 'whisky',
-    hotel = 'Hotel',
+    hotel = 'hotel',
     parcel = 'parcel',
     flat = 'flat',
     dorm = 'dorm',
