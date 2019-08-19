@@ -5,22 +5,63 @@ import * as ViewManagementModule from '../../Store/../Modules/ViewManagementModu
 import { ErrorStore } from './../../Store/Actions/Models/ErrorActionsModel';
 import { connect } from 'react-redux';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
+import { resetPassword } from 'src/Connectors/UserConnector';
+
+type resetPasswordData = {
+    password: string,
+    confirmation: string,
+    code: string
+}
 
 type DispatchedP = {
     hidePopup: () => void;
+    resetPassword: (email: Object) => void;
+    resetPasswordContinue: (data: resetPasswordData) => void;
 };
 
 type ConnectedP = {
-    viewManagement: ViewManagementModule.Types.ViewManagementStore
+    viewManagement: ViewManagementModule.Types.ViewManagementStore,
+    resetPasswordCode: string,
 };
 
-class Popup extends React.Component<DispatchedP & ConnectedP, {}> {
+type S = {
+    email: string,
+    password: string,
+    confirmation: string,
+    alert:string
+}
+
+class Popup extends React.Component<DispatchedP & ConnectedP, S> {
     constructor(props) {
         super(props);
+        this.state = {
+            email: null,
+            password: '',
+            confirmation: '',
+            alert: null
+        }
     }
 
     public handleChildClick(e: any) {
         e.stopPropagation();
+    }
+
+    public confirmPassword() {
+        const {password,confirmation} = this.state;
+        const resetPasswordCode = this.props.resetPasswordCode;
+        if(password == '' || confirmation == '') {
+           this.setState({alert: 'Uzupełnij puste pole!'})
+        } else if(password !== confirmation) {
+            this.setState({alert: 'Hasła się niezgodne!'})
+        } else {
+            this.setState({alert:null})
+            const data = {
+                password,
+                confirmation,
+                code: resetPasswordCode
+            }
+            this.props.resetPasswordContinue(data);
+        }
     }
     
     public generateContent() {
@@ -58,6 +99,45 @@ class Popup extends React.Component<DispatchedP & ConnectedP, {}> {
                     </>
                 )
             }
+            case 'resetPassword': {
+                return (
+                    <div className="popup__message--resetPassword">
+                        <h2>Wprowadź email konta</h2>
+                        <input type="email" placeholder="Wpisz email konta" onChange={e => this.setState({email: e.target.value})} />
+                        <button className="btn btn--main" onClick={() => this.props.resetPassword(this.state.email)}>Wyślij</button>
+                    </div>
+                )
+            }
+            case 'resetPasswordSendEmail': {
+                return (
+                    <>
+                        <h2>Na Twoje konto mailowe został wysłany link do resetu hasła!</h2>
+                        <i className="far fa-check-circle" />
+                    </>
+                )
+            }
+            case 'resetPasswordContinue': {
+                return (
+                    <div className="popup__message--resetPassword">
+                        <h2>Wprowadź nowe hasło</h2>
+                        <input type="password" placeholder="Wpisz nowe hasło" onChange={e => this.setState({password: e.target.value})} />
+                        <input type="password" placeholder="Potwierdź hasło" onChange={e => this.setState({confirmation: e.target.value})} />
+                        <p>{this.state.alert}</p>
+                        <button className="btn btn--main" onClick={() => {
+                            this.confirmPassword();
+                            }
+                            }>Zmień hasło</button>
+                    </div>
+                )
+            }
+            case 'resetPasswordSuccess': {
+                return (
+                    <>
+                        <h2>Hasło do Twojego konta zostało pomyślnie zmienione!</h2>
+                        <i className="far fa-check-circle" />
+                    </>
+                )
+            }
             default: {
                 return null;
             }
@@ -85,11 +165,14 @@ class Popup extends React.Component<DispatchedP & ConnectedP, {}> {
 
 function mapStateToProps(state: RootState): ConnectedP {
     return {
-        viewManagement: state.viewManagementStore
+        viewManagement: state.viewManagementStore,
+        resetPasswordCode: state.userStore.resetPasswordCode
     };
 }
 const mapDispachToProps: DispatchedP = {
-    hidePopup: () => ViewManagementModule.Actions.hidePopup()
+    hidePopup: () => ViewManagementModule.Actions.hidePopup(),
+    resetPassword: (email: string) => UserModule.Actions.resetPassword(email),
+    resetPasswordContinue: (data: resetPasswordData) => UserModule.Actions.resetPasswordContinue(data),
 }
 export default connect(
     mapStateToProps,

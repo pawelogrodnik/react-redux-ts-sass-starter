@@ -6,7 +6,10 @@ export type State = Types.UserStore;
 
 export const initialState: State = {
     token: null,
-    user: null
+    user: null,
+    loggedUserData: null,
+    resetPasswordCode: null,
+
 };
 
 export function userReducer(state: State = initialState, action: UserAction) {
@@ -18,12 +21,25 @@ export function userReducer(state: State = initialState, action: UserAction) {
                token: action.payload.token
             };
         }
-        case ActionTypes.User.LOG_OUT: {
+        case ActionTypes.User.LOG_OUT_SUCCESS: {
             localStorage.removeItem('user');
             localStorage.removeItem('token');
             return {
-                ...state
+                ...state,
+                loggedUserData: null
             }
+        }
+        case ActionTypes.User.GET_LOGGED_USER_DATA: {
+            return {
+                ...state,
+                loggedUserData: action.payload.userData
+            };
+        }
+        case ActionTypes.User.SET_RESET_CODE: {
+            return {
+                ...state,
+                resetPasswordCode: action.payload.code
+            };
         }
         default: {
             return state;

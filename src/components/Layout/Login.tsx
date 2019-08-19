@@ -10,6 +10,7 @@ type DispatchedP = {
     hideFooter: () => void;
     hideHeader: () => void;
     loginUser: (username: string, password: string) => void;
+    showPopup: (type: string) => void;
 }
 type ConnectedP = {
     userStore: UserModule.Types.UserStore;
@@ -36,6 +37,7 @@ class Login extends React.Component<DispatchedP & ConnectedP, any> {
                 <div className="login__inner">
                     <h2>Logowanie</h2>
                     <LoginForm onSubmit={this.handleSubmit} />
+                    <p onClick={() => this.props.showPopup('resetPassword')}>Nie pamiętasz hasła?</p>
                 </div>
             </div>
         )
@@ -46,6 +48,7 @@ const mapDispatchToProps: DispatchedP = {
     hideFooter: () => ViewManagementModule.Actions.hideFooter(),
     hideHeader: () => ViewManagementModule.Actions.hideHeader(),
     loginUser: (username: string, password: string) => UserModule.Actions.loginUser(username, password),
+    showPopup: (type: string) => ViewManagementModule.Actions.showPopup(type),
 };
 
 function mapStateToProps(state: RootState) {

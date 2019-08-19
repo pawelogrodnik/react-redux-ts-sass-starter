@@ -10,8 +10,18 @@
             margin-top: 150px;
         }
         min-width: 300px;
-        h2,p {
+        h2{
             text-align: center;
+        }
+        p {
+            font-size: 13px;
+            color: #9a8352;
+            text-align: right !important;
+            margin: -5px 0;
+            &:hover {
+                color: #c3b28c;
+                cursor: pointer;
+            }
         }
         .btn {
             width: 100%;

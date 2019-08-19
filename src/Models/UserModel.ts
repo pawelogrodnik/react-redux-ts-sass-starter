@@ -3,6 +3,8 @@ import * as EnumTypes from './EnumTypes/UserEnumTypes';
 export type UserStore = {
     user: User;
     token: string;
+    loggedUserData: RegisterUser;
+    resetPasswordCode: string;
 };
 
 export type User = {

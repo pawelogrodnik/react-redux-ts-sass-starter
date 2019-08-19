@@ -8,19 +8,26 @@ import EditUserForm from './Forms/EditUserForm';
 
 type DispatchedP = {
     editUser: (newUser: any) => void;
+    getLoggedUserdata: () => void;
+}
+type ConnectedP = {
+    loggedUserData: any
 }
 
-class EditUser extends React.Component<DispatchedP, any> {
-    constructor(props: DispatchedP) {
+class EditUser extends React.Component<DispatchedP & ConnectedP, any> {
+    constructor(props: DispatchedP & ConnectedP) {
         super(props);
     }
 
+    public componentWillMount() {
+        this.props.getLoggedUserdata();
+    }
+
     public render() {
-     
         return (
             <div className="edituser">
                 <h2>Edycja danych</h2>
-                <EditUserForm onSubmit={async (data) => await (this.props.editUser(data))}/>
+                <EditUserForm onSubmit={async (data) => await (this.props.editUser(data))} initialValues={this.props.loggedUserData}/>
             </div>
         )
     }
@@ -29,12 +36,13 @@ class EditUser extends React.Component<DispatchedP, any> {
 
 const mapDispatchToProps: DispatchedP = {
     editUser: (data: any) => UserModule.Actions.editUser(data),
+    getLoggedUserdata: () => UserModule.Actions.getLoggedUserData(),
 };
 
-// function mapStateToProps(state: RootState): ConnectedP {
-//     return {
-//         activeInvestment: InvestmentModule.Selectors.getActiveInvestment(state.investmentStore)
-//     }
-// }
+function mapStateToProps(state: RootState): ConnectedP {
+    return {
+        loggedUserData: state.userStore.loggedUserData
+    }
+}
 
-export default connect(null, mapDispatchToProps)(EditUser)
+export default connect(mapStateToProps, mapDispatchToProps)(EditUser)

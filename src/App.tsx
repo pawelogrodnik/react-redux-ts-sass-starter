@@ -44,6 +44,7 @@ type DispatchedP = {
     loginUserFromStorage: (user: UserModule.Types.User, token: string) => void;
     setPrevPath: (prevPath: string) => void;
     showPopup: (typePopup: string) => void;
+    setResetCode: (code:string) => void;
 };
 type S = {
     loadingUserComplete: boolean;
@@ -65,6 +66,12 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
             this.props.showPopup('confirmUserSuccess');
         } else if(this.props.location.pathname == '/dashboard/login' && this.props.location.search == '?status=code_already_used') {
             this.props.showPopup('confirmUserCodeUsed');
+        } else if(this.props.location.pathname == '/dashboard/reset_password' && this.props.location.search.split('&')[0] == '?status=code_valid') {
+            const code: string = this.props.location.search.split('=')[2];
+            this.props.setResetCode(code);
+            this.props.showPopup('resetPasswordContinue');
+        } else if(this.props.location.pathname == '/dashboard/reset_password' && this.props.location.search == '?status=code_already_used') {
+            this.props.showPopup('resetPasswordCodeUsed');
         }
 
     }
@@ -143,6 +150,7 @@ const mapDispatchToProps: DispatchedP = {
     loginUserFromStorage: (user: UserModule.Types.User, token: string) => UserModule.Actions.loginUserSuccess(user, token),
     setPrevPath: (prevPath:string) => ViewManagementModule.Actions.setPrevPath(prevPath),
     showPopup: (typePopup) => ViewManagementModule.Actions.showPopup(typePopup),
+    setResetCode: (code:string) => UserModule.Actions.setResetCode(code),
 };
 
 function mapStateToProps(state: RootState) {

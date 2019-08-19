@@ -46,10 +46,10 @@ function logoutUser() {
             dispatch(ViewManagementModule.Actions.showLoader())
             await UserModule.Connector.logout();
             // localStorage.removeItem('user');
-            localStorage.removeItem('token');
-            localStorage.removeItem('role');
-            delete API.defaults.headers.common["x-auth-token"];
+            // localStorage.removeItem('token');
+            // localStorage.removeItem('role');
             dispatch(logoutUserSuccess())
+            delete API.defaults.headers.common["x-auth-token"];
             dispatch(ViewManagementModule.Actions.hideLoader())
         } catch (err) {
             dispatch(ViewManagementModule.Actions.hideLoader())
@@ -57,9 +57,9 @@ function logoutUser() {
     }
 }
 
-function logoutUserSuccess(): UserActionModel.LogoutUser {
+function logoutUserSuccess(): UserActionModel.LogoutUserSuccess {
     return {
-        type: User.LOG_OUT
+        type: User.LOG_OUT_SUCCESS
     };
 }
 
@@ -67,17 +67,11 @@ function registerUser(newUser: UserModule.Types.RegisterUser) {
     return async dispatch => {
         try {
             dispatch(ViewManagementModule.Actions.showLoader())
-            const response = await UserModule.Connector.RegisterUser(newUser);
+            const response = await UserModule.Connector.registerUser(newUser);
             dispatch(reset('registrationForm'));
-            // dispatch(loginUserSuccess(response.data, response.data.authToken))
-            // localStorage.setItem('token', JSON.parse(JSON.stringify(response.data.authToken)));
-            // history.push('/dashboard')
             dispatch(ViewManagementModule.Actions.hideLoader())
             dispatch(ViewManagementModule.Actions.showPopup('registerSuccess'))
-            // alert("Pomyślnie zarejestrowano, sprawdź maila!")
-
         } catch (err) {
-            // dispatch(loginUserFailure());
             console.log(err.response)
             dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
             dispatch(ViewManagementModule.Actions.hideLoader())
@@ -89,16 +83,10 @@ function editUser(newUserData: UserModule.Types.RegisterUser) {
     return async dispatch => {
         try {
             dispatch(ViewManagementModule.Actions.showLoader())
-            const response = await UserModule.Connector.EditUser(newUserData);
-            // dispatch(loginUserSuccess(response.data, response.data.authToken))
-            // localStorage.setItem('token', JSON.parse(JSON.stringify(response.data.authToken)));
-            // history.push('/dashboard')
+            const response = await UserModule.Connector.editUser(newUserData);
             dispatch(ViewManagementModule.Actions.hideLoader())
             dispatch(ViewManagementModule.Actions.showPopup('editUserSuccess'))
-            // alert("Pomyślnie zarejestrowano, sprawdź maila!")
-
         } catch (err) {
-            // dispatch(loginUserFailure());
             console.log(err.response)
             dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
             dispatch(ViewManagementModule.Actions.hideLoader())
@@ -106,11 +94,82 @@ function editUser(newUserData: UserModule.Types.RegisterUser) {
     };
 }
 
+function getLoggedUserData() {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            const response = await UserModule.Connector.getLoggedUserData();
+            dispatch(loggedUserDataSuccess(response.data))
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        } catch (err) {
+            console.log(err.response)
+            dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
+
+function loggedUserDataSuccess(userData: UserModule.Types.RegisterUser): UserActionModel.GetLoggedUserData {
+    return {
+        type: User.GET_LOGGED_USER_DATA,
+        payload: {
+            userData
+        }
+    };
+}
+
+function resetPassword(email: string) {
+    const value = {
+        email
+    }
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            const response = await UserModule.Connector.resetPassword(value);
+            // dispatch(loggedUserDataSuccess(response.data))
+            dispatch(ViewManagementModule.Actions.hideLoader())
+            dispatch(ViewManagementModule.Actions.showPopup('resetPasswordSendEmail'))
+            
+        } catch (err) {
+            console.log(err.response)
+            dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
+function setResetCode(code:string): UserActionModel.SetResetCode {
+    return {
+        type: User.SET_RESET_CODE,
+        payload: {
+            code
+        }
+    }
+}
+function resetPasswordContinue(data:any) {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            const response = await UserModule.Connector.resetPasswordContinue(data);
+            dispatch(ViewManagementModule.Actions.hideLoader())
+            dispatch(ViewManagementModule.Actions.showPopup('resetPasswordSuccess'))
+            
+        } catch (err) {
+            console.log(err.response)
+            dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
 export {
     logoutUser,
+    logoutUserSuccess,
     loginUserFailure,
     loginUserSuccess,
     loginUser,
     registerUser,
-    editUser
+    editUser,
+    getLoggedUserData,
+    resetPassword,
+    setResetCode,
+    resetPasswordContinue
 }

@@ -13,8 +13,8 @@ export type LoginUserSuccess = {
 export type LoginUserFailure = {
     type: ActionTypes.User.LOG_IN_FAILURE;
 };
-export type LogoutUser = {
-    type: ActionTypes.User.LOG_OUT;
+export type LogoutUserSuccess = {
+    type: ActionTypes.User.LOG_OUT_SUCCESS;
 };
 
 export type RegisterUser = {
@@ -23,11 +23,28 @@ export type RegisterUser = {
 export type EditUser = {
     type: ActionTypes.User.EDIT_USER;
 };
-
+export type GetLoggedUserData = {
+    type: ActionTypes.User.GET_LOGGED_USER_DATA;
+    payload: {
+        userData: any;
+    }
+};
+export type ResetPasswordSuccess = {
+    type: ActionTypes.User.RESET_PASSWORD_SUCCESS;
+}
+export type SetResetCode = {
+    type: ActionTypes.User.SET_RESET_CODE;
+    payload: {
+        code: string;
+    }
+};
 export type UserAction =
     | LoginUser
     | LoginUserSuccess
     | LoginUserFailure
-    | LogoutUser
+    | LogoutUserSuccess
     | RegisterUser
-    | EditUser;
+    | EditUser
+    | GetLoggedUserData
+    | ResetPasswordSuccess
+    | SetResetCode;

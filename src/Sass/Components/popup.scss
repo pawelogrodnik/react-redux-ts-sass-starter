@@ -31,6 +31,17 @@
             color: #e8e8e8;
             margin-top: 20px;
         }
+        &--resetPassword {
+            max-width: 400px;
+            margin: 0 auto;
+            button {
+                margin: 20px auto;
+
+            }
+            input[type='password'] {
+               margin: 5px 0;
+            }
+        }
     }
     @media (max-width: 889px) {
         &__inner {
