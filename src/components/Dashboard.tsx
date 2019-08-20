@@ -41,7 +41,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
         this.props.showHeader();
     }
     public handleLogout = () => {
-        history.push('/')
+        history.push('/dashboard/login')
         this.props.logoutUser()
     }
     public render() {

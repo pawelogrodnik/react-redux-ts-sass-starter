@@ -10,7 +10,7 @@ import { resetPassword } from 'src/Connectors/UserConnector';
 type resetPasswordData = {
     password: string,
     confirmation: string,
-    code: string
+    code: string 
 }
 
 type DispatchedP = {
@@ -35,7 +35,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
     constructor(props) {
         super(props);
         this.state = {
-            email: null,
+            email: '',
             password: '',
             confirmation: '',
             alert: null
@@ -44,6 +44,20 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
 
     public handleChildClick(e: any) {
         e.stopPropagation();
+    }
+
+    public validateEmail() {
+        const {email} = this.state;
+        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const ifCorrect = regex.test(String(email).toLowerCase());
+        if(email == '') {
+            this.setState({alert: 'Uzupełnij puste pole!'})
+        } else if(!ifCorrect) {
+            this.setState({alert: 'Wpisz poprawny adres email!'})
+        } else {
+            this.setState({alert:null})
+            this.props.resetPassword(this.state.email)
+        }
     }
 
     public confirmPassword() {
@@ -104,7 +118,8 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                     <div className="popup__message--resetPassword">
                         <h2>Wprowadź email konta</h2>
                         <input type="email" placeholder="Wpisz email konta" onChange={e => this.setState({email: e.target.value})} />
-                        <button className="btn btn--main" onClick={() => this.props.resetPassword(this.state.email)}>Wyślij</button>
+                        <p>{this.state.alert}</p>
+                        <button className="btn btn--main" onClick={() => this.validateEmail()}>Wyślij</button>
                     </div>
                 )
             }
@@ -135,6 +150,14 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                     <>
                         <h2>Hasło do Twojego konta zostało pomyślnie zmienione!</h2>
                         <i className="far fa-check-circle" />
+                    </>
+                )
+            }
+            case 'resetPasswordCodeUsed': {
+                return (
+                    <>
+                        <h2>Kod do zresetowania hasła został już użyty!</h2>
+                        <i className="fas fa-exclamation-triangle" />
                     </>
                 )
             }
