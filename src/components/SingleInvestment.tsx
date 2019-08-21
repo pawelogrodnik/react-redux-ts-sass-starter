@@ -157,6 +157,11 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                     return <a key={i} href={`${baseURL}/${item.path}`} target="_blank"><button type="button" className="btn btn--main btn--inline" >Pobierz Załącznik  {this.props.investmentDetails.detailedParams.attachments.length > 1 && i + 1}</button></a>
                                 })}
                             </div>
+                            {this.props.investmentDetails.type === token && (
+                                <div className="center">
+                                    <a href="https://ico.sapiency.io/ref/yhtbak" target="_blank" ><button className="btn btn--main btn--buyNow">Kup teraz!</button></a>
+                                </div>
+                            )}
                         </div>
                         <ContactBanner />
                     </div>
