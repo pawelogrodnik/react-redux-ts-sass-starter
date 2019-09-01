@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { WrappedFieldProps } from 'redux-form';
 import InputRange from 'react-input-range';
+import { isMobile } from 'src/config';
+import RangeButtonsMobileHelpers from './RangeButtonsMobileHelpers';
 
 type Props = {
     label: string;
@@ -17,6 +19,7 @@ type S = {
     riskDescriptionVisible: boolean
 };
 
+
 class RangeField extends React.PureComponent<WrappedFieldProps & Props, S> {
 
     constructor(props) {
@@ -27,12 +30,40 @@ class RangeField extends React.PureComponent<WrappedFieldProps & Props, S> {
     }
 
     public toggleRiskDescription = () => {
-        console.log(this.state.riskDescriptionVisible);
+        const current = this.state.riskDescriptionVisible;
         this.setState({
-            riskDescriptionVisible: !this.state.riskDescriptionVisible
-        })
+            riskDescriptionVisible: !current
+        });
+        if (!current) {
+            setTimeout(() => {
+                this.setState({ riskDescriptionVisible: false })
+            }, 10000);
+        }
     };
-
+    public rangeMinIncrementUpdate = () => {
+        const { input } = this.props;
+        if (input.value.min + 1 < input.value.max) {
+            input.onChange({ min: input.value.min + 1, max: input.value.max });
+        }
+    }
+    public rangeMinDecrementUpdate = () => {
+        const { input } = this.props;
+        if (input.value.min - 1 >= 0) {
+            input.onChange({ min: input.value.min - 1, max: input.value.max });
+        }
+    }
+    public rangeMaxIncrementUpdate = () => {
+        const { input } = this.props;
+        if (input.value.max + 1 <= this.props.max) {
+            input.onChange({ min: input.value.min, max: input.value.max + 1 });
+        }
+    }
+    public rangeMaxDecrementUpdate = () => {
+        const { input } = this.props;
+        if (input.value.max - 1 > input.value.min) {
+            input.onChange({ min: input.value.min, max: input.value.max - 1 });
+        }
+    }
     public render() {
         const { input, meta, label, disabled, description, icon } = this.props;
         let formClasses: string = 'form_field input--range';
@@ -48,7 +79,7 @@ class RangeField extends React.PureComponent<WrappedFieldProps & Props, S> {
                         {input.name === 'risk' && <i onClick={this.toggleRiskDescription} className="far fa-question-circle more-info" />}
                     </div>
                     <div className="input--range__name">
-                    <i className={icon} />
+                        <i className={icon} />
                         <label htmlFor={input.name}>{label}</label>
                         <p className="input--range__description">{description}</p>
                     </div>
@@ -81,6 +112,26 @@ class RangeField extends React.PureComponent<WrappedFieldProps & Props, S> {
                         ))) ||
                         (meta.warning && <span>{meta.warning}</span>)}
                 </div>
+                {isMobile && (
+                    <div className="input--range__mobile-actions">
+                        <div className="input--range__mobile-actions--increment">
+                            <RangeButtonsMobileHelpers
+                                onButtonPress={this.rangeMinIncrementUpdate}
+                                classNames="input--range__mobile-actions--add" onChange={this.rangeMinIncrementUpdate}>+</RangeButtonsMobileHelpers>
+                            <RangeButtonsMobileHelpers classNames="input--range__mobile-actions--reduce"
+                                onButtonPress={this.rangeMinDecrementUpdate}
+                                onChange={this.rangeMinDecrementUpdate}>-</RangeButtonsMobileHelpers>
+                        </div>
+                        <div className="input--range__mobile-actions--decrement">
+                            <RangeButtonsMobileHelpers
+                                onButtonPress={this.rangeMaxIncrementUpdate}
+                                classNames="input--range__mobile-actions--add" onChange={this.rangeMaxIncrementUpdate}>+</RangeButtonsMobileHelpers>
+                            <RangeButtonsMobileHelpers classNames="input--range__mobile-actions--reduce"
+                                onButtonPress={this.rangeMaxDecrementUpdate}
+                                onChange={this.rangeMaxDecrementUpdate}>-</RangeButtonsMobileHelpers>
+                        </div>
+                    </div>
+                )}
             </div>
         );
     }

@@ -14,7 +14,7 @@ const RegistrationForm = (props: InjectedFormProps) => {
                 <Field type="email" name="username" component={RegularField} label={'E-mail'} validate={[V.required]} />
                 <Field type="text" name="street" component={RegularField} label={'Ulica'} validate={[V.required]} />
                 <Field type="text" wrapperClassName={'quarter'} name="houseNumber" component={RegularField} label={'Numer domu'} validate={[V.required]} />
-                <Field type="text" wrapperClassName={'quarter'} name="flatNumber" component={RegularField} label={'Numer mieszkania'} validate={[V.required]} />
+                <Field type="text" wrapperClassName={'quarter'} name="flatNumber" component={RegularField} label={'Numer mieszkania'} />
                 <Field type="text" wrapperClassName={'quarter'} name="postCode" component={RegularField} label={'Kod pocztowy'} validate={[V.required]} />
                 <Field type="text" wrapperClassName={'quarter'} name="city" component={RegularField} label={'Kraj'} validate={[V.required]} />
                 <Field type="text" name="country" component={RegularField} label={'Miasto'} validate={[V.required]} />

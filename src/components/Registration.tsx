@@ -1,9 +1,6 @@
 import * as React from 'react';
-import AddInvestmentForm from './Forms/AddInvestmentForm';
 import * as UserModule from 'Modules/UserModule';
 import { connect } from 'react-redux';
-import { RootState } from 'src/Store/Reducers/_RootReducer';
-import { history } from 'src/App';
 import RegistrationForm from './Forms/RegistrationForm';
 
 type DispatchedP = {
@@ -16,7 +13,6 @@ class Registration extends React.Component<DispatchedP, any> {
     }
 
     public render() {
-     
         return (
             <div className="registration">
                 <div className="registration__inner">
@@ -32,11 +28,5 @@ class Registration extends React.Component<DispatchedP, any> {
 const mapDispatchToProps: DispatchedP = {
     registerUser: (newUser: any) => UserModule.Actions.registerUser(newUser),
 };
-
-// function mapStateToProps(state: RootState): ConnectedP {
-//     return {
-//         activeInvestment: InvestmentModule.Selectors.getActiveInvestment(state.investmentStore)
-//     }
-// }
 
 export default connect(null, mapDispatchToProps)(Registration)

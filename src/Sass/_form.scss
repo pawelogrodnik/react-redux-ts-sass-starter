@@ -199,6 +199,22 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
                             margin:0;
                         }
                     }
+                    &__mobile-actions {
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 5px 10px;
+                        .RangeButtonsMobileHelpers {
+                            user-select: none;
+                            border-radius: 50%;
+                            background-color: $blueMain;
+                            text-align: center;
+                            line-height: 30px;
+                            margin: 10px 0;
+                            color: #fff;
+                            width: 30px;
+                            height: 30px;
+                        }
+                    }
                 }
             }
         }
