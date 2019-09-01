@@ -38,6 +38,9 @@ export type SetResetCode = {
         code: string;
     }
 };
+export type TokenValidFailure = {
+    type: ActionTypes.User.TOKEN_VALID_FAILURE
+}
 export type UserAction =
     | LoginUser
     | LoginUserSuccess
@@ -47,4 +50,5 @@ export type UserAction =
     | EditUser
     | GetLoggedUserData
     | ResetPasswordSuccess
-    | SetResetCode;
+    | SetResetCode
+    | TokenValidFailure;

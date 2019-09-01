@@ -6,7 +6,7 @@ import { history } from './../../App';
 import API from './../../Connectors/config';
 import * as ErrorActions from './ErrorActions';
 import { reset } from 'redux-form';
-
+let inverval;
 function loginUser(username: string, password: string) {
     return async dispatch => {
         try {
@@ -15,7 +15,8 @@ function loginUser(username: string, password: string) {
             dispatch(loginUserSuccess(response.data, response.data.authToken))
             localStorage.setItem('token', JSON.parse(JSON.stringify(response.data.authToken)));
             localStorage.setItem('role', JSON.parse(JSON.stringify(response.data.roles)));
-            history.push('/dashboard')
+            history.push('/dashboard');
+            dispatch(checkIfUserIsValid(JSON.parse(JSON.stringify(response.data.authToken))))
             dispatch(ViewManagementModule.Actions.hideLoader())
 
         } catch (err) {
@@ -26,7 +27,18 @@ function loginUser(username: string, password: string) {
         }
     };
 }
-
+function checkIfUserIsValid(token: string) { 
+    return async dispatch => {
+        inverval = setInterval(async() => {
+            await UserModule.Connector.checkIfUserIsValid(token).then(() => {
+                dispatch(tokenValidSuccess())
+            }).catch((err) => {
+                dispatch(tokenValidFailure())
+                history.push('/dashboard/login');
+            });
+        }, 10000)
+    }
+}
 function loginUserSuccess(user: UserModule.Types.User, token: string): UserActionModel.LoginUserSuccess {
     return {
         type: User.LOG_IN_SUCCESS,
@@ -40,8 +52,19 @@ function loginUserFailure(): UserActionModel.LoginUserFailure {
         type: User.LOG_IN_FAILURE
     };
 }
+function tokenValidSuccess() {
+    return {
+        type: User.TOKEN_VALID_SUCCESS
+    }
+}
+function tokenValidFailure() {
+    return {
+        type: User.TOKEN_VALID_FAILURE
+    }
+}
 function logoutUser() {
     return async dispatch => {
+        clearInterval(inverval);
         try {
             dispatch(ViewManagementModule.Actions.showLoader())
             await UserModule.Connector.logout();
@@ -101,8 +124,10 @@ function getLoggedUserData() {
             const response = await UserModule.Connector.getLoggedUserData();
             dispatch(loggedUserDataSuccess(response.data))
             dispatch(ViewManagementModule.Actions.hideLoader())
+            if (localStorage.getItem('token')) {
+                dispatch(checkIfUserIsValid(JSON.parse(JSON.stringify(localStorage.getItem('token')))));
+            }
         } catch (err) {
-            console.log(err.response)
             dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
             dispatch(ViewManagementModule.Actions.hideLoader())
         }
@@ -171,5 +196,6 @@ export {
     getLoggedUserData,
     resetPassword,
     setResetCode,
-    resetPasswordContinue
+    resetPasswordContinue,
+    checkIfUserIsValid
 }

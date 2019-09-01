@@ -45,6 +45,7 @@ type DispatchedP = {
     setPrevPath: (prevPath: string) => void;
     showPopup: (typePopup: string) => void;
     setResetCode: (code:string) => void;
+    checkIfUserIsValid: (token:string) => void;
 };
 type S = {
     loadingUserComplete: boolean;
@@ -80,6 +81,7 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
         if (localStorage.getItem('token')) {
             const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
             this.props.loginUserFromStorage(null, token); 
+            this.props.checkIfUserIsValid(token);
         }
         this.setState({ loadingUserComplete: true });
         
@@ -151,6 +153,7 @@ const mapDispatchToProps: DispatchedP = {
     setPrevPath: (prevPath:string) => ViewManagementModule.Actions.setPrevPath(prevPath),
     showPopup: (typePopup) => ViewManagementModule.Actions.showPopup(typePopup),
     setResetCode: (code:string) => UserModule.Actions.setResetCode(code),
+    checkIfUserIsValid: (token:string) => UserModule.Actions.checkIfUserIsValid(token),
 };
 
 function mapStateToProps(state: RootState) {

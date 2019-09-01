@@ -29,3 +29,7 @@ export function resetPassword(userEmail): AxiosPromise<any> {
 export function resetPasswordContinue(data): AxiosPromise<any> {
     return API.post('user/password_reset', data);
 }
+
+export function checkIfUserIsValid(token): AxiosPromise<any> {
+    return API.get('user/validate_token', config(null, {'x-auth-token': token}));
+} 

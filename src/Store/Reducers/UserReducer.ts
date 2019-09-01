@@ -41,6 +41,13 @@ export function userReducer(state: State = initialState, action: UserAction) {
                 resetPasswordCode: action.payload.code
             };
         }
+        case ActionTypes.User.TOKEN_VALID_FAILURE: {
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            return {
+                ...initialState
+            }
+        }
         default: {
             return state;
         }
