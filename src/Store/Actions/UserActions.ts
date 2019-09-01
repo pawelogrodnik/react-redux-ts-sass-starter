@@ -117,6 +117,21 @@ function editUser(newUserData: UserModule.Types.RegisterUser) {
     };
 }
 
+function deleteUser() {
+    return async dispatch => {
+        await UserModule.Connector.deleteUser(JSON.parse(JSON.stringify(localStorage.getItem('token')))).then(() => {
+            dispatch(deleteUserSuccess())
+            history.push('/dashboard/login');
+        }).catch((err) => {
+            history.push('/dashboard/login');
+        });
+    }
+}
+function deleteUserSuccess(): UserActionModel.DeleteUser {
+    return {
+        type: User.DELETE_USER
+    }
+}
 function getLoggedUserData() {
     return async dispatch => {
         try {
@@ -197,5 +212,6 @@ export {
     resetPassword,
     setResetCode,
     resetPasswordContinue,
-    checkIfUserIsValid
+    checkIfUserIsValid,
+    deleteUser
 }

@@ -263,6 +263,8 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
             display: flex;
             flex-wrap: wrap;
         }
+       
+        
     }
    
     &_field {
@@ -327,4 +329,18 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
 
 .contactBox {
     padding: 25px 15px;
+}
+.edituser--actions {
+    
+}
+
+.edituser--delete {
+    display: inline-block;
+    width: auto;
+}
+
+.deleteUser--actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
 }

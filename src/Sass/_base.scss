@@ -46,6 +46,10 @@ a,
         width: 100%;
         padding: 15px;
     }
+    &--red {
+        background-color: red;
+        color: #fff;
+    }
     &--inline {
         display: inline;
         margin-left: 10px;

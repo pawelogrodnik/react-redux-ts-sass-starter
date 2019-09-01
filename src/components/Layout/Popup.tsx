@@ -17,6 +17,7 @@ type DispatchedP = {
     hidePopup: () => void;
     resetPassword: (email: Object) => void;
     resetPasswordContinue: (data: resetPasswordData) => void;
+    deleteUser: () => void;
 };
 
 type ConnectedP = {
@@ -161,6 +162,18 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                     </>
                 )
             }
+            case 'deleteUser': {
+                return (
+                    <>
+                        <h2>Uwaga! Zaakceptowanie tej opcji skutkuje trwałym usunięciem konta w systemie. Czy jesteś pewien?</h2>
+                        <i className="fas fa-exclamation-triangle"/>
+                        <div className="deleteUser--actions">
+                            <button className="btn btn--main btn--red" onClick={() => this.props.deleteUser()}>Tak, usuń</button>
+                            <button className="btn btn--main" onClick={() => this.props.hidePopup()}>Anuluj</button>
+                        </div>
+                    </>
+                )
+            }
             default: {
                 return null;
             }
@@ -195,6 +208,7 @@ function mapStateToProps(state: RootState): ConnectedP {
 const mapDispachToProps: DispatchedP = {
     hidePopup: () => ViewManagementModule.Actions.hidePopup(),
     resetPassword: (email: string) => UserModule.Actions.resetPassword(email),
+    deleteUser: () => UserModule.Actions.deleteUser(),
     resetPasswordContinue: (data: resetPasswordData) => UserModule.Actions.resetPasswordContinue(data),
 }
 export default connect(

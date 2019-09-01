@@ -33,3 +33,7 @@ export function resetPasswordContinue(data): AxiosPromise<any> {
 export function checkIfUserIsValid(token): AxiosPromise<any> {
     return API.get('user/validate_token', config(null, {'x-auth-token': token}));
 } 
+
+export function deleteUser(token) {
+    return API.delete('user', config(null, {'x-auth-token': token}))
+}
