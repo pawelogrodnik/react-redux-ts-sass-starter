@@ -14,6 +14,7 @@ type P = {
 const { flat, parcel, hotel, vehicle, gold, token, whisky, diamonds, dorm, franchise } = InvestmentModule.EnumTypes.InvestmentType;
 type DispatchedP = {
     getInvestmentDetails: (id: number) => void;
+    clearInvestment: () =>  void;
 }
 
 type ConnectedP = {
@@ -38,7 +39,9 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
             return `${value} miesięcy`
         }
     }
-
+    public componentWillUnmount() {
+        this.props.clearInvestment();
+    }
     public render() {
 
         return (
@@ -172,7 +175,8 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
 }
 
 const mapDispatchToProps: DispatchedP = {
-    getInvestmentDetails: (id: number) => InvestmentModule.Actions.getInvestmentDetails(id)
+    getInvestmentDetails: (id: number) => InvestmentModule.Actions.getInvestmentDetails(id),
+    clearInvestment: () => InvestmentModule.Actions.clearInvestment()
 };
 
 function mapStateToProps(state: RootState): ConnectedP {

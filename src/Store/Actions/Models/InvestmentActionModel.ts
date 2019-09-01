@@ -30,6 +30,10 @@ export type Contact = {
     type: ActionTypes.Investment.CONTACT
 };
 
+export type ClearInvestment = {
+    type: ActionTypes.Investment.CLEAR_INVESTMENT
+};
+
 export type GetInvestmentDetails = {
     type: ActionTypes.Investment.GET_INVESTMENT_DETAILS,
     payload: {
@@ -43,4 +47,5 @@ export type InvestmentAction =
     | SetActiveInvestmentId
     | GetInvestments
     | ArchiveProduct
-    | Contact;
+    | Contact 
+    | ClearInvestment;

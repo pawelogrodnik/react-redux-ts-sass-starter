@@ -18,6 +18,13 @@ function getInvestments(params?: URLSearchParams) {
         }
     };
 }
+
+function clearInvestment() {
+    return {
+        type: Investment.CLEAR_INVESTMENT
+    }
+};
+
 function addInvestment(investment: InvestmentModule.Types.Investment) {
     return async dispatch => {
         try {
@@ -132,5 +139,6 @@ export {
     setActiveInvestmentId,
     archiveInvestment,
     getInvestmentDetails,
-    contact
+    contact,
+    clearInvestment
 }
