@@ -100,8 +100,6 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
             this.props.setPrevPath(path);
             this.setState({isScrolled: false})
         }
-        console.log("WillReceive")
-        console.log(this.props.location.pathname)
     }
 
     public render() {

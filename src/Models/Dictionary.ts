@@ -65,3 +65,9 @@ function getOptionsList(arrayEnums: Array<any>, dictionary?: Map<any, any>): Arr
 
 export const getInvestmentOptions = getOptionsList(investmentTypeArray, investmentTypeMap)
 export const riskOptions = getOptionsList(RiskArray);
+
+
+
+export const MappedErrorResponse = new Map<string, string>([
+    ['Passwords not pass', 'Hasła nie są takie same']
+])

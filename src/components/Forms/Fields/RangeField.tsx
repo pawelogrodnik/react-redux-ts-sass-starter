@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { WrappedFieldProps } from 'redux-form';
 import InputRange from 'react-input-range';
-import { isMobile } from 'src/config';
+import { isMobile } from './../../../config';
 import RangeButtonsMobileHelpers from './RangeButtonsMobileHelpers';
 
 type Props = {
