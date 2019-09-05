@@ -15,7 +15,8 @@ type S = {
 
 }
 type ConnectedP = {
-    userStore: UserModule.Types.UserStore
+    userStore: UserModule.Types.UserStore,
+    router: any
 }
 type DispatchedP = {
     hideFooter: () => void;
@@ -23,6 +24,7 @@ type DispatchedP = {
     showFooter: () => void;
     showHeader: () => void;
     logoutUser: () => void;
+    checkIfUserIsValid: (token: string) => void;
 }
 class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
     constructor(props: ConnectedP & DispatchedP) {
@@ -36,13 +38,21 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
         this.props.hideFooter();
         this.props.hideHeader();
     }
+    public componentWillUpdate(nextProps) {
+        if(this.props.router.location.pathname !== nextProps.router.location.pathname) {
+            console.log(nextProps.router.location.pathname);
+            if (localStorage.getItem('token') && nextProps.router.location.pathname !== '/dashboard/login') {
+                this.props.checkIfUserIsValid(localStorage.getItem('token'))
+            }
+        }
+    }
     public componentWillUnmount() {
         this.props.showFooter();
         this.props.showHeader();
     }
     public handleLogout = () => {
-        history.push('/dashboard/login')
         this.props.logoutUser()
+        history.push('/dashboard/login')
     }
     public render() {
         return (
@@ -96,11 +106,13 @@ const mapDispatchToProps: DispatchedP = {
     showFooter: () => ViewManagementModule.Actions.showFooter(),
     showHeader: () => ViewManagementModule.Actions.showHeader(),
     logoutUser: () => UserModule.Actions.logoutUser(),
+    checkIfUserIsValid: (token: string) => UserModule.Actions.checkIfUserIsValid(token)
 };
 
 function mapStateToProps(state: RootState): ConnectedP {
     return {
-        userStore: state.userStore
+        userStore: state.userStore,
+        router: state.router
     }
 }
 

@@ -6,7 +6,7 @@ import { history } from './../../App';
 import API from './../../Connectors/config';
 import * as ErrorActions from './ErrorActions';
 import { reset } from 'redux-form';
-let inverval;
+// let inverval;
 function loginUser(username: string, password: string) {
     return async dispatch => {
         try {
@@ -28,15 +28,16 @@ function loginUser(username: string, password: string) {
     };
 }
 function checkIfUserIsValid(token: string) { 
-    return async dispatch => {
-        inverval = setInterval(async() => {
-            await UserModule.Connector.checkIfUserIsValid(token).then(() => {
+    return dispatch => {
+        // inverval = setInterval(() => {
+            UserModule.Connector.checkIfUserIsValid(token).then(() => {
                 dispatch(tokenValidSuccess())
             }).catch((err) => {
+                // clearInterval(inverval)
                 dispatch(tokenValidFailure())
                 history.push('/dashboard/login');
             });
-        }, 10000)
+        // }, 10000)
     }
 }
 function loginUserSuccess(user: UserModule.Types.User, token: string): UserActionModel.LoginUserSuccess {
@@ -64,13 +65,10 @@ function tokenValidFailure() {
 }
 function logoutUser() {
     return async dispatch => {
-        clearInterval(inverval);
+        // clearInterval(inverval);
         try {
             dispatch(ViewManagementModule.Actions.showLoader())
             await UserModule.Connector.logout();
-            // localStorage.removeItem('user');
-            // localStorage.removeItem('token');
-            // localStorage.removeItem('role');
             dispatch(logoutUserSuccess())
             delete API.defaults.headers.common["x-auth-token"];
             dispatch(ViewManagementModule.Actions.hideLoader())

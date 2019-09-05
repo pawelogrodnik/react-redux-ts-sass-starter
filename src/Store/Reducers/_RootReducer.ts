@@ -31,7 +31,7 @@ const appReducer = (state, action) => {
             form: { ...state.form },
             router: {...state.router}
         }
-    }
+    } 
     return rootReducer(state, action);
 };
 
