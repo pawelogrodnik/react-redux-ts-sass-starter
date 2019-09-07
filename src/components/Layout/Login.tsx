@@ -38,7 +38,7 @@ class Login extends React.Component<DispatchedP & ConnectedP & P, any> {
         return (
             <div className="login">
                 <div className="login__inner" style={{marginTop: !this.props.openPDF ? '150px' : null}}>
-                    <h2>Logowanie</h2>
+                    <h2>{!this.props.openPDF && 'Logowanie'}</h2>
                     <LoginForm onSubmit={this.handleSubmit} />
                     <p onClick={() => this.props.showPopup('resetPassword')}>Nie pamiętasz hasła?</p>
                 </div>

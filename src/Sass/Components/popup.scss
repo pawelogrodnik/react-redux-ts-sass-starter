@@ -9,7 +9,7 @@
     &__inner {
         position: relative;
         width: 900px;
-        height: 350px;
+        min-height: 350px;
         background: #fff;
         .fa-times {
             position: absolute;
@@ -31,6 +31,9 @@
             color: #e8e8e8;
             margin-top: 20px;
         }
+        &--left {
+            text-align: left;
+        }
         &--resetPassword {
             max-width: 400px;
             margin: 0 auto;
@@ -49,6 +52,16 @@
             .btn {
                 &--main {
                     width: 250px;
+                }
+            }
+            p {
+                margin: 0;
+            }
+            a {
+                color: #9a8352;
+                &:hover {
+                    color: #c3b28c;
+                    cursor: pointer;
                 }
             }
         }

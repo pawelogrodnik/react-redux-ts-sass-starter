@@ -8,6 +8,8 @@ import { RootState } from 'src/Store/Reducers/_RootReducer';
 import { resetPassword } from 'src/Connectors/UserConnector';
 import Login from './Login';
 import { history } from 'src/App';
+import { Link } from 'react-router-dom';
+import OneTimeData from '../OneTimeData';
 
 type resetPasswordData = {
     password: string,
@@ -32,7 +34,7 @@ type S = {
     password: string,
     confirmation: string,
     alert:string,
-    showLoginForm: boolean
+    showOneTimeForm: boolean
 }
 
 class Popup extends React.Component<DispatchedP & ConnectedP, S> {
@@ -43,7 +45,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
             password: '',
             confirmation: '',
             alert: null,
-            showLoginForm: false,
+            showOneTimeForm: false,
         }
     }
 
@@ -84,7 +86,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
     }
 
     public closePopup() {
-        this.setState({showLoginForm:false});
+        this.setState({showOneTimeForm:false});
         this.props.hidePopup();
     }
     
@@ -184,21 +186,22 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                 )
             }
             case 'openPDF': {
-                if(this.state.showLoginForm) {
+                if(this.state.showOneTimeForm) {
                     return (
-                        <Login openPDF={true}/>
+                        <div className="popup__message--left">
+                            <OneTimeData />
+                        </div>
                     )
                 } else {
                     return (
                         <>
-                            <h2>Aby otworzyć plik PDF:</h2>
+                            <h2>Załączone pliki dostępne są dla zalogowanych użytkowników</h2>
+                            <Login openPDF={true}/>
                             <div className="popup__message--openPDF">
-                                <button className="btn btn--main" onClick={() => this.setState({showLoginForm: true})}>Zaloguj się!</button>
-                                <button className="btn btn--main" onClick={() => {
-                                    history.push('/register')
-                                    this.closePopup();
-                                }}>Zarejestruj się!</button>
-                                 <button className="btn btn--main" >Podaj własne dane!</button>
+                                <div className="divider" />
+                                <p>Nie masz jeszcze konta? <Link to="/register" onClick={this.closePopup}>Przejdź do rejestracji</Link></p>
+                                <div className="divider" />
+                                <p>Nie chcesz tworzyć konta? <a href="#" onClick={() => this.setState({showOneTimeForm: true})}>Podaj dane jednorazowo</a></p>
                             </div>
                         </>
                     )

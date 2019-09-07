@@ -754,6 +754,12 @@ textarea {
     display: block !important;
 }
 
+.divider {
+    border-bottom: 1px solid #e4e1e1;
+    width: 50%;
+    margin: 20px 0;
+}
+
 #footer__brand {
     @media (max-width: 768px) {
         display: none;
