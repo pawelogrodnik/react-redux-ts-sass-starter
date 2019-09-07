@@ -13,7 +13,16 @@ export default class Header extends React.Component<P, any> {
                     </h2>
                     <ul className="header__menu">
                         <Link to="/"><li>Start</li></Link>
-                        <Link to="/register"><li>Rejestracja</li></Link>
+                            {!localStorage.getItem('token') && (
+                                <li>
+                                    <Link to="/register"><li>Rejestracja</li></Link>
+                                </li>
+                            )}
+                            {localStorage.getItem('token') && (
+                                <li>
+                                    <Link to={'/dashboard'}>Dashboard</Link>
+                                </li>
+                            )}
                         <Link to="/contact"><li>Kontakt</li></Link>
                     </ul>
                 </div>

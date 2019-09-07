@@ -23,16 +23,19 @@ export default class Footer extends React.Component<any, any> {
                             <li>
                                 <Link to={'/'}>Strona główna</Link>
                             </li>
-                            {!localStorage.getItem('token') && (
+                            <li>
+                                    <Link to={'/dashboard'}>Logowanie</Link>
+                                </li>
+                            {/* {!localStorage.getItem('token') && (
                                 <li>
                                     <Link to={'/dashboard/login'}>Logowanie</Link>
                                 </li>
-                            )}
-                            {localStorage.getItem('token') && (
+                            )} */}
+                            {/* {localStorage.getItem('token') && (
                                 <li>
                                     <Link to={'/dashboard'}>Dashboard</Link>
                                 </li>
-                            )}
+                            )} */}
                             <Link to="/mission"><li>Misja</li></Link>
                             <li>
                                 <Link to={'/aboutus'}>O Obligain</Link>

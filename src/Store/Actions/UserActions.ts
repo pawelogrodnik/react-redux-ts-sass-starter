@@ -122,8 +122,10 @@ function editUser(newUserData: UserModule.Types.RegisterUser) {
 function deleteUser() {
     return async dispatch => {
         await UserModule.Connector.deleteUser(JSON.parse(JSON.stringify(localStorage.getItem('token')))).then(() => {
-            dispatch(deleteUserSuccess())
-            history.push('/dashboard/login');
+            dispatch(logoutUserSuccess());
+            dispatch(deleteUserSuccess());
+            dispatch(ViewManagementModule.Actions.showPopup('deleteUserSuccess'))
+            history.push('/');
         }).catch((err) => {
             history.push('/dashboard/login');
         });

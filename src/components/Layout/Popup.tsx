@@ -185,6 +185,14 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                     </>
                 )
             }
+            case 'deleteUserSuccess': {
+                return (
+                    <>
+                        <h2>Konto zostało pomyślnie usunięte!</h2>
+                        <i className="far fa-check-circle" />
+                    </>
+                )
+            }
             case 'openPDF': {
                 if(this.state.showOneTimeForm) {
                     return (
