@@ -9,15 +9,18 @@ import { history } from 'src/App';
 type DispatchedP = {
     hideFooter: () => void;
     hideHeader: () => void;
-    loginUser: (username: string, password: string) => void;
+    loginUser: (username: string, password: string, openPDF: boolean) => void;
     showPopup: (type: string) => void;
 }
 type ConnectedP = {
     userStore: UserModule.Types.UserStore;
 }
+type P = {
+    openPDF: boolean
+}
 
-class Login extends React.Component<DispatchedP & ConnectedP, any> {
-    constructor(props: DispatchedP & ConnectedP) {
+class Login extends React.Component<DispatchedP & ConnectedP & P, any> {
+    constructor(props: DispatchedP & ConnectedP & P) {
         super(props);
     }
 
@@ -28,13 +31,13 @@ class Login extends React.Component<DispatchedP & ConnectedP, any> {
     }
 
     public handleSubmit = async (formData) => {
-        await this.props.loginUser(formData.username, formData.password);
+        await this.props.loginUser(formData.username, formData.password, this.props.openPDF);
     }
 
     public render() {
         return (
             <div className="login">
-                <div className="login__inner">
+                <div className="login__inner" style={{marginTop: !this.props.openPDF ? '150px' : null}}>
                     <h2>Logowanie</h2>
                     <LoginForm onSubmit={this.handleSubmit} />
                     <p onClick={() => this.props.showPopup('resetPassword')}>Nie pamiętasz hasła?</p>
@@ -47,7 +50,7 @@ class Login extends React.Component<DispatchedP & ConnectedP, any> {
 const mapDispatchToProps: DispatchedP = {
     hideFooter: () => ViewManagementModule.Actions.hideFooter(),
     hideHeader: () => ViewManagementModule.Actions.hideHeader(),
-    loginUser: (username: string, password: string) => UserModule.Actions.loginUser(username, password),
+    loginUser: (username: string, password: string, openPDF: boolean) => UserModule.Actions.loginUser(username, password, openPDF),
     showPopup: (type: string) => ViewManagementModule.Actions.showPopup(type),
 };
 

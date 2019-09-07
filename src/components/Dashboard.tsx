@@ -10,12 +10,14 @@ import { Link } from 'react-router-dom';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
 import * as UserModule from 'Modules/UserModule';
 import { history } from 'src/App';
+import { ViewManagement } from 'src/Store/Actions/EnumTypes/ActionEnumTypes';
 
 type S = {
 
 }
 type ConnectedP = {
     userStore: UserModule.Types.UserStore,
+    viewManagement: ViewManagementModule.Types.ViewManagementStore,
     router: any
 }
 type DispatchedP = {
@@ -35,6 +37,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
         if (!localStorage.getItem('token')) {
             history.push('/dashboard/login')
         }
+        
         this.props.hideFooter();
         this.props.hideHeader();
     }
@@ -112,6 +115,7 @@ const mapDispatchToProps: DispatchedP = {
 function mapStateToProps(state: RootState): ConnectedP {
     return {
         userStore: state.userStore,
+        viewManagement: state.viewManagementStore,
         router: state.router
     }
 }

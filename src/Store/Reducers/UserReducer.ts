@@ -9,6 +9,7 @@ export const initialState: State = {
     user: null,
     loggedUserData: null,
     resetPasswordCode: null,
+    isUserLogged: false,
 
 };
 
@@ -18,7 +19,8 @@ export function userReducer(state: State = initialState, action: UserAction) {
             return {
                 ...state,
                user: action.payload.user,
-               token: action.payload.token
+               token: action.payload.token,
+               isUserLogged: true
             };
         }
         case ActionTypes.User.LOG_OUT_SUCCESS: {
@@ -26,7 +28,8 @@ export function userReducer(state: State = initialState, action: UserAction) {
             localStorage.removeItem('token');
             return {
                 ...state,
-                loggedUserData: null
+                loggedUserData: null,
+                isUserLogged: false
             }
         }
         case ActionTypes.User.GET_LOGGED_USER_DATA: {
@@ -45,7 +48,14 @@ export function userReducer(state: State = initialState, action: UserAction) {
             localStorage.removeItem('user');
             localStorage.removeItem('token');
             return {
-                ...initialState
+                ...initialState,
+                isUserLogged: false
+            }
+        }
+        case ActionTypes.User.TOKEN_VALID_SUCCESS: {
+            return {
+                ...state,
+                isUserLogged: true
             }
         }
         default: {

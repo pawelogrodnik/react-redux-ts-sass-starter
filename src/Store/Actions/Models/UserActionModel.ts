@@ -41,6 +41,9 @@ export type SetResetCode = {
 export type TokenValidFailure = {
     type: ActionTypes.User.TOKEN_VALID_FAILURE
 }
+export type TokenValidSuccess = {
+    type: ActionTypes.User.TOKEN_VALID_SUCCESS
+}
 export type DeleteUser = {
     type: ActionTypes.User.DELETE_USER
 }
@@ -55,4 +58,5 @@ export type UserAction =
     | ResetPasswordSuccess
     | SetResetCode
     | TokenValidFailure
+    | TokenValidSuccess
     | DeleteUser;

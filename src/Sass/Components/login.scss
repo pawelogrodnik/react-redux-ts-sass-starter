@@ -3,13 +3,16 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    min-height: 100vh;
-    background-color: $greyMain;
+    // min-height: 100vh;
+    // background-color: $greyMain;
+
     &__inner {
-        @media (min-width: 768px) {
-            margin-top: 150px;
-        }
         min-width: 300px;
+        &--margin {
+            @media (min-width: 768px) {
+                margin-top: 150px;
+            }
+        }
         h2{
             text-align: center;
         }

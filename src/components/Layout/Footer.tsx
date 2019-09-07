@@ -33,7 +33,7 @@ export default class Footer extends React.Component<any, any> {
                                     <Link to={'/dashboard'}>Dashboard</Link>
                                 </li>
                             )}
-                            <Link to="/register"><li>Rejestracja</li></Link>
+                            <Link to="/mission"><li>Misja</li></Link>
                             <li>
                                 <Link to={'/aboutus'}>O Obligain</Link>
                             </li>

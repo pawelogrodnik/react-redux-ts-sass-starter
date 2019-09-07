@@ -6,6 +6,8 @@ import { ErrorStore } from './../../Store/Actions/Models/ErrorActionsModel';
 import { connect } from 'react-redux';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
 import { resetPassword } from 'src/Connectors/UserConnector';
+import Login from './Login';
+import { history } from 'src/App';
 
 type resetPasswordData = {
     password: string,
@@ -29,7 +31,8 @@ type S = {
     email: string,
     password: string,
     confirmation: string,
-    alert:string
+    alert:string,
+    showLoginForm: boolean
 }
 
 class Popup extends React.Component<DispatchedP & ConnectedP, S> {
@@ -39,7 +42,8 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
             email: '',
             password: '',
             confirmation: '',
-            alert: null
+            alert: null,
+            showLoginForm: false,
         }
     }
 
@@ -77,6 +81,11 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
             }
             this.props.resetPasswordContinue(data);
         }
+    }
+
+    public closePopup() {
+        this.setState({showLoginForm:false});
+        this.props.hidePopup();
     }
     
     public generateContent() {
@@ -169,10 +178,31 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                         <i className="fas fa-exclamation-triangle"/>
                         <div className="deleteUser--actions">
                             <button className="btn btn--main btn--red" onClick={() => this.props.deleteUser()}>Tak, usuń</button>
-                            <button className="btn btn--main" onClick={() => this.props.hidePopup()}>Anuluj</button>
+                            <button className="btn btn--main" onClick={() => this.closePopup()}>Anuluj</button>
                         </div>
                     </>
                 )
+            }
+            case 'openPDF': {
+                if(this.state.showLoginForm) {
+                    return (
+                        <Login openPDF={true}/>
+                    )
+                } else {
+                    return (
+                        <>
+                            <h2>Aby otworzyć plik PDF:</h2>
+                            <div className="popup__message--openPDF">
+                                <button className="btn btn--main" onClick={() => this.setState({showLoginForm: true})}>Zaloguj się!</button>
+                                <button className="btn btn--main" onClick={() => {
+                                    history.push('/register')
+                                    this.closePopup();
+                                }}>Zarejestruj się!</button>
+                                 <button className="btn btn--main" >Podaj własne dane!</button>
+                            </div>
+                        </>
+                    )
+                }
             }
             default: {
                 return null;
@@ -183,9 +213,9 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
 
         if (this.props.viewManagement.popupVisible) {
             return (
-                <div className="popup" onClick={() => this.props.hidePopup()}>
+                <div className="popup" onClick={() => this.closePopup()}>
                     <div className="popup__inner" onClick={this.handleChildClick}>
-                        <i className="fas fa-times" onClick={() => this.props.hidePopup()} />
+                        <i className="fas fa-times" onClick={() => this.closePopup()} />
                         <div className="popup__message">
                             {this.generateContent()}
                         </div>

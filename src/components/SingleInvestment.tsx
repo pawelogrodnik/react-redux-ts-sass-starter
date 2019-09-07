@@ -2,6 +2,7 @@ import * as React from 'react';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
 import { connect } from 'react-redux';
 import * as InvestmentModule from 'Modules/InvestmentModule';
+import * as ViewManagementModule from 'Modules/ViewManagementModule';
 import { baseURL } from './../Connectors/config';
 import ImageSlider from './../components/ImageSlider';
 import ContactBanner from './ContactBanner';
@@ -15,10 +16,12 @@ const { flat, parcel, hotel, vehicle, gold, token, whisky, diamonds, dorm, franc
 type DispatchedP = {
     getInvestmentDetails: (id: number) => void;
     clearInvestment: () =>  void;
+    showPopup: (typePopup: string) => void;
 }
 
 type ConnectedP = {
-    investmentDetails: InvestmentModule.Types.Investment
+    investmentDetails: InvestmentModule.Types.Investment,
+    isUserLogged: boolean
 }
 
 class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any> {
@@ -156,8 +159,13 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                 )}
                             </div>
                             <div className="center">
-                                {this.props.investmentDetails.detailedParams.attachments && this.props.investmentDetails.detailedParams.attachments.map((item, i) => {
-                                    return <a key={i} href={`${baseURL}/${item.path}`} target="_blank"><button type="button" className="btn btn--main btn--inline" >Pobierz Załącznik  {this.props.investmentDetails.detailedParams.attachments.length > 1 && i + 1}</button></a>
+                                {this.props.investmentDetails.detailedParams.attachments && this.props.investmentDetails.detailedParams.attachments.map((item, i) => { 
+                                        return <a key={i} href={`${baseURL}/${item.path}`} target="_blank"><button type="button" className="btn btn--main btn--inline" onClick={(e)=> {
+                                            if(!this.props.isUserLogged) {
+                                                e.preventDefault();
+                                                this.props.showPopup('openPDF');
+                                            }
+                                        }} >Pobierz Załącznik  {this.props.investmentDetails.detailedParams.attachments.length > 1 && i + 1}</button></a>
                                 })}
                             </div>
                             {this.props.investmentDetails.type === token && (
@@ -176,12 +184,14 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
 
 const mapDispatchToProps: DispatchedP = {
     getInvestmentDetails: (id: number) => InvestmentModule.Actions.getInvestmentDetails(id),
-    clearInvestment: () => InvestmentModule.Actions.clearInvestment()
+    clearInvestment: () => InvestmentModule.Actions.clearInvestment(),
+    showPopup: (typePopup) => ViewManagementModule.Actions.showPopup(typePopup),
 };
 
 function mapStateToProps(state: RootState): ConnectedP {
     return {
-        investmentDetails: state.investmentStore.investmentDetails
+        investmentDetails: state.investmentStore.investmentDetails,
+        isUserLogged: state.userStore.isUserLogged
     }
 }
 

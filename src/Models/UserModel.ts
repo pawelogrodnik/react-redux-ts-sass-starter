@@ -5,6 +5,7 @@ export type UserStore = {
     token: string;
     loggedUserData: RegisterUser;
     resetPasswordCode: string;
+    isUserLogged: boolean;
 };
 
 export type User = {
