@@ -7,7 +7,8 @@ export type State = Types.InvestmentStore
 export const initialState: State = {
     investmentList: [],
     investmentDetails: null,
-    activeInvestmentId: null
+    activeInvestmentId: null,
+    selectedPDF: null,
 };
 
 export function investmentReducer(state: State = initialState, action: InvestmentAction) {
@@ -36,6 +37,12 @@ export function investmentReducer(state: State = initialState, action: Investmen
                 activeInvestmentId: null,
                 investmentDetails: null
 
+            }
+        }
+        case ActionTypes.Investment.SET_SELECTED_PDF: {
+            return {
+                ...state,
+                selectedPDF: action.payload.path
             }
         }
         default: {

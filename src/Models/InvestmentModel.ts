@@ -4,6 +4,7 @@ export type InvestmentStore = {
     investmentList: Array<Investment>
     activeInvestmentId: number;
     investmentDetails: Investment;
+    selectedPDF: string;
 };
 
 

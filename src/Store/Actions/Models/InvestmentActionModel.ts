@@ -41,6 +41,13 @@ export type GetInvestmentDetails = {
     }
 };
 
+export type SetSelectedPDF = {
+    type: ActionTypes.Investment.SET_SELECTED_PDF,
+    payload: {
+        path: string
+    }
+};
+
 export type InvestmentAction =
     | GetInvestmentDetails
     | AddInvestment
@@ -48,4 +55,5 @@ export type InvestmentAction =
     | GetInvestments
     | ArchiveProduct
     | Contact 
-    | ClearInvestment;
+    | ClearInvestment
+    | SetSelectedPDF;

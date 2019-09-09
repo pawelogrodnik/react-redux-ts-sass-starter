@@ -3,6 +3,7 @@ import LoginForm from './../Forms/LoginForm';
 import { connect } from 'react-redux';
 import * as ViewManagementModule from './../../Modules/ViewManagementModule';
 import * as UserModule from './../../Modules/UserModule';
+import * as InvestmentModule from './../../Modules/InvestmentModule';
 import { RootState } from './../../Store/Reducers/_RootReducer';
 import { history } from 'src/App';
 
@@ -11,12 +12,14 @@ type DispatchedP = {
     hideHeader: () => void;
     loginUser: (username: string, password: string, openPDF: boolean) => void;
     showPopup: (type: string) => void;
+    getPDF: (selectedPDF: string) => void;
 }
 type ConnectedP = {
     userStore: UserModule.Types.UserStore;
 }
 type P = {
-    openPDF: boolean
+    openPDF: boolean,
+    selectedPDF: string
 }
 
 class Login extends React.Component<DispatchedP & ConnectedP & P, any> {
@@ -32,6 +35,9 @@ class Login extends React.Component<DispatchedP & ConnectedP & P, any> {
 
     public handleSubmit = async (formData) => {
         await this.props.loginUser(formData.username, formData.password, this.props.openPDF);
+        if(this.props.openPDF) {
+            this.props.getPDF(this.props.selectedPDF);
+        }
     }
 
     public render() {
@@ -52,11 +58,13 @@ const mapDispatchToProps: DispatchedP = {
     hideHeader: () => ViewManagementModule.Actions.hideHeader(),
     loginUser: (username: string, password: string, openPDF: boolean) => UserModule.Actions.loginUser(username, password, openPDF),
     showPopup: (type: string) => ViewManagementModule.Actions.showPopup(type),
+    getPDF: (selectedPDF: string) => InvestmentModule.Actions.getPDF(selectedPDF),
 };
 
 function mapStateToProps(state: RootState) {
     return {
-        userStore: state.userStore
+        userStore: state.userStore,
+        selectedPDF: state.investmentStore.selectedPDF
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

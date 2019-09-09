@@ -18,6 +18,14 @@
         &--register {
             width: 320px;
         }
+        &_field {
+            &--fileinput {
+                margin-top: 15px;
+                i {
+                    margin: -5px 5px;
+                }
+            }
+        }
         @media (min-width:610px) {
             // .form {
                 &--register {
@@ -57,8 +65,20 @@
             text-align: center;
         }
         .btn {
-            width: 100%;
             margin-top: 20px;
+        }
+        .kep-login-facebook {
+            margin: 40px auto;
+            display: block;
+            font-size: 15px;
+            padding: 15px;
+        }
+    }
+    &__img-profile {
+        margin-top: 50px;
+        text-align: center;
+        &--circle {
+            border-radius: 50%;
         }
     }
 }

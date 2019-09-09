@@ -1,14 +1,18 @@
 import * as React from 'react';
-import * as UserModule from 'Modules/UserModule';
+import * as InvestmentModule from 'Modules/InvestmentModule';
 import { connect } from 'react-redux';
 import OneTimeDataForm from './Forms/OneTimeDataForm';
+import { RootState } from 'src/Store/Reducers/_RootReducer';
 
 type DispatchedP = {
-    registerUser: (newUser: any) => void;
+    getPDF: (selectedPDF: string, oneTimeData: any) => void;
+}
+type ConnectedP = {
+    selectedPDF: string
 }
 
-class OneTimeData extends React.Component<DispatchedP, any> {
-    constructor(props: DispatchedP) {
+class OneTimeData extends React.Component<DispatchedP & ConnectedP, any> {
+    constructor(props: DispatchedP & ConnectedP) {
         super(props);
     }
 
@@ -16,7 +20,7 @@ class OneTimeData extends React.Component<DispatchedP, any> {
         return (
             <div className="oneTimeData">
                 <div className="oneTimeData__inner">
-                    <OneTimeDataForm onSubmit={async (data) => await (this.props.registerUser(data))}/>
+                    <OneTimeDataForm onSubmit={async (data) => await (this.props.getPDF(this.props.selectedPDF, data))}/>
                 </div>
             </div>
         )
@@ -25,7 +29,13 @@ class OneTimeData extends React.Component<DispatchedP, any> {
 
 
 const mapDispatchToProps: DispatchedP = {
-    registerUser: (newUser: any) => UserModule.Actions.registerUser(newUser),
+    getPDF: (selectedPDF: string, oneTimeData: any) => InvestmentModule.Actions.getPDF(selectedPDF, oneTimeData),
 };
 
-export default connect(null, mapDispatchToProps)(OneTimeData)
+function mapStateToProps(state: RootState): ConnectedP {
+    return {
+        selectedPDF: state.investmentStore.selectedPDF
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OneTimeData)

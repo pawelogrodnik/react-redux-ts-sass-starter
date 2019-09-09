@@ -73,6 +73,15 @@ a,
     &--buyNow {
         margin: 80px auto;
     }
+    &--right {
+        float: right;
+    }
+    &--left {
+        float: left;
+    }
+    &--center {
+        margin: 0 auto;
+    }
 }
 
 p {

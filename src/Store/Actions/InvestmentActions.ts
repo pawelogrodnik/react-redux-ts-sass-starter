@@ -126,12 +126,55 @@ function archiveInvestmentSuccess(investmentId: number): InvestmentActionModel.A
         }
     };
 }
+
 function addInvestmentSuccess(): InvestmentActionModel.AddInvestment {
     return {
         type: Investment.ADD_INVESTMENT
     };
 }
 
+function setSelectedPDF(path: string): InvestmentActionModel.SetSelectedPDF {
+    return {
+        type: Investment.SET_SELECTED_PDF,
+        payload: {
+            path
+        }
+    }
+}
+
+function getPDF(path: string, data1?:any) {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            await InvestmentModule.Connector.downloadPDF(path,data1).then(({data}) => {
+                // const file = new Blob(
+                //     [data], 
+                //     {type: 'application/pdf'});
+                //     const fileURL = URL.createObjectURL(file);
+                //     window.open(fileURL);
+
+
+
+                const downloadUrl = window.URL.createObjectURL(new Blob([data], {type: 'application/pdf'}));
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                // link.setAttribute('download', 'file.pdf');
+                document.body.appendChild(link);
+                link.click();
+            }).catch((err) => {
+                // clearInterval(inverval)
+                // history.push('/dashboard/login');
+            });
+            dispatch(ViewManagementModule.Actions.hideLoader())
+            // dispatch(ViewManagementModule.Actions.showPopup('resetPasswordSuccess'))
+            
+        } catch (err) {
+            console.log(err.response)
+            // dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
 
 export {
     getInvestments,
@@ -140,5 +183,7 @@ export {
     archiveInvestment,
     getInvestmentDetails,
     contact,
-    clearInvestment
+    clearInvestment,
+    setSelectedPDF,
+    getPDF
 }

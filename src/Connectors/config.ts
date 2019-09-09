@@ -55,13 +55,16 @@ axiosInstance.interceptors.response.use(
     error => handleInterceptorError(error)
 );
 
-export const config = (params?: any, headers?: any) => {
+export const config = (params?: any, headers?: any, responseType?: any) => {
     const configRq: AxiosRequestConfig = {};
     if (params) {
         configRq.params = params;
     }
     if (headers) {
-        configRq.headers = headers
+        configRq.headers = headers;
+    }
+    if (responseType) {
+        configRq.responseType = responseType;
     }
     return configRq;
 };

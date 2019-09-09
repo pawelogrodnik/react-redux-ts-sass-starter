@@ -37,5 +37,5 @@ const EditUserForm = (props: InjectedFormProps) => {
 };
 
 export default reduxForm({
-    form: 'editUserForm'
+    form: 'editUserForm',
 })(EditUserForm);

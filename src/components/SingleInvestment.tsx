@@ -17,6 +17,7 @@ type DispatchedP = {
     getInvestmentDetails: (id: number) => void;
     clearInvestment: () =>  void;
     showPopup: (typePopup: string) => void;
+    setSelectedPDF: (path: string) => void;
 }
 
 type ConnectedP = {
@@ -31,6 +32,7 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
     public async componentDidMount() {
         await this.props.getInvestmentDetails(this.props.match.params.id);
         window.scrollTo(0,0);
+        console.log(this.props.investmentDetails)
     }
 
     public checkPlural(value:number) {
@@ -160,12 +162,14 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                             </div>
                             <div className="center">
                                 {this.props.investmentDetails.detailedParams.attachments && this.props.investmentDetails.detailedParams.attachments.map((item, i) => { 
-                                        return <a key={i} href={`${baseURL}/${item.path}`} target="_blank"><button type="button" className="btn btn--main btn--inline" onClick={(e)=> {
+                                        return <button key={i} type="button" className="btn btn--main btn--inline" onClick={(e)=> {
                                             if(!this.props.isUserLogged) {
-                                                e.preventDefault();
+                                                // e.preventDefault();
+                                                console.log(item)
+                                                this.props.setSelectedPDF(item.path);
                                                 this.props.showPopup('openPDF');
                                             }
-                                        }} >Pobierz Załącznik  {this.props.investmentDetails.detailedParams.attachments.length > 1 && i + 1}</button></a>
+                                        }} >Pobierz Załącznik  {this.props.investmentDetails.detailedParams.attachments.length > 1 && i + 1}</button>
                                 })}
                             </div>
                             {this.props.investmentDetails.type === token && (
@@ -186,6 +190,7 @@ const mapDispatchToProps: DispatchedP = {
     getInvestmentDetails: (id: number) => InvestmentModule.Actions.getInvestmentDetails(id),
     clearInvestment: () => InvestmentModule.Actions.clearInvestment(),
     showPopup: (typePopup) => ViewManagementModule.Actions.showPopup(typePopup),
+    setSelectedPDF: (path: string) => InvestmentModule.Actions.setSelectedPDF(path)
 };
 
 function mapStateToProps(state: RootState): ConnectedP {
