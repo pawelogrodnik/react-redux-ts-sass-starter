@@ -206,6 +206,29 @@ function resetPasswordContinue(data:any) {
     };
 }
 
+function getUsersList() {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            const response = await UserModule.Connector.getUsersList();
+            dispatch(getUsersListSuccess(response.data))
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        } catch (err) {
+            dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
+
+function getUsersListSuccess(usersList: Array<UserModule.Types.UserInList>): UserActionModel.GetUsersList {
+    return {
+        type: User.GET_USERS_LIST,
+        payload: {
+            usersList
+        }
+    };
+}
+
 export {
     logoutUser,
     logoutUserSuccess,
@@ -219,5 +242,6 @@ export {
     setResetCode,
     resetPasswordContinue,
     checkIfUserIsValid,
-    deleteUser
+    deleteUser,
+    getUsersList
 }

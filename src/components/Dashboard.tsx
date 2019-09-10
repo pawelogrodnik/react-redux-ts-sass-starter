@@ -6,11 +6,14 @@ import Login from 'components/Layout/Login';
 import ManageInvestment from 'components/AddInvestment';
 import InvestmentsList from 'components/InvestmentsList';
 import EditUser from 'components/EditUser';
+import DownloadedProducts from 'src/components/DownloadedInvestments';
+import UsersList from 'src/components/UsersList';
 import { Link } from 'react-router-dom';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
 import * as UserModule from 'Modules/UserModule';
 import { history } from 'src/App';
 import { ViewManagement } from 'src/Store/Actions/EnumTypes/ActionEnumTypes';
+import * as ReactTooltip from 'react-tooltip'
 
 type S = {
 
@@ -57,25 +60,44 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
         this.props.logoutUser()
         history.push('/dashboard/login')
     }
+    public generateTooltip = (id: string, text: string) => {
+        return (
+            <ReactTooltip id={id} effect='solid'>
+                <span>{text}</span>
+            </ReactTooltip>
+        )
+    }
     public render() {
         return (
+            
             <div className="page page--dashboard">
                 <div className="page--dashboard__menu">
                     <ul>
-                        <Link to={'/'}><li><img src="/home.png" /></li></Link>
+                        <Link to={'/'} data-tip data-for="home"><li><img src="/home.png" /></li></Link>
+                        {this.generateTooltip('home', 'Strona główna')}
                         {localStorage.getItem('token') && localStorage.getItem('role') !== 'CUSTOMER' ? (
                             <>
-                                <Link to={'/dashboard/'}><li><i className="fas fa-list-ol" /></li></Link>
-                                <Link to={'/dashboard/investments/add'}><li><i className="fas fa-plus" /></li></Link>
-                                <li onClick={this.handleLogout}><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
+                                <Link to={'/dashboard/'} data-tip data-for="investmentList"><li><i className="fas fa-list-ol" /></li></Link>
+                                <Link to={'/dashboard/investments/add'} data-tip data-for="addInvestment"><li><i className="fas fa-plus" /></li></Link>
+                                <Link to={'/dashboard/usersList'} data-tip data-for="usersList"><li><i className="fas fa-users" /></li></Link>
+                                <li onClick={this.handleLogout} data-tip data-for="logout"><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
+                                {this.generateTooltip('investmentList', 'Lista inwestycji')}
+                                {this.generateTooltip('addInvestment', 'Dodaj inwestycję')}
+                                {this.generateTooltip('usersList', 'Lista użytkowników')}
+                                {this.generateTooltip('logout', 'Wyloguj')}
                             </>
                          ) : (localStorage.getItem('token') && localStorage.getItem('role') == 'CUSTOMER' ? (
                             <>
-                                <Link to={'/dashboard/'}><li><i className="fas fa-user-cog" /></li></Link>
-                                <li onClick={this.handleLogout}><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
+                                <Link to={'/dashboard/'} data-tip data-for="downloadedList"><li><i className="fas fa-cart-arrow-down" /></li></Link>
+                                <Link to={'/dashboard/editUser'} data-tip data-for="editUser"><li><i className="fas fa-user-cog" /></li></Link>
+                                <li onClick={this.handleLogout} data-tip data-for="logout"><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
+                                {this.generateTooltip('editUser', 'Edytuj dane')}
+                                {this.generateTooltip('downloadedList', 'Lista pobranych inwestycji')}
+                                {this.generateTooltip('logout', 'Wyloguj')}
                             </>
                          ) : (
-                             <Link to={'/dashboard/login'}><li><i className="fas fa-sign-in-alt" /></li></Link>
+                            //  <Link to={'/dashboard/login'}><li><i className="fas fa-sign-in-alt" /></li></Link>
+                            null
                          )
                         )}
                     </ul>
@@ -86,10 +108,12 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                             <Route exact path={'/dashboard/'} component={InvestmentsList} />
                             <Route exact path={'/dashboard/investments/add'} component={ManageInvestment} />
                             <Route exact path={'/dashboard/investments/:investmentId'} component={ManageInvestment} />
+                            <Route exact path={'/dashboard/usersList'} component={UsersList} />
                         </Switch>
                     ) : ( localStorage.getItem('token') && localStorage.getItem('role') == 'CUSTOMER' ? (
                         <Switch>
-                            <Route exact path={'/dashboard/'} component={EditUser} />
+                            <Route exact path={'/dashboard/'} component={DownloadedProducts} />
+                            <Route exact path={'/dashboard/editUser'} component={EditUser} />
                         </Switch>   
                     ): (
                         <Switch>

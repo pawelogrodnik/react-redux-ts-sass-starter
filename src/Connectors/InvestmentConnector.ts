@@ -23,6 +23,9 @@ export function contact(contactData: InvestmentModule.Types.Contact) {
 }
 
 export function downloadPDF(path:string, data?) {
-    console.log(data)
     return API.post(path, data, config(null, { 'x-auth-token': localStorage.getItem('token')}, 'blob'))
+}
+
+export function getDownloadedInvestments(): AxiosPromise<Array<InvestmentModule.Types.DownloadedInvestment>> {
+    return API.get('user/products', config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }

@@ -9,6 +9,7 @@ export const initialState: State = {
     investmentDetails: null,
     activeInvestmentId: null,
     selectedPDF: null,
+    downloadedInvestmentList: []
 };
 
 export function investmentReducer(state: State = initialState, action: InvestmentAction) {
@@ -43,6 +44,12 @@ export function investmentReducer(state: State = initialState, action: Investmen
             return {
                 ...state,
                 selectedPDF: action.payload.path
+            }
+        }
+        case ActionTypes.Investment.GET_DOWNLOADED_INVESTMENTS: {
+            return {
+                ...state,
+                downloadedInvestmentList: action.payload.downloadedInvestmentList
             }
         }
         default: {

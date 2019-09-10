@@ -36,10 +36,14 @@ class ErrorHandler extends React.Component<DispatchedP & ConnectedP, S> {
     }
     public render() {
         const { errorStore } = this.props;
-        const errorText = errorStore.responseError.statusText !== 'Unauthorized' ? (
-            <p>Wystąpił błąd. Spróbuj ponownie później lub skontaktuj się z nami pod adresem <a href="mailto:">kontakt@obligain.com</a></p>
-            ) : (
+        console.log(errorStore)
+        const errorText = errorStore.responseError.status === 403 ? (
+            <p>Twoja sesja wygasła. Zaloguj się ponownie!</p>
+            ) : ( errorStore.responseError.statusText !== 'Unauthorized' ? (
+                <p>Wystąpił błąd. Spróbuj ponownie później lub skontaktuj się z nami pod adresem <a href="mailto:">kontakt@obligain.com</a></p>
+                ) : (
                 <p>Niepoprawne dane logowania</p>
+                )
             );
         if (
             errorStore.responseError.status

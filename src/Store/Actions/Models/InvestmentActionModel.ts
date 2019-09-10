@@ -48,6 +48,14 @@ export type SetSelectedPDF = {
     }
 };
 
+export type GetDownloadedInvestments = {
+    type: ActionTypes.Investment.GET_DOWNLOADED_INVESTMENTS,
+    payload: {
+        downloadedInvestmentList: Array<InvestmentModule.Types.DownloadedInvestment>
+    }
+};
+
+
 export type InvestmentAction =
     | GetInvestmentDetails
     | AddInvestment
@@ -56,4 +64,5 @@ export type InvestmentAction =
     | ArchiveProduct
     | Contact 
     | ClearInvestment
-    | SetSelectedPDF;
+    | SetSelectedPDF
+    | GetDownloadedInvestments;

@@ -5,6 +5,7 @@ export type InvestmentStore = {
     activeInvestmentId: number;
     investmentDetails: Investment;
     selectedPDF: string;
+    downloadedInvestmentList: Array<DownloadedInvestment>
 };
 
 
@@ -15,6 +16,14 @@ export type Investment = {
     type: EnumTypes.InvestmentType;
     status: string;
     seller: Seller
+}
+
+export type DownloadedInvestment = {
+    id: number;
+    email: string;
+    date: string;
+    title: string;
+    type: EnumTypes.InvestmentType;
 }
 
 export type Address = {

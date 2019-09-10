@@ -10,6 +10,7 @@ export const initialState: State = {
     loggedUserData: null,
     resetPasswordCode: null,
     isUserLogged: false,
+    usersList: []
 
 };
 
@@ -57,6 +58,12 @@ export function userReducer(state: State = initialState, action: UserAction) {
                 ...state,
                 isUserLogged: true
             }
+        }
+        case ActionTypes.User.GET_USERS_LIST: {
+            return {
+                ...state,
+                usersList: action.payload.usersList
+            };
         }
         default: {
             return state;

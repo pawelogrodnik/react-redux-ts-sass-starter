@@ -169,6 +169,28 @@ function getPDF(path: string, data1?:any) {
     };
 }
 
+function getDownloadedInvestments() {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            const response = await InvestmentModule.Connector.getDownloadedInvestments()
+            dispatch(getDownloadedInvestmentsSuccess(response.data))
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        } catch (err) {
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
+
+function getDownloadedInvestmentsSuccess(downloadedInvestmentList: Array<InvestmentModule.Types.DownloadedInvestment>): InvestmentActionModel.GetDownloadedInvestments {
+    return {
+        type: Investment.GET_DOWNLOADED_INVESTMENTS,
+        payload: {
+            downloadedInvestmentList
+        }
+    };
+}
+
 export {
     getInvestments,
     addInvestment,
@@ -178,5 +200,6 @@ export {
     contact,
     clearInvestment,
     setSelectedPDF,
-    getPDF
+    getPDF,
+    getDownloadedInvestments
 }

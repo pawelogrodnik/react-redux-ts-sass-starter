@@ -205,14 +205,19 @@ $input-range-track-disabled-background: $input-range-neutral-light-color !defaul
                         padding: 5px 10px;
                         .RangeButtonsMobileHelpers {
                             user-select: none;
-                            border-radius: 50%;
-                            background-color: $blueMain;
                             text-align: center;
-                            line-height: 30px;
                             margin: 10px 0;
-                            color: #fff;
-                            width: 30px;
-                            height: 30px;
+                            width: 100%;
+                            height: 40px;
+                            border: 2px solid $brownMain;
+                            color: $brownMain;
+                            line-height: 35px;
+                            font-size: 35px;
+
+                        }
+                        &--decrement,
+                        &--increment {
+                            width: 45%;
                         }
                     }
                 }

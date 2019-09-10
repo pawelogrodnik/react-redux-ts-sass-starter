@@ -37,3 +37,7 @@ export function checkIfUserIsValid(token): AxiosPromise<any> {
 export function deleteUser(token) {
     return API.delete('user', config(null, {'x-auth-token': token}))
 }
+
+export function getUsersList(): AxiosPromise<Array<UserModule.Types.UserInList>> {
+    return API.get('users', config(null, { 'x-auth-token': localStorage.getItem('token') }));
+}

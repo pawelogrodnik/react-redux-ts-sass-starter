@@ -6,6 +6,7 @@ export type UserStore = {
     loggedUserData: RegisterUser;
     resetPasswordCode: string;
     isUserLogged: boolean;
+    usersList: Array<UserInList>
 };
 
 export type User = {
@@ -17,6 +18,17 @@ export type User = {
     roles: EnumTypes.UserRole;
     userName: string;
     authToken: string;
+}
+
+export type UserInList = {
+    active: boolean;
+    dateAdd: string;
+    firstName: string;
+    lastName: string;
+    id: number;
+    phone: number;
+    username: string;
+
 }
 
 export type RegisterUser = {

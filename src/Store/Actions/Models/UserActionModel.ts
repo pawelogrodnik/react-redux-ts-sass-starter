@@ -1,4 +1,5 @@
 import * as ActionTypes from '../EnumTypes/ActionEnumTypes';
+import * as UserModule from 'Modules/UserModule';
 
 export type LoginUser = {
     type: ActionTypes.User.LOG_IN;
@@ -47,6 +48,14 @@ export type TokenValidSuccess = {
 export type DeleteUser = {
     type: ActionTypes.User.DELETE_USER
 }
+
+export type GetUsersList = {
+    type: ActionTypes.User.GET_USERS_LIST
+    payload: {
+        usersList: Array<UserModule.Types.UserInList>
+    }
+};
+
 export type UserAction =
     | LoginUser
     | LoginUserSuccess
@@ -59,4 +68,5 @@ export type UserAction =
     | SetResetCode
     | TokenValidFailure
     | TokenValidSuccess
-    | DeleteUser;
+    | DeleteUser
+    | GetUsersList;
