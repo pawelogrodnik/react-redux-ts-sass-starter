@@ -18,6 +18,8 @@ type DispatchedP = {
     clearInvestment: () =>  void;
     showPopup: (typePopup: string) => void;
     setSelectedPDF: (path: string) => void;
+    getPDF: (selectedPDF: string) => void;
+
 }
 
 type ConnectedP = {
@@ -163,11 +165,13 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                             <div className="center">
                                 {this.props.investmentDetails.detailedParams.attachments && this.props.investmentDetails.detailedParams.attachments.map((item, i) => { 
                                         return <button key={i} type="button" className="btn btn--main btn--inline" onClick={(e)=> {
+                                            this.props.setSelectedPDF(item.path);
                                             if(!this.props.isUserLogged) {
                                                 // e.preventDefault();
                                                 console.log(item)
-                                                this.props.setSelectedPDF(item.path);
                                                 this.props.showPopup('openPDF');
+                                            } else {
+                                                this.props.getPDF(item.path);
                                             }
                                         }} >Pobierz Załącznik  {this.props.investmentDetails.detailedParams.attachments.length > 1 && i + 1}</button>
                                 })}
@@ -190,7 +194,8 @@ const mapDispatchToProps: DispatchedP = {
     getInvestmentDetails: (id: number) => InvestmentModule.Actions.getInvestmentDetails(id),
     clearInvestment: () => InvestmentModule.Actions.clearInvestment(),
     showPopup: (typePopup) => ViewManagementModule.Actions.showPopup(typePopup),
-    setSelectedPDF: (path: string) => InvestmentModule.Actions.setSelectedPDF(path)
+    setSelectedPDF: (path: string) => InvestmentModule.Actions.setSelectedPDF(path),
+    getPDF: (selectedPDF: string) => InvestmentModule.Actions.getPDF(selectedPDF)
 };
 
 function mapStateToProps(state: RootState): ConnectedP {

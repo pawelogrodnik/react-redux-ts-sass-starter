@@ -5,6 +5,8 @@ import * as InvestmentModule from 'Modules/InvestmentModule';
 import * as ViewManagementModule from 'Modules/ViewManagementModule';
 import { history } from 'src/App';
 import { reset } from 'redux-form';
+import { hidePopup } from './ViewManagementActions';
+import * as ErrorActions from './ErrorActions';
 
 function getInvestments(params?: URLSearchParams) {
     return async dispatch => {
@@ -147,30 +149,21 @@ function getPDF(path: string, data1?:any) {
         try {
             dispatch(ViewManagementModule.Actions.showLoader())
             await InvestmentModule.Connector.downloadPDF(path,data1).then(({data}) => {
-                // const file = new Blob(
-                //     [data], 
-                //     {type: 'application/pdf'});
-                //     const fileURL = URL.createObjectURL(file);
-                //     window.open(fileURL);
-
-
-
                 const downloadUrl = window.URL.createObjectURL(new Blob([data], {type: 'application/pdf'}));
                 const link = document.createElement('a');
+                link.download = 'Obligain.pdf';
                 link.href = downloadUrl;
-                // link.setAttribute('download', 'file.pdf');
                 document.body.appendChild(link);
                 link.click();
             }).catch((err) => {
-                // clearInterval(inverval)
-                // history.push('/dashboard/login');
+                console.log(err.response)
             });
             dispatch(ViewManagementModule.Actions.hideLoader())
-            // dispatch(ViewManagementModule.Actions.showPopup('resetPasswordSuccess'))
+            dispatch(hidePopup());
             
         } catch (err) {
             console.log(err.response)
-            // dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
+            dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
             dispatch(ViewManagementModule.Actions.hideLoader())
         }
     };

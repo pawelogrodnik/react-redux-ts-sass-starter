@@ -19,7 +19,8 @@ const AddInvestmentForm = (props: InjectedFormProps & P) => {
                 <div className="form--addInvestment_l">
                     <h3>Dane sprzedawcy</h3>
                     <div className="form--addInvestment__content">
-                        <Field type="text" wrapperClassName={'full'} name="seller.companyName" component={RegularField} label={'Nazwa sprzedawcy'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                        <Field type="text" wrapperClassName={'half'} name="seller.companyName" component={RegularField} label={'Nazwa sprzedawcy'} placeholder={'Wpisz nazwę sprzedawcy'} validate={[V.required]} />
+                        <Field type="email" wrapperClassName={'half'} name="seller.email" component={RegularField} label={'E-mail sprzedawcy'} placeholder={'Wpisz email sprzedawcy'} />
                         <Field type="text" wrapperClassName={'half'} name="seller.NIP" component={RegularField} label={'NIP'} placeholder={'NIP'} validate={[V.required]} />
                         <Field type="text" wrapperClassName={'half'} name="seller.REGON" component={RegularField} label={'REGON'} placeholder={'REGON'} validate={[V.required]} />
                         <Field type="text" wrapperClassName={'half'} name="seller.address.street" component={RegularField} label={'Ulica'} placeholder={'Ulica'} validate={[V.required]} />

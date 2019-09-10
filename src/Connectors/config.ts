@@ -59,7 +59,7 @@ export const config = (params?: any, headers?: any, responseType?: any) => {
     const configRq: AxiosRequestConfig = {};
     if (params) {
         configRq.params = params;
-    }
+    } 
     if (headers) {
         configRq.headers = headers;
     }

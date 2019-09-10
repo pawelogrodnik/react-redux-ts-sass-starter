@@ -15,7 +15,7 @@ const FirstStepRegisterForm = (props: InjectedFormProps & Props) => {
                 <Field type="text" name="lastname" component={RegularField} label={'Nazwisko'} validate={[V.required]} />
                 <Field type="email" name="username" component={RegularField} label={'E-mail'} validate={[V.required]} />
                 <Field type="password" name="password" component={RegularField} label={'Hasło'} validate={[V.required]} />
-                <Field type="password" name="confirmation" component={RegularField} label={'Powtórz hasło'} validate={[V.required]} />
+                <Field type="password" name="confirmation" component={RegularField} label={'Powtórz hasło'} validate={[V.required,V.matchPassword]} />
                 {!isLoadedImage ?  <Field name="picture.content" component={FileField} label={'Zdjęcie profilowe'} /> : null}
                 <div className="form--registration__buttons">
                     <button className="btn btn--main btn--center" type="submit">

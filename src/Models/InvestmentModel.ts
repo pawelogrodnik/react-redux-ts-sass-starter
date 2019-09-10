@@ -31,7 +31,8 @@ export type Seller = {
     REGON: number;
     address: Address;
     companyName: string;
-    id: number
+    email: string;
+    id: number;
 }
 
 export type BasicParams = {
