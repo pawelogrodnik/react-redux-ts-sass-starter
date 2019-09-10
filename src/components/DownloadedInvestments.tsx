@@ -26,7 +26,8 @@ class DownloadedInvestments extends React.Component<DispatchedP & ConnectedP, an
         return (
             <div className="investmentList">
                 <h2>Lista pobranych inwestycji</h2>
-                <ReactTable
+                {this.props.downloadedInvestmentList.length > 0 ? (
+                    <ReactTable
                     showPagination={true}
                     sortable={true}
                     minRows={0}
@@ -67,6 +68,10 @@ class DownloadedInvestments extends React.Component<DispatchedP & ConnectedP, an
                         }
                     ]}
                 />
+                ) : (
+                    <p>Brak pobranych inwestycji</p>
+                )}
+                
             </div>
         )
     }
