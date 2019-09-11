@@ -10,7 +10,8 @@ export const initialState: State = {
     loggedUserData: null,
     resetPasswordCode: null,
     isUserLogged: false,
-    usersList: []
+    usersList: [],
+    specificUser: null
 
 };
 
@@ -63,6 +64,12 @@ export function userReducer(state: State = initialState, action: UserAction) {
             return {
                 ...state,
                 usersList: action.payload.usersList
+            };
+        }
+        case ActionTypes.User.GET_SPECIFIC_USER: {
+            return {
+                ...state,
+                specificUser: action.payload.specificUser
             };
         }
         default: {

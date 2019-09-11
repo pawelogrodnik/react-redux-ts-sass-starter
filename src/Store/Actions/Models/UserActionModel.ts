@@ -56,6 +56,13 @@ export type GetUsersList = {
     }
 };
 
+export type GetSpecificUser = {
+    type: ActionTypes.User.GET_SPECIFIC_USER
+    payload: {
+        specificUser: UserModule.Types.SpecificUser
+    }
+};
+
 export type UserAction =
     | LoginUser
     | LoginUserSuccess
@@ -69,4 +76,5 @@ export type UserAction =
     | TokenValidFailure
     | TokenValidSuccess
     | DeleteUser
-    | GetUsersList;
+    | GetUsersList
+    | GetSpecificUser;

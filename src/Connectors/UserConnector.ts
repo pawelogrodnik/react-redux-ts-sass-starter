@@ -41,3 +41,7 @@ export function deleteUser(token) {
 export function getUsersList(): AxiosPromise<Array<UserModule.Types.UserInList>> {
     return API.get('users', config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }
+
+export function getSpecificUser(id): AxiosPromise<UserModule.Types.SpecificUser> {
+    return API.get(`users/${id}`, config(null, { 'x-auth-token': localStorage.getItem('token') }));
+}

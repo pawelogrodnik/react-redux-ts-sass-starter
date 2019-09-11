@@ -6,7 +6,8 @@ export type UserStore = {
     loggedUserData: RegisterUser;
     resetPasswordCode: string;
     isUserLogged: boolean;
-    usersList: Array<UserInList>
+    usersList: Array<UserInList>;
+    specificUser: SpecificUser;
 };
 
 export type User = {
@@ -44,4 +45,25 @@ export type RegisterUser = {
     postCode: any;
     city: string;
     country: string;
+}
+
+export type Address = {
+    street: string;
+    houseNumber: number;
+    flatNumber: number;
+    postCode: any;
+    city: string;
+    country: string;
+
+}
+
+export type SpecificUser = {
+    address: Address;
+    downloadedProducts: Array<any>;
+    user: {
+        firstname: string;
+        lastname: string;
+        phone: number;
+        username: string;
+    }
 }

@@ -229,6 +229,29 @@ function getUsersListSuccess(usersList: Array<UserModule.Types.UserInList>): Use
     };
 }
 
+function getSpecificUser(id) {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            const response = await UserModule.Connector.getSpecificUser(id);
+            dispatch(getSpecificUserSuccess(response.data))
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        } catch (err) {
+            dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
+
+function getSpecificUserSuccess(specificUser: UserModule.Types.SpecificUser): UserActionModel.GetSpecificUser {
+    return {
+        type: User.GET_SPECIFIC_USER,
+        payload: {
+            specificUser
+        }
+    };
+}
+
 export {
     logoutUser,
     logoutUserSuccess,
@@ -243,5 +266,6 @@ export {
     resetPasswordContinue,
     checkIfUserIsValid,
     deleteUser,
-    getUsersList
+    getUsersList,
+    getSpecificUser
 }
