@@ -44,6 +44,12 @@ class UsersList extends React.Component<DispatchedP & ConnectedP, S> {
                     showPagination={true}
                     sortable={true}
                     minRows={0}
+                    previousText='Poprzednia'
+                    nextText="Następna"
+                    pageText="Strona"
+                    ofText="z"
+                    rowsText="rzędów"
+                    loadingText= 'Ładowanie...'
                     // getTrProps={this.getTrProps}
                     data={this.props.usersList ? [...this.props.usersList] : []}
                     columns={[

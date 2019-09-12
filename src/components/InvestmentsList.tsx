@@ -41,6 +41,12 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                     showPagination={true}
                     sortable={true}
                     minRows={0}
+                    previousText='Poprzednia'
+                    nextText="Następna"
+                    pageText="Strona"
+                    ofText="z"
+                    rowsText="rzędów"
+                    loadingText= 'Ładowanie...'
                     // getTrProps={this.getTrProps}
                     data={this.props.investmentList ? [...this.props.investmentList] : []}
                     columns={[

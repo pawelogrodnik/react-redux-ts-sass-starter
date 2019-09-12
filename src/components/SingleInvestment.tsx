@@ -162,6 +162,15 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                     </>
                                 )}
                             </div>
+                            {(this.props.isUserLogged && this.props.investmentDetails.seller) && (
+                                <>
+                                    <h3 className="center">Dane sprzedawcy</h3>
+                                    <div className="productDataDetails">
+                                            <div><span>Nazwa:</span><span>{this.props.investmentDetails.seller.companyName}</span></div>
+                                            <div><span>Adres:</span><span>{this.props.investmentDetails.seller.address.city}, {this.props.investmentDetails.seller.address.street} {this.props.investmentDetails.seller.address.houseNumber}{this.props.investmentDetails.seller.address.flatNumber && `/${this.props.investmentDetails.seller.address.flatNumber}`} </span></div>
+                                    </div>
+                                </>
+                            )}
                             <div className="center">
                                 {this.props.investmentDetails.detailedParams.attachments && this.props.investmentDetails.detailedParams.attachments.map((item, i) => { 
                                         return <button key={i} type="button" className="btn btn--main btn--inline" onClick={(e)=> {

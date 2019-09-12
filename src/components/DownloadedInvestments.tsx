@@ -31,6 +31,12 @@ class DownloadedInvestments extends React.Component<DispatchedP & ConnectedP, an
                     showPagination={true}
                     sortable={true}
                     minRows={0}
+                    previousText='Poprzednia'
+                    nextText="Następna"
+                    pageText="Strona"
+                    ofText="z"
+                    rowsText="rzędów"
+                    loadingText= 'Ładowanie...'
                     // getTrProps={this.getTrProps}
                     data={this.props.downloadedInvestmentList ? [...this.props.downloadedInvestmentList] : []}
                     columns={[
@@ -50,11 +56,11 @@ class DownloadedInvestments extends React.Component<DispatchedP & ConnectedP, an
                             Header: 'Nazwa produktu',
                             accessor: 'title'
                         },
-                        {
-                            id: 'email',
-                            Header: 'Email sprzedawcy',
-                            accessor: 'email'
-                        },
+                        // {
+                        //     id: 'email',
+                        //     Header: 'Email sprzedawcy',
+                        //     accessor: 'email'
+                        // },
                         {
                             id: 'date',
                             Header: 'Data pobrania',
