@@ -6,11 +6,12 @@ import { connect } from 'react-redux';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
 import { history } from 'src/App';
 import EditUserForm from './Forms/EditUserForm';
+import * as QRCode from 'qrcode.react'
 
 type DispatchedP = {
     editUser: (newUser: any) => void;
     getLoggedUserdata: () => void;
-    showDeleteUserPopup: () => void;
+    showPopup: (text: string) => void;
 }
 type ConnectedP = {
     loggedUserData: any
@@ -25,13 +26,40 @@ class EditUser extends React.Component<DispatchedP & ConnectedP, any> {
         this.props.getLoggedUserdata();
     }
     public onUserDelete = () => {
-       this.props.showDeleteUserPopup()
+       this.props.showPopup('deleteUser')
+    }
+    public copyReflink = () => {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(document.getElementById("reflink"));
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        selection.removeAllRanges();
+        this.props.showPopup('copiedLink')
+    }
+    public downloadCanvas = () => {
+        const canvas = document.getElementsByTagName('canvas');
+        console.log(canvas[0])
+        const link = document.createElement('a');
+        link.download = 'QR.png';
+        link.href = canvas[0].toDataURL("image/png;base64");
+        link.click();
     }
     public render() {
         return (
             <div className="edituser">
                 <h2>Edycja danych</h2>
                 <EditUserForm onSubmit={async (data) => await (this.props.editUser(data))} initialValues={this.props.loggedUserData}/>
+                <div className="edituser__reflink">
+                    <h3>Twój link polecający to: </h3>
+                    <p id="reflink">https://obligain.com?r=17765</p>
+                    <button className="btn btn--copyReflink" onClick={this.copyReflink}>
+                        Skopiuj do schowka
+                    </button>
+                </div>
+                <QRCode value={`https://obligain.com?r=17765`} />
+                <button className="btn btn--main" onClick={this.downloadCanvas}>Pobierz kod</button>
                 <div className="edituser--actions">
                     <button className="edituser--delete btn btn--main btn--big btn--red" onClick={this.onUserDelete}>Trwałe usunięcie konta</button>
                 </div>
@@ -44,7 +72,7 @@ class EditUser extends React.Component<DispatchedP & ConnectedP, any> {
 const mapDispatchToProps: DispatchedP = {
     editUser: (data: any) => UserModule.Actions.editUser(data),
     getLoggedUserdata: () => UserModule.Actions.getLoggedUserData(),
-    showDeleteUserPopup: () => ViewManagementModule.Actions.showPopup('deleteUser')
+    showPopup: (text: string) => ViewManagementModule.Actions.showPopup(text)
 };
 
 function mapStateToProps(state: RootState): ConnectedP {

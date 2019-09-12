@@ -63,6 +63,8 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
     }
 
     public componentDidMount() {
+        console.log(this.props.location);
+        // console.log(this.props.location.search.split('=')[1].split('&')[0])
         if(this.props.location.pathname == '/dashboard/login' && this.props.location.search == '?status=successfully_confirmed') {
             this.props.showPopup('confirmUserSuccess');
         } else if(this.props.location.pathname == '/dashboard/login' && this.props.location.search == '?status=code_already_used') {
@@ -73,7 +75,10 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
             this.props.showPopup('resetPasswordContinue');
         } else if(this.props.location.pathname == '/dashboard/reset_password' && this.props.location.search == '?status=code_already_used') {
             this.props.showPopup('resetPasswordCodeUsed');
-        }
+        } 
+        // else if (this.props.location.pathname == '/' && this.props.location.search.split('=')[0] == '?r') {
+        //     alert(`Twój kod reflinku to: ${this.props.location.search.split('=')[1].split('&')[0]}`)
+        // }
 
     }
 

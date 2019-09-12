@@ -215,6 +215,14 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                     )
                 }
             }
+            case 'copiedLink': {
+                return (
+                    <>
+                        <h2>Skopiowano do schowka!</h2>
+                        <i className="far fa-check-circle" />
+                    </>
+                )
+            }
             default: {
                 return null;
             }
