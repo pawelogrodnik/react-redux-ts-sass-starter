@@ -53,12 +53,12 @@ class EditUser extends React.Component<DispatchedP & ConnectedP, any> {
                 <EditUserForm onSubmit={async (data) => await (this.props.editUser(data))} initialValues={this.props.loggedUserData}/>
                 <div className="edituser__reflink">
                     <h3>Twój link polecający to: </h3>
-                    <p id="reflink">https://obligain.com?r=17765</p>
+                    <p id="reflink">http://obligain.k-org.pl?r=17765</p>
                     <button className="btn btn--copyReflink" onClick={this.copyReflink}>
                         Skopiuj do schowka
                     </button>
                 </div>
-                <QRCode value={`https://obligain.com?r=17765`} />
+                <QRCode value={`http://obligain.k-org.pl?r=17765`} />
                 <button className="btn btn--main" onClick={this.downloadCanvas}>Pobierz kod</button>
                 <div className="edituser--actions">
                     <button className="edituser--delete btn btn--main btn--big btn--red" onClick={this.onUserDelete}>Trwałe usunięcie konta</button>
