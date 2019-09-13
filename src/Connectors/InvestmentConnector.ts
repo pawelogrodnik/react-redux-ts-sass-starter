@@ -29,3 +29,7 @@ export function downloadPDF(path:string, data?) {
 export function getDownloadedInvestments(): AxiosPromise<Array<InvestmentModule.Types.DownloadedInvestment>> {
     return API.get('user/products', config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }
+
+export function getPurchasedInvestments(): AxiosPromise<Array<InvestmentModule.Types.DownloadedInvestment>> {
+    return API.get('user/products', config(null, { 'x-auth-token': localStorage.getItem('token') }));
+}

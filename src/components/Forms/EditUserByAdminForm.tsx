@@ -1,10 +1,14 @@
 import * as React from 'react';
-import { Field, reduxForm, InjectedFormProps } from 'redux-form';
-import { RegularField, FileField } from './Fields/_Fields';
+import { Field, reduxForm, InjectedFormProps, formValueSelector } from 'redux-form';
+import { RegularField , SelectField, FileField} from './Fields/_Fields';
 import { Validators as V } from './Fields/Validators';
 
-const EditUserForm = (props: InjectedFormProps) => {
-    const { handleSubmit, submitting } = props;
+const EditUserByAdminForm = (props: InjectedFormProps ) => {
+    const { handleSubmit, submitting} = props;
+    const options = [
+        {label: 'Aktywny', value: 'true'},
+        {label: 'Nieaktywny', value: 'false'}
+    ]
     return (
         <div className="form form--editUser">
             <form className="form" onSubmit={handleSubmit}>
@@ -12,6 +16,7 @@ const EditUserForm = (props: InjectedFormProps) => {
                     <Field type="text" name="firstname" component={RegularField} label={'Imię'} />
                     <Field type="text" name="lastname" component={RegularField} label={'Nazwisko'} />
                     <Field type="text" name="phone" component={RegularField} label={'Telefon'} />
+                    {/* <Field type="email" name="username" component={RegularField} label={'E-mail'} validate={[V.required]} /> */}
                     <Field type="text" name="street" component={RegularField} label={'Ulica'} />
                 </div>
                 <div className="form--editUser_r">
@@ -23,7 +28,9 @@ const EditUserForm = (props: InjectedFormProps) => {
                 </div>
                 <Field type="password" wrapperClassName={'half'} name="password" component={RegularField} label={'Hasło'} />
                 <Field type="password" wrapperClassName={'half'} name="confirmation" component={RegularField} label={'Powtórz hasło'} />
-                <Field wrapperClassName={'full'} name="avatar.content" component={FileField} label={'Zdjęcie w tle'} />
+                <Field wrapperClassName={'half'} name="avatar.content" component={FileField} label={'Zdjęcie w tle'} />
+                {/* <Field wrapperClassName={'half'} type="checkbox" name="active" component={RegularField} label={'Konto aktywne'} /> */}
+                <Field wrapperClassName={'full'} name="active" options={options} component={SelectField} label={'Typ inwestycji'} placeholder={'Aktywność'} />
                 <div className="form--registration__buttons">
                     <button disabled={submitting} className="btn btn--main btn--big" type="submit">
                         Edytuj dane
@@ -35,5 +42,5 @@ const EditUserForm = (props: InjectedFormProps) => {
 };
 
 export default reduxForm({
-    form: 'editUserForm',
-})(EditUserForm);
+    form: 'editUserByAdminForm',
+})(EditUserByAdminForm);

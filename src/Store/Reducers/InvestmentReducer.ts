@@ -9,7 +9,8 @@ export const initialState: State = {
     investmentDetails: null,
     activeInvestmentId: null,
     selectedPDF: null,
-    downloadedInvestmentList: []
+    downloadedInvestmentList: [],
+    purchasedInvestmentList: []
 };
 
 export function investmentReducer(state: State = initialState, action: InvestmentAction) {
@@ -50,6 +51,12 @@ export function investmentReducer(state: State = initialState, action: Investmen
             return {
                 ...state,
                 downloadedInvestmentList: action.payload.downloadedInvestmentList
+            }
+        }
+        case ActionTypes.Investment.GET_PURCHASED_INVESTMENTS: {
+            return {
+                ...state,
+                purchasedInvestmentList: action.payload.purchasedInvestmentList
             }
         }
         default: {

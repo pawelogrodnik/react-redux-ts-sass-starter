@@ -19,7 +19,7 @@ type S = {
        password: string,
        confirmation: string,
        facebook: boolean,
-       picture: {
+       avatar: {
            url: string,
            content: any
        }
@@ -39,7 +39,7 @@ class Registration extends React.Component<DispatchedP, S> {
                password: '',
                confirmation: '',
                facebook: false,
-               picture: {
+               avatar: {
                    url: '',
                    content: null
                }
@@ -60,7 +60,7 @@ class Registration extends React.Component<DispatchedP, S> {
                     password: response.accessToken,
                     confirmation: response.accessToken,
                     facebook: true,
-                    picture: {
+                    avatar: {
                         url: response.picture.data.url,
                         content: null
                     }
@@ -100,12 +100,12 @@ class Registration extends React.Component<DispatchedP, S> {
                         <p>lub</p>
                     </>
                     )}
-                   {(this.state.page == 1 && (this.state.initialValues.picture.url || this.state.img)) && (
+                   {(this.state.page == 1 && (this.state.initialValues.avatar.url || this.state.img)) && (
                         <div className="registration__img-profile">
-                        <img className="registration__img-profile--circle" src={this.state.initialValues.facebook ? this.state.initialValues.picture.url : this.state.img}/>
+                        <img className="registration__img-profile--circle" src={this.state.initialValues.facebook ? this.state.initialValues.avatar.url : this.state.img}/>
                     </div>
                    )}
-                    {this.state.page === 1 && <FirstStepRegisterForm onSubmit={this.nextPage} onChange={(data:any) => data.picture && this.setState({img: data.picture.content})} initialValues={this.state.initialValues.firstname !== '' ? this.state.initialValues : null} isLoadedImage={this.state.initialValues.facebook ? true : false}/>}
+                    {this.state.page === 1 && <FirstStepRegisterForm onSubmit={this.nextPage} onChange={(data:any) => data.avatar && this.setState({img: data.avatar.content})} initialValues={this.state.initialValues.firstname !== '' ? this.state.initialValues : null} isLoadedImage={this.state.initialValues.facebook ? true : false}/>}
                     {this.state.page === 2 && <SecondStepRegisterForm previousPage={this.previousPage} onSubmit={async (data) => await (this.props.registerUser(data))}/>}
                     {/* <RegistrationForm onSubmit={async (data) => await (this.props.registerUser(data))}/> */}
                 </div>

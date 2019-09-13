@@ -120,8 +120,24 @@ function editUser(newUserData: UserModule.Types.RegisterUser) {
     };
 }
 
+function editUserByAdmin(newUserData: any) {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            const response = await UserModule.Connector.editUserByAdmin(newUserData);
+            dispatch(ViewManagementModule.Actions.hideLoader())
+            dispatch(ViewManagementModule.Actions.showPopup('editUserSuccess'))
+        } catch (err) {
+            console.log(err.response)
+            dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
+
 function deleteUser() {
     return async dispatch => {
+        dispatch(ViewManagementModule.Actions.showLoader())
         await UserModule.Connector.deleteUser(JSON.parse(JSON.stringify(localStorage.getItem('token')))).then(() => {
             dispatch(logoutUserSuccess());
             dispatch(deleteUserSuccess());
@@ -137,6 +153,25 @@ function deleteUserSuccess(): UserActionModel.DeleteUser {
         type: User.DELETE_USER
     }
 }
+
+function deleteUserByAdmin(id: number) {
+    return async dispatch => {
+        dispatch(ViewManagementModule.Actions.showLoader())
+        await UserModule.Connector.deleteUserByAdmin(JSON.parse(JSON.stringify(localStorage.getItem('token'))), id).then(() => {
+                dispatch(deleteUserByAdminSuccess());
+                dispatch(ViewManagementModule.Actions.showPopup('deleteUserSuccess'))
+                history.push('/dashboard/usersList');
+        }).catch((err) => {
+            history.push('/dashboard/login');
+        });
+    }
+}
+function deleteUserByAdminSuccess(): UserActionModel.DeleteUserByAdmin {
+    return {
+        type: User.DELETE_USER_BY_ADMIN
+    }
+}
+
 function getLoggedUserData() {
     return async dispatch => {
         try {
@@ -260,12 +295,14 @@ export {
     loginUser,
     registerUser,
     editUser,
+    editUserByAdmin,
     getLoggedUserData,
     resetPassword,
     setResetCode,
     resetPasswordContinue,
     checkIfUserIsValid,
     deleteUser,
+    deleteUserByAdmin,
     getUsersList,
     getSpecificUser
 }

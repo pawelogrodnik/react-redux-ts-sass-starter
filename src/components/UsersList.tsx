@@ -10,6 +10,7 @@ import * as moment from 'moment';
 import { history } from 'src/App';
 import { baseURL } from '../Connectors/config';
 import { Link } from 'react-router-dom';
+import EditUserByAdmin from './EditUserByAdmin'
 
 type DispatchedP = {
     getUsersList: () => void;
@@ -19,25 +20,21 @@ type ConnectedP = {
     usersList: Array<UserModule.Types.UserInList>
     specificUser: UserModule.Types.SpecificUser;
 }
-type S = {
-    showSpecificUser: boolean;
-}
-class UsersList extends React.Component<DispatchedP & ConnectedP, S> {
+
+class UsersList extends React.Component<DispatchedP & ConnectedP, any> {
     constructor(props: ConnectedP & DispatchedP) {
         super(props);
-        this.state = {
-            showSpecificUser: false
-        }
     }
     public async componentWillMount() {
         await this.props.getUsersList()
+        console.log(this.props.usersList)
         
     }
 
     public render() {
         return (
             <div className="investmentList">
-                {!this.state.showSpecificUser ? (
+                {/* {!this.state.showSpecificUser ? ( */}
                     <>
                     <h2>Lista użytkowników w systemie</h2>
                     <ReactTable
@@ -93,32 +90,21 @@ class UsersList extends React.Component<DispatchedP & ConnectedP, S> {
                             id: 'check',
                             Cell: (props) => <button className="btn btn--checkInvestment" onClick={async () => {
                                await this.props.getSpecificUser(props.original.id)
-                               console.log(this.props.specificUser)
-                                this.setState({showSpecificUser: true})
-                            }}>Zobacz dane</button>,
+                               history.push('/dashboard/editUserByAdmin')
+                            }}>Edytuj dane</button>,
                             width: 150
                         }
                     ]}
                     />
                 </>
-                ) : (
+                {/* ) : (
                     <>
-                        <h2>Dane użytkownika </h2>
-                        <p>Email: {this.props.specificUser.user.username}</p>
-                        <p>Imię: {this.props.specificUser.user.firstname}</p>
-                        <p>Nazwisko: {this.props.specificUser.user.lastname}</p>
-                        <p>Numer telefonu: {this.props.specificUser.user.phone}</p>
-                        <p>Kraj: {this.props.specificUser.address.country}</p>
-                        <p>Miasto: {this.props.specificUser.address.city}</p>
-                        <p>Ulica: {this.props.specificUser.address.street}</p>
-                        <p>Numer mieszkania: {this.props.specificUser.address.flatNumber}</p>
-                        <p>Numer domu: {this.props.specificUser.address.houseNumber}</p>
-                        <p>Kod pocztowy: {this.props.specificUser.address.postCode}</p>
+                        <EditUserByAdmin />
                         <button className="btn btn--main" onClick={async () => {
-                                this.setState({showSpecificUser: false})
-                            }}>Powrót</button>
+                             this.setState({showSpecificUser: false})
+                        }}>Powrót</button>
                     </>
-                )}
+                )} */}
             </div>
         )
     }

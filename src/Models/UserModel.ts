@@ -58,12 +58,28 @@ export type Address = {
 }
 
 export type SpecificUser = {
-    address: Address;
+    active: boolean;
+    avatar: any;
+    city: string;
+    country: string;
+    credentialsProvider: any;
+    dateAdd: string;
     downloadedProducts: Array<any>;
-    user: {
-        firstname: string;
-        lastname: string;
-        phone: number;
-        username: string;
-    }
+    firstRole: string;
+    firstname: string;
+    flatNumber: number;
+    houseNumber: number;
+    id: number;
+    lastname: string;
+    phone: number;
+    picture: any;
+    postCode: any;
+    refCode: any;
+    referrals: Array<any>;
+    referrer: any;
+    roles: Array<any>;
+    salesmanDetails: any;
+    salesmanRequiredData: boolean;
+    street: string;
+    username: string;
 }

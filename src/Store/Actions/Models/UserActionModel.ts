@@ -24,6 +24,9 @@ export type RegisterUser = {
 export type EditUser = {
     type: ActionTypes.User.EDIT_USER;
 };
+export type EditUserByAdmin = {
+    type: ActionTypes.User.EDIT_USER_BY_ADMIN;
+};
 export type GetLoggedUserData = {
     type: ActionTypes.User.GET_LOGGED_USER_DATA;
     payload: {
@@ -49,6 +52,10 @@ export type DeleteUser = {
     type: ActionTypes.User.DELETE_USER
 }
 
+export type DeleteUserByAdmin = {
+    type: ActionTypes.User.DELETE_USER_BY_ADMIN
+}
+
 export type GetUsersList = {
     type: ActionTypes.User.GET_USERS_LIST
     payload: {
@@ -70,11 +77,13 @@ export type UserAction =
     | LogoutUserSuccess
     | RegisterUser
     | EditUser
+    | EditUserByAdmin
     | GetLoggedUserData
     | ResetPasswordSuccess
     | SetResetCode
     | TokenValidFailure
     | TokenValidSuccess
     | DeleteUser
+    | DeleteUserByAdmin
     | GetUsersList
     | GetSpecificUser;

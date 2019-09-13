@@ -22,11 +22,13 @@ type DispatchedP = {
     resetPassword: (email: Object) => void;
     resetPasswordContinue: (data: resetPasswordData) => void;
     deleteUser: () => void;
+    deleteUserByAdmin: (id?: number) => void;
 };
 
 type ConnectedP = {
     viewManagement: ViewManagementModule.Types.ViewManagementStore,
     resetPasswordCode: string,
+    specificUser: UserModule.Types.SpecificUser;
 };
 
 type S = {
@@ -179,7 +181,13 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                         <h2>Uwaga! Zaakceptowanie tej opcji skutkuje trwałym usunięciem konta w systemie. Czy jesteś pewien?</h2>
                         <i className="fas fa-exclamation-triangle"/>
                         <div className="deleteUser--actions">
-                            <button className="btn btn--main btn--red" onClick={() => this.props.deleteUser()}>Tak, usuń</button>
+                            <button className="btn btn--main btn--red" onClick={() => {
+                                if(localStorage.getItem('role') !== 'CUSTOMER') {
+                                    this.props.deleteUserByAdmin(this.props.specificUser.id)
+                                } else {
+                                    this.props.deleteUser()
+                                }
+                            }}>Tak, usuń</button>
                             <button className="btn btn--main" onClick={() => this.closePopup()}>Anuluj</button>
                         </div>
                     </>
@@ -251,13 +259,15 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
 function mapStateToProps(state: RootState): ConnectedP {
     return {
         viewManagement: state.viewManagementStore,
-        resetPasswordCode: state.userStore.resetPasswordCode
+        resetPasswordCode: state.userStore.resetPasswordCode,
+        specificUser: state.userStore.specificUser
     };
 }
 const mapDispachToProps: DispatchedP = {
     hidePopup: () => ViewManagementModule.Actions.hidePopup(),
     resetPassword: (email: string) => UserModule.Actions.resetPassword(email),
     deleteUser: () => UserModule.Actions.deleteUser(),
+    deleteUserByAdmin: (id?: number) => UserModule.Actions.deleteUserByAdmin(id),
     resetPasswordContinue: (data: resetPasswordData) => UserModule.Actions.resetPasswordContinue(data),
 }
 export default connect(

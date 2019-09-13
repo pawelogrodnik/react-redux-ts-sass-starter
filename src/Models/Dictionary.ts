@@ -60,6 +60,8 @@ function getOptionsList(arrayEnums: Array<any>, dictionary?: Map<any, any>): Arr
             value
         })
     })
+    console.log("START")
+    console.log(optionsElement)
     return optionsElement;
 }
 

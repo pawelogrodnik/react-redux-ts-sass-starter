@@ -191,6 +191,28 @@ function getDownloadedInvestmentsSuccess(downloadedInvestmentList: Array<Investm
     };
 }
 
+function getPurchasedInvestments() {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            const response = await InvestmentModule.Connector.getPurchasedInvestments()
+            dispatch(getPurchasedInvestmentsSuccess(response.data))
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        } catch (err) {
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
+
+function getPurchasedInvestmentsSuccess(purchasedInvestmentList: Array<InvestmentModule.Types.PurchasedInvestment>): InvestmentActionModel.GetPurchasedInvestments {
+    return {
+        type: Investment.GET_PURCHASED_INVESTMENTS,
+        payload: {
+            purchasedInvestmentList
+        }
+    };
+}
+
 export {
     getInvestments,
     addInvestment,
@@ -201,5 +223,6 @@ export {
     clearInvestment,
     setSelectedPDF,
     getPDF,
-    getDownloadedInvestments
+    getDownloadedInvestments,
+    getPurchasedInvestments
 }

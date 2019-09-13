@@ -18,6 +18,10 @@ export function editUser(newUserData: UserModule.Types.RegisterUser): AxiosPromi
     return API.post('user/update', newUserData, config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }
 
+export function editUserByAdmin(newUserData: any): AxiosPromise<any> {
+    return API.post(`users/${newUserData.id}`, newUserData, config(null, { 'x-auth-token': localStorage.getItem('token') }));
+}
+
 export function getLoggedUserData(): AxiosPromise<any> {
     return API.get('user', config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }
@@ -36,6 +40,10 @@ export function checkIfUserIsValid(token): AxiosPromise<any> {
 
 export function deleteUser(token) {
     return API.delete('user', config(null, {'x-auth-token': token}))
+}
+
+export function deleteUserByAdmin(token, id) {
+    return API.delete(`users/${id}`, config(null, {'x-auth-token': token}))
 }
 
 export function getUsersList(): AxiosPromise<Array<UserModule.Types.UserInList>> {

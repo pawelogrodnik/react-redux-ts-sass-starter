@@ -7,6 +7,7 @@ import { RootState } from 'src/Store/Reducers/_RootReducer';
 import { history } from 'src/App';
 import EditUserForm from './Forms/EditUserForm';
 import * as QRCode from 'qrcode.react'
+import { baseURL } from './../Connectors/config';
 
 type DispatchedP = {
     editUser: (newUser: any) => void;
@@ -16,10 +17,16 @@ type DispatchedP = {
 type ConnectedP = {
     loggedUserData: any
 }
+type S = {
+    img: string;
+}
 
-class EditUser extends React.Component<DispatchedP & ConnectedP, any> {
+class EditUser extends React.Component<DispatchedP & ConnectedP, S> {
     constructor(props: DispatchedP & ConnectedP) {
         super(props);
+        this.state = {
+            img: ''
+        }
     }
 
     public componentWillMount() {
@@ -40,7 +47,6 @@ class EditUser extends React.Component<DispatchedP & ConnectedP, any> {
     }
     public downloadCanvas = () => {
         const canvas = document.getElementsByTagName('canvas');
-        console.log(canvas[0])
         const link = document.createElement('a');
         link.download = 'QR.png';
         link.href = canvas[0].toDataURL("image/png;base64");
@@ -50,7 +56,17 @@ class EditUser extends React.Component<DispatchedP & ConnectedP, any> {
         return (
             <div className="edituser">
                 <h2>Edycja danych</h2>
-                <EditUserForm onSubmit={async (data) => await (this.props.editUser(data))} initialValues={this.props.loggedUserData}/>
+                <h3>Dane osobowe</h3>
+                <div className="edituser__img-profile">
+                    {((this.props.loggedUserData && this.props.loggedUserData.avatar && !this.state.img) ? (
+                        <img src={`${baseURL}/${this.props.loggedUserData.avatar}`} />
+                    ) : (this.state.img ? (
+                        <img src={this.state.img} />
+                    ): (
+                        <i className="fas fa-user-tie" />
+                    )))}
+                </div>
+                <EditUserForm onChange={(data:any) => data.avatar && this.setState({img: data.avatar.content})} onSubmit={async (data) => await (this.props.editUser(data))} initialValues={this.props.loggedUserData}/>
                 <div className="edituser__reflink">
                     <h3>Twój link polecający to: </h3>
                     <p id="reflink">http://obligain.k-org.pl?r=17765</p>

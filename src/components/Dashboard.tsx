@@ -6,7 +6,8 @@ import Login from 'components/Layout/Login';
 import ManageInvestment from 'components/AddInvestment';
 import InvestmentsList from 'components/InvestmentsList';
 import EditUser from 'components/EditUser';
-import DownloadedProducts from 'src/components/DownloadedInvestments';
+import DownloadedInvestments from 'src/components/DownloadedInvestments';
+import PurchasedInvestments from 'src/components/PurchasedInvestments';
 import UsersList from 'src/components/UsersList';
 import { Link } from 'react-router-dom';
 import { RootState } from 'src/Store/Reducers/_RootReducer';
@@ -14,6 +15,7 @@ import * as UserModule from 'Modules/UserModule';
 import { history } from 'src/App';
 import { ViewManagement } from 'src/Store/Actions/EnumTypes/ActionEnumTypes';
 import * as ReactTooltip from 'react-tooltip'
+import EditUserByAdmin from './EditUserByAdmin';
 
 type S = {
 
@@ -89,10 +91,12 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                          ) : (localStorage.getItem('token') && localStorage.getItem('role') == 'CUSTOMER' ? (
                             <>
                                 <Link to={'/dashboard/'} data-tip data-for="downloadedList"><li><i className="fas fa-cart-arrow-down" /></li></Link>
+                                {/* <Link to={'/dashboard/purchasedInvestments'} data-tip data-for="purchasedInvestments"><li><i className="fas fa-shopping-cart" /></li></Link> */}
                                 <Link to={'/dashboard/editUser'} data-tip data-for="editUser"><li><i className="fas fa-user-cog" /></li></Link>
                                 <li onClick={this.handleLogout} data-tip data-for="logout"><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
-                                {this.generateTooltip('editUser', 'Edytuj dane')}
                                 {this.generateTooltip('downloadedList', 'Lista pobranych inwestycji')}
+                                {/* {this.generateTooltip('purchasedInvestments', 'Lista zakupionych inwestycji')} */}
+                                {this.generateTooltip('editUser', 'Edytuj dane')}
                                 {this.generateTooltip('logout', 'Wyloguj')}
                             </>
                          ) : (
@@ -109,10 +113,12 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                             <Route exact path={'/dashboard/investments/add'} component={ManageInvestment} />
                             <Route exact path={'/dashboard/investments/:investmentId'} component={ManageInvestment} />
                             <Route exact path={'/dashboard/usersList'} component={UsersList} />
+                            <Route exact path={'/dashboard/editUserByAdmin'} component={EditUserByAdmin} />
                         </Switch>
                     ) : ( localStorage.getItem('token') && localStorage.getItem('role') == 'CUSTOMER' ? (
                         <Switch>
-                            <Route exact path={'/dashboard/'} component={DownloadedProducts} />
+                            <Route exact path={'/dashboard/'} component={DownloadedInvestments} />
+                            {/* <Route exact path={'/dashboard/purchasedInvestments'} component={PurchasedInvestments} /> */}
                             <Route exact path={'/dashboard/editUser'} component={EditUser} />
                         </Switch>   
                     ): (

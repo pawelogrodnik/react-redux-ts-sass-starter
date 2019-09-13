@@ -60,6 +60,12 @@ export function userReducer(state: State = initialState, action: UserAction) {
                 isUserLogged: true
             }
         }
+        case ActionTypes.User.DELETE_USER_BY_ADMIN: {
+            return {
+                ...state,
+                specificUser: null
+            }
+        }
         case ActionTypes.User.GET_USERS_LIST: {
             return {
                 ...state,
