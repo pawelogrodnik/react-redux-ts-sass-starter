@@ -45,7 +45,7 @@ class EditUser extends React.Component<DispatchedP & ConnectedP, S> {
                             <i className="fas fa-user-tie" />
                         )))}
                     </div>
-                    <EditUserByAdminForm onChange={(data:any) => console.log(data)} onSubmit={async (data) => {await (this.props.editUserByAdmin(data))}} initialValues={this.props.specificUser}/>
+                    <EditUserByAdminForm onChange={(data:any) => data.avatar && this.setState({img: data.avatar.content})} onSubmit={async (data) => {await (this.props.editUserByAdmin(data))}} initialValues={this.props.specificUser}/>
                     <div className="edituser--actions">
                         <button className="edituser--delete btn btn--main btn--big btn--red" onClick={this.onUserDelete}>Trwałe usunięcie konta</button>
                     </div>
