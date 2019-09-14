@@ -62,6 +62,10 @@ export type GetPurchasedInvestments = {
     }
 };
 
+export type BuyInvestment = {
+    type: ActionTypes.Investment.BUY_INVESTMENT
+};
+
 export type InvestmentAction =
     | GetInvestmentDetails
     | AddInvestment
@@ -72,4 +76,5 @@ export type InvestmentAction =
     | ClearInvestment
     | SetSelectedPDF
     | GetDownloadedInvestments
-    | GetPurchasedInvestments;
+    | GetPurchasedInvestments
+    | BuyInvestment;

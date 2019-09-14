@@ -33,14 +33,15 @@ function loginUser(username: string, password: string, openPDF: boolean) {
     };
 }
 function checkIfUserIsValid(token: string) { 
-    return dispatch => {
+    return async dispatch => {
         // inverval = setInterval(() => {
-            UserModule.Connector.checkIfUserIsValid(token).then(() => {
+           await UserModule.Connector.checkIfUserIsValid(token).then(() => {
                 dispatch(tokenValidSuccess())
             }).catch((err) => {
                 // clearInterval(inverval)
-                dispatch(tokenValidFailure())
+                console.log("WYKONUJE")
                 history.push('/dashboard/login');
+                dispatch(tokenValidFailure())
             });
         // }, 10000)
     }
@@ -287,6 +288,20 @@ function getSpecificUserSuccess(specificUser: UserModule.Types.SpecificUser): Us
     };
 }
 
+function registerSalesman(data:any) {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            await UserModule.Connector.registerSalesman(data);
+            dispatch(ViewManagementModule.Actions.hideLoader())
+            dispatch(ViewManagementModule.Actions.showPopup('confirmUserSuccess'))
+        } catch (err) {
+            dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
+
 export {
     logoutUser,
     logoutUserSuccess,
@@ -304,5 +319,6 @@ export {
     deleteUser,
     deleteUserByAdmin,
     getUsersList,
-    getSpecificUser
+    getSpecificUser,
+    registerSalesman
 }

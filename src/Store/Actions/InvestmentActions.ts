@@ -213,6 +213,28 @@ function getPurchasedInvestmentsSuccess(purchasedInvestmentList: Array<Investmen
     };
 }
 
+function buyInvestment(investmentId: number) {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            await InvestmentModule.Connector.buyInvestment(investmentId)
+            dispatch(buyInvestmentSuccess());
+            dispatch(ViewManagementModule.Actions.hideLoader())
+            dispatch(ViewManagementModule.Actions.showPopup('investmentBuySuccess'))
+        } catch (err) {
+            console.log(err.response)
+            dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
+
+function buyInvestmentSuccess(): InvestmentActionModel.BuyInvestment {
+    return {
+        type: Investment.BUY_INVESTMENT
+    };
+}
+
 export {
     getInvestments,
     addInvestment,
@@ -224,5 +246,6 @@ export {
     setSelectedPDF,
     getPDF,
     getDownloadedInvestments,
-    getPurchasedInvestments
+    getPurchasedInvestments,
+    buyInvestment
 }

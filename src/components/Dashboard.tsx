@@ -77,7 +77,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                     <ul>
                         <Link to={'/'} data-tip data-for="home"><li><img src="/home.png" /></li></Link>
                         {this.generateTooltip('home', 'Strona główna')}
-                        {localStorage.getItem('token') && localStorage.getItem('role') !== 'CUSTOMER' ? (
+                        {localStorage.getItem('token') && localStorage.getItem('role') === 'ROLE_USER' ? (
                             <>
                                 <Link to={'/dashboard/'} data-tip data-for="investmentList"><li><i className="fas fa-list-ol" /></li></Link>
                                 <Link to={'/dashboard/investments/add'} data-tip data-for="addInvestment"><li><i className="fas fa-plus" /></li></Link>
@@ -88,7 +88,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                                 {this.generateTooltip('usersList', 'Lista użytkowników')}
                                 {this.generateTooltip('logout', 'Wyloguj')}
                             </>
-                         ) : (localStorage.getItem('token') && localStorage.getItem('role') == 'CUSTOMER' ? (
+                         ) : (localStorage.getItem('token') && localStorage.getItem('role') ==='CUSTOMER' ? (
                             <>
                                 <Link to={'/dashboard/'} data-tip data-for="downloadedList"><li><i className="fas fa-cart-arrow-down" /></li></Link>
                                 {/* <Link to={'/dashboard/purchasedInvestments'} data-tip data-for="purchasedInvestments"><li><i className="fas fa-shopping-cart" /></li></Link> */}
@@ -107,7 +107,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                     </ul>
                 </div>
                 <div className="page--dashboard__content">
-                    {localStorage.getItem('token') && localStorage.getItem('role') !== 'CUSTOMER' ? (
+                    {localStorage.getItem('token') && localStorage.getItem('role') === 'ROLE_USER' ? (
                         <Switch>
                             <Route exact path={'/dashboard/'} component={InvestmentsList} />
                             <Route exact path={'/dashboard/investments/add'} component={ManageInvestment} />
@@ -115,7 +115,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                             <Route exact path={'/dashboard/usersList'} component={UsersList} />
                             <Route exact path={'/dashboard/editUserByAdmin'} component={EditUserByAdmin} />
                         </Switch>
-                    ) : ( localStorage.getItem('token') && localStorage.getItem('role') == 'CUSTOMER' ? (
+                    ) : ( localStorage.getItem('token') && localStorage.getItem('role') === 'CUSTOMER' ? (
                         <Switch>
                             <Route exact path={'/dashboard/'} component={DownloadedInvestments} />
                             {/* <Route exact path={'/dashboard/purchasedInvestments'} component={PurchasedInvestments} /> */}

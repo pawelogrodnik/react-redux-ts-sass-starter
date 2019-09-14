@@ -97,7 +97,7 @@ class Registration extends React.Component<DispatchedP, S> {
                             icon="fa-facebook"
                             textButton="Zaloguj przez Facebooka"
                             /> 
-                        <p>lub</p>
+                        <p className="center">lub</p>
                     </>
                     )}
                    {(this.state.page == 1 && (this.state.initialValues.avatar.url || this.state.img)) && (

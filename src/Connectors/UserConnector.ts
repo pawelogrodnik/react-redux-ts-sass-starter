@@ -53,3 +53,8 @@ export function getUsersList(): AxiosPromise<Array<UserModule.Types.UserInList>>
 export function getSpecificUser(id): AxiosPromise<UserModule.Types.SpecificUser> {
     return API.get(`users/${id}`, config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }
+
+
+export function registerSalesman(data): AxiosPromise<any> {
+    return API.post('register/salesman', data);
+}

@@ -19,7 +19,7 @@ type DispatchedP = {
     showPopup: (typePopup: string) => void;
     setSelectedPDF: (path: string) => void;
     getPDF: (selectedPDF: string) => void;
-
+    buyInvestment: (id: number) => void;
 }
 
 type ConnectedP = {
@@ -190,6 +190,11 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                     <a href="https://ico.sapiency.io/ref/yhtbak" target="_blank" ><button className="btn btn--main btn--buyNow">Kup teraz!</button></a>
                                 </div>
                             )}
+                            {(this.props.isUserLogged && this.props.investmentDetails.type !== token) && (
+                                <div className="center">
+                                    <button className="btn btn--main btn--buyNow" onClick={() => this.props.buyInvestment(this.props.match.params.id)}>Zarezerwuj z obowiązkiem zapłaty</button>
+                                </div>
+                            )}
                         </div>
                         <ContactBanner />
                     </div>
@@ -204,7 +209,8 @@ const mapDispatchToProps: DispatchedP = {
     clearInvestment: () => InvestmentModule.Actions.clearInvestment(),
     showPopup: (typePopup) => ViewManagementModule.Actions.showPopup(typePopup),
     setSelectedPDF: (path: string) => InvestmentModule.Actions.setSelectedPDF(path),
-    getPDF: (selectedPDF: string) => InvestmentModule.Actions.getPDF(selectedPDF)
+    getPDF: (selectedPDF: string) => InvestmentModule.Actions.getPDF(selectedPDF),
+    buyInvestment: (id: number) => InvestmentModule.Actions.buyInvestment(id)
 };
 
 function mapStateToProps(state: RootState): ConnectedP {

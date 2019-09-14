@@ -38,7 +38,7 @@ import * as H from 'history'
 
 type P = RootState;
 type PropsLocation = {
-    location: H.Location
+    location: H.Location;
 }
 type DispatchedP = {
     loginUserFromStorage: (user: UserModule.Types.User, token: string) => void;
@@ -63,7 +63,7 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
     }
 
     public componentDidMount() {
-        console.log(this.props.location);
+        // console.log(this.props.location);
         // console.log(this.props.location.search.split('=')[1].split('&')[0])
         if(this.props.location.pathname == '/dashboard/login' && this.props.location.search == '?status=successfully_confirmed') {
             this.props.showPopup('confirmUserSuccess');
@@ -77,6 +77,9 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
             this.props.showPopup('resetPasswordCodeUsed');
         } else if (this.props.location.pathname == '/' && this.props.location.search.split('=')[0] == '?r') {
             alert(`Twój kod reflinku to: ${this.props.location.search.split('=')[1].split('&')[0]}`)
+        } else if (this.props.location.pathname == '/' && this.props.location.search.split('=')[0] == '?salesmanCode') {
+            // alert(`Twój kod to: ${this.props.location.search.split('=')[1]}`)
+            this.props.showPopup('salesmanForm');
         }
 
     }

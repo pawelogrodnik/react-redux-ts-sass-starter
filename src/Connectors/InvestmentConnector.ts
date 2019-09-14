@@ -33,3 +33,7 @@ export function getDownloadedInvestments(): AxiosPromise<Array<InvestmentModule.
 export function getPurchasedInvestments(): AxiosPromise<Array<InvestmentModule.Types.DownloadedInvestment>> {
     return API.get('user/products', config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }
+
+export function buyInvestment(id: number): AxiosPromise<any> {
+    return API.post(`products/${id}/buy`, null, config(null, { 'x-auth-token': localStorage.getItem('token') }));
+}

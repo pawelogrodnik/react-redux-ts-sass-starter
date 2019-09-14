@@ -10,6 +10,7 @@ import Login from './Login';
 import { history } from 'src/App';
 import { Link } from 'react-router-dom';
 import OneTimeData from '../OneTimeData';
+import SalesmanData from '../SalesmanData';
 
 type resetPasswordData = {
     password: string,
@@ -182,7 +183,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                         <i className="fas fa-exclamation-triangle"/>
                         <div className="deleteUser--actions">
                             <button className="btn btn--main btn--red" onClick={() => {
-                                if(localStorage.getItem('role') !== 'CUSTOMER') {
+                                if(localStorage.getItem('role') == 'ROLE_USER') {
                                     this.props.deleteUserByAdmin(this.props.specificUser.id)
                                 } else {
                                     this.props.deleteUser()
@@ -228,6 +229,22 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                     <>
                         <h2>Skopiowano do schowka!</h2>
                         <i className="far fa-check-circle" />
+                    </>
+                )
+            }
+            case 'investmentBuySuccess' : {
+                return (
+                    <>
+                        <h2>Inwestycja została pomyślnie zarezerwowana z obowiązkiem zapłaty!</h2>
+                        <i className="far fa-check-circle" />
+                    </>
+                )
+            }
+            case 'salesmanForm': {
+                return (
+                    <>
+                        <h2>Uzupełnij dane sprzedawcy</h2>
+                        <SalesmanData />
                     </>
                 )
             }

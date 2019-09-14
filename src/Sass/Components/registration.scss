@@ -17,6 +17,19 @@
         justify-content: center;
         &--register {
             width: 320px;
+            &__footer {
+                // text-align: left;
+                margin: 20px 0;
+                p {
+                    font-size: 12px;
+                    &:last-child {
+                        font-size: 10px;
+                    }
+                }
+                a {
+                    color: $brownMain;
+                }
+            }
         }
         &_field {
             &--fileinput {
@@ -27,10 +40,24 @@
             }
         }
         @media (min-width:610px) {
-            // .form {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
                 &--register {
                     padding: 10px 25px;
                     width: 610px;
+                    .form_field{
+                        &:nth-child(n) {
+                            flex: 0 1 48%;
+                        }
+                    }
+                }
+                &--registration__buttons {
+                    &:last-child {
+                        justify-self: center;
+                        font-size: 15px;
+                        flex: 0 1 100%;
+                    }
                 }
                 .quarter {
                     flex: 0 1 22%!important;
@@ -38,30 +65,14 @@
                 &__buttons {
                     width: 100%;
                 }
-            // }
-          
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
              
-                div{
-                    &:nth-child(n) {
-                        flex: 0 1 48%;
-                    }
-                    &:last-child {
-                        justify-self: center;
-                        font-size: 15px;
-                        flex: 0 1 100%;
-                    }
-                }
             }
         }
 
-    // }
     &__inner {
         margin-top: 50px;
         min-width: 300px;
-        h2,p {
+        h2 {
             text-align: center;
         }
         .btn {
