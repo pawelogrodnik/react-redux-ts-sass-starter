@@ -7,7 +7,7 @@ import API from './../../Connectors/config';
 import * as ErrorActions from './ErrorActions';
 import { reset } from 'redux-form';
 import { hidePopup } from './ViewManagementActions';
-// let inverval;
+
 function loginUser(username: string, password: string, openPDF: boolean) {
     return async dispatch => {
         try {
@@ -16,17 +16,15 @@ function loginUser(username: string, password: string, openPDF: boolean) {
             dispatch(loginUserSuccess(response.data, response.data.authToken))
             localStorage.setItem('token', JSON.parse(JSON.stringify(response.data.authToken)));
             localStorage.setItem('role', JSON.parse(JSON.stringify(response.data.roles)));
-            console.log(openPDF)
-            if(!openPDF) {
+            // if(!openPDF) {
                 history.push('/dashboard');
-            }
+            // }
             dispatch(hidePopup());
             dispatch(checkIfUserIsValid(JSON.parse(JSON.stringify(response.data.authToken))))
             dispatch(ViewManagementModule.Actions.hideLoader())
 
         } catch (err) {
             dispatch(loginUserFailure());
-            console.log(err.response)
             dispatch(ErrorActions.setResponseError(err.response ? err.response : err));
             dispatch(ViewManagementModule.Actions.hideLoader())
         }

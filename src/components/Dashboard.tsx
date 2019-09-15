@@ -88,7 +88,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                                 {this.generateTooltip('usersList', 'Lista użytkowników')}
                                 {this.generateTooltip('logout', 'Wyloguj')}
                             </>
-                         ) : (localStorage.getItem('token') && localStorage.getItem('role') ==='CUSTOMER' ? (
+                         ) : (localStorage.getItem('token') && (localStorage.getItem('role') ==='CUSTOMER' || localStorage.getItem('role') === 'ROLE_SALESMAN')  ? (
                             <>
                                 <Link to={'/dashboard/'} data-tip data-for="downloadedList"><li><i className="fas fa-cart-arrow-down" /></li></Link>
                                 {/* <Link to={'/dashboard/purchasedInvestments'} data-tip data-for="purchasedInvestments"><li><i className="fas fa-shopping-cart" /></li></Link> */}
@@ -115,7 +115,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                             <Route exact path={'/dashboard/usersList'} component={UsersList} />
                             <Route exact path={'/dashboard/editUserByAdmin'} component={EditUserByAdmin} />
                         </Switch>
-                    ) : ( localStorage.getItem('token') && localStorage.getItem('role') === 'CUSTOMER' ? (
+                    ) : ( localStorage.getItem('token') && (localStorage.getItem('role') === 'CUSTOMER' || localStorage.getItem('role') === 'ROLE_SALESMAN') ? (
                         <Switch>
                             <Route exact path={'/dashboard/'} component={DownloadedInvestments} />
                             {/* <Route exact path={'/dashboard/purchasedInvestments'} component={PurchasedInvestments} /> */}
