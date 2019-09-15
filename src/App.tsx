@@ -79,7 +79,7 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
         } else if (this.props.location.pathname == '/' && this.props.location.search.split('=')[0] == '?r') {
             // alert(`Twój kod reflinku to: ${this.props.location.search.split('=')[1].split('&')[0]}`)
             localStorage.setItem('salesmanId', this.props.location.search.split('=')[1].split('&')[0]);
-            this.props.history.push('/');
+            this.props.history.replace('/');
 
         } else if (this.props.location.pathname == '/' && this.props.location.search.split('=')[0] == '?salesmanCode') {
             // alert(`Twój kod to: ${this.props.location.search.split('=')[1]}`)
