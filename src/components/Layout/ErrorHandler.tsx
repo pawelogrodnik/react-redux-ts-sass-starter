@@ -31,12 +31,11 @@ class ErrorHandler extends React.Component<DispatchedP & ConnectedP, S> {
         }
         return errorMessages.map((errorMessage,i) => 
             (<p className="errorHandler__mapped-response" key={i+errorMessage}>
-                {MappedErrorResponse.get(errorMessage).length > 0 ? MappedErrorResponse.get(errorMessage) : errorMessage}
+                {MappedErrorResponse.get(errorMessage) ? MappedErrorResponse.get(errorMessage) : errorMessage}
             </p>))
     }
     public render() {
         const { errorStore } = this.props;
-        console.log(errorStore)
         const errorText = errorStore.responseError.status === 403 ? (
             <p>Twoja sesja wygasła. Zaloguj się ponownie!</p>
             ) : ( errorStore.responseError.statusText !== 'Unauthorized' ? (

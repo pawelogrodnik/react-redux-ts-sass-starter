@@ -60,8 +60,6 @@ function getOptionsList(arrayEnums: Array<any>, dictionary?: Map<any, any>): Arr
             value
         })
     })
-    console.log("START")
-    console.log(optionsElement)
     return optionsElement;
 }
 
@@ -71,5 +69,6 @@ export const riskOptions = getOptionsList(RiskArray);
 
 
 export const MappedErrorResponse = new Map<string, string>([
-    ['Passwords not pass', 'Hasła nie są takie same']
+    ['Passwords not pass', 'Hasła nie są takie same'],
+    ['Username already exists', 'Użytkownik już istnieje']
 ])
