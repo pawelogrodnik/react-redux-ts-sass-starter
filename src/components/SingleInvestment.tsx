@@ -7,6 +7,7 @@ import { baseURL } from './../Connectors/config';
 import ImageSlider from './../components/ImageSlider';
 import ContactBanner from './ContactBanner';
 import * as Dictionary from './../Models/Dictionary';
+import * as ReactTooltip from 'react-tooltip'
 import { replace } from 'react-router-redux';
 
 type P = {
@@ -15,7 +16,7 @@ type P = {
 const { flat, parcel, hotel, vehicle, gold, token, whisky, diamonds, dorm, franchise } = InvestmentModule.EnumTypes.InvestmentType;
 type DispatchedP = {
     getInvestmentDetails: (id: number) => void;
-    clearInvestment: () =>  void;
+    clearInvestment: () => void;
     showPopup: (typePopup: string) => void;
     setSelectedPDF: (path: string) => void;
     getPDF: (selectedPDF: string) => void;
@@ -33,14 +34,14 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
     }
     public async componentDidMount() {
         await this.props.getInvestmentDetails(this.props.match.params.id);
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         console.log(this.props.investmentDetails)
     }
 
-    public checkPlural(value:number) {
-        if(value === 1) {
+    public checkPlural(value: number) {
+        if (value === 1) {
             return `${value} miesiąc`
-        } else if(value % 10 >= 2 && value % 10 <= 4 && (value % 100 < 10 || value % 100 >= 20)) {
+        } else if (value % 10 >= 2 && value % 10 <= 4 && (value % 100 < 10 || value % 100 >= 20)) {
             return `${value} miesiące`
         } else {
             return `${value} miesięcy`
@@ -48,6 +49,13 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
     }
     public componentWillUnmount() {
         this.props.clearInvestment();
+    }
+    public generateTooltip = (id: string, text: string) => {
+        return (
+            <ReactTooltip id={id} effect='solid'>
+                <span>{text}</span>
+            </ReactTooltip>
+        )
     }
     public render() {
 
@@ -81,10 +89,10 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                             </div>
                                         <div>
                                             {this.props.investmentDetails.basicParams.duration === 0 ? (
-                                                "Nieoznaczony" 
+                                                "Nieoznaczony"
                                             ) : (
-                                                this.checkPlural(this.props.investmentDetails.basicParams.duration)
-                                            )
+                                                    this.checkPlural(this.props.investmentDetails.basicParams.duration)
+                                                )
                                             }
                                         </div>
                                     </div>
@@ -120,10 +128,10 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                 {this.props.investmentDetails.type === flat &&
                                     <div><span>Piętro:</span><span>{this.props.investmentDetails.detailedParams.floorNumber}</span></div>}
                                 <div><span>Cena w serwisie:</span><span>{new Intl.NumberFormat('pl-PL').format(parseFloat(this.props.investmentDetails.detailedParams.priceService.replace(/\s+/g, '').replace(/,/g, '.')))} zł</span></div>
-                                
+
                                 {(this.props.investmentDetails.type === flat || this.props.investmentDetails.type === parcel || this.props.investmentDetails.type === hotel || this.props.investmentDetails.type === dorm || this.props.investmentDetails.type === vehicle || this.props.investmentDetails.type === franchise) &&
                                     <div><span>Cena rynkowa:</span><span>{new Intl.NumberFormat('pl-PL').format(parseFloat(this.props.investmentDetails.detailedParams.priceMarket.replace(/\s+/g, '').replace(/,/g, '.')))} zł</span></div>}
-                                    {/* {Number(this.props.investmentDetails.detailedParams.priceMarket.replace(/\s+/g, '')).toLocaleString()} */}
+                                {/* {Number(this.props.investmentDetails.detailedParams.priceMarket.replace(/\s+/g, '')).toLocaleString()} */}
                                 {this.props.investmentDetails.type === parcel &&
                                     <div><span>ROI:</span><span>{this.props.investmentDetails.detailedParams.roi}</span></div>}
                                 {this.props.investmentDetails.type === hotel &&
@@ -164,25 +172,25 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                             </div>
                             {(this.props.isUserLogged && this.props.investmentDetails.seller) && (
                                 <>
-                                    <h3 className="center">Dane sprzedawcy</h3>
-                                    <div className="productDataDetails">
-                                            <div><span>Nazwa:</span><span>{this.props.investmentDetails.seller.companyName}</span></div>
-                                            <div><span>Adres:</span><span>{this.props.investmentDetails.seller.address.city}, {this.props.investmentDetails.seller.address.street} {this.props.investmentDetails.seller.address.houseNumber}{this.props.investmentDetails.seller.address.flatNumber && `/${this.props.investmentDetails.seller.address.flatNumber}`} </span></div>
-                                    </div>
+                                <h3 className="center">Dane sprzedawcy</h3>
+                                <div className="productDataDetails">
+                                    <div><span>Nazwa:</span><span>{this.props.investmentDetails.seller.companyName}</span></div>
+                                    <div><span>Adres:</span><span>{this.props.investmentDetails.seller.address.city}, {this.props.investmentDetails.seller.address.street} {this.props.investmentDetails.seller.address.houseNumber}{this.props.investmentDetails.seller.address.flatNumber && `/${this.props.investmentDetails.seller.address.flatNumber}`} </span></div>
+                                </div>
                                 </>
                             )}
                             <div className="center">
-                                {this.props.investmentDetails.detailedParams.attachments && this.props.investmentDetails.detailedParams.attachments.map((item, i) => { 
-                                        return <button key={i} type="button" className="btn btn--main btn--inline" onClick={(e)=> {
-                                            this.props.setSelectedPDF(item.path);
-                                            if(!this.props.isUserLogged) {
-                                                // e.preventDefault();
-                                                console.log(item)
-                                                this.props.showPopup('openPDF');
-                                            } else {
-                                                this.props.getPDF(item.path);
-                                            }
-                                        }} >Pobierz Załącznik  {this.props.investmentDetails.detailedParams.attachments.length > 1 && i + 1}</button>
+                                {this.props.investmentDetails.detailedParams.attachments && this.props.investmentDetails.detailedParams.attachments.map((item, i) => {
+                                    return <button key={i} type="button" className="btn btn--main btn--inline" onClick={(e) => {
+                                        this.props.setSelectedPDF(item.path);
+                                        if (!this.props.isUserLogged) {
+                                            // e.preventDefault();
+                                            console.log(item)
+                                            this.props.showPopup('openPDF');
+                                        } else {
+                                            this.props.getPDF(item.path);
+                                        }
+                                    }} >Pobierz Załącznik  {this.props.investmentDetails.detailedParams.attachments.length > 1 && i + 1}</button>
                                 })}
                             </div>
                             {this.props.investmentDetails.type === token && (
@@ -191,8 +199,9 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                 </div>
                             )}
                             {(this.props.investmentDetails.type !== token) && (
-                                <div className="center">
+                                <div className="center" data-tip data-for="buy" >
                                     <button disabled={!this.props.isUserLogged} className="btn btn--main btn--buyNow" onClick={() => this.props.buyInvestment(this.props.match.params.id)}>Zarezerwuj z obowiązkiem zapłaty</button>
+                                    {!this.props.isUserLogged && this.generateTooltip('buy', 'Możliwość rezerwacji przeznaczona wyłącznie zalogowanym użytkownikom')}
                                 </div>
                             )}
                         </div>
