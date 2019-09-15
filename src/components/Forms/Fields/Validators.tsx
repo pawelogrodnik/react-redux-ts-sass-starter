@@ -17,5 +17,7 @@ export class Validators {
             return 'Pole wymagane'
         }
     }
-    
+    public static passwordMinLength = value =>
+       value && value.length < 5 ? `Hasło musi zawierać co najmniej 5 znaków` : undefined;
+
 }
