@@ -190,9 +190,9 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                     <a href="https://ico.sapiency.io/ref/yhtbak" target="_blank" ><button className="btn btn--main btn--buyNow">Kup teraz!</button></a>
                                 </div>
                             )}
-                            {(this.props.isUserLogged && this.props.investmentDetails.type !== token) && (
+                            {(this.props.investmentDetails.type !== token) && (
                                 <div className="center">
-                                    <button className="btn btn--main btn--buyNow" onClick={() => this.props.buyInvestment(this.props.match.params.id)}>Zarezerwuj z obowiązkiem zapłaty</button>
+                                    <button disabled={!this.props.isUserLogged} className="btn btn--main btn--buyNow" onClick={() => this.props.buyInvestment(this.props.match.params.id)}>Zarezerwuj z obowiązkiem zapłaty</button>
                                 </div>
                             )}
                         </div>
