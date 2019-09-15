@@ -19,6 +19,7 @@ const SecondStepRegisterForm = (props: InjectedFormProps & Props) => {
                 <Field type="text" wrapperClassName={'quarter'} name="flatNumber" component={RegularField} label={'Numer mieszkania'} />
                 <Field type="text" wrapperClassName={'half'} name="postCode" component={RegularField} label={'Kod pocztowy'} validate={[V.required]} />
                 <Field type="text" name="country" component={RegularField} label={'Miasto'} validate={[V.required]} />
+                <Field type="text" name="salesmanId" component={RegularField} label={'Identyfikator sprzedawcy'} />
                 <Field type="text" wrapperClassName={'half'} name="city" component={RegularField} label={'Kraj'} validate={[V.required]} />
 
                 <div className="form--register__footer">

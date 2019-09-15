@@ -82,6 +82,9 @@ class Registration extends React.Component<DispatchedP, S> {
 
 
     public render() {
+        const secondStepInitial = localStorage.getItem('salesmanId') ? {
+            salesmanId: localStorage.getItem('salesmanId')
+        } : {};
         return (
             <div className="registration">
                 <div className="registration__inner">
@@ -106,7 +109,7 @@ class Registration extends React.Component<DispatchedP, S> {
                     </div>
                    )}
                     {this.state.page === 1 && <FirstStepRegisterForm onSubmit={this.nextPage} onChange={(data:any) => data.avatar && this.setState({img: data.avatar.content})} initialValues={this.state.initialValues.firstname !== '' ? this.state.initialValues : null} isLoadedImage={this.state.initialValues.facebook ? true : false}/>}
-                    {this.state.page === 2 && <SecondStepRegisterForm previousPage={this.previousPage} onSubmit={async (data) => await (this.props.registerUser(data))}/>}
+                    {this.state.page === 2 && <SecondStepRegisterForm initialValues={secondStepInitial} previousPage={this.previousPage} onSubmit={async (data) => await (this.props.registerUser(data))}/>}
                     {/* <RegistrationForm onSubmit={async (data) => await (this.props.registerUser(data))}/> */}
                 </div>
             </div>
@@ -119,4 +122,4 @@ const mapDispatchToProps: DispatchedP = {
     registerUser: (newUser: any) => UserModule.Actions.registerUser(newUser),
 };
 
-export default connect(null, mapDispatchToProps)(Registration)
+export default connect(null, mapDispatchToProps)(Registration) 

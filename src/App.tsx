@@ -39,6 +39,7 @@ import * as H from 'history'
 type P = RootState;
 type PropsLocation = {
     location: H.Location;
+    history: any;
 }
 type DispatchedP = {
     loginUserFromStorage: (user: UserModule.Types.User, token: string) => void;
@@ -76,7 +77,10 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
         } else if(this.props.location.pathname == '/dashboard/reset_password' && this.props.location.search == '?status=code_already_used') {
             this.props.showPopup('resetPasswordCodeUsed');
         } else if (this.props.location.pathname == '/' && this.props.location.search.split('=')[0] == '?r') {
-            alert(`Twój kod reflinku to: ${this.props.location.search.split('=')[1].split('&')[0]}`)
+            // alert(`Twój kod reflinku to: ${this.props.location.search.split('=')[1].split('&')[0]}`)
+            localStorage.setItem('salesmanId', this.props.location.search.split('=')[1].split('&')[0]);
+            this.props.history.push('/');
+
         } else if (this.props.location.pathname == '/' && this.props.location.search.split('=')[0] == '?salesmanCode') {
             // alert(`Twój kod to: ${this.props.location.search.split('=')[1]}`)
             this.props.showPopup('salesmanForm');
