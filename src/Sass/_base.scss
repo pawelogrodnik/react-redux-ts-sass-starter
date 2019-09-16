@@ -96,8 +96,17 @@ a,
     &--left {
         float: left;
     }
+    @media (max-width: 640px) {
+        &--right, &--left {
+            margin: 0 auto;
+            float: unset;
+        }
+    }
     &--center {
         margin: 0 auto;
+    }
+    &--margin-bottom {
+        margin-bottom: 20px;
     }
 }
 
@@ -842,4 +851,25 @@ textarea {
     -moz-filter: blur(10px);
     -o-filter: blur(10px);
     -ms-filter: blur(10px);
+}
+
+.cookies {
+    position: fixed;
+    width: 100%;
+    height: auto;
+    bottom:0;
+    background-color: white;
+    color: black;
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 12px;
+    opacity: 0.8;
+    a {
+        color: $brownMain !important;
+    }
+    button {
+        display: block;
+        margin: 0 auto;
+    }
 }

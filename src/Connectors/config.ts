@@ -14,6 +14,7 @@ export type QueryParams = {
 // export const baseURL = '//obligain.com/api/public_html/';
 // TEST:
 export const baseURL = '//obligain.k-org.pl/api/public_html/';
+export const domainURL = 'http://obligain.k-org.pl';
 
 export let activeToken = (store.getState() as RootState).userStore.token ? store.getState().userStore.token : localStorage.getItem('token');
 
@@ -59,7 +60,7 @@ export const config = (params?: any, headers?: any, responseType?: any) => {
     const configRq: AxiosRequestConfig = {};
     if (params) {
         configRq.params = params;
-    } 
+    }
     if (headers) {
         configRq.headers = headers;
     }

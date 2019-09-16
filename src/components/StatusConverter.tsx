@@ -18,6 +18,9 @@ export default class StatusConverter extends React.Component<any, any> {
                     {
                         this.props.original.status === 'archived' && <span>Archiwalny</span>
                     }
+                    {
+                        this.props.original.status === 'sold' && <span>Sprzedany</span>
+                    }
                 </div>
             )
         } else {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Field, reduxForm, InjectedFormProps, formValueSelector } from 'redux-form';
 import { RegularField , SelectField, FileField} from './Fields/_Fields';
 import { Validators as V } from './Fields/Validators';
+import * as Dictionary from 'Models/Dictionary';
 
 const EditUserByAdminForm = (props: InjectedFormProps ) => {
     const { handleSubmit, submitting} = props;
@@ -10,9 +11,18 @@ const EditUserByAdminForm = (props: InjectedFormProps ) => {
         {label: 'Nieaktywne', value: false}
     ]
     const roleOptions = [
-        {label: 'Admin', value: 'ROLE_USER'},
-        {label: 'Handlowiec', value: 'ROLE_SALESMAN'},
-        {label: 'Klient', value: 'ROLE_CUSTOMER'}
+        {
+            label: 'Admin',
+            value: 'ROLE_USER'
+        },
+        {
+            label: 'Handlowiec',
+            value: 'ROLE_SALESMAN'
+        },
+        {
+            label: 'Klient',
+            value: 'ROLE_CUSTOMER'
+        }
     ]
     return (
         <div className="form form--editUser">
@@ -31,9 +41,10 @@ const EditUserByAdminForm = (props: InjectedFormProps ) => {
                     <Field type="text" wrapperClassName={'half'} name="city" component={RegularField} label={'Kraj'} />
                     <Field type="text" name="country" component={RegularField} label={'Miasto'} />
                 </div>
+                <Field wrapperClassName={'half'} name="firstRole" options={roleOptions} component={SelectField} label={'Rola użytkownika'} />
+                <Field wrapperClassName={'half'} name="voivodeship" options={Dictionary.voivodeshipsOptions} component={SelectField} label={'Województwo'} placeholder="Wybierz wartość" validate={[V.required]} />
                 <Field type="password" wrapperClassName={'half'} name="password" component={RegularField} label={'Hasło'} />
                 <Field type="password" wrapperClassName={'half'} name="confirmation" component={RegularField} label={'Powtórz hasło'} />
-                <Field wrapperClassName={'half'} name="firstRole" options={roleOptions} component={SelectField} label={'Rola użytkownika'} />
                 <Field type="select" wrapperClassName={'full'} name="avatar.content" component={FileField} label={'Zdjęcie w tle'} />
                 <div className="form--registration__buttons">
                     <button disabled={submitting} className="btn btn--main btn--big" type="submit">

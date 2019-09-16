@@ -35,7 +35,7 @@ class Login extends React.Component<DispatchedP & ConnectedP & P, any> {
 
     public handleSubmit = async (formData) => {
         await this.props.loginUser(formData.username, formData.password, this.props.openPDF);
-        if(this.props.openPDF) {
+        if (this.props.openPDF) {
             this.props.getPDF(this.props.selectedPDF);
         }
     }
@@ -43,10 +43,10 @@ class Login extends React.Component<DispatchedP & ConnectedP & P, any> {
     public render() {
         return (
             <div className="login">
-                <div className="login__inner" style={{marginTop: !this.props.openPDF ? '150px' : null}}>
+                <div className="login__inner" style={{ marginTop: !this.props.openPDF ? '150px' : null }}>
                     <h2>{!this.props.openPDF && 'Logowanie'}</h2>
                     <LoginForm onSubmit={this.handleSubmit} />
-                    <p onClick={() => this.props.showPopup('resetPassword')}>Nie pamiętasz hasła?</p>
+                    <a onClick={() => this.props.showPopup('resetPassword')}>Nie pamiętasz hasła?</a>
                 </div>
             </div>
         )

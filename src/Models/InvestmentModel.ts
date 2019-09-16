@@ -29,10 +29,11 @@ export type DownloadedInvestment = {
 
 export type PurchasedInvestment = {
     id: number;
-    email: string;
-    date: string;
-    title: string;
-    type: EnumTypes.InvestmentType;
+    productName: string;
+    companyName: string;
+    saleDate: string;
+    salePrice: number;
+    productId: number;
 }
 
 export type Address = {

@@ -62,7 +62,7 @@ function archiveInvestment(investmentId: number) {
 function getInvestmentDetails(investmentId: number) {
     return async dispatch => {
         try {
-            const query = createSerachQuery({id: investmentId})
+            const query = createSerachQuery({ id: investmentId })
             dispatch(ViewManagementModule.Actions.showLoader())
             const response = await InvestmentModule.Connector.getInvestments(query)
             dispatch(getInvestmentDetailsSuccess(response.data[0]))
@@ -144,12 +144,12 @@ function setSelectedPDF(path: string): InvestmentActionModel.SetSelectedPDF {
     }
 }
 
-function getPDF(path: string, data1?:any) {
+function getPDF(path: string, data1?: any) {
     return async dispatch => {
         try {
             dispatch(ViewManagementModule.Actions.showLoader())
-            await InvestmentModule.Connector.downloadPDF(path,data1).then(({data}) => {
-                const downloadUrl = window.URL.createObjectURL(new Blob([data], {type: 'application/pdf'}));
+            await InvestmentModule.Connector.downloadPDF(path, data1).then(({ data }) => {
+                const downloadUrl = window.URL.createObjectURL(new Blob([data], { type: 'application/pdf' }));
                 const link = document.createElement('a');
                 link.download = 'Obligain.pdf';
                 link.href = downloadUrl;
@@ -160,7 +160,7 @@ function getPDF(path: string, data1?:any) {
             });
             dispatch(ViewManagementModule.Actions.hideLoader())
             dispatch(hidePopup());
-            
+
         } catch (err) {
             console.log(err.response)
             dispatch(ErrorActions.setResponseError(err.response ? err.response : err));

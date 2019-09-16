@@ -39,6 +39,9 @@
                 }
             }
         }
+        .half {
+            flex: 0 1 100%;
+        }
         @media (min-width:610px) {
                 display: flex;
                 flex-wrap: wrap;

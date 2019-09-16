@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
-import { RegularField, FileField } from './Fields/_Fields';
+import { RegularField, FileField, SelectField } from './Fields/_Fields';
 import { Validators as V } from './Fields/Validators';
+import * as Dictionary from 'Models/Dictionary';
 
 const EditUserForm = (props: InjectedFormProps) => {
     const { handleSubmit, submitting } = props;
@@ -18,6 +19,7 @@ const EditUserForm = (props: InjectedFormProps) => {
                     <Field type="text" wrapperClassName={'half'} name="houseNumber" component={RegularField} label={'Numer domu'} />
                     <Field type="text" wrapperClassName={'half'} name="flatNumber" component={RegularField} label={'Numer mieszkania'} />
                     <Field type="text" wrapperClassName={'half'} name="postCode" component={RegularField} label={'Kod pocztowy'} />
+                    <Field wrapperClassName={'half'} name="voivodeship" options={Dictionary.voivodeshipsOptions} component={SelectField} label={'Województwo'} placeholder="Wybierz wartość" validate={[V.required]} />
                     <Field type="text" name="city" component={RegularField} label={'Kraj'} />
                     <Field type="text" name="country" component={RegularField} label={'Miasto'} />
                 </div>

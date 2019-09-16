@@ -46,7 +46,7 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                     pageText="Strona"
                     ofText="z"
                     rowsText="rzędów"
-                    loadingText= 'Ładowanie...'
+                    loadingText='Ładowanie...'
                     // getTrProps={this.getTrProps}
                     data={this.props.investmentList ? [...this.props.investmentList] : []}
                     columns={[
@@ -97,26 +97,26 @@ class InvestmentList extends React.Component<DispatchedP & ConnectedP, any> {
                             Cell: (props) => {
                                 return (
                                     <>
-                                        <span data-tip data-for="edit" className={props.original.status === 'archived' ? 'action--disabled' : ''} onClick={() => props.original.status === 'archived' ? null : this.editProduct(props)}><i className="fas fa-edit" /></span>
-                                        <ReactTooltip id="edit" effect='solid'>
-                                            <span>Edytuj dane</span>
-                                        </ReactTooltip>
+                                    <span data-tip data-for="edit" className={props.original.status === 'archived' || props.original.status === 'sold' ? 'action--disabled' : ''} onClick={() => props.original.status === 'archived' || props.original.status === 'sold' ? null : this.editProduct(props)}><i className="fas fa-edit" /></span>
+                                    <ReactTooltip id="edit" effect='solid'>
+                                        <span>Edytuj dane</span>
+                                    </ReactTooltip>
                                     </>
                                 )
                             },
                             width: 60
                         },
                         {
-                            id: 'archive',
+                    id: 'archive',
                             Cell: (props) => {
                                 return (
                                     <>
-                                        <span data-tip data-for="archive" className={props.original.status === 'archived' ? 'action--disabled' : ''} onClick={() => props.original.status === 'archived' ? null : this.archiveProduct(props)}><i className="fas fa-trash" /></span>\
+                    <span data-tip data-for="archive" className={props.original.status === 'archived' || props.original.status === 'sold' ? 'action--disabled' : ''} onClick={() => props.original.status === 'archived' || props.original.status === 'sold' ? null : this.archiveProduct(props)}><i className="fas fa-trash" /></span>\
                                         <ReactTooltip id="archive" effect='solid'>
-                                            <span>Zarchiwizuj</span>
-                                        </ReactTooltip>
-                                    </>
-                                )
+                        <span>Zarchiwizuj</span>
+                    </ReactTooltip>
+                </>
+                )
                             },
                             width: 60
                         }

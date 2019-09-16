@@ -22,16 +22,16 @@ export function contact(contactData: InvestmentModule.Types.Contact) {
     return API.post('contact', contactData);
 }
 
-export function downloadPDF(path:string, data?) {
-    return API.post(path, data, config(null, { 'x-auth-token': localStorage.getItem('token')}, 'blob'))
+export function downloadPDF(path: string, data?) {
+    return API.post(path, data, config(null, { 'x-auth-token': localStorage.getItem('token') }, 'blob'))
 }
 
 export function getDownloadedInvestments(): AxiosPromise<Array<InvestmentModule.Types.DownloadedInvestment>> {
     return API.get('user/products', config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }
 
-export function getPurchasedInvestments(): AxiosPromise<Array<InvestmentModule.Types.DownloadedInvestment>> {
-    return API.get('user/products', config(null, { 'x-auth-token': localStorage.getItem('token') }));
+export function getPurchasedInvestments(): AxiosPromise<Array<InvestmentModule.Types.PurchasedInvestment>> {
+    return API.get('user/bought', config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }
 
 export function buyInvestment(id: number): AxiosPromise<any> {

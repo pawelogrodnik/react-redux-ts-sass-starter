@@ -8,6 +8,7 @@
 
     &__inner {
         min-width: 300px;
+        max-width: 600px;
         &--margin {
             @media (min-width: 768px) {
                 margin-top: 150px;
@@ -16,7 +17,7 @@
         h2{
             text-align: center;
         }
-        p {
+        a {
             font-size: 13px;
             color: #9a8352;
             text-align: right !important;

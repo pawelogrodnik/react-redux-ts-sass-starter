@@ -42,12 +42,12 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
         if (!localStorage.getItem('token')) {
             history.push('/dashboard/login')
         }
-        
+
         this.props.hideFooter();
         this.props.hideHeader();
     }
     public componentWillUpdate(nextProps) {
-        if(this.props.router.location.pathname !== nextProps.router.location.pathname) {
+        if (this.props.router.location.pathname !== nextProps.router.location.pathname) {
             console.log(nextProps.router.location.pathname);
             if (localStorage.getItem('token') && nextProps.router.location.pathname !== '/dashboard/login') {
                 this.props.checkIfUserIsValid(localStorage.getItem('token'))
@@ -71,7 +71,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
     }
     public render() {
         return (
-            
+
             <div className="page page--dashboard">
                 <div className="page--dashboard__menu">
                     <ul>
@@ -79,56 +79,56 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                         {this.generateTooltip('home', 'Strona główna')}
                         {localStorage.getItem('token') && localStorage.getItem('role') === 'ROLE_USER' ? (
                             <>
-                                <Link to={'/dashboard/'} data-tip data-for="investmentList"><li><i className="fas fa-list-ol" /></li></Link>
-                                <Link to={'/dashboard/investments/add'} data-tip data-for="addInvestment"><li><i className="fas fa-plus" /></li></Link>
-                                <Link to={'/dashboard/usersList'} data-tip data-for="usersList"><li><i className="fas fa-users" /></li></Link>
-                                <li onClick={this.handleLogout} data-tip data-for="logout"><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
-                                {this.generateTooltip('investmentList', 'Lista inwestycji')}
+                            <Link to={'/dashboard/'} data-tip data-for="investmentList"><li><i className="fas fa-list-ol" /></li></Link>
+                            <Link to={'/dashboard/investments/add'} data-tip data-for="addInvestment"><li><i className="fas fa-plus" /></li></Link>
+                            <Link to={'/dashboard/usersList'} data-tip data-for="usersList"><li><i className="fas fa-users" /></li></Link>
+                            <li onClick={this.handleLogout} data-tip data-for="logout"><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
+                                { this.generateTooltip('investmentList', 'Lista inwestycji') }
                                 {this.generateTooltip('addInvestment', 'Dodaj inwestycję')}
                                 {this.generateTooltip('usersList', 'Lista użytkowników')}
-                                {this.generateTooltip('logout', 'Wyloguj')}
+                        {this.generateTooltip('logout', 'Wyloguj')}
                             </>
-                         ) : (localStorage.getItem('token') && (localStorage.getItem('role') ==='CUSTOMER' || localStorage.getItem('role') === 'ROLE_SALESMAN')  ? (
+                    ) : (localStorage.getItem('token') && (localStorage.getItem('role') ==='CUSTOMER' || localStorage.getItem('role') === 'ROLE_SALESMAN')  ? (
                             <>
-                                <Link to={'/dashboard/'} data-tip data-for="downloadedList"><li><i className="fas fa-cart-arrow-down" /></li></Link>
-                                {/* <Link to={'/dashboard/purchasedInvestments'} data-tip data-for="purchasedInvestments"><li><i className="fas fa-shopping-cart" /></li></Link> */}
-                                <Link to={'/dashboard/editUser'} data-tip data-for="editUser"><li><i className="fas fa-user-cog" /></li></Link>
-                                <li onClick={this.handleLogout} data-tip data-for="logout"><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
-                                {this.generateTooltip('downloadedList', 'Lista pobranych inwestycji')}
-                                {/* {this.generateTooltip('purchasedInvestments', 'Lista zakupionych inwestycji')} */}
-                                {this.generateTooltip('editUser', 'Edytuj dane')}
-                                {this.generateTooltip('logout', 'Wyloguj')}
-                            </>
-                         ) : (
+                        <Link to={'/dashboard/'} data-tip data-for="downloadedList"><li><i className="fas fa-cart-arrow-down" /></li></Link>
+                        <Link to={'/dashboard/purchasedInvestments'} data-tip data-for="purchasedInvestments"><li><i className="fas fa-shopping-cart" /></li></Link>
+                        <Link to={'/dashboard/editUser'} data-tip data-for="editUser"><li><i className="fas fa-user-cog" /></li></Link>
+                        <li onClick={this.handleLogout} data-tip data-for="logout"><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
+                        {this.generateTooltip('downloadedList', 'Lista pobranych inwestycji')}
+                        {this.generateTooltip('purchasedInvestments', 'Lista zakupionych inwestycji')}
+                        {this.generateTooltip('editUser', 'Edytuj dane')}
+                        {this.generateTooltip('logout', 'Wyloguj')}
+                    </>
+                    ) : (
                             //  <Link to={'/dashboard/login'}><li><i className="fas fa-sign-in-alt" /></li></Link>
-                            null
+                    null
                          )
                         )}
                     </ul>
-                </div>
-                <div className="page--dashboard__content">
-                    {localStorage.getItem('token') && localStorage.getItem('role') === 'ROLE_USER' ? (
+            </div>
+            <div className="page--dashboard__content">
+                {localStorage.getItem('token') && localStorage.getItem('role') === 'ROLE_USER' ? (
+                    <Switch>
+                        <Route exact path={'/dashboard/'} component={InvestmentsList} />
+                        <Route exact path={'/dashboard/investments/add'} component={ManageInvestment} />
+                        <Route exact path={'/dashboard/investments/:investmentId'} component={ManageInvestment} />
+                        <Route exact path={'/dashboard/usersList'} component={UsersList} />
+                        <Route exact path={'/dashboard/editUserByAdmin'} component={EditUserByAdmin} />
+                    </Switch>
+                ) : (localStorage.getItem('token') && (localStorage.getItem('role') === 'CUSTOMER' || localStorage.getItem('role') === 'ROLE_SALESMAN') ? (
+                    <Switch>
+                        <Route exact path={'/dashboard/'} component={DownloadedInvestments} />
+                        <Route exact path={'/dashboard/purchasedInvestments'} component={PurchasedInvestments} />
+                        <Route exact path={'/dashboard/editUser'} component={EditUser} />
+                    </Switch>
+                ) : (
                         <Switch>
-                            <Route exact path={'/dashboard/'} component={InvestmentsList} />
-                            <Route exact path={'/dashboard/investments/add'} component={ManageInvestment} />
-                            <Route exact path={'/dashboard/investments/:investmentId'} component={ManageInvestment} />
-                            <Route exact path={'/dashboard/usersList'} component={UsersList} />
-                            <Route exact path={'/dashboard/editUserByAdmin'} component={EditUserByAdmin} />
-                        </Switch>
-                    ) : ( localStorage.getItem('token') && (localStorage.getItem('role') === 'CUSTOMER' || localStorage.getItem('role') === 'ROLE_SALESMAN') ? (
-                        <Switch>
-                            <Route exact path={'/dashboard/'} component={DownloadedInvestments} />
-                            {/* <Route exact path={'/dashboard/purchasedInvestments'} component={PurchasedInvestments} /> */}
-                            <Route exact path={'/dashboard/editUser'} component={EditUser} />
-                        </Switch>   
-                    ): (
-                        <Switch>
-                         <Route path={'/dashboard'} component={Login} />
+                            <Route path={'/dashboard'} component={Login} />
                         </Switch>
                     )
                     )}
-                </div>
             </div>
+            </div >
         )
     }
 }

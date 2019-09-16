@@ -7,7 +7,7 @@ import { RootState } from 'src/Store/Reducers/_RootReducer';
 import { history } from 'src/App';
 import EditUserForm from './Forms/EditUserForm';
 import * as QRCode from 'qrcode.react'
-import { baseURL } from './../Connectors/config';
+import { baseURL, domainURL } from './../Connectors/config';
 
 type DispatchedP = {
     editUser: (newUser: any) => void;
@@ -33,7 +33,7 @@ class EditUser extends React.Component<DispatchedP & ConnectedP, S> {
         this.props.getLoggedUserdata();
     }
     public onUserDelete = () => {
-       this.props.showPopup('deleteUser')
+        this.props.showPopup('deleteUser')
     }
     public copyReflink = () => {
         const selection = window.getSelection();
@@ -62,28 +62,29 @@ class EditUser extends React.Component<DispatchedP & ConnectedP, S> {
                         <img src={`${baseURL}/${this.props.loggedUserData.avatar}`} />
                     ) : (this.state.img ? (
                         <img src={this.state.img} />
-                    ): (
-                        <i className="fas fa-user-tie" />
-                    )))}
+                    ) : (
+                            <i className="fas fa-user-tie" />
+                        )))}
                 </div>
-                <EditUserForm onChange={(data:any) => data.avatar && this.setState({img: data.avatar.content})} onSubmit={async (data) => await (this.props.editUser(data))} initialValues={this.props.loggedUserData}/>
-                {this.props.loggedUserData && this.props.loggedUserData.firstRole === 'ROLE_SALESMAN' && 
+                <EditUserForm onChange={(data: any) => data.avatar && this.setState({ img: data.avatar.content })} onSubmit={async (data) => await (this.props.editUser(data))} initialValues={this.props.loggedUserData} />
+                {this.props.loggedUserData && this.props.loggedUserData.firstRole === 'ROLE_SALESMAN' &&
                     (<>
                         <div className="edituser__reflink">
                             <h3>Twój link polecający to: </h3>
-                            <p id="reflink">http://obligain.k-org.pl?r=17765</p>
+                            <p id="reflink">{domainURL}?r={this.props.loggedUserData.refCode}</p>
                             <button className="btn btn--copyReflink" onClick={this.copyReflink}>
                                 Skopiuj do schowka
                             </button>
                         </div>
-                        <QRCode value={`http://obligain.k-org.pl?r=17765`} />
+                        <QRCode value={domainURL + `?r=` + this.props.loggedUserData.refCode} />
                         <button className="btn btn--main" onClick={this.downloadCanvas}>Pobierz kod</button>
                     </>
-                )}
+        )
+    }
                 <div className="edituser--actions">
                     <button className="edituser--delete btn btn--main btn--big btn--red" onClick={this.onUserDelete}>Trwałe usunięcie konta</button>
                 </div>
-            </div>
+            </div >
         )
     }
 }

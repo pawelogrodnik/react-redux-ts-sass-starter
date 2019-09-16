@@ -20,6 +20,25 @@ InvestmentEnumTypes.InvestmentType.gold, InvestmentEnumTypes.InvestmentType.hote
 InvestmentEnumTypes.InvestmentType.vehicle, InvestmentEnumTypes.InvestmentType.whisky, InvestmentEnumTypes.InvestmentType.franchise
 ];
 
+
+export const VoivodeshipsArray = [
+    "dolnośląskie",
+    "kujawsko-pomorskie",
+    "lubelskie",
+    "lubuskie",
+    "łódzkie",
+    "małopolskie",
+    "mazowieckie",
+    "opolskie",
+    "podkarpackie",
+    "podlaskie",
+    "pomorskie",
+    "śląskie",
+    "świętokrzyskie",
+    "warmińsko-mazurskie",
+    "wielkopolskie",
+    "zachodniopomorskie"
+];
 export const RiskArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 export const stopienRyzyka: Array<ViewManagementModule.Types.OptionsElement> = [
     {
@@ -65,7 +84,7 @@ function getOptionsList(arrayEnums: Array<any>, dictionary?: Map<any, any>): Arr
 
 export const getInvestmentOptions = getOptionsList(investmentTypeArray, investmentTypeMap)
 export const riskOptions = getOptionsList(RiskArray);
-
+export const voivodeshipsOptions = getOptionsList(VoivodeshipsArray);
 
 
 export const MappedErrorResponse = new Map<string, string>([

@@ -18,6 +18,7 @@ import TermsAndConditions from './components/StaticPages/TermsAndConditions';
 import Subscription from './components/StaticPages/Subscription';
 import VIP from './components/StaticPages/VIP';
 import PrivacyPolicy from './components/StaticPages/PrivacyPolicy';
+import CookiesPrivacy from './components/StaticPages/CookiesPrivacy';
 import OtherTerms from './components/StaticPages/OtherTerms';
 import Mission from './components/StaticPages/Mission';
 import Loader from './components/Layout/Loader';
@@ -45,8 +46,8 @@ type DispatchedP = {
     loginUserFromStorage: (user: UserModule.Types.User, token: string) => void;
     setPrevPath: (prevPath: string) => void;
     showPopup: (typePopup: string) => void;
-    setResetCode: (code:string) => void;
-    checkIfUserIsValid: (token:string) => void;
+    setResetCode: (code: string) => void;
+    checkIfUserIsValid: (token: string) => void;
 };
 type S = {
     loadingUserComplete: boolean;
@@ -66,15 +67,15 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
     public componentDidMount() {
         // console.log(this.props.location);
         // console.log(this.props.location.search.split('=')[1].split('&')[0])
-        if(this.props.location.pathname == '/dashboard/login' && this.props.location.search == '?status=successfully_confirmed') {
+        if (this.props.location.pathname == '/dashboard/login' && this.props.location.search == '?status=successfully_confirmed') {
             this.props.showPopup('confirmUserSuccess');
-        } else if(this.props.location.pathname == '/dashboard/login' && this.props.location.search == '?status=code_already_used') {
+        } else if (this.props.location.pathname == '/dashboard/login' && this.props.location.search == '?status=code_already_used') {
             this.props.showPopup('confirmUserCodeUsed');
-        } else if(this.props.location.pathname == '/dashboard/reset_password' && this.props.location.search.split('&')[0] == '?status=code_valid') {
+        } else if (this.props.location.pathname == '/dashboard/reset_password' && this.props.location.search.split('&')[0] == '?status=code_valid') {
             const code: string = this.props.location.search.split('=')[2];
             this.props.setResetCode(code);
             this.props.showPopup('resetPasswordContinue');
-        } else if(this.props.location.pathname == '/dashboard/reset_password' && this.props.location.search == '?status=code_already_used') {
+        } else if (this.props.location.pathname == '/dashboard/reset_password' && this.props.location.search == '?status=code_already_used') {
             this.props.showPopup('resetPasswordCodeUsed');
         } else if (this.props.location.pathname == '/' && this.props.location.search.split('=')[0] == '?r') {
             // alert(`Twój kod reflinku to: ${this.props.location.search.split('=')[1].split('&')[0]}`)
@@ -91,25 +92,25 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
     public componentWillMount() {
         if (localStorage.getItem('token')) {
             const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
-            this.props.loginUserFromStorage(null, token); 
+            this.props.loginUserFromStorage(null, token);
             this.props.checkIfUserIsValid(token);
         }
         this.setState({ loadingUserComplete: true });
-        
+
     }
-  
+
     public componentDidUpdate() {
-        if(this.props.location.pathname !== '/' && !this.state.isScrolled) {
-            window.scrollTo(0,0);
-            this.setState({isScrolled: true})
+        if (this.props.location.pathname !== '/' && !this.state.isScrolled) {
+            window.scrollTo(0, 0);
+            this.setState({ isScrolled: true })
         }
     }
 
     public componentWillReceiveProps(nextProps) {
-        if(nextProps.location !== this.props.location) {
+        if (nextProps.location !== this.props.location) {
             const path = this.props.location.pathname;
             this.props.setPrevPath(path);
-            this.setState({isScrolled: false})
+            this.setState({ isScrolled: false })
         }
     }
 
@@ -123,7 +124,7 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
                     {this.props.viewManagementStore.headerVisible && <Header whiteHeader={this.props.viewManagementStore.whiteHeader} />}
                     <div className={this.props.viewManagementStore.popupVisible ? 'pages__inner blurred' : 'pages__inner'}>
                         <Switch>
-                            <Route exact path={'/'} component={HomePage}/>} />
+                            <Route exact path={'/'} component={HomePage} />} />
                             <Route path={'/dashboard'} component={Dashboard} />
                             <Route path={'/investment/:id'} component={SingleInvestment} />
                             <Route path={'/aboutus'} component={AboutUs} />
@@ -140,6 +141,7 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
                             <Route path={'/subscription'} component={Subscription} />
                             <Route path={'/vip'} component={VIP} />
                             <Route path={'/privacypolicy'} component={PrivacyPolicy} />
+                            <Route path={'/cookiesprivacy'} component={CookiesPrivacy} />
                             <Route path={'/termsandconditions'} component={TermsAndConditions} />
                             <Route path={'/otherterms'} component={OtherTerms} />
                             <Route path={'/mission'} component={Mission} />
@@ -159,10 +161,10 @@ export const history = createHistory();
 
 const mapDispatchToProps: DispatchedP = {
     loginUserFromStorage: (user: UserModule.Types.User, token: string) => UserModule.Actions.loginUserSuccess(user, token),
-    setPrevPath: (prevPath:string) => ViewManagementModule.Actions.setPrevPath(prevPath),
+    setPrevPath: (prevPath: string) => ViewManagementModule.Actions.setPrevPath(prevPath),
     showPopup: (typePopup) => ViewManagementModule.Actions.showPopup(typePopup),
-    setResetCode: (code:string) => UserModule.Actions.setResetCode(code),
-    checkIfUserIsValid: (token:string) => UserModule.Actions.checkIfUserIsValid(token),
+    setResetCode: (code: string) => UserModule.Actions.setResetCode(code),
+    checkIfUserIsValid: (token: string) => UserModule.Actions.checkIfUserIsValid(token),
 };
 
 function mapStateToProps(state: RootState) {

@@ -3,12 +3,36 @@ import { Link } from 'react-router-dom';
 import { RootState } from '../../Store/Reducers/_RootReducer'
 import { connect } from 'react-redux';
 
-// type P = RootState;
+type S = {
+    cookiesAgreement: boolean;
+}
 
-export default class Footer extends React.Component<any, any> {
+export default class Footer extends React.Component<any, S> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            cookiesAgreement: localStorage.getItem('cookiesAgreement') ? true : false
+        };
+    }
+
+    public agreeCookies = () => {
+        localStorage.setItem('cookiesAgreement', 'true');
+        this.setState({ cookiesAgreement: true })
+    }
+
     public render() {
         return (
             <footer className={this.props.popupVisible ? 'footer blurred' : 'footer'}>
+                {!this.state.cookiesAgreement && (
+                    <div className="cookies">
+                        <div className="left"><p>Korzystając z naszych usług, przyjmują Pańśtwo do wiadomości, że używamy plików cookie i podobnych technologii do ulepszania i dostosowania treści, analizy ruchu, dostarczania reklam oraz ochrony przed spamem, złośliwym oprogramowaniem i nieuprawnionym dostępem. Więcej klikając <Link to="">tutaj</Link> [LINK DO POLITYKI COOKIES]</p>
+                            <p>Mogą Państwo zarządzać swoimi preferencjami reklamowymi dotyczącymi partnerów zarządzanych przez Obligain, klikając <Link to="/privacypolicy">tutaj</Link></p>
+                        </div>
+                        <div className="right">
+                            <button type="button" className="btn btn--search" onClick={this.agreeCookies}>Zaakceptuj</button>
+                        </div>
+                    </div>
+                )}
                 <div className="footer__inner container">
                     <div className="footer__l">
                         <h2>
@@ -24,8 +48,8 @@ export default class Footer extends React.Component<any, any> {
                                 <Link to={'/'}>Strona główna</Link>
                             </li>
                             <li>
-                                    <Link to={'/dashboard'}>Logowanie</Link>
-                                </li>
+                                <Link to={'/dashboard'}>Logowanie</Link>
+                            </li>
                             {/* {!localStorage.getItem('token') && (
                                 <li>
                                     <Link to={'/dashboard/login'}>Logowanie</Link>
@@ -42,7 +66,6 @@ export default class Footer extends React.Component<any, any> {
                             </li>
                             <Link to="/cooperation"><li>Współpraca</li></Link>
                             <Link to="/termsandconditions"><li>Regulamin</li></Link>
-                            <Link to="/otherterms"><li>Pozostałe regulaminy</li></Link>
                         </ul>
                         <ul className="footer__menu">
                             <Link to="/returns"><li>Zwroty</li></Link>
@@ -50,6 +73,7 @@ export default class Footer extends React.Component<any, any> {
                             <Link to="/formofpayments"><li>Formy płatności</li></Link>
                             <Link to="/execusiontime"><li>Czas realizacji</li></Link>
                             <Link to="/faq"><li>FAQ</li></Link>
+                            <Link to="/otherterms"><li>Pozostałe regulaminy</li></Link>
                         </ul>
                         <ul className="footer__menu">
                             <Link to="/contact"><li>Kontakt</li></Link>
@@ -58,6 +82,7 @@ export default class Footer extends React.Component<any, any> {
                             <Link to="/vip"><li>VIP Serwis</li></Link>
                             {/* <Link to="/subscription"><li>Abonament</li></Link> */}
                             <Link to="/privacypolicy"><li>Polityka prywatności</li></Link>
+                            <Link to="/cookiesprivacy"><li>Polityka cookies</li></Link>
                         </ul>
                     </div>
                 </div>

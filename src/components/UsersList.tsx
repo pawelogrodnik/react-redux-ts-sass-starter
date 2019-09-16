@@ -28,73 +28,73 @@ class UsersList extends React.Component<DispatchedP & ConnectedP, any> {
     public async componentWillMount() {
         await this.props.getUsersList()
         console.log(this.props.usersList)
-        
+
     }
 
     public render() {
         return (
             <div className="investmentList">
                 {/* {!this.state.showSpecificUser ? ( */}
-                    <>
+                <>
                     <h2>Lista użytkowników w systemie</h2>
                     <ReactTable
-                    showPagination={true}
-                    sortable={true}
-                    minRows={0}
-                    previousText='Poprzednia'
-                    nextText="Następna"
-                    pageText="Strona"
-                    ofText="z"
-                    rowsText="rzędów"
-                    loadingText= 'Ładowanie...'
-                    // getTrProps={this.getTrProps}
-                    data={this.props.usersList ? [...this.props.usersList] : []}
-                    columns={[
-                        {
-                            id: 'id',
-                            accessor: 'id',
-                            Header: 'ID',
-                            width: 50
-                        },
-                        {
-                            id: 'email',
-                            Header: 'Email użytkownika',
-                            accessor: 'username'
-                        },
-                        {
-                            id: 'firstName',
-                            Header: 'Imię',
-                            accessor: d => d.firstName ? d.firstName : 'Brak'
-                        },
-                        {
-                            id: 'lastName',
-                            Header: 'Nazwisko',
-                            accessor: d => d.lastName ? d.lastName : 'Brak'
-                        },
-                        {
-                            id: 'phone',
-                            Header: 'Numer telefonu',
-                            accessor: d => d.phone ? d.phone : 'Brak'
-                        },
-                        {
-                            id: 'date',
-                            Header: 'Data utworzenia',
-                            accessor: d => d.dateAdd ? moment(d.dateAdd).format('DD-MM-YYYY') : 'Brak'
-                        },
-                        {
-                            id: 'active',
-                            Header: 'Status konta',
-                            accessor: d => d.active ? 'Aktywne' : 'Nieaktywne'
-                        },
-                        {
-                            id: 'check',
-                            Cell: (props) => <button className="btn btn--checkInvestment" onClick={async () => {
-                               await this.props.getSpecificUser(props.original.id)
-                               history.push('/dashboard/editUserByAdmin')
-                            }}>Edytuj dane</button>,
-                            width: 150
-                        }
-                    ]}
+                        showPagination={true}
+                        sortable={true}
+                        minRows={0}
+                        previousText='Poprzednia'
+                        nextText="Następna"
+                        pageText="Strona"
+                        ofText="z"
+                        rowsText="rzędów"
+                        loadingText='Ładowanie...'
+                        // getTrProps={this.getTrProps}
+                        data={this.props.usersList ? [...this.props.usersList] : []}
+                        columns={[
+                            {
+                                id: 'id',
+                                accessor: 'id',
+                                Header: 'ID',
+                                width: 50
+                            },
+                            {
+                                id: 'email',
+                                Header: 'Email użytkownika',
+                                accessor: 'username'
+                            },
+                            {
+                                id: 'firstName',
+                                Header: 'Imię',
+                                accessor: d => d.firstName ? d.firstName : 'Brak'
+                            },
+                            {
+                                id: 'lastName',
+                                Header: 'Nazwisko',
+                                accessor: d => d.lastName ? d.lastName : 'Brak'
+                            },
+                            {
+                                id: 'phone',
+                                Header: 'Numer telefonu',
+                                accessor: d => d.phone ? d.phone : 'Brak'
+                            },
+                            {
+                                id: 'date',
+                                Header: 'Data utworzenia',
+                                accessor: d => d.dateAdd ? moment(d.dateAdd).format('DD-MM-YYYY') : 'Brak'
+                            },
+                            {
+                                id: 'active',
+                                Header: 'Status konta',
+                                accessor: d => d.active ? 'Aktywne' : 'Nieaktywne'
+                            },
+                            {
+                                id: 'check',
+                                Cell: (props) => <button className="btn btn--checkInvestment" onClick={async () => {
+                                    await this.props.getSpecificUser(props.original.id)
+                                    history.push('/dashboard/editUserByAdmin')
+                                }}>Edytuj dane</button>,
+                                width: 150
+                            }
+                        ]}
                     />
                 </>
                 {/* ) : (

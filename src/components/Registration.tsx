@@ -10,47 +10,47 @@ type DispatchedP = {
     registerUser: (newUser: any) => void;
 }
 type S = {
-   page: number;
-   img: any;
-   initialValues: {
-       firstname: string,
-       lastname: string,
-       username: string,
-       password: string,
-       confirmation: string,
-       facebook: boolean,
-       avatar: {
-           url: string,
-           content: any
-       }
-   }
+    page: number;
+    img: any;
+    initialValues: {
+        firstname: string,
+        lastname: string,
+        username: string,
+        password: string,
+        confirmation: string,
+        facebook: boolean,
+        avatar: {
+            url: string,
+            content: any
+        }
+    }
 };
 
 class Registration extends React.Component<DispatchedP, S> {
     constructor(props: DispatchedP) {
         super(props);
         this.state = {
-           page: 1,
-           img: null,
-           initialValues: {
-               firstname: '',
-               lastname: '',
-               username: '',
-               password: '',
-               confirmation: '',
-               facebook: false,
-               avatar: {
-                   url: '',
-                   content: null
-               }
-           }
+            page: 1,
+            img: null,
+            initialValues: {
+                firstname: '',
+                lastname: '',
+                username: '',
+                password: '',
+                confirmation: '',
+                facebook: false,
+                avatar: {
+                    url: '',
+                    content: null
+                }
+            }
         };
         this.nextPage = this.nextPage.bind(this)
         this.previousPage = this.previousPage.bind(this)
     }
     public responseFacebook = (response) => {
         console.log(response);
-        if(response.picture) {
+        if (response.picture) {
             this.setState({
                 img: response.picture.data.url,
                 initialValues: {
@@ -68,48 +68,50 @@ class Registration extends React.Component<DispatchedP, S> {
             })
         }
         console.log(this.state)
-      }
+    }
     public componentClicked = () => {
         console.log('clicked')
     }
     public nextPage() {
         this.setState({ page: this.state.page + 1 })
-      }
-    
+    }
+
     public previousPage() {
         this.setState({ page: this.state.page - 1 })
-      }
+    }
 
 
     public render() {
-        const secondStepInitial = localStorage.getItem('salesmanId') ? {
-            salesmanId: localStorage.getItem('salesmanId')
-        } : {};
         return (
             <div className="registration">
                 <div className="registration__inner">
                     <h2>Rejestracja</h2>
                     {(this.state.page == 1 && !this.state.img && !this.state.initialValues.facebook) && (
                         <>
-                        <FacebookLogin 
-                            appId="2391447291175254"
-                            autoLoad={false}
-                            fields="name,email,picture,first_name,last_name"
-                            onClick={this.componentClicked}
-                            callback={this.responseFacebook}
-                            icon="fa-facebook"
-                            textButton="Zaloguj przez Facebooka"
-                            /> 
-                        <p className="center">lub</p>
-                    </>
+                            <FacebookLogin
+                                appId="2398570190423416"
+                                autoLoad={false}
+                                fields="name,email,picture,first_name,last_name"
+                                onClick={this.componentClicked}
+                                callback={this.responseFacebook}
+                                icon="fa-facebook"
+                                textButton="Zaloguj przez Facebooka"
+                            />
+                            <p className="center">lub</p>
+                        </>
                     )}
-                   {(this.state.page == 1 && (this.state.initialValues.avatar.url || this.state.img)) && (
+                    {(this.state.page == 1 && (this.state.initialValues.avatar.url || this.state.img)) && (
                         <div className="registration__img-profile">
-                        <img className="registration__img-profile--circle" src={this.state.initialValues.facebook ? this.state.initialValues.avatar.url : this.state.img}/>
-                    </div>
-                   )}
-                    {this.state.page === 1 && <FirstStepRegisterForm onSubmit={this.nextPage} onChange={(data:any) => data.avatar && this.setState({img: data.avatar.content})} initialValues={this.state.initialValues.firstname !== '' ? this.state.initialValues : null} isLoadedImage={this.state.initialValues.facebook ? true : false}/>}
-                    {this.state.page === 2 && <SecondStepRegisterForm initialValues={secondStepInitial} previousPage={this.previousPage} onSubmit={async (data) => await (this.props.registerUser(data))}/>}
+                            <img className="registration__img-profile--circle" src={this.state.initialValues.facebook ? this.state.initialValues.avatar.url : this.state.img} />
+                        </div>
+                    )}
+                    {this.state.page === 1 && <FirstStepRegisterForm onSubmit={this.nextPage} onChange={(data: any) => data.avatar && this.setState({ img: data.avatar.content })} initialValues={this.state.initialValues.firstname !== '' ? this.state.initialValues : null} isLoadedImage={this.state.initialValues.facebook ? true : false} />}
+                    {this.state.page === 2 && <SecondStepRegisterForm previousPage={this.previousPage} onSubmit={async (data) => {
+                        if (localStorage.getItem('salesmanId')) {
+                            data['salesmanId'] = localStorage.getItem('salesmanId');
+                        }
+                        await (this.props.registerUser(data))
+                    }} />}
                     {/* <RegistrationForm onSubmit={async (data) => await (this.props.registerUser(data))}/> */}
                 </div>
             </div>
