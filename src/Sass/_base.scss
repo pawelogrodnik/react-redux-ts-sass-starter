@@ -873,3 +873,8 @@ textarea {
         margin: 0 auto;
     }
 }
+.mobile {
+    @media (max-width: 640px){
+        display: none;
+    }
+}

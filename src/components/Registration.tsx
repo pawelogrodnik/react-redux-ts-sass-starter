@@ -87,7 +87,7 @@ class Registration extends React.Component<DispatchedP, S> {
                 <div className="registration__inner">
                     <h2>Rejestracja</h2>
                     {(this.state.page == 1 && !this.state.img && !this.state.initialValues.facebook) && (
-                        <>
+                        <div className="mobile">
                             <FacebookLogin
                                 appId="2398570190423416"
                                 autoLoad={false}
@@ -98,7 +98,7 @@ class Registration extends React.Component<DispatchedP, S> {
                                 textButton="Zaloguj przez Facebooka"
                             />
                             <p className="center">lub</p>
-                        </>
+                        </div>
                     )}
                     {(this.state.page == 1 && (this.state.initialValues.avatar.url || this.state.img)) && (
                         <div className="registration__img-profile">

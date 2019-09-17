@@ -22,7 +22,7 @@ class SelectField extends React.PureComponent<WrappedFieldProps & Props> {
         }
     }
     public componentDidUpdate(prevProps: WrappedFieldProps & Props) {
-        if(prevProps.options.length !== this.props.options.length) {
+        if (prevProps.options.length !== this.props.options.length) {
             this.props.input.onChange(undefined);
         }
     }
@@ -50,9 +50,7 @@ class SelectField extends React.PureComponent<WrappedFieldProps & Props> {
                         classNamePrefix={'form_control'}
                         value={value}
                         onChange={this.handleChange}
-                        onBlur={() => {
-                            input.onBlur(input.value);
-                        }}
+                        onBlur={event => event.preventDefault()}
                         options={options}
                         className="form_control"
                         isDisabled={disabled}
