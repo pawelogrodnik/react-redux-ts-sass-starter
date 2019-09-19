@@ -19,6 +19,7 @@ export type Investment = {
     seller: Seller
 }
 
+
 export type DownloadedInvestment = {
     id: number;
     email: string;
@@ -26,6 +27,14 @@ export type DownloadedInvestment = {
     title: string;
     type: EnumTypes.InvestmentType;
 }
+
+// export type DownloadedInvestmentByAdmin = {
+//     product_id: number;
+//     user_id: number;
+//     date: string;
+//     title: string;
+//     type: EnumTypes.InvestmentType;
+// }
 
 export type PurchasedInvestment = {
     id: number;

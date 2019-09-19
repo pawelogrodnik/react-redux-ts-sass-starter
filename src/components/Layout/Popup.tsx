@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ErrorActions from './../../Store/Actions/ErrorActions';
 import * as UserModule from 'Modules/UserModule';
+import * as InvestmentModule from 'Modules/InvestmentModule';
 import * as ViewManagementModule from '../../Store/../Modules/ViewManagementModule'
 import { ErrorStore } from './../../Store/Actions/Models/ErrorActionsModel';
 import { connect } from 'react-redux';
@@ -24,12 +25,14 @@ type DispatchedP = {
     resetPasswordContinue: (data: resetPasswordData) => void;
     deleteUser: () => void;
     deleteUserByAdmin: (id?: number) => void;
+    buyInvestment: (id: number) => void;
 };
 
 type ConnectedP = {
     viewManagement: ViewManagementModule.Types.ViewManagementStore,
     resetPasswordCode: string,
     specificUser: UserModule.Types.SpecificUser;
+    router: any;
 };
 
 type S = {
@@ -40,8 +43,12 @@ type S = {
     showOneTimeForm: boolean
 }
 
-class Popup extends React.Component<DispatchedP & ConnectedP, S> {
-    constructor(props) {
+type P = {
+    match?: any;
+}
+
+class Popup extends React.Component<DispatchedP & ConnectedP & P, S> {
+    constructor(props: DispatchedP & ConnectedP & P) {
         super(props);
         this.state = {
             email: '',
@@ -100,7 +107,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                     <>
                         <h2>Dziękujemy za utworzenie konta!</h2>
                         <p>Prosimy oczekiwać na wiadomość e-mail potwierdzającą rejestrację celem dokończenia procesu.</p>
-                        <i className="far fa-check-circle" />
+                        <i className="popup__icon far fa-check-circle" />
                     </>
                 )
             }
@@ -108,7 +115,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                 return (
                     <>
                         <h2>Edycja zakończona pomyślnie!</h2>
-                        <i className="far fa-check-circle" />
+                        <i className="popup__icon far fa-check-circle" />
                     </>
                 )
             }
@@ -116,7 +123,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                 return (
                     <>
                         <h2>Twoje konto zostało pomyślnie potwierdzone!</h2>
-                        <i className="far fa-check-circle" />
+                        <i className="popup__icon far fa-check-circle" />
                     </>
                 )
             }
@@ -124,7 +131,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                 return (
                     <>
                         <h2>Twój kod potwierdzenia został już użyty!</h2>
-                        <i className="fas fa-exclamation-triangle"/>
+                        <i className="popup__icon fas fa-exclamation-triangle"/>
                     </>
                 )
             }
@@ -142,7 +149,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                 return (
                     <>
                         <h2>Na Twoje konto mailowe został wysłany link do resetu hasła!</h2>
-                        <i className="far fa-check-circle" />
+                        <i className="popup__icon far fa-check-circle" />
                     </>
                 )
             }
@@ -164,7 +171,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                 return (
                     <>
                         <h2>Hasło do Twojego konta zostało pomyślnie zmienione!</h2>
-                        <i className="far fa-check-circle" />
+                        <i className="popup__icon far fa-check-circle" />
                     </>
                 )
             }
@@ -172,7 +179,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                 return (
                     <>
                         <h2>Kod do zresetowania hasła został już użyty!</h2>
-                        <i className="fas fa-exclamation-triangle" />
+                        <i className="popup__icon fas fa-exclamation-triangle" />
                     </>
                 )
             }
@@ -180,7 +187,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                 return (
                     <>
                         <h2>Uwaga! Zaakceptowanie tej opcji skutkuje trwałym usunięciem konta w systemie. Czy jesteś pewien?</h2>
-                        <i className="fas fa-exclamation-triangle"/>
+                        <i className="popup__icon fas fa-exclamation-triangle"/>
                         <div className="deleteUser--actions">
                             <button className="btn btn--main btn--red" onClick={() => {
                                 if(localStorage.getItem('role') == 'ROLE_USER') {
@@ -198,7 +205,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                 return (
                     <>
                         <h2>Konto zostało pomyślnie usunięte!</h2>
-                        <i className="far fa-check-circle" />
+                        <i className="popup__icon far fa-check-circle" />
                     </>
                 )
             }
@@ -228,7 +235,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                 return (
                     <>
                         <h2>Skopiowano do schowka!</h2>
-                        <i className="far fa-check-circle" />
+                        <i className="popup__icon far fa-check-circle" />
                     </>
                 )
             }
@@ -236,7 +243,7 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                 return (
                     <>
                         <h2>Inwestycja została pomyślnie zarezerwowana z obowiązkiem zapłaty!</h2>
-                        <i className="far fa-check-circle" />
+                        <i className="popup__icon far fa-check-circle" />
                     </>
                 )
             }
@@ -246,6 +253,17 @@ class Popup extends React.Component<DispatchedP & ConnectedP, S> {
                         <h2>Uzupełnij dane sprzedawcy</h2>
                         <SalesmanData />
                     </>
+                )
+            }
+            case 'confirmPurchase': {
+                return (
+                    <>
+                    <h2>Czy na pewno chcesz dokonać rezerwacji?</h2>
+                    <i className="popup__icon far fa-question-circle"/>
+                    <div className="deleteUser--actions">
+                    <button className="btn btn--main" onClick={() => this.props.buyInvestment(this.props.router.location.pathname.split('/')[2])}>Tak, potwierdzam!</button>
+                    </div>
+                </>
                 )
             }
             default: {
@@ -277,7 +295,8 @@ function mapStateToProps(state: RootState): ConnectedP {
     return {
         viewManagement: state.viewManagementStore,
         resetPasswordCode: state.userStore.resetPasswordCode,
-        specificUser: state.userStore.specificUser
+        specificUser: state.userStore.specificUser,
+        router: state.router
     };
 }
 const mapDispachToProps: DispatchedP = {
@@ -286,6 +305,7 @@ const mapDispachToProps: DispatchedP = {
     deleteUser: () => UserModule.Actions.deleteUser(),
     deleteUserByAdmin: (id?: number) => UserModule.Actions.deleteUserByAdmin(id),
     resetPasswordContinue: (data: resetPasswordData) => UserModule.Actions.resetPasswordContinue(data),
+    buyInvestment: (id: number) => InvestmentModule.Actions.buyInvestment(id)
 }
 export default connect(
     mapStateToProps,

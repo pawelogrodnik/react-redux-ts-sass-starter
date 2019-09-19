@@ -191,6 +191,28 @@ function getDownloadedInvestmentsSuccess(downloadedInvestmentList: Array<Investm
     };
 }
 
+function getDownloadedInvestmentsByAdmin() {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            const response = await InvestmentModule.Connector.getDownloadedInvestmentsByAdmin()
+            dispatch(getDownloadedInvestmentsByAdminSuccess(response.data))
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        } catch (err) {
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
+
+function getDownloadedInvestmentsByAdminSuccess(downloadedInvestmentListByAdmin: Array<any>): InvestmentActionModel.GetDownloadedInvestmentsByAdmin {
+    return {
+        type: Investment.GET_DOWNLOADED_INVESTMENTS_BY_ADMIN,
+        payload: {
+            downloadedInvestmentListByAdmin
+        }
+    };
+}
+
 function getPurchasedInvestments() {
     return async dispatch => {
         try {
@@ -246,6 +268,7 @@ export {
     setSelectedPDF,
     getPDF,
     getDownloadedInvestments,
+    getDownloadedInvestmentsByAdmin,
     getPurchasedInvestments,
     buyInvestment
 }

@@ -29,14 +29,14 @@ class Login extends React.Component<DispatchedP & ConnectedP & P, any> {
     }
 
     public componentWillMount() {
-        if (this.props.userStore.user) {
+        if (this.props.userStore.user && !this.props.openPDF) {
             history.push('/dashboard');
         }
     }
 
     public handleSubmit = async (formData) => {
         await this.props.loginUser(formData.username, formData.password, this.props.openPDF);
-        if (this.props.openPDF) {
+        if (this.props.userStore.isUserLogged && this.props.openPDF) {
             this.props.getPDF(this.props.selectedPDF);
         }
     }

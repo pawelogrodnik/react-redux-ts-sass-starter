@@ -53,6 +53,12 @@ export function investmentReducer(state: State = initialState, action: Investmen
                 downloadedInvestmentList: action.payload.downloadedInvestmentList
             }
         }
+        case ActionTypes.Investment.GET_DOWNLOADED_INVESTMENTS_BY_ADMIN: {
+            return {
+                ...state,
+                downloadedInvestmentList: action.payload.downloadedInvestmentListByAdmin
+            }
+        }
         case ActionTypes.Investment.GET_PURCHASED_INVESTMENTS: {
             return {
                 ...state,

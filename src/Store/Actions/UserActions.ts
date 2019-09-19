@@ -16,9 +16,9 @@ function loginUser(username: string, password: string, openPDF: boolean) {
             dispatch(loginUserSuccess(response.data, response.data.authToken))
             localStorage.setItem('token', JSON.parse(JSON.stringify(response.data.authToken)));
             localStorage.setItem('role', JSON.parse(JSON.stringify(response.data.roles)));
-            // if(!openPDF) {
+            if(!openPDF) {
                 history.push('/dashboard');
-            // }
+            }
             dispatch(hidePopup());
             dispatch(checkIfUserIsValid(JSON.parse(JSON.stringify(response.data.authToken))))
             dispatch(ViewManagementModule.Actions.hideLoader())

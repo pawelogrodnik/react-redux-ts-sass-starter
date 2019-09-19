@@ -96,7 +96,7 @@ class Registration extends React.Component<DispatchedP, S> {
                                 callback={this.responseFacebook}
                                 icon="fa-facebook"
                                 textButton="Zaloguj przez Facebooka"
-                            />
+                            />ShowPo
                             <p className="center">lub</p>
                         </div>
                     )}

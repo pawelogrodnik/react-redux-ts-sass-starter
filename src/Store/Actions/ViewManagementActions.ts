@@ -51,7 +51,7 @@ function hidePopup(): ViewsManagementModel.HidePopup {
 
 function setBlueHeader(): ViewsManagementModel.SetBlueHeader {
     return {
-        type: ActionTypes.ViewManagement.SET_BLUE_HEADER
+        type: ActionTypes.ViewManagement.SET_BLUE_HEADER 
     };
 }
 

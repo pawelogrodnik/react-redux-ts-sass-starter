@@ -11,19 +11,19 @@ export type QueryParams = {
 };
 
 // PROD:
-export const baseURL = '//obligain.com/api/public_html/';
-export const domainURL = 'https://obligain.com';
+// export const baseURL = '//obligain.com/api/public_html/';
+// export const domainURL = 'https://obligain.com';
 // TEST:
-// export const baseURL = '//obligain.k-org.pl/api/public_html/';
-// export const domainURL = 'http://obligain.k-org.pl';
+export const baseURL = '//obligain.k-org.pl/api/public_html/';
+export const domainURL = 'http://obligain.k-org.pl';
 
 export let activeToken = (store.getState() as RootState).userStore.token ? store.getState().userStore.token : localStorage.getItem('token');
 
 const axiosInstance = axios.create({
     // PROD:
-    baseURL: `https:${baseURL}`,
+    // baseURL: `https:${baseURL}`,
     // TEST:
-    // baseURL: `http:${baseURL}`,
+    baseURL: `http:${baseURL}`,
 });
 
 axiosInstance.defaults.headers.post['Content-Type'] = 'application/json';

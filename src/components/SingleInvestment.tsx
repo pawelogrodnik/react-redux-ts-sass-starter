@@ -200,7 +200,10 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                             )}
                             {(this.props.investmentDetails.type !== token) && (
                                 <div className="center" data-tip data-for="buy" >
-                                    <button disabled={!this.props.isUserLogged} className="btn btn--main btn--buyNow" onClick={() => this.props.buyInvestment(this.props.match.params.id)}>Zarezerwuj z obowiązkiem zapłaty</button>
+                                    <button disabled={!this.props.isUserLogged} className="btn btn--main btn--buyNow" onClick={() => {
+                                        this.props.showPopup('confirmPurchase');
+                                        // this.props.buyInvestment(this.props.match.params.id)
+                                        }}>Zarezerwuj z obowiązkiem zapłaty</button>
                                     {!this.props.isUserLogged && this.generateTooltip('buy', 'Możliwość rezerwacji przeznaczona wyłącznie dla zalogowanych użytkowników')}
                                 </div>
                             )}

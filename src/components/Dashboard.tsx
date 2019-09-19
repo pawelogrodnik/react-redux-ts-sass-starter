@@ -7,6 +7,7 @@ import ManageInvestment from 'components/AddInvestment';
 import InvestmentsList from 'components/InvestmentsList';
 import EditUser from 'components/EditUser';
 import DownloadedInvestments from 'src/components/DownloadedInvestments';
+import DownloadedInvestmentsByAdmin from 'src/components/DownloadedInvestmentsByAdmin';
 import PurchasedInvestments from 'src/components/PurchasedInvestments';
 import UsersList from 'src/components/UsersList';
 import { Link } from 'react-router-dom';
@@ -82,10 +83,12 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                             <Link to={'/dashboard/'} data-tip data-for="investmentList"><li><i className="fas fa-list-ol" /></li></Link>
                             <Link to={'/dashboard/investments/add'} data-tip data-for="addInvestment"><li><i className="fas fa-plus" /></li></Link>
                             <Link to={'/dashboard/usersList'} data-tip data-for="usersList"><li><i className="fas fa-users" /></li></Link>
+                            <Link to={'/dashboard/downloadedInvestments'} data-tip data-for="downloadedList"><li><i className="fas fa-cart-arrow-down" /></li></Link>
                             <li onClick={this.handleLogout} data-tip data-for="logout"><span className="fake-a"><i className="fas fa-sign-out-alt" /></span></li>
                                 { this.generateTooltip('investmentList', 'Lista inwestycji') }
                                 {this.generateTooltip('addInvestment', 'Dodaj inwestycję')}
                                 {this.generateTooltip('usersList', 'Lista użytkowników')}
+                                {this.generateTooltip('downloadedList', 'Lista pobranych inwestycji')}
                         {this.generateTooltip('logout', 'Wyloguj')}
                             </>
                     ) : (localStorage.getItem('token') && (localStorage.getItem('role') ==='CUSTOMER' || localStorage.getItem('role') === 'ROLE_SALESMAN')  ? (
@@ -113,6 +116,7 @@ class Dashboard extends React.Component<DispatchedP & ConnectedP, S> {
                         <Route exact path={'/dashboard/investments/add'} component={ManageInvestment} />
                         <Route exact path={'/dashboard/investments/:investmentId'} component={ManageInvestment} />
                         <Route exact path={'/dashboard/usersList'} component={UsersList} />
+                        <Route exact path={'/dashboard/downloadedInvestments'} component={DownloadedInvestmentsByAdmin} />
                         <Route exact path={'/dashboard/editUserByAdmin'} component={EditUserByAdmin} />
                     </Switch>
                 ) : (localStorage.getItem('token') && (localStorage.getItem('role') === 'CUSTOMER' || localStorage.getItem('role') === 'ROLE_SALESMAN') ? (

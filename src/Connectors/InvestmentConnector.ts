@@ -30,6 +30,10 @@ export function getDownloadedInvestments(): AxiosPromise<Array<InvestmentModule.
     return API.get('user/products', config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }
 
+export function getDownloadedInvestmentsByAdmin(): AxiosPromise<Array<any>> {
+    return API.get('products/downloads', config(null, { 'x-auth-token': localStorage.getItem('token') }));
+}
+
 export function getPurchasedInvestments(): AxiosPromise<Array<InvestmentModule.Types.PurchasedInvestment>> {
     return API.get('user/bought', config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }

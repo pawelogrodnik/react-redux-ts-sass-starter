@@ -55,6 +55,13 @@ export type GetDownloadedInvestments = {
     }
 };
 
+export type GetDownloadedInvestmentsByAdmin = {
+    type: ActionTypes.Investment.GET_DOWNLOADED_INVESTMENTS_BY_ADMIN,
+    payload: {
+        downloadedInvestmentListByAdmin: Array<any>
+    }
+};
+
 export type GetPurchasedInvestments = {
     type: ActionTypes.Investment.GET_PURCHASED_INVESTMENTS,
     payload: {
@@ -76,5 +83,6 @@ export type InvestmentAction =
     | ClearInvestment
     | SetSelectedPDF
     | GetDownloadedInvestments
+    | GetDownloadedInvestmentsByAdmin
     | GetPurchasedInvestments
     | BuyInvestment;
