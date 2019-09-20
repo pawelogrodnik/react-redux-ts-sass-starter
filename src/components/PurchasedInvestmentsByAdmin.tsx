@@ -7,20 +7,21 @@ import * as moment from 'moment';
 import { Link } from 'react-router-dom';
 
 type DispatchedP = {
-    getPurchasedInvestments: () => void;
+    getPurchasedInvestmentsByAdmin: () => void;
 }
 type ConnectedP = {
     purchasedInvestmentList: Array<InvestmentsModule.Types.PurchasedInvestment>
 }
-class PurchasedInvestments extends React.Component<DispatchedP & ConnectedP, any> {
+class PurchasedInvestmentsByAdmin extends React.Component<DispatchedP & ConnectedP, any> {
     public async componentWillMount() {
-        await this.props.getPurchasedInvestments()
+        await this.props.getPurchasedInvestmentsByAdmin()
+        console.log(this.props.purchasedInvestmentList)
     }
 
     public render() {
         return (
             <div className="investmentList">
-                <h2>Lista zakupionych inwestycji</h2>
+                <h2>Lista zakupionych inwestycji przez klientów</h2>
                 {this.props.purchasedInvestmentList.length > 0 ? (
                     <ReactTable
                         showPagination={true}
@@ -58,6 +59,11 @@ class PurchasedInvestments extends React.Component<DispatchedP & ConnectedP, any
                                 accessor: 'companyName'
                             },
                             {
+                                id: 'buyerName',
+                                Header: 'Kupujący',
+                                accessor: 'buyerName'
+                            },
+                            {
                                 id: 'price',
                                 Header: 'Cena zakupu',
                                 accessor: d => d.salePrice + " PLN"
@@ -85,11 +91,11 @@ class PurchasedInvestments extends React.Component<DispatchedP & ConnectedP, any
 }
 
 const mapDispatchToProps: DispatchedP = {
-    getPurchasedInvestments: () => InvestmentsModule.Actions.getPurchasedInvestments()
+    getPurchasedInvestmentsByAdmin: () => InvestmentsModule.Actions.getPurchasedInvestmentsByAdmin()
 };
 function mapStateToProps(state: RootState): ConnectedP {
     return {
         purchasedInvestmentList: state.investmentStore.purchasedInvestmentList
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(PurchasedInvestments)
+export default connect(mapStateToProps, mapDispatchToProps)(PurchasedInvestmentsByAdmin)

@@ -21,7 +21,7 @@ class DownloadedInvestmentsByAdmin extends React.Component<DispatchedP & Connect
     public render() {
         return (
             <div className="investmentList">
-                <h2>Lista pobranych inwestycji</h2>
+                <h2>Lista pobranych inwestycji przez klientów</h2>
                 {this.props.downloadedInvestmentList.length > 0 ? (
                     <ReactTable
                     showPagination={true}
