@@ -17,7 +17,8 @@ import Returns from './components/StaticPages/Returns';
 import TermsAndConditions from './components/StaticPages/TermsAndConditions';
 import Subscription from './components/StaticPages/Subscription';
 import VIP from './components/StaticPages/VIP';
-import PrivacyPolicy from './components/StaticPages/PrivacyPolicy';
+import OldPrivacyPolicy from './components/StaticPages/PrivacyPolicy';
+import NewPrivacyPolicy from './components/StaticPages/NewPrivacyPolicy';
 import CookiesPrivacy from './components/StaticPages/CookiesPrivacy';
 import OtherTerms from './components/StaticPages/OtherTerms';
 import Mission from './components/StaticPages/Mission';
@@ -140,7 +141,8 @@ class App extends React.PureComponent<P & DispatchedP & PropsLocation, S> {
                             <Route path={'/returns'} component={Returns} />
                             <Route path={'/subscription'} component={Subscription} />
                             <Route path={'/vip'} component={VIP} />
-                            <Route path={'/privacypolicy'} component={PrivacyPolicy} />
+                            <Route path={'/oldprivacypolicy'} component={OldPrivacyPolicy} />
+                            <Route path={'/privacypolicy'} component={NewPrivacyPolicy} />
                             <Route path={'/cookiesprivacy'} component={CookiesPrivacy} />
                             <Route path={'/termsandconditions'} component={TermsAndConditions} />
                             <Route path={'/otherterms'} component={OtherTerms} />

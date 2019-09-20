@@ -220,6 +220,26 @@ export default class PrivacyPolicy extends React.Component<DispatchedP & Connect
                         W każdej chwili mogą Państwo usunąć cookies, korzystając z dostępnych funkcji w przeglądarce internetowej, której Państwo używają. Ograniczenie stosowania cookies może jednak wpłynąć na niektóre funkcjonalności serwisu. Dane – które przekazujemy firmom zewnętrznym – są używane wyłącznie do świadczenia usług opisanych w tym dokumencie. Za pomocą narzędzi analitycznych gromadzimy dane statystyczne, aby optymalizować naszą witrynę i przedstawiać w niej informacje, które mogą
                         Państwa zainteresować.
                     </p>
+                    <h5>Kto korzysta z informacji na mój temat?</h5>
+                    <p>Podczas pobierania pliku załącznika Państwa dane zawierające imię i nazwisko, adres, adres mailowy, numer telefonu komórkowego oraz datę i godzinę pobrania pliku w celu dokończenia procesu zakupowego mogą być przekazywane do następujących zaufanych partnerów (oferentów):</p>
+                    <p>
+                        <ul className="ulType">
+                            <li>Property Polska Katarzyna Saja</li>
+                            <li>Rahim Blak</li>
+                            <li>Rodzinne Inwestycje</li>
+                            <li>Universe Properties Group</li>
+                            <li>MK Premium Investment</li>
+                            <li>Cezary Chybowski</li>
+                            <li>RS Real Estate</li>
+                            <li>Optimal Partners</li>
+                            <li>ATT Investment Europe</li>
+                            <li>Gent Fund</li>
+                            <li>SunStreet Investment</li>
+                            <li>Czysto.pl</li>
+                            <li>Sapiency</li>
+                        </ul>
+                    </p>
+                    <p>Jeżeli trafili Państwo na stronę poprzez link afiliacyjny to Państwa imię i nazwisko będzie również udostępnione osobie z której linku Państwo skorzystali celem rozliczenia ewentualnego wynagrodzenia za skuteczną reklamę naszego Serwisu. </p>
                 </div>
             </div>
         );
