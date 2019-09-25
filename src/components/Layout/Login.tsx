@@ -48,7 +48,7 @@ class Login extends React.Component<DispatchedP & ConnectedP & P, any> {
             <div className="login">
                 <div className="login__inner" style={{ marginTop: !this.props.openPDF ? '150px' : null }}>
                     <h2>{!this.props.openPDF && 'Logowanie'}</h2>
-                    <div className="center mobile">
+                    <div className="center">
                         <FacebookLogin
                             appId="2398570190423416"
                             autoLoad={false}
@@ -57,9 +57,11 @@ class Login extends React.Component<DispatchedP & ConnectedP & P, any> {
                             callback={this.responseFacebook}
                             icon="fa-facebook"
                             textButton="Zaloguj przez Facebooka"
+                            isMobile={false}
+                            disableMobileRedirect={true}
                         />
                     </div>
-                    <p className="center mobile">lub</p>
+                    <p className="center">lub</p>
                     <LoginForm onSubmit={this.handleSubmit} />
                     <a onClick={() => this.props.showPopup('resetPassword')}>Nie pamiętasz hasła?</a>
                 </div>
