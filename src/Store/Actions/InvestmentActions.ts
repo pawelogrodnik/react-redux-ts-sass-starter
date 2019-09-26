@@ -257,6 +257,28 @@ function getPurchasedInvestmentsByAdminSuccess(purchasedInvestmentListByAdmin: A
     };
 }
 
+function getPurchasedInvestmentsDetailsByAdmin(saleId) {
+    return async dispatch => {
+        try {
+            dispatch(ViewManagementModule.Actions.showLoader())
+            const response = await InvestmentModule.Connector.getPurchasedInvestmentsDetailsByAdmin(saleId)
+            dispatch(getPurchasedInvestmentsDetailsByAdminSuccess(response.data))
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        } catch (err) {
+            dispatch(ViewManagementModule.Actions.hideLoader())
+        }
+    };
+}
+
+function getPurchasedInvestmentsDetailsByAdminSuccess(purchasedInvestmentDetailsByAdmin: Array<InvestmentModule.Types.PurchasedInvestmentDetails>): InvestmentActionModel.GetPurchasedInvestmentsDetailsByAdmin {
+    return {
+        type: Investment.GET_PURCHASED_INVESTMENTS_DETAILS_BY_ADMIN,
+        payload: {
+            purchasedInvestmentDetailsByAdmin
+        }
+    };
+}
+
 function buyInvestment(investmentId: number) {
     return async dispatch => {
         try {
@@ -293,5 +315,6 @@ export {
     getDownloadedInvestmentsByAdmin,
     getPurchasedInvestments,
     getPurchasedInvestmentsByAdmin,
+    getPurchasedInvestmentsDetailsByAdmin,
     buyInvestment
 }

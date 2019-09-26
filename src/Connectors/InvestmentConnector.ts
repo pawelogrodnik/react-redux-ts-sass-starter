@@ -42,6 +42,10 @@ export function getPurchasedInvestmentsByAdmin(): AxiosPromise<Array<any>> {
     return API.get('sale', config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }
 
+export function getPurchasedInvestmentsDetailsByAdmin(saleId): AxiosPromise<Array<InvestmentModule.Types.PurchasedInvestmentDetails>> {
+    return API.get(`sale/${saleId}`, config(null, { 'x-auth-token': localStorage.getItem('token') }));
+}
+
 export function buyInvestment(id: number): AxiosPromise<any> {
     return API.post(`products/${id}/buy`, null, config(null, { 'x-auth-token': localStorage.getItem('token') }));
 }

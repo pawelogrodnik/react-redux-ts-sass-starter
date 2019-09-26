@@ -51,32 +51,32 @@ class PurchasedInvestmentsByAdmin extends React.Component<DispatchedP & Connecte
                             {
                                 id: 'type',
                                 Header: 'Nazwa produktu',
-                                accessor: 'productName'
+                                accessor: 'product_name'
                             },
                             {
-                                id: 'companyName',
-                                Header: 'Nazwa firmy',
-                                accessor: 'companyName'
+                                id: 'first_name',
+                                Header: 'Imię',
+                                accessor: 'buyer_first_name'
                             },
                             {
-                                id: 'buyerName',
-                                Header: 'Kupujący',
-                                accessor: 'buyerName'
+                                id: 'last_name',
+                                Header: 'Nazwisko',
+                                accessor: 'buyer_last_name'
                             },
                             {
                                 id: 'price',
                                 Header: 'Cena zakupu',
-                                accessor: d => d.salePrice + " PLN"
+                                accessor: d => d.sale_price + " PLN"
                             },
                             {
                                 id: 'date',
                                 Header: 'Data sprzedaży',
-                                accessor: d => moment(d.saleDate).format('DD-MM-YYYY HH:mm')
+                                accessor: d => moment(d.sale_date).format('DD-MM-YYYY HH:mm')
                             },
                             {
                                 id: 'edit',
-                                Header: 'Inwestycja',
-                                Cell: (props) => <Link to={`/investment/${props.original.product_id}`} className="btn btn--checkInvestment">Zobacz</Link>,
+                                Header: 'Szczegóły',
+                                Cell: (props) => <Link to={`/dashboard/purchasedInvestments/details/${props.original.id}`} className="btn btn--checkInvestment">Zobacz</Link>,
                                 width: 150
                             }
                         ]}

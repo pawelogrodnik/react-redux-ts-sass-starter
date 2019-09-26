@@ -1,3 +1,5 @@
+import { voivodeshipsOptions } from './Dictionary';
+import { PurchasedInvestment } from './InvestmentModel';
 import { EnumTypes } from "src/Modules/InvestmentModule";
 
 export type InvestmentStore = {
@@ -6,7 +8,8 @@ export type InvestmentStore = {
     investmentDetails: Investment;
     selectedPDF: string;
     downloadedInvestmentList: Array<DownloadedInvestment>;
-    purchasedInvestmentList: Array<PurchasedInvestment>
+    purchasedInvestmentList: Array<PurchasedInvestment>;
+    purchasedInvestmentDetails: PurchasedInvestmentDetails;
 };
 
 
@@ -43,6 +46,58 @@ export type PurchasedInvestment = {
     saleDate: string;
     salePrice: number;
     productId: number;
+}
+
+export type PurchasedInvestmentDetails = {
+    company: {
+        companyName: string;
+        address: {
+            street: string;
+            flatNumber: string;
+            houseNumber: string;
+            postCode: string;
+            city: string;
+            country: string;
+            voivodeship: string;
+        },
+        email: string;
+    },
+    buyer: {
+        username: string;
+        phone: number;
+        dateAdd: string;
+        street: string;
+        houseNumber: string;
+        flatNumber: string;
+        postCode: string;
+        city: string;
+        country: string;
+        voivodeship: string;
+        firstname: string;
+        lastname: string;
+    },
+    productName: string;
+    revenue: number;
+    gains: [
+        {
+            salesman: {
+                id: number;
+                username: string;
+                refCode: string;
+                street: string;
+                houseNumber: string;
+                flatNumber: string;
+                postCode: string;
+                city: string;
+                country: string;
+                voivodeship: string;
+                firstname: string;
+                lastname: string;
+            },
+            revenue: number;
+        }
+    ]
+
 }
 
 export type Address = {

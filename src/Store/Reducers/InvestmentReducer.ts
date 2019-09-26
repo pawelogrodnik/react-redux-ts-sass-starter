@@ -10,7 +10,8 @@ export const initialState: State = {
     activeInvestmentId: null,
     selectedPDF: null,
     downloadedInvestmentList: [],
-    purchasedInvestmentList: []
+    purchasedInvestmentList: [],
+    purchasedInvestmentDetails: null
 };
 
 export function investmentReducer(state: State = initialState, action: InvestmentAction) {
@@ -71,12 +72,18 @@ export function investmentReducer(state: State = initialState, action: Investmen
                 purchasedInvestmentList: action.payload.purchasedInvestmentListByAdmin
             }
         }
+        case ActionTypes.Investment.GET_PURCHASED_INVESTMENTS_DETAILS_BY_ADMIN: {
+            return {
+                ...state,
+                purchasedInvestmentDetails: action.payload.purchasedInvestmentDetailsByAdmin
+            }
+        }
         default: {
             return state;
         }
     }
 }
- 
+
 export const Selectors = {
     getActiveInvestment(state: State) {
         if (state.investmentList && state.activeInvestmentId) {

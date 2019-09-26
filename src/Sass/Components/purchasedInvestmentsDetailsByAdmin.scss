@@ -1,0 +1,25 @@
+.details {
+    
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding: 10px 0 50px 0;
+    }
+    &__field {
+        // flex-grow: 1;
+        // flex: 1 1 30%;
+        flex-basis: 33%;
+        padding-right: 30px;
+        label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #929191c4;
+        }
+        p {
+            font-size: 16px;
+            font-weight: 600;
+            color: #8a8a8a;
+        }
+    }
+}
