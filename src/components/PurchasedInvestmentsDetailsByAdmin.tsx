@@ -24,42 +24,6 @@ class PurchasedInvestmentsDetailsByAdmin extends React.Component<DispatchedP & C
     public render() {
         if (this.props.purchasedInvestmentDetails) {
             const { productName, company, buyer, gains, } = this.props.purchasedInvestmentDetails;
-            const gainz = [
-                {
-                    salesman: {
-                        id: 12,
-                        username: "mati",
-                        refCode: "mati",
-                        street: "mati",
-                        houseNumber: "mati",
-                        flatNumber: "mati",
-                        postCode: "mati",
-                        city: "mati",
-                        country: "mati",
-                        voivodeship: "mati",
-                        firstname: "mati",
-                        lastname: "mati",
-                    },
-                    revenue: 232323
-                },
-                {
-                    salesman: {
-                        id: 12,
-                        username: "mati",
-                        refCode: "mati",
-                        street: "mati",
-                        houseNumber: "mati",
-                        flatNumber: "mati",
-                        postCode: "mati",
-                        city: "mati",
-                        country: "mati",
-                        voivodeship: "mati",
-                        firstname: "mati",
-                        lastname: "mati",
-                    },
-                    revenue: 232323
-                }
-            ]
             return (
                 <div className="details">
                     {this.props.purchasedInvestmentDetails && (
@@ -69,137 +33,141 @@ class PurchasedInvestmentsDetailsByAdmin extends React.Component<DispatchedP & C
                             <div className="details__container">
                                 <div className="details__field">
                                     <label>Nazwa firmy</label>
-                                    <p>{company.companyName}</p>
+                                    <p>{company.companyName ? company.companyName : 'Brak'}</p>
                                 </div>
                                 <div className="details__field">
                                     <label>Email</label>
-                                    <p>{company.email}</p>
+                                    <p>{company.email ? company.email : 'Brak'}</p>
                                 </div>
                                 <div className="details__field">
                                     <label>Kraj</label>
-                                    <p>{company.address.country}</p>
+                                    <p>{company.address.country ? company.address.country : 'Brak'}</p>
                                 </div>
                                 <div className="details__field">
                                     <label>Województwo</label>
-                                    <p>{company.address.voivodeship}</p>
+                                    <p>{company.address.voivodeship ? company.address.voivodeship : 'Brak'}</p>
                                 </div>
                                 <div className="details__field">
                                     <label>Miasto</label>
-                                    <p>{company.address.city}</p>
+                                    <p>{company.address.city ? company.address.city : 'Brak'}</p>
                                 </div>
                                 <div className="details__field">
                                     <label>Ulica</label>
-                                    <p>{company.address.street}</p>
+                                    <p>{company.address.street ? company.address.street : 'Brak'}</p>
                                 </div>
                                 <div className="details__field">
                                     <label>Numer domu</label>
-                                    <p>{company.address.houseNumber}</p>
+                                    <p>{company.address.houseNumber ? company.address.houseNumber : 'Brak'}</p>
                                 </div>
                                 <div className="details__field">
                                     <label>Numer mieszkania</label>
-                                    <p>{company.address.flatNumber}</p>
+                                    <p>{company.address.flatNumber ? company.address.flatNumber : 'Brak'}</p>
                                 </div>
                                 <div className="details__field">
                                     <label>Kod pocztowy</label>
-                                    <p>{company.address.postCode}</p>
+                                    <p>{company.address.postCode ? company.address.postCode : 'Brak'}</p>
                                 </div>
                             </div>
-                            <h3>Dane kupującego</h3>
-                            <div className="details__container">
-                                <div className="details__field">
-                                    <label>Nazwa użytkownika</label>
-                                    <p>{buyer.username}</p>
-                                </div>
-                                <div className="details__field">
-                                    <label>Imię</label>
-                                    <p>{buyer.firstname}</p>
-                                </div>
-                                <div className="details__field">
-                                    <label>Nazwisko</label>
-                                    <p>{buyer.lastname}</p>
-                                </div>
-                                <div className="details__field">
-                                    <label>Województwo</label>
-                                    <p>{buyer.voivodeship}</p>
-                                </div>
-                                <div className="details__field">
-                                    <label>Miasto</label>
-                                    <p>{buyer.city}</p>
-                                </div>
-                                <div className="details__field">
-                                    <label>Ulica</label>
-                                    <p>{buyer.street}</p>
-                                </div>
-                                <div className="details__field">
-                                    <label>Numer domu</label>
-                                    <p>{buyer.houseNumber}</p>
-                                </div>
-                                <div className="details__field">
-                                    <label>Numer mieszkania</label>
-                                    <p>{buyer.flatNumber}</p>
-                                </div>
-                                <div className="details__field">
-                                    <label>Kod pocztowy</label>
-                                    <p>{buyer.postCode}</p>
-                                </div>
-                                <div className="details__field">
-                                    <label>Numer telefonu</label>
-                                    <p>{buyer.phone}</p>
-                                </div>
-                                <div className="details__field">
-                                    <label>Data dodania</label>
-                                    <p>{moment(buyer.dateAdd).format('DD-MM-YYYY HH:mm')}</p>
-                                </div>
-                            </div>
-                            {gainz.length > 0 && (
+                            {buyer && (
+                                <>
+                                    <h3>Dane kupującego</h3>
+                                    <div className="details__container">
+                                        <div className="details__field">
+                                            <label>Nazwa użytkownika</label>
+                                            <p>{buyer.username ? buyer.username : 'Brak'}</p>
+                                        </div>
+                                        <div className="details__field">
+                                            <label>Imię</label>
+                                            <p>{buyer.firstname ? buyer.firstname : 'Brak'}</p>
+                                        </div>
+                                        <div className="details__field">
+                                            <label>Nazwisko</label>
+                                            <p>{buyer.lastname ? buyer.lastname : 'Brak'}</p>
+                                        </div>
+                                        <div className="details__field">
+                                            <label>Województwo</label>
+                                            <p>{buyer.voivodeship ? buyer.voivodeship : 'Brak'}</p>
+                                        </div>
+                                        <div className="details__field">
+                                            <label>Miasto</label>
+                                            <p>{buyer.city ? buyer.city : 'Brak'}</p>
+                                        </div>
+                                        <div className="details__field">
+                                            <label>Ulica</label>
+                                            <p>{buyer.street ? buyer.street : 'Brak'}</p>
+                                        </div>
+                                        <div className="details__field">
+                                            <label>Numer domu</label>
+                                            <p>{buyer.houseNumber ? buyer.houseNumber : 'Brak'}</p>
+                                        </div>
+                                        <div className="details__field">
+                                            <label>Numer mieszkania</label>
+                                            <p>{buyer.flatNumber ? buyer.flatNumber : 'Brak'}</p>
+                                        </div>
+                                        <div className="details__field">
+                                            <label>Kod pocztowy</label>
+                                            <p>{buyer.postCode ? buyer.postCode : 'Brak'}</p>
+                                        </div>
+                                        <div className="details__field">
+                                            <label>Numer telefonu</label>
+                                            <p>{buyer.phone ? buyer.phone : 'Brak'}</p>
+                                        </div>
+                                        <div className="details__field">
+                                            <label>Data sprzedaży</label>
+                                            <p>{buyer.dateAdd ? moment(buyer.dateAdd).format('DD-MM-YYYY HH:mm') : 'Brak'}</p>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+                            {gains.length > 0 && (
                                 <>
                                     <h3>Dane sprzedawców</h3>
-                                    {gainz.map((gain, idx) => {
+                                    {gains.map((gain, idx) => {
                                         return (
                                             <div className="details__container" key={idx}>
                                                 <div className="details__field">
                                                     <label>Nazwa użytkownika</label>
-                                                    <p>{gain.salesman.username}</p>
+                                                    <p>{gain.salesman.username ? gain.salesman.username : 'Brak'}</p>
                                                 </div>
                                                 <div className="details__field">
                                                     <label>Imię</label>
-                                                    <p>{gain.salesman.firstname}</p>
+                                                    <p>{gain.salesman.firstname ? gain.salesman.firstname : 'Brak'}</p>
                                                 </div>
                                                 <div className="details__field">
                                                     <label>Nazwisko</label>
-                                                    <p>{gain.salesman.lastname}</p>
+                                                    <p>{gain.salesman.lastname ? gain.salesman.lastname : 'Brak'}</p>
                                                 </div>
                                                 <div className="details__field">
                                                     <label>Województwo</label>
-                                                    <p>{gain.salesman.voivodeship}</p>
+                                                    <p>{gain.salesman.voivodeship ? gain.salesman.voivodeship : 'Brak'}</p>
                                                 </div>
                                                 <div className="details__field">
                                                     <label>Miasto</label>
-                                                    <p>{gain.salesman.city}</p>
+                                                    <p>{gain.salesman.city ? gain.salesman.city : 'Brak'}</p>
                                                 </div>
                                                 <div className="details__field">
                                                     <label>Ulica</label>
-                                                    <p>{gain.salesman.street}</p>
+                                                    <p>{gain.salesman.street ? gain.salesman.street : 'Brak'}</p>
                                                 </div>
                                                 <div className="details__field">
                                                     <label>Numer domu</label>
-                                                    <p>{gain.salesman.houseNumber}</p>
+                                                    <p>{gain.salesman.houseNumber ? gain.salesman.houseNumber : 'Brak'}</p>
                                                 </div>
                                                 <div className="details__field">
                                                     <label>Numer mieszkania</label>
-                                                    <p>{gain.salesman.flatNumber}</p>
+                                                    <p>{gain.salesman.flatNumber ? gain.salesman.flatNumber : 'Brak'}</p>
                                                 </div>
                                                 <div className="details__field">
                                                     <label>Kod pocztowy</label>
-                                                    <p>{gain.salesman.postCode}</p>
+                                                    <p>{gain.salesman.postCode ? gain.salesman.postCode : 'Brak'}</p>
                                                 </div>
                                                 <div className="details__field">
                                                     <label>Identyfikator</label>
-                                                    <p>{gain.salesman.refCode}</p>
+                                                    <p>{gain.salesman.refCode ? gain.salesman.refCode : 'Brak'}</p>
                                                 </div>
                                                 <div className="details__field">
                                                     <label>Dochód sprzedawcy</label>
-                                                    <p>{gain.revenue} PLN</p>
+                                                    <p>{gain.revenue ? new Intl.NumberFormat('pl-PL').format(gain.revenue) : 'Brak'} PLN</p>
                                                 </div>
                                             </div>
                                         )

@@ -25,7 +25,7 @@ const EditUserForm = (props: InjectedFormProps) => {
                 </div>
                 <Field type="password" wrapperClassName={'half'} name="password" component={RegularField} label={'Hasło'} />
                 <Field type="password" wrapperClassName={'half'} name="confirmation" component={RegularField} label={'Powtórz hasło'} />
-                <Field wrapperClassName={'full'} name="avatar.content" component={FileField} label={'Zdjęcie w tle'} />
+                <Field wrapperClassName={'full'} name="avatar.content" component={FileField} label={'Zdjęcie profilowe'} />
                 <div className="form--registration__buttons">
                     <button disabled={submitting} className="btn btn--main btn--big" type="submit">
                         Edytuj dane

@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Field, reduxForm, InjectedFormProps, formValueSelector } from 'redux-form';
-import { RegularField , SelectField, FileField} from './Fields/_Fields';
+import { RegularField, SelectField, FileField } from './Fields/_Fields';
 import { Validators as V } from './Fields/Validators';
 import * as Dictionary from 'Models/Dictionary';
 
-const EditUserByAdminForm = (props: InjectedFormProps ) => {
-    const { handleSubmit, submitting} = props;
+const EditUserByAdminForm = (props: InjectedFormProps) => {
+    const { handleSubmit, submitting } = props;
     const statusOptions = [
-        {label: 'Aktywne', value: true},
-        {label: 'Nieaktywne', value: false}
+        { label: 'Aktywne', value: true },
+        { label: 'Nieaktywne', value: false }
     ]
     const roleOptions = [
         {
@@ -45,7 +45,7 @@ const EditUserByAdminForm = (props: InjectedFormProps ) => {
                 <Field wrapperClassName={'half'} name="voivodeship" options={Dictionary.voivodeshipsOptions} component={SelectField} label={'Województwo'} placeholder="Wybierz wartość" validate={[V.required]} />
                 <Field type="password" wrapperClassName={'half'} name="password" component={RegularField} label={'Hasło'} />
                 <Field type="password" wrapperClassName={'half'} name="confirmation" component={RegularField} label={'Powtórz hasło'} />
-                <Field type="select" wrapperClassName={'full'} name="avatar.content" component={FileField} label={'Zdjęcie w tle'} />
+                <Field type="select" wrapperClassName={'full'} name="avatar.content" component={FileField} label={'Zdjęcie profilowe'} />
                 <div className="form--registration__buttons">
                     <button disabled={submitting} className="btn btn--main btn--big" type="submit">
                         Edytuj dane

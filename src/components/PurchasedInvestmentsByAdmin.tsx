@@ -56,12 +56,12 @@ class PurchasedInvestmentsByAdmin extends React.Component<DispatchedP & Connecte
                             {
                                 id: 'first_name',
                                 Header: 'Imię',
-                                accessor: 'buyer_first_name'
+                                accessor: d => d.buyer_first_name ? d.buyer_first_name : 'Brak'
                             },
                             {
                                 id: 'last_name',
                                 Header: 'Nazwisko',
-                                accessor: 'buyer_last_name'
+                                accessor: d => d.buyer_last_name ? d.buyer_last_name : 'Brak'
                             },
                             {
                                 id: 'price',
