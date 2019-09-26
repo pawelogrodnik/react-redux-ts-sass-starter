@@ -7,10 +7,14 @@
         padding: 10px 0 50px 0;
     }
     &__field {
-        // flex-grow: 1;
-        // flex: 1 1 30%;
         flex-basis: 33%;
         padding-right: 30px;
+        @media (max-width: 761px) {
+            flex-basis: 50%;
+        }
+        @media (max-width: 380px) {
+            flex-basis: 100%;
+        }
         label {
             font-size: 14px;
             font-weight: 500;
