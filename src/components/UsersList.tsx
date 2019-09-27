@@ -82,6 +82,11 @@ class UsersList extends React.Component<DispatchedP & ConnectedP, any> {
                                 accessor: d => d.dateAdd ? moment(d.dateAdd).format('DD-MM-YYYY') : 'Brak'
                             },
                             {
+                                id: 'role',
+                                Header: 'Rola użytkownika',
+                                accessor: d => d.firstRole == 'ROLE_USER'? 'Admin' : (d.firstRole == "ROLE_CUSTOMER" ? 'Klient' : 'Handlowiec')
+                            },
+                            {
                                 id: 'active',
                                 Header: 'Status konta',
                                 accessor: d => d.active ? 'Aktywne' : 'Nieaktywne'
