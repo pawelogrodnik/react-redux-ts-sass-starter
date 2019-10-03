@@ -58,6 +58,7 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
         )
     }
     public render() {
+        const contactForm = document.querySelector(".contactForm");
 
         return (
             <div className="page page--singleInvestment">
@@ -140,43 +141,43 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                     <div><span>Przychody:</span><span>{this.props.investmentDetails.detailedParams.income}</span></div>}
                                 {this.props.investmentDetails.type === gold && (
                                     <>
-                                    <div><span>Masa:</span><span>{this.props.investmentDetails.detailedParams.mass}</span></div>
-                                    <div><span>Próba:</span><span>{this.props.investmentDetails.detailedParams.goldtrial}</span></div>
+                                        <div><span>Masa:</span><span>{this.props.investmentDetails.detailedParams.mass}</span></div>
+                                        <div><span>Próba:</span><span>{this.props.investmentDetails.detailedParams.goldtrial}</span></div>
                                     </>
                                 )}
                                 {this.props.investmentDetails.type === whisky && (
                                     <>
-                                    <div><span>Destylarnia:</span><span>{this.props.investmentDetails.detailedParams.distillery}</span></div>
-                                    <div><span>Wersja:</span><span>{this.props.investmentDetails.detailedParams.version}</span></div>
-                                    <div><span>Butelkowanie:</span><span>{this.props.investmentDetails.detailedParams.bottling}</span></div>
-                                    <div><span>Objętość:</span><span>{this.props.investmentDetails.detailedParams.volume}</span></div>
-                                    <div><span>Wiek:</span><span>{this.props.investmentDetails.detailedParams.age}</span></div>
-                                    <div><span>Pochodzenie:</span><span>{this.props.investmentDetails.detailedParams.origin}</span></div>
+                                        <div><span>Destylarnia:</span><span>{this.props.investmentDetails.detailedParams.distillery}</span></div>
+                                        <div><span>Wersja:</span><span>{this.props.investmentDetails.detailedParams.version}</span></div>
+                                        <div><span>Butelkowanie:</span><span>{this.props.investmentDetails.detailedParams.bottling}</span></div>
+                                        <div><span>Objętość:</span><span>{this.props.investmentDetails.detailedParams.volume}</span></div>
+                                        <div><span>Wiek:</span><span>{this.props.investmentDetails.detailedParams.age}</span></div>
+                                        <div><span>Pochodzenie:</span><span>{this.props.investmentDetails.detailedParams.origin}</span></div>
                                     </>
                                 )}
-                               {this.props.investmentDetails.type === diamonds && (
+                                {this.props.investmentDetails.type === diamonds && (
                                     <>
-                                    <div><span>Masa:</span><span>{this.props.investmentDetails.detailedParams.mass}</span></div>
-                                    <div><span>Szlif:</span><span>{this.props.investmentDetails.detailedParams.cut}</span></div>
-                                    <div><span>Barwa:</span><span>{this.props.investmentDetails.detailedParams.color}</span></div>
-                                    <div><span>Czystość:</span><span>{this.props.investmentDetails.detailedParams.purity}</span></div>
+                                        <div><span>Masa:</span><span>{this.props.investmentDetails.detailedParams.mass}</span></div>
+                                        <div><span>Szlif:</span><span>{this.props.investmentDetails.detailedParams.cut}</span></div>
+                                        <div><span>Barwa:</span><span>{this.props.investmentDetails.detailedParams.color}</span></div>
+                                        <div><span>Czystość:</span><span>{this.props.investmentDetails.detailedParams.purity}</span></div>
                                     </>
                                 )}
                                 {this.props.investmentDetails.type === token && (
                                     <>
-                                    <div><span>Minimalny wkład:</span><span>{this.props.investmentDetails.detailedParams.minInsert}</span></div>
-                                    <div><span>Aktualny kurs:</span><span>{this.props.investmentDetails.detailedParams.currentCourse}</span></div>
-                                    <div><span>Planowany debiut (IPO):</span><span>{this.props.investmentDetails.detailedParams.ipo}</span></div>
+                                        <div><span>Minimalny wkład:</span><span>{this.props.investmentDetails.detailedParams.minInsert}</span></div>
+                                        <div><span>Aktualny kurs:</span><span>{this.props.investmentDetails.detailedParams.currentCourse}</span></div>
+                                        <div><span>Planowany debiut (IPO):</span><span>{this.props.investmentDetails.detailedParams.ipo}</span></div>
                                     </>
                                 )}
                             </div>
                             {(this.props.isUserLogged && this.props.investmentDetails.seller) && (
                                 <>
-                                <h3 className="center">Dane sprzedawcy</h3>
-                                <div className="productDataDetails">
-                                    <div><span>Nazwa:</span><span>{this.props.investmentDetails.seller.companyName}</span></div>
-                                    <div><span>Adres:</span><span>{this.props.investmentDetails.seller.address.city}, {this.props.investmentDetails.seller.address.street} {this.props.investmentDetails.seller.address.houseNumber}{this.props.investmentDetails.seller.address.flatNumber && `/${this.props.investmentDetails.seller.address.flatNumber}`} </span></div>
-                                </div>
+                                    <h3 className="center">Dane sprzedawcy</h3>
+                                    <div className="productDataDetails">
+                                        <div><span>Nazwa:</span><span>{this.props.investmentDetails.seller.companyName}</span></div>
+                                        <div><span>Adres:</span><span>{this.props.investmentDetails.seller.address.city}, {this.props.investmentDetails.seller.address.street} {this.props.investmentDetails.seller.address.houseNumber}{this.props.investmentDetails.seller.address.flatNumber && `/${this.props.investmentDetails.seller.address.flatNumber}`} </span></div>
+                                    </div>
                                 </>
                             )}
                             <div className="center">
@@ -199,18 +200,23 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                 </div>
                             )}
                             {(this.props.investmentDetails.type !== token) && (
-                                <div className="center" data-tip data-for="buy" >
-                                    <button disabled={!this.props.isUserLogged} className="btn btn--main btn--buyNow" onClick={() => {
-                                        this.props.showPopup('confirmPurchase');
-                                        // this.props.buyInvestment(this.props.match.params.id)
+                                <div className="container__buttons">
+                                    <span data-tip-disable={false} data-tip data-for="buy">
+                                        <button disabled={!this.props.isUserLogged} className="btn btn--main btn--buyNow" onClick={() => {
+                                            this.props.showPopup('confirmPurchase');
                                         }}>Zarezerwuj z obowiązkiem zapłaty</button>
+                                    </span>
                                     {!this.props.isUserLogged && this.generateTooltip('buy', 'Możliwość rezerwacji przeznaczona wyłącznie dla zalogowanych użytkowników')}
+                                    <button className="btn btn--main" style={{ width: '360px' }} onClick={() => {
+                                        contactForm.scrollIntoView()
+                                    }}>Umów spotkanie</button>
                                 </div>
                             )}
                         </div>
                         <ContactBanner />
                     </div>
-                )}
+                )
+                }
             </div>
         );
     }

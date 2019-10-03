@@ -33,6 +33,17 @@
     }
     &--singleInvestment {
         margin-top: 150px;
+        .container {
+            &__buttons {
+                display: flex;
+                justify-content: space-evenly;
+                margin: 80px;
+                @media (max-width: 961px) {
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+        }
     }
 }
 @media (max-width: 767px) {
@@ -47,7 +58,7 @@
                     justify-content: space-around;
                     li {
                         width: unset;
-                    
+
                     }
                 }
             }
@@ -82,7 +93,7 @@
             max-height: 150px;
         }
         @media (max-width: 640px) {
-         display: none;   
+         display: none;
         }
     }
     &__desc {
@@ -107,7 +118,7 @@
         button {
             margin-top: 40px;
         }
-    }   
+    }
     @media (max-width: 640px) {
         &__desc {
             margin-left: 15px;
