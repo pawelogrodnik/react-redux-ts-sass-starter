@@ -8,7 +8,7 @@ import ImageSlider from './../components/ImageSlider';
 import ContactBanner from './ContactBanner';
 import * as Dictionary from './../Models/Dictionary';
 import * as ReactTooltip from 'react-tooltip'
-import { replace } from 'react-router-redux';
+import Parser from 'html-react-parser';
 
 type P = {
     match: any;
@@ -70,7 +70,10 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                             <ImageSlider images={this.props.investmentDetails.detailedParams.images.other} />
                             <h1 className="titleLabel">{this.props.investmentDetails.basicParams.title}</h1>
                             <h2 className="subtitleLabel">{Dictionary.investmentTypeMap.get(this.props.investmentDetails.type)}</h2>
-                            <p>{this.props.investmentDetails.basicParams.description}</p>
+                            {this.props.investmentDetails.type === token && 
+                                <iframe src="https://player.vimeo.com/video/366952024?color=ffffff" allow="autoplay; fullscreen"/>
+                            }
+                            <p>{Parser(this.props.investmentDetails.basicParams.description)}</p>
                             <div className="singleProductComparision">
                                 <div className="row grey">
                                     <div className="col">
@@ -195,8 +198,8 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                 })}
                             </div>
                             {this.props.investmentDetails.type === token && (
-                                <div className="center">
-                                    <a href="https://ico.sapiency.io/ref/yhtbak" target="_blank" ><button className="btn btn--main btn--buyNow">Kup teraz!</button></a>
+                                <div className="container__buttons">
+                                    <a href="https://ico.sapiency.io/ref/yhtbak" target="_blank" ><button className="btn btn--main btn--buyNow btn--center">Kup teraz!</button></a>
                                 </div>
                             )}
                             {(this.props.investmentDetails.type !== token) && (
