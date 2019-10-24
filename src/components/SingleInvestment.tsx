@@ -70,8 +70,8 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                             <ImageSlider images={this.props.investmentDetails.detailedParams.images.other} />
                             <h1 className="titleLabel">{this.props.investmentDetails.basicParams.title}</h1>
                             <h2 className="subtitleLabel">{Dictionary.investmentTypeMap.get(this.props.investmentDetails.type)}</h2>
-                            {this.props.investmentDetails.type === token && 
-                                <iframe src="https://player.vimeo.com/video/366952024?color=ffffff" allow="autoplay; fullscreen"/>
+                            {this.props.investmentDetails.type === token &&
+                                <iframe src="https://player.vimeo.com/video/366952024?color=ffffff" allow="autoplay; fullscreen" />
                             }
                             <p>{Parser(this.props.investmentDetails.basicParams.description)}</p>
                             <div className="singleProductComparision">
@@ -131,7 +131,9 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                     <div><span>PUM [m2]:</span><span>{this.props.investmentDetails.detailedParams.pum}</span></div>}
                                 {this.props.investmentDetails.type === flat &&
                                     <div><span>Piętro:</span><span>{this.props.investmentDetails.detailedParams.floorNumber}</span></div>}
-                                <div><span>Cena w serwisie:</span><span>{new Intl.NumberFormat('pl-PL').format(parseFloat(this.props.investmentDetails.detailedParams.priceService.replace(/\s+/g, '').replace(/,/g, '.')))} zł</span></div>
+                                {this.props.investmentDetails.type !== token &&
+                                    <div><span>Cena w serwisie:</span><span>{new Intl.NumberFormat('pl-PL').format(parseFloat(this.props.investmentDetails.detailedParams.priceService.replace(/\s+/g, '').replace(/,/g, '.')))} zł</span></div>
+                                }
 
                                 {(this.props.investmentDetails.type === flat || this.props.investmentDetails.type === parcel || this.props.investmentDetails.type === hotel || this.props.investmentDetails.type === dorm || this.props.investmentDetails.type === vehicle || this.props.investmentDetails.type === franchise) &&
                                     <div><span>Cena rynkowa:</span><span>{new Intl.NumberFormat('pl-PL').format(parseFloat(this.props.investmentDetails.detailedParams.priceMarket.replace(/\s+/g, '').replace(/,/g, '.')))} zł</span></div>}
@@ -168,8 +170,8 @@ class SingleInvestment extends React.Component<DispatchedP & ConnectedP & P, any
                                 )}
                                 {this.props.investmentDetails.type === token && (
                                     <>
-                                        <div><span>Minimalny wkład:</span><span>{this.props.investmentDetails.detailedParams.minInsert}</span></div>
-                                        <div><span>Aktualny kurs:</span><span>{this.props.investmentDetails.detailedParams.currentCourse}</span></div>
+                                        <div><span>Minimalny wkład:</span><span>{this.props.investmentDetails.detailedParams.minInsert} zł</span></div>
+                                        <div><span>Aktualny kurs:</span><span>{this.props.investmentDetails.detailedParams.currentCourse} zł</span></div>
                                         <div><span>Planowany debiut (IPO):</span><span>{this.props.investmentDetails.detailedParams.ipo}</span></div>
                                     </>
                                 )}
