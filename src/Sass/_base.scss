@@ -417,6 +417,23 @@ textarea {
     &--text {
         padding-top: 140px;
     }
+    &--homepage {
+        .align-icons {
+            text-align: center;
+            i {
+                font-size: 40px;
+                margin: 0 0 20px 0;
+                padding: 0 10px;
+                color: #c5c5c5;
+                &:hover {
+                    color: $brownMain;
+                }
+            }
+            .selected {
+                color: $brownMain;
+            }
+        }
+    }
 }
 .DateInput_input {
     height: 38px;

@@ -15,6 +15,7 @@ type S = {
     investmentsVisible?: boolean;
     initialValues: any;
     path: string;
+    isTilesView: boolean;
 };
 
 // let initialValues = {
@@ -37,7 +38,7 @@ type DispatchedP = {
     setActiveInvestmentId: (investmentId: number) => void;
     setBlueHeader: () => void;
     setWhiteHeader: () => void;
-    setPrevPath: (prevPath:string) => void;
+    setPrevPath: (prevPath: string) => void;
 }
 
 type ConnectedP = {
@@ -51,7 +52,7 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
         super(props);
         this.state = {
             investmentsVisible: false,
-            initialValues : {
+            initialValues: {
                 interest: {
                     min: 6,
                     max: 20
@@ -65,27 +66,32 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
                     max: 10
                 }
             },
-            path: '/investment'
+            path: '/investment',
+            isTilesView: JSON.parse(sessionStorage.getItem('isTileView')) || false
         };
     }
     public componentWillMount() {
         this.props.setWhiteHeader();
-        if(this.props.prevPath.substring(0, this.props.prevPath.lastIndexOf('/')) == '/investment' && sessionStorage.getItem('searchValues')) {
-            this.setState({initialValues: JSON.parse(sessionStorage.getItem('searchValues'))}, async () => {
+        if (this.props.prevPath.substring(0, this.props.prevPath.lastIndexOf('/')) == '/investment' && sessionStorage.getItem('searchValues')) {
+            this.setState({ initialValues: JSON.parse(sessionStorage.getItem('searchValues')) }, async () => {
                 const query = createSerachQuery(this.state.initialValues)
                 await this.props.getInvestments(query);
             });
             this.setState({ investmentsVisible: true })
         }
     }
-    
+
     public componentDidUpdate() {
-            if(this.props.prevPath.substring(0, this.props.prevPath.lastIndexOf('/')) == this.state.path && sessionStorage.getItem('searchValues')) {
-                window.scrollTo(0, JSON.parse(sessionStorage.getItem('scrollToPosition'))-20);
-                if(!this.props.loaderVisible) {
-                    this.props.setPrevPath('')
-                }
+        if (this.props.prevPath.substring(0, this.props.prevPath.lastIndexOf('/')) == this.state.path && sessionStorage.getItem('searchValues')) {
+            window.scrollTo(0, JSON.parse(sessionStorage.getItem('scrollToPosition')) - 20);
+            // if (sessionStorage.getItem('isTileView')) {
+            //     this.setState({ isTilesView: JSON.parse(sessionStorage.getItem('isTileView')) })
+            // }
+
+            if (!this.props.loaderVisible) {
+                this.props.setPrevPath('')
             }
+        }
 
     }
 
@@ -100,10 +106,11 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
         await this.props.getInvestments(query)
         this.setState({ investmentsVisible: true })
     }
-    public investmentClickAction = (id: number,ref:HTMLDivElement) => {
+    public investmentClickAction = (id: number, ref: HTMLDivElement) => {
         sessionStorage.setItem('scrollToPosition', JSON.stringify(ref.offsetTop));
+        sessionStorage.setItem('isTileView', JSON.stringify(this.state.isTilesView));
         history.push(`/investment/${id}`)
-        
+
     }
     public render() {
         const { investmentList } = this.props;
@@ -112,8 +119,14 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
                 <HeroBanner backgroundImageSrc={'/background.png'} title={'Działamy na rzecz inwestorów'} description={'Witamy na pierwszym w Polsce portalu z najlepszymi okazjami inwestycyjnymi w jednym miejscu. Przed Państwem przygoda w postaci podróży po wyselekcjonowanych projektach z całego kraju. Znajdą tutaj Państwo zarówno długoterminowe lokaty kapitału w postaci mieszkań jak i krótkoterminowe inwestycje typu buy and sell.'} buttonText={'Wyszukiwarka'} />
                 <IntroTextBanner title={'Wyszukiwarka inwestycji'} description={'Proszę ustawić suwaki zgodnie ze swoimi preferencjami. Określone przez Państwa parametry dobiorą inwestycję, spełniającą Państwa wymagania.'} />
                 <SearchInvestmentsForm onSubmit={this.handleInvestmentFormSubmit} initialValues={this.state.initialValues} />
+                <div className="align-icons">
+                    {/* <button className={`btn ${!this.state.isTilesView ? 'btn--main' : 'btn--bordered'} btn--inline`} onClick={() => this.setState({ isTilesView: false })}>Lista</button>
+                    <button className={`btn ${this.state.isTilesView ? 'btn--main' : 'btn--bordered'} btn--inline`} onClick={() => this.setState({ isTilesView: true })}>Kafelki</button> */}
+                    <i className={`fas fa-bars ${this.state.isTilesView ? '' : 'selected'}`} onClick={() => this.setState({ isTilesView: false })} />
+                    <i className={`fas fa-grip-horizontal ${this.state.isTilesView ? 'selected' : ''}`} onClick={() => this.setState({ isTilesView: true })} />
+                </div>
                 {this.state.investmentsVisible &&
-                    <> { investmentList.length > 0 ? <InvestmentList investmentList={investmentList} action={this.investmentClickAction} /> : <div className="container"><h2 className="noResult">Brak wyników dla podanych parametrów</h2></div> } </>
+                    <> {investmentList.length > 0 ? <InvestmentList isTilesView={this.state.isTilesView} investmentList={investmentList} action={this.investmentClickAction} /> : <div className="container"><h2 className="noResult">Brak wyników dla podanych parametrów</h2></div>} </>
                 }
             </div>
         );
@@ -125,14 +138,14 @@ const mapDispatchToProps: DispatchedP = {
     setActiveInvestmentId: (investmentId: number) => InvestmentsModule.Actions.setActiveInvestmentId(investmentId),
     setBlueHeader: () => ViewManagementModule.Actions.setBlueHeader(),
     setWhiteHeader: () => ViewManagementModule.Actions.setWhiteHeader(),
-    setPrevPath: (prevPath:string) => ViewManagementModule.Actions.setPrevPath(prevPath),
+    setPrevPath: (prevPath: string) => ViewManagementModule.Actions.setPrevPath(prevPath),
 };
 
 function mapStateToProps(state: RootState): ConnectedP {
     return {
         investmentList: state.investmentStore.investmentList,
         prevPath: state.viewManagementStore.prevPath,
-        loaderVisible : state.viewManagementStore.loaderVisible
+        loaderVisible: state.viewManagementStore.loaderVisible
     }
 }
 
