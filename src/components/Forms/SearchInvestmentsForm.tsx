@@ -24,5 +24,7 @@ const SearchInvestmentsForm = (props: InjectedFormProps) => {
 };
 
 export default reduxForm({
-    form: 'searchInvestmentsForm'
+    form: 'searchInvestmentsForm',
+    destroyOnUnmount: false,
+    enableReinitialize: true
 })(SearchInvestmentsForm);
