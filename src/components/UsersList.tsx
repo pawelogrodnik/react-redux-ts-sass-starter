@@ -84,7 +84,7 @@ class UsersList extends React.Component<DispatchedP & ConnectedP, any> {
                             {
                                 id: 'role',
                                 Header: 'Rola użytkownika',
-                                accessor: d => d.firstRole == 'ROLE_USER'? 'Admin' : (d.firstRole == "ROLE_CUSTOMER" ? 'Klient' : 'Handlowiec')
+                                accessor: d => d.firstRole ? d.firstRole == 'ROLE_USER' ? 'Admin' : (d.firstRole == "ROLE_CUSTOMER" ? 'Klient' : 'Handlowiec') : 'Brak'
                             },
                             {
                                 id: 'active',

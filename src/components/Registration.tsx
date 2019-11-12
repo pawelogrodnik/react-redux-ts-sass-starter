@@ -95,7 +95,7 @@ class Registration extends React.Component<DispatchedP, S> {
                 onClick={this.componentClicked}
                 callback={this.responseFacebook}
                 icon="fa-facebook"
-                textButton="Zaloguj przez Facebooka"
+                textButton="Zarejestruj przez Facebooka"
                 isMobile={false}
                 disableMobileRedirect={true}
               />

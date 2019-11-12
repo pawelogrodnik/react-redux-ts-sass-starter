@@ -1,4 +1,4 @@
-export class Validators {    
+export class Validators {
     public static required = value => {
         let valueTemp = value;
 
@@ -13,11 +13,15 @@ export class Validators {
     }
 
     public static salesmanValidate = (value, allValues) => {
-        if((allValues.legalForm == 'company') && (!allValues.nip || !allValues.companyName) && !value) {
+        if ((allValues.legalForm == 'company') && (!allValues.nip || !allValues.companyName) && !value) {
             return 'Pole wymagane'
         }
     }
-    public static passwordMinLength = value =>
-       value && value.length < 5 ? `Hasło musi zawierać co najmniej 5 znaków` : undefined;
+    public static passwordMinLength = value => {
+        const regex = new RegExp('[!@#$%^&*(),.?":{}|<>]');
+        console.log(regex.test(value));
+        return value && value.length < 8 || !regex.test(value) ? `Hasło musi zawierać co najmniej 8 znaków oraz 1 znak specjalny` : undefined;
+    }
+
 
 }

@@ -95,7 +95,8 @@ class RangeField extends React.PureComponent<WrappedFieldProps & Props, S> {
                     <p>8. Inwestycje mieszkaniowe bez zabezpieczenia hipotecznego.</p>
                     <p>9. Inwestycje w biznes franczyzowy.</p>
                     <p>10. Tokeny</p>
-                    <i className="fas fa-times" onClick={this.toggleRiskDescription} />
+                    <i className="fas fa-times close-popup" onClick={this.toggleRiskDescription} />
+                    <i className="fas fa-tachometer-alt risk" />
                 </div>}
                 <div>
                     <InputRange

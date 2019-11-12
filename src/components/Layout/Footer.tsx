@@ -48,7 +48,7 @@ export default class Footer extends React.Component<any, S> {
                                 <Link to={'/'}>Strona główna</Link>
                             </li>
                             <li>
-                                <Link to={'/dashboard'}>Logowanie</Link>
+                                <Link to={'/dashboard'}>{localStorage.getItem('token') ? 'Panel użytkownika' : 'Logowanie'}</Link>
                             </li>
                             {/* {!localStorage.getItem('token') && (
                                 <li>
