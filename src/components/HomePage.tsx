@@ -87,12 +87,10 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
             // if (sessionStorage.getItem('isTileView')) {
             //     this.setState({ isTilesView: JSON.parse(sessionStorage.getItem('isTileView')) })
             // }
-
-            if (!this.props.loaderVisible) {
+            if (!this.props.loaderVisible && this.props.prevPath !== '') {
                 this.props.setPrevPath('')
             }
         }
-
     }
 
     public componentWillUnmount() {
@@ -114,19 +112,22 @@ class HomePage extends React.Component<DispatchedP & ConnectedP, S> {
     }
     public render() {
         const { investmentList } = this.props;
+        console.log(this.props.investmentList)
         return (
             <div className="page page--homepage">
                 <HeroBanner backgroundImageSrc={'/background.png'} title={'Działamy na rzecz inwestorów'} description={'Witamy na pierwszym w Polsce portalu z najlepszymi okazjami inwestycyjnymi w jednym miejscu. Przed Państwem przygoda w postaci podróży po wyselekcjonowanych projektach z całego kraju. Znajdą tutaj Państwo zarówno długoterminowe lokaty kapitału w postaci mieszkań jak i krótkoterminowe inwestycje typu buy and sell.'} buttonText={'Wyszukiwarka'} />
                 <IntroTextBanner title={'Wyszukiwarka inwestycji'} description={'Proszę ustawić suwaki zgodnie ze swoimi preferencjami. Określone przez Państwa parametry dobiorą inwestycję, spełniającą Państwa wymagania.'} />
                 <SearchInvestmentsForm onSubmit={this.handleInvestmentFormSubmit} initialValues={this.state.initialValues} />
-                <div className="align-icons">
-                    {/* <button className={`btn ${!this.state.isTilesView ? 'btn--main' : 'btn--bordered'} btn--inline`} onClick={() => this.setState({ isTilesView: false })}>Lista</button>
-                    <button className={`btn ${this.state.isTilesView ? 'btn--main' : 'btn--bordered'} btn--inline`} onClick={() => this.setState({ isTilesView: true })}>Kafelki</button> */}
-                    <i className={`fas fa-bars ${this.state.isTilesView ? '' : 'selected'}`} onClick={() => this.setState({ isTilesView: false })} />
-                    <i className={`fas fa-grip-horizontal ${this.state.isTilesView ? 'selected' : ''}`} onClick={() => this.setState({ isTilesView: true })} />
-                </div>
                 {this.state.investmentsVisible &&
-                    <> {investmentList.length > 0 ? <InvestmentList isTilesView={this.state.isTilesView} investmentList={investmentList} action={this.investmentClickAction} /> : <div className="container"><h2 className="noResult">Brak wyników dla podanych parametrów</h2></div>} </>
+                    <> {investmentList.length > 0 ? (
+                        <>
+                            <div className="align-icons">
+                                <i className={`fas fa-bars ${this.state.isTilesView ? '' : 'selected'}`} onClick={() => this.setState({ isTilesView: false })} />
+                                <i className={`fas fa-grip-horizontal ${this.state.isTilesView ? 'selected' : ''}`} onClick={() => this.setState({ isTilesView: true })} />
+                            </div>
+                            <InvestmentList isTilesView={this.state.isTilesView} investmentList={investmentList} action={this.investmentClickAction} />
+                        </>
+                    ) : <div className="container"><h2 className="noResult">Brak wyników dla podanych parametrów</h2></div>} </>
                 }
             </div>
         );
