@@ -34,15 +34,22 @@ export const InvestmentBlock = (props: P) => {
     )
 }
 
-
-export const InvestmentList = (props: { investmentList: Array<InvestmentsModule.Types.Investment>, action: (id: number, ref: HTMLDivElement) => void, isTilesView: boolean }) => {
-    return (
-        <div className={`investmentContainer ${props.isTilesView ? 'investmentContainer--tile-view' : 'investmentContainer--list-view'}`}>
-            {
-                props.investmentList.map((investment, i) => (
-                    <InvestmentBlock key={Math.random()} isTilesView={props.isTilesView} investment={investment} action={(blockRef: HTMLDivElement) => props.action(investment.id, blockRef)} />
-                ))
-            }
-        </div>
-    )
+type PP = {
+    investmentList: Array<InvestmentsModule.Types.Investment>;
+    action: (id: number, ref: HTMLDivElement) => void;
+    isTilesView: boolean;
+  };
+  export class InvestmentList extends React.PureComponent<PP, {}> {
+      public render() {
+        const { props } = this;
+          return (
+                  <div className={`investmentContainer ${props.isTilesView ? 'investmentContainer--tile-view' : 'investmentContainer--list-view'}`}>
+                      {
+                          props.investmentList.map((investment, i) => (
+                              <InvestmentBlock key={Math.random()} isTilesView={props.isTilesView} investment={investment} action={(blockRef: HTMLDivElement) => props.action(investment.id, blockRef)} />
+                          ))
+                      }
+                  </div>
+              )
+      }
 }
