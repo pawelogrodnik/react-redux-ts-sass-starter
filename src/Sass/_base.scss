@@ -906,3 +906,23 @@ textarea {
         margin: 0 auto;
     }
 }
+
+.SocialMediaShareButton {
+    &--facebook {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        width: 150px;
+        background: rgb(55,91,165);
+        color: #fff;
+        margin: 20px 0;
+        cursor: pointer;
+        i {
+            font-size: 20px;
+        }
+        p {
+            margin: 0 10px;
+        }
+    }
+}

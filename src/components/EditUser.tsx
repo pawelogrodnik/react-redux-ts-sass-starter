@@ -8,6 +8,7 @@ import { history } from 'src/App';
 import EditUserForm from './Forms/EditUserForm';
 import * as QRCode from 'qrcode.react'
 import { baseURL, domainURL } from './../Connectors/config';
+import { FacebookShareButton, FacebookIcon } from 'react-share';
 
 type DispatchedP = {
     editUser: (newUser: any) => void;
@@ -78,9 +79,13 @@ class EditUser extends React.Component<DispatchedP & ConnectedP, S> {
                         </div>
                         <QRCode value={domainURL + `?r=` + this.props.loggedUserData.refCode} />
                         <button className="btn btn--main" onClick={this.downloadCanvas}>Pobierz kod</button>
+                        <FacebookShareButton url={domainURL + `?r=` + this.props.loggedUserData.refCode} >
+                            <i className="fab fa-facebook-f" />
+                            <p>Udostępnij</p>
+                        </FacebookShareButton>
                     </>
-        )
-    }
+                    )
+                }
                 <div className="edituser--actions">
                     <button className="edituser--delete btn btn--main btn--big btn--red" onClick={this.onUserDelete}>Trwałe usunięcie konta</button>
                 </div>
