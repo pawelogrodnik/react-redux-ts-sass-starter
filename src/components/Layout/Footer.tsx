@@ -24,6 +24,7 @@ export default class Footer extends React.Component<any, S> {
         return (
             <footer className={this.props.popupVisible ? 'footer blurred' : 'footer'}>
                 {!this.state.cookiesAgreement && (
+
                     <div className="cookies">
                         <div className="left"><p>Korzystając z naszych usług, przyjmują Pańśtwo do wiadomości, że używamy plików cookie i podobnych technologii do ulepszania i dostosowania treści, analizy ruchu, dostarczania reklam oraz ochrony przed spamem, złośliwym oprogramowaniem i nieuprawnionym dostępem. Więcej klikając <Link to="/cookiesprivacy">tutaj</Link></p>
                             <p>Mogą Państwo zarządzać swoimi preferencjami reklamowymi dotyczącymi partnerów zarządzanych przez Obligain, klikając <Link to="/privacypolicy">tutaj</Link></p>
